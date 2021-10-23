@@ -1,5 +1,4 @@
-"Name","Parent","Other Parent","From","To","License","Developer","Guest","Interface","ISA
-guest[:host]","Host","Interface","Tech","Feature","Info Source",
+"Name","Parent","Other Parent","From","To","License","Developer","Guest","Interface","guest[:host] (ISA)","Host","Interface","Tech","Feature","Info Source",
 "Merge",,,"1985.10.09",2000,,,"DOS/Win3.1","ISA",,"SCO UNIX","UserEnv",,,"https://en.wikipedia.org/wiki/Merge_(software)",
 "mx",,,"1993","x",,"Digital","ULTRIX","ABI","MIPS:AXP(Alpha)","DES OSF/1",,,,"1993: Binary Translation by Richard L. Sites",
 "Shade",,,"1993","x",,"SUN","SPARC v8/v9,

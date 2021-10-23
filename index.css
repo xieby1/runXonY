@@ -1,0 +1,13 @@
+#details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    min-width: 16em;
+    max-width: 60em;
+    padding: .5em;
+    border: 1px solid rgb(173, 179, 185);
+    border-radius: 16px;
+    background-color: white;
+    box-shadow: rgba(12, 13, 14, .2) 0 3px 0, rgb(255, 255, 255) 0 0 0 6px inset;
+}
