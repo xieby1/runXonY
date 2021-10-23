@@ -6,7 +6,8 @@ let details = document.getElementById('details');
 let csv;
 
 objsvg.setAttribute('type', 'image/svg+xml');
-objsvg.setAttribute('data', 'gnuclad.svg');
+// objsvg.setAttribute('data', 'gnuclad.svg');
+objsvg.setAttribute('data', 'release/gnuclad_21.10.svg');
 document.body.appendChild(objsvg);
 
 function display_details(event) {
