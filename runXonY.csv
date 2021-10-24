@@ -109,7 +109,8 @@ SysAPI","X86:ARM","Android","UserEnv",,,"https://4pda.to/forum/index.php?showtop
 2019: Performance, Correctness, Exceptions: Pick Three",
 "box86",,,"2018","now",,,"Linux User","API
 ABI","X86:ARM32","Linux","UserEnv",,"lib wrapper",,
-"xDroid",,,"2018.8.21","now",,"麟卓（国防科大）","Android Runtime",,,"Linux","UserEnv",,,"https://www.linzhuotech.com/index.php/home/index/article.html?page=4&id=2",
+"xDroid","Anbox",,"2018.8.21","now",,"麟卓（国防科大）","Android Runtime",,,"Linux","UserEnv",,,"https://www.linzhuotech.com/index.php/home/index/article.html?page=4&id=2
+https://zhuanlan.zhihu.com/p/213300936",
 "edk2-sagit",,,"2019.02.22","2020.04.20",,,"Sys","Firmware","same (ARM)","EDK2","Firmware",,,,
 "McSema","LLVM",,"2019","now",,,"Linux User","API","X86,
 X86-64,
@@ -124,5 +125,7 @@ Machine Code To LLVM
 "exagear","exagear strategies",,"2020","now",,"eltech(华为)","Linux User","ABI","X86:ARM","Linux","UserEnv",,,,
 "box64","box86",,"2020.12.1","now",,,"Linux User","API
 ABI","X64:ARM64","Linux","UserEnv",,,,
+"Anbox-halium","Anbox",,"2021.4.16","2021.8.27",,,"Android Runtime",,,"Linux",,,,"Mirror: https://github.com/my-helps/anbox-halium",
 "deepin android runtime",,,"2021.6.29","now",,"统信","Android Runtime",,,"Linux","UserEnv",,,"https://www.deepin.org/zh/2021/06/29/deepin-20-2-2/",
-"waydroid",,,"2021.8.27","now",,,"Android Runtime",,"same (X86)","Linux","UserEnv",,,"https://github.com/waydroid/waydroid",
+"waydroid","Anbox-halium",,"2021.8.27","now",,,"Android Runtime",,"same (X86)","Linux","UserEnv",,,"https://www.reddit.com/r/Ubports/comments/oovy13/anbox_for_halium9_aka_new_anbox_update/
+https://github.com/waydroid/waydroid",
