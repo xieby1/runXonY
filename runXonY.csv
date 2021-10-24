@@ -1,44 +1,44 @@
-"Name","Parent","Other Parent","From","To","License","Developer","Guest","Interface","guest[:host] (ISA)","Host","Interface","Tech","Feature","Info Source",
-"Merge",,,"1985.10.09",2000,,,"DOS/Win3.1","ISA",,"SCO UNIX","UserEnv",,,"https://en.wikipedia.org/wiki/Merge_(software)",
-"mx",,,"1993","x",,"Digital","ULTRIX","ABI","MIPS:AXP(Alpha)","DES OSF/1",,,,"1993: Binary Translation by Richard L. Sites",
-"Shade",,,"1993","x",,"SUN","SPARC v8/v9,
-MIPS I","ABI",,"SPARC",,,"dynamic","1994: shade a fast instruction set simulator for execution profiling",
-"VEST",,,"1993","x",,"Digital","OpenVMS","ABI","VAX:AXP(Alpha)","OpenVMS",,,,"1993: Binary Translation by Richard L. Sites",
-"WINE",,,"1993.07.04","now","LGPL",,"Win App","UserEnv
+"#","Name","Parent","From","To","License","Developer","Guest","Interface","guest[:host] (ISA)","Host","Interface","Tech","Feature","Info Source","Rename","Time","Desc"
+"N","Merge",,"1985.10.09",2000,,,"DOS/Win3.1","ISA",,"SCO UNIX","UserEnv",,,"https://en.wikipedia.org/wiki/Merge_(software)",,,
+"N","mx",,"1993","x",,"Digital","ULTRIX","ABI","MIPS:AXP(Alpha)","DES OSF/1",,,,"1993: Binary Translation by Richard L. Sites",,,
+"N","Shade",,"1993","x",,"SUN","SPARC v8/v9,
+MIPS I","ABI",,"SPARC",,,"dynamic","1994: shade a fast instruction set simulator for execution profiling",,,
+"N","VEST",,"1993","x",,"Digital","OpenVMS","ABI","VAX:AXP(Alpha)","OpenVMS",,,,"1993: Binary Translation by Richard L. Sites",,,
+"N","WINE",,"1993.07.04","now","LGPL",,"Win App","UserEnv
 SysAPI","same","Linux,
 MacOS,
-BSD","UserEnv",,,,
-"Cygwin",,,"1995.10.18","now",,,"Linux App Src","API",,"Win","API",,"Run on POSIX runtime,
-Can be compiled on Win",,
-"FX!32",,,"1996","x",,"Digital","Win32","ABI","x86:Alpha","WinNT",,,,"1997: DIGITAL FX!32: Combining Emulation and Binary Translation
-1998: FX!32 A Profile-Directed Binary Translator",
-"DAISY",,,"1997",,,"IBM","PowerPC","ISA",,"DAISY (VLIW)","VMM",,"VLIW","1997: DAISY dynamic compilation for 100% architecutral compatibility
+BSD","UserEnv",,,,,,
+"N","Cygwin",,"1995.10.18","now",,,"Linux App Src","API",,"Win","API",,"Run on POSIX runtime,
+Can be compiled on Win",,,,
+"N","FX!32",,"1996","x",,"Digital","Win32","ABI","x86:Alpha","WinNT",,,,"1997: DIGITAL FX!32: Combining Emulation and Binary Translation
+1998: FX!32 A Profile-Directed Binary Translator",,,
+"N","DAISY",,"1997",,,"IBM","PowerPC","ISA",,"DAISY (VLIW)","VMM",,"VLIW","1997: DAISY dynamic compilation for 100% architecutral compatibility
 2000: full system binary translation RISC to VLIW
 2000: simulation and debugging of full system bianry translation
-2001: Dynamic binary translation and optimization",
-"MinGW",,,"1998.07.01","now",,,"Win App Src","API",,"Win","API",,"Run on MSVC runtime,
-Can be compiled on Win and Linux",,
-"Win4Lin","Merge",,"2000",2003,,"Win4Lin","Win Sys","ISA",,"Linux","UserEnv",,,"http://freshmeat.sourceforge.net/projects/win4lin
-Wikipedia time is wrong",
-"Code Morphing",,,"2000","x",,"Transmeta","X86 Sys","ISA",,"Crusoe (VLIW)","v-ISA",,,"2003: The Transmeta Code Morphing Software: Using Speculation, Recovery, and Adaptive Retranslation to Address Real-Life Challenges",
-"Dynamo",,,"2000","x",,"HP",,,"same",,,,"dynamic","2000: Dynamo: A Transparent Dynamic Optimization System",
-"User Mode Linux",,,"2001","now",,,"Linux Kernel","In-Kernel Call","same","Linux","ABI",,,"2006: User Mode Linux",
-"Dynamite",,,"2001","x",,"Transitive (Apple)","Linux","ABI","ARM:MIPS,
+2001: Dynamic binary translation and optimization",,,
+"N","MinGW",,"1998.07.01","now",,,"Win App Src","API",,"Win","API",,"Run on MSVC runtime,
+Can be compiled on Win and Linux",,,,
+"N","Win4Lin","Merge","2000",2003,,"Win4Lin","Win Sys","ISA",,"Linux","UserEnv",,,"http://freshmeat.sourceforge.net/projects/win4lin
+Wikipedia time is wrong",,,
+"N","Code Morphing",,"2000","x",,"Transmeta","X86 Sys","ISA",,"Crusoe (VLIW)","v-ISA",,,"2003: The Transmeta Code Morphing Software: Using Speculation, Recovery, and Adaptive Retranslation to Address Real-Life Challenges",,,
+"N","Dynamo",,"2000","x",,"HP",,,"same",,,,"dynamic","2000: Dynamo: A Transparent Dynamic Optimization System",,,
+"N","User Mode Linux",,"2001","now",,,"Linux Kernel","In-Kernel Call","same","Linux","ABI",,,"2006: User Mode Linux",,,
+"N","Dynamite",,"2001","x",,"Transitive (Apple)","Linux","ABI","ARM:MIPS,
 x86:MIPS,
 PowerPC:x86","Linux",,,"IR,
 Lib wrapper","Mail from wine-devel: 2003-August.txt: 17434,
-http://www.transitives.com/tech_faq.htm (need wayback machine)",
-"DOSBox",,,"2002","now",,,"DOS App",,,"Win,
+http://www.transitives.com/tech_faq.htm (need wayback machine)",,,
+"N","DOSBox",,"2002","now",,,"DOS App",,,"Win,
 BeOS,
 Linux,
 MacOS X,
-…",,,,,
-"LLVM",,,"2003","now",,,,,,,,"compiler",,,
-"QEMU-user",,,"2003.02","now",,,"Linux,
+…",,,,,,,
+"N","LLVM",,"2003","now",,,,,,,,"compiler",,,,,
+"N","QEMU-user",,"2003.02","now",,,"Linux,
 BSD
 * User","ABI",,"Linux,
-BSD","UserEnv",,"IR","2005: QEMU, a Fast and Portable Dynamic Translator",
-"QEMU-sys","QEMU-user",,"2003.10","now",,,"X86/64,
+BSD","UserEnv",,"IR","2005: QEMU, a Fast and Portable Dynamic Translator",,,
+"N","QEMU-sys","QEMU-user","2003.10","now",,,"X86/64,
 MIPS32/64,
 ARM32/64,
 SPARC32/64,
@@ -50,82 +50,95 @@ Win,
 MacOS,
 UNIX like,
 ...","UserEnv",,"IR","2005: QEMU, a Fast and Portable Dynamic Translator
-git: v0.5.0",
-"IA-32 EL",,,"2003","now",,,"Linux,
+git: v0.5.0",,,
+"N","IA-32 EL",,"2003","now",,,"Linux,
 Win
 * User","ABI","IA32:Itanium","Linux,
 Win
-","UserEnv",,,,
-"NDISWrapper",,,"2003","now",,,"WinXP wireless card driver","In-Kernel Call","same (X86)","Linux","In-Kernel Call",,,"github: pgiri/ndiswrapper: manpage: ndiswrapper.8",
-"Project David","WINE",,"2004",2004,,"SpecOps Labs","Win App","UserEnv
+","UserEnv",,,,,,
+"N","NDISWrapper",,"2003","now",,,"WinXP wireless card driver","In-Kernel Call","same (X86)","Linux","In-Kernel Call",,,"github: pgiri/ndiswrapper: manpage: ndiswrapper.8",,,
+"N","Project David","WINE","2004",2004,,"SpecOps Labs","Win App","UserEnv
 SysAPI",,"Linux","UserEnv",,,"Mail from wine-devel: 2004-April.txt: project David
 Turbo Linux: https://web.archive.org/web/20051201013454/http://digital.hmx.net/02contents/pc/linux/fuji.shtml
-http://www.specopslabs.com/david.htm","
-"
-"Digital Bridge",,,"2004",2006,,"武成岗组","Linux User","ABI","X86:MIPS","Linux",,"Dynamic + static bt",,"2005: 优化动态二进制翻译器DigitalBridge",
-"WineX / Cedega / GameTree Linux","WINE",,"2004",2016,,"TransGaming (Nvidia)","Win App","UserEnv
-SysAPI",,"Linux",,,,"Mail from wine-devel: 2004-August.txt: 22697",
-"Pin",,,"2005","now",,"Intel","Linux,
+http://www.specopslabs.com/david.htm",,,
+"N","Digital Bridge",,"2004",2006,,"武成岗组","Linux User","ABI","X86:MIPS","Linux",,"Dynamic + static bt",,"2005: 优化动态二进制翻译器DigitalBridge",,,
+"N","WineX / Cedega / GameTree Linux","WINE","2004",2016,,"TransGaming (Nvidia)","Win App","UserEnv
+SysAPI",,"Linux",,,,"Mail from wine-devel: 2004-August.txt: 22697",,,
+"N","skyeye",,"2004.5.26","2013.5.2",,,,,,,,,,"https://sourceforge.net/projects/skyeye/files/skyeye/
+git://skyeye.git.sourceforge.net/gitroot/skyeye/skyeye",,,
+"N","Pin",,"2005","now",,"Intel","Linux,
 Win,
 MacOS
 * User","SysAPI
 ABI","same (X86,X64)","Linux,
 Win,
-MacOS","SysAPI","Instrument","PinCRT","2005: Pin: Building Customized Program Analysis Tools with Dynamic Instrumentation",
-"Alky",,,"2006",2008.1,"LGPL","Falling Leaf System","Win App",,"same (X86)","Linux,
-MacOS",,,"OpenGL static converter, written in python, LibAlky is DX10 runtime only work on WinXP",,
-"Digital Bridge 2","Digital Bridge",,"2006","x",,"武成岗组","Linux User","API","X86:MIPS","Linux",,"Dynamic + static bt","lib wrapper","2006: 二进制翻译中的库函数处理",
-"Linuxulator",,,"2006","now",,,"Linux User","ABI","same","FreeBSD","In-Kernel Call",,,"Mail from wine-devel: 2004-August.txt: 26171: `kernel compatibility layer`
-2006: Linux emulation in FreeBSD",
-"Rosetta",,,"2006",2011,,"Apple","MacOS User",,"PowerPC:X86","MacOS","UserEnv",,,"wikipedia",
-"playonlinux","WINE",,"2007","now",,,"-","-","-","-","-",,"GUI wrapper of WINE","zorin os",
-"KVM",,,"2007.02.05","now",,"Linux Kernel Community","Sys","ISA","same","Linux","ABI",,"Intel VT,
+MacOS","SysAPI","Instrument","PinCRT","2005: Pin: Building Customized Program Analysis Tools with Dynamic Instrumentation",,,
+"N","Alky",,"2006",2008.1,"LGPL","Falling Leaf System","Win App",,"same (X86)","Linux,
+MacOS",,,"OpenGL static converter,
+written in python,
+LibAlky is DX10 runtime only work on WinXP",,,,
+"N","Digital Bridge 2","Digital Bridge","2006","x",,"武成岗组","Linux User","API","X86:MIPS","Linux",,"Dynamic + static bt","lib wrapper","2006: 二进制翻译中的库函数处理",,,
+"N","Linuxulator",,"2006","now",,,"Linux User","ABI","same","FreeBSD","In-Kernel Call",,,"Mail from wine-devel: 2004-August.txt: 26171: `kernel compatibility layer`
+2006: Linux emulation in FreeBSD",,,
+"N","Rosetta",,"2006",2011,,"Apple","MacOS User",,"PowerPC:X86","MacOS","UserEnv",,,"wikipedia",,,
+"N","playonlinux","WINE","2007","now",,,"-","-","-","-","-",,"GUI wrapper of WINE","zorin os",,,
+"N","KVM",,"2007.02.05","now",,"Linux Kernel Community","Sys","ISA","same","Linux","ABI",,"Intel VT,
 AMD-V,
-...","wikipedia: kvm (kernel-based virtual machine)",
-"QEMU-KVM","QEMU-sys","KVM","2008.11.06","now",,,"Sys","ISA","same","Linux","UserEnv",,,"Git commit: 7ba1e61953f459: Add KVM support to QEMU",
-"DistriBit",,,"2009",2012,,"上交",,,,,,,"Server-client, 2-level code cache, server predicts client’s needing code",,
-"DOSBox-X","DOSBox",,"2011","now",,,"DOS,
+...","wikipedia: kvm (kernel-based virtual machine)",,,
+"N","QEMU-KVM","QEMU-sys","2008.11.06","now",,,"Sys","ISA","same","Linux","UserEnv",,,"Git commit: 7ba1e61953f459: Add KVM support to QEMU",,,
+"C","QEMU-KVM","KVM","2008.11.06",,,,,,,,,,,,,,
+"N","DistriBit",,"2009",2012,,"上交",,,,,,,"Server-client,
+2-level code cache,
+Server predicts client’s needing code",,,,
+"N","DOSBox-X","DOSBox","2011","now",,,"DOS,
 DOS based Win (Win3.X, Win9X)
 * App",,,"Win,
 Linux,
 MacOS X,
-DOS",,,,,
-"HQEMU","QEMU-user","LLVM","2012",,,"台清华","Linux User","ABI","X86,
+DOS",,,,,,,
+"N","HQEMU","QEMU-user","2012",,,"台清华","Linux User","ABI","X86,
 ARM","Linux","UserEnv",,"multi thread opt","2012: HQEMU: A Multi-Threaded and Retargetable Dynamic Binary Translator on Multicores
-2013: Efficient and Retargetable Dynamic Binary Translation on Multicores",
-"LLBT","LLVM",,"2012",,,"台交大","Linux User","API","ARM","Linux",,"static bt",,"2012: LLBT: An LLVM-based Static Binary Translator
+2013: Efficient and Retargetable Dynamic Binary Translation on Multicores",,,
+"C","HQEMU","LLVM","2012",,,,,,,,,,,,,,
+"N","LLBT","LLVM","2012",,,"台交大","Linux User","API","ARM","Linux",,"static bt",,"2012: LLBT: An LLVM-based Static Binary Translator
 2013: Automatic Validation for Static Binary Translation
-2014: A Retargetable Static Binary Translator for the ARM Architecture",
-"exagear strategies","WINE",,"2014",2020,,"eltech(俄罗斯)","Win App","UserEnv
-SysAPI","X86:ARM","Android","UserEnv",,,"https://4pda.to/forum/index.php?showtopic=992239",
-"Anbox",,,"2016.04.11","now","GPL3",,"Android Runtime","API (Native)
-& HAL?","same","Linux","UserEnv",,,,
-"Limbo","QEMU-sys",,"2016",2020,,,"Sys","ISA",,"Android",,,,,
-"dynarmic",,,"2016.7.1","now",,,"User","ISA","ARM:X64",,,"JIT","Framework, callbacks defined by framework user",,
-"MAMBO-X64",,,"2017",,,"Manchester","Linux User","ABI","AArch64:AArch32","Linux",,,,"2017: Low Overhead Dynamic Binary Translation on ARM",
-"HyperMAMBO-X64","MAMBO-X64","KVM","2017",,,"Manchester","Sys","ISA","AArch64:AArch32","Linux",,,,"2017: HyperMAMBO-X64: Using Virtualization to Support High-Performance Transparent Binary Translation",
-"REV.NG","QEMU-user","LLVM","2017","now",,,"Linux User","API",,"Linux",,,"Multi => QEMU tcg => LLVM IR => multi","2017: REV.NG :A Unified Binary Analysis Framework to Recover CFGs and Function Boundaries
+2014: A Retargetable Static Binary Translator for the ARM Architecture",,,
+"N","citra",,"2013.8.30","now",,,"3DS App",,,,,,,"https://github.com/citra-emu/citra",,,
+"C","citra","skyeye","2013.5.2","2013.9.18",,,,,,,,,,"git commit: 7dcfb9c1cf6f8e51e7",,,
+"C","citra","dynarmic","2016.9.2",,,,,,,,,,,"git commit: 1ea1affe0a77775f",,,
+"N","exagear strategies","WINE","2014",2020,,"eltech(俄罗斯)","Win App","UserEnv
+SysAPI","X86:ARM","Android","UserEnv",,,"https://4pda.to/forum/index.php?showtopic=992239",,,
+"N","Anbox",,"2016.04.11","now","GPL3",,"Android Runtime","API (Native)
+& HAL?","same","Linux","UserEnv",,,,,,
+"N","Limbo","QEMU-sys","2016",2020,,,"Sys","ISA",,"Android",,,,,,,
+"N","dynarmic",,"2016.7.1","now",,,"User","ISA","ARM:X64",,,"JIT","Framework,
+Callbacks defined by framework user",,,,
+"N","MAMBO-X64",,"2017",,,"Manchester","Linux User","ABI","AArch64:AArch32","Linux",,,,"2017: Low Overhead Dynamic Binary Translation on ARM",,,
+"N","HyperMAMBO-X64","MAMBO-X64","2017",,,"Manchester","Sys","ISA","AArch64:AArch32","Linux",,,,"2017: HyperMAMBO-X64: Using Virtualization to Support High-Performance Transparent Binary Translation",,,
+"C","HyperMAMBO-X64","KVM","2017",,,,,,,,,,,,,,
+"N","REV.NG","QEMU-user","2017","now",,,"Linux User","API",,"Linux",,,"Multi => QEMU tcg => LLVM IR => multi","2017: REV.NG :A Unified Binary Analysis Framework to Recover CFGs and Function Boundaries
 2018: rev.ng: A Multi-Architecture Framework for Reverse Engineering and Vulnerability Discovery
-2019: Performance, Correctness, Exceptions: Pick Three",
-"box86",,,"2018","now",,,"Linux User","API
-ABI","X86:ARM32","Linux","UserEnv",,"lib wrapper",,
-"xDroid","Anbox",,"2018.8.21","now",,"麟卓（国防科大）","Android Runtime",,,"Linux","UserEnv",,,"https://www.linzhuotech.com/index.php/home/index/article.html?page=4&id=2
-https://zhuanlan.zhihu.com/p/213300936",
-"edk2-sagit",,,"2019.02.22","2020.04.20",,,"Sys","Firmware","same (ARM)","EDK2","Firmware",,,,
-"McSema","LLVM",,"2019","now",,,"Linux User","API","X86,
+2019: Performance, Correctness, Exceptions: Pick Three",,,
+"C","REV.NG","LLVM","2017",,,,,,,,,,,,,,
+"N","box86",,"2018","now",,,"Linux User","API
+ABI","X86:ARM32","Linux","UserEnv",,"lib wrapper",,,,
+"N","xDroid","Anbox","2018.8.21","now",,"麟卓（国防科大）","Android Runtime",,,"Linux","UserEnv",,,"https://www.linzhuotech.com/index.php/home/index/article.html?page=4&id=2
+https://zhuanlan.zhihu.com/p/213300936",,,
+"N","edk2-sagit",,"2019.02.22","2020.05.25",,,"Sys","Firmware","same (ARM)","EDK2","Firmware",,,,,,
+"N","McSema","LLVM","2019","now",,,"Linux User","API","X86,
 X86-64,
 aarch64","LLVM",,"static bt",,"github
-2019: DECOMPILING BINARIES INTO LLVM IR USING MCSEMA AND DYNINST",
-"MCTOLL","LLVM",,"2019","now",,,"Linux User","API","X86-64,
+2019: DECOMPILING BINARIES INTO LLVM IR USING MCSEMA AND DYNINST",,,
+"N","MCTOLL","LLVM","2019","now",,,"Linux User","API","X86-64,
 ARM","LLVM",,"static bt",,"github
 Machine Code To LLVM
-2019: Raising Binaries to LLVM IR with MCTOLL (WIP Paper)",
-"UTM","QEMU-sys",,"2019","now",,,"Sys","ISA",,"IOS","UserEnv",,,,
-"edk2-sdm845","edk2-sagit",,"2020.05.25","now",,,"Sys","Firmware","same (ARM)","EDK2","Firmware",,,"Enable to run Win11, Support graphics card, can play ff14",
-"exagear","exagear strategies",,"2020","now",,"eltech(华为)","Linux User","ABI","X86:ARM","Linux","UserEnv",,,,
-"box64","box86",,"2020.12.1","now",,,"Linux User","API
-ABI","X64:ARM64","Linux","UserEnv",,,,
-"Anbox-halium","Anbox",,"2021.4.16","2021.8.27",,,"Android Runtime",,,"Linux",,,,"Mirror: https://github.com/my-helps/anbox-halium",
-"deepin android runtime",,,"2021.6.29","now",,"统信","Android Runtime",,,"Linux","UserEnv",,,"https://www.deepin.org/zh/2021/06/29/deepin-20-2-2/",
-"waydroid","Anbox-halium",,"2021.8.27","now",,,"Android Runtime",,"same (X86)","Linux","UserEnv",,,"https://www.reddit.com/r/Ubports/comments/oovy13/anbox_for_halium9_aka_new_anbox_update/
-https://github.com/waydroid/waydroid",
+2019: Raising Binaries to LLVM IR with MCTOLL (WIP Paper)",,,
+"N","UTM","QEMU-sys","2019","now",,,"Sys","ISA",,"IOS","UserEnv",,,,,,
+"N","edk2-sdm845","edk2-sagit","2020.05.25","now",,,"Sys","Firmware","same (ARM)","EDK2","Firmware",,,"Enable to run Win11, Support graphics card, can play ff14",,,
+"N","exagear","exagear strategies","2020","now",,"eltech(华为)","Linux User","ABI","X86:ARM","Linux","UserEnv",,,,,,
+"N","box64","box86","2020.12.1","now",,,"Linux User","API
+ABI","X64:ARM64","Linux","UserEnv",,,,,,
+"N","Anbox-halium","Anbox","2021.4.16","2021.8.27",,,"Android Runtime",,,"Linux",,,,"Mirror: https://github.com/my-helps/anbox-halium",,,
+"N","deepin android runtime",,"2021.6.29","now",,"统信","Android Runtime",,,"Linux","UserEnv",,,"https://www.deepin.org/zh/2021/06/29/deepin-20-2-2/",,,
+"N","waydroid","Anbox-halium","2021.8.27","now",,,"Android Runtime",,"same (X86)","Linux","UserEnv",,,"https://www.reddit.com/r/Ubports/comments/oovy13/anbox_for_halium9_aka_new_anbox_update/
+https://github.com/waydroid/waydroid",,,

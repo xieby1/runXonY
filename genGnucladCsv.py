@@ -3,10 +3,10 @@
 import csv
 
 # column index
-IDX_Name = 0
+IDX_Type = 0
+IDX_Name = IDX_Type + 1
 IDX_Parent = IDX_Name + 1
-IDX_OParent = IDX_Parent + 1
-IDX_From = IDX_OParent + 1
+IDX_From = IDX_Parent + 1
 IDX_To = IDX_From + 1
 IDX_License=IDX_To + 1
 IDX_Developer = IDX_From + 3
@@ -15,6 +15,7 @@ IDX_GInterface = IDX_Guest + 1
 IDX_ISA = IDX_GInterface + 1
 IDX_Host = IDX_ISA + 1
 IDX_HInterface = IDX_Host + 1
+IDX_Rename = IDX_HInterface + 4
 
 
 def nodeName(x):
@@ -42,22 +43,27 @@ with open("./runXonY.csv", newline='') as csvfile:
     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
     with open("./gnuclad.csv", 'w', newline='') as gnucladfile:
         writer = csv.writer(gnucladfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL)
-        ## jump over first row in csv
-        next(reader)
         for row in reader:
-            ## generate Node
-            ### Name, Color, Parent
-            node = ["N", row[IDX_Name], "#000", row[IDX_Parent]]
-            ### Start, Stop
-            node +=[row[IDX_From], stopTime(row[IDX_From], row[IDX_To])]
-            ### Icon, Description
-            node += ["", ""]
-            writer.writerow(node)
-            ## generate Connector
-            if row[IDX_OParent] != "":
+            if row[IDX_Type] == "#":
+                continue
+            elif row[IDX_Type] == "N":
+                ## generate Node
+                ### Name, Color, Parent
+                node = ["N", row[IDX_Name], "#000", row[IDX_Parent]]
+                ### Start, Stop
+                node +=[row[IDX_From], stopTime(row[IDX_From], row[IDX_To])]
+                ### Icon, Description
+                node += ["", ""]
+                ### TODO: Rename
+                node += row[IDX_Rename:]
+                writer.writerow(node)
+            elif row[IDX_Type] == "C":
+                ## generate Connector
                 ### From When, From
-                conn = ["C", row[IDX_From], row[IDX_OParent]]
-                ### To When, To, Thickness, Color, csvPadding
-                conn +=["", row[IDX_Name], 2, "#000", None]
+                conn = ["C", row[IDX_From], row[IDX_Parent]]
+                ### To When, To, Thickness, Color
+                conn +=[row[IDX_To], row[IDX_Name], 2, "#000", ""]
+                ### TODO: Padding
+                conn +=[""]*(len(node) - len(conn))
                 writer.writerow(conn)
 

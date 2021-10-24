@@ -4,9 +4,11 @@ let lines;
 let dots;
 let details = document.getElementById('details');
 let csv;
+let IDX_Type = 0;
+let IDX_Name = 1;
+let IDX_Info = 14;
 
 objsvg.setAttribute('type', 'image/svg+xml');
-// objsvg.setAttribute('data', 'gnuclad.svg');
 objsvg.setAttribute('data', 'gnuclad.svg');
 document.body.appendChild(objsvg);
 
@@ -23,12 +25,8 @@ function display_details(event) {
 
     let content = '';
     for (let row of csv.data) {
-        if (row[0] === proj) {
-            for (let i = 0; i < csv.data[0].length; i++) {
-                if (csv.data[0][i] === '') {
-                    break;
-                }
-
+        if (row[IDX_Type] === "N" && row[IDX_Name] === proj) {
+            for (let i = IDX_Name; i < IDX_Info; i++) {
                 content += csv.data[0][i];
                 content += ': ';
                 content += row[i];
