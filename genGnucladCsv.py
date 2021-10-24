@@ -5,7 +5,8 @@ import csv
 # column index
 IDX_Type = 0
 IDX_Name = IDX_Type + 1
-IDX_Parent = IDX_Name + 1
+IDX_Color = IDX_Name + 1
+IDX_Parent = IDX_Color + 1
 IDX_From = IDX_Parent + 1
 IDX_To = IDX_From + 1
 IDX_License=IDX_To + 1
@@ -39,6 +40,13 @@ def stopTime(f, t):
         return t
 
 
+def color(c):
+    if c=="":
+        return "#000"
+    else:
+        return c
+
+
 with open("./runXonY.csv", newline='') as csvfile:
     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
     with open("./gnuclad.csv", 'w', newline='') as gnucladfile:
@@ -48,8 +56,8 @@ with open("./runXonY.csv", newline='') as csvfile:
                 continue
             elif row[IDX_Type] == "N":
                 ## generate Node
-                ### Name, Color, Parent
-                node = ["N", row[IDX_Name], "#000", row[IDX_Parent]]
+                ### Type, Name, Color, Parent
+                node = ["N", row[IDX_Name], color(row[IDX_Color]), row[IDX_Parent]]
                 ### Start, Stop
                 node +=[row[IDX_From], stopTime(row[IDX_From], row[IDX_To])]
                 ### Icon, Description
@@ -62,7 +70,7 @@ with open("./runXonY.csv", newline='') as csvfile:
                 ### From When, From
                 conn = ["C", row[IDX_From], row[IDX_Parent]]
                 ### To When, To, Thickness, Color
-                conn +=[row[IDX_To], row[IDX_Name], 2, "#000", ""]
+                conn +=[row[IDX_To], row[IDX_Name], 2, color(row[IDX_Color]), ""]
                 ### TODO: Padding
                 conn +=[""]*(len(node) - len(conn))
                 writer.writerow(conn)

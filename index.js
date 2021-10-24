@@ -6,7 +6,7 @@ let details = document.getElementById('details');
 let csv;
 let IDX_Type = 0;
 let IDX_Name = 1;
-let IDX_Info = 14;
+let IDX_Info = 15;
 
 objsvg.setAttribute('type', 'image/svg+xml');
 objsvg.setAttribute('data', 'gnuclad.svg');
