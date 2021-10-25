@@ -26,7 +26,7 @@ function display_details(event) {
     let content = '';
     for (let row of csv.data) {
         if (row[IDX_Type] === "N" && row[IDX_Name] === proj) {
-            for (let i = IDX_Name; i < IDX_Info; i++) {
+            for (let i = IDX_Name; i <= IDX_Info; i++) {
                 content += csv.data[0][i];
                 content += ': ';
                 content += row[i];
