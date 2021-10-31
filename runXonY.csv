@@ -29,11 +29,15 @@ https://en.wikipedia.org/wiki/Win4Lin
 SysAPI",,"Linux",,,"Support DirectX","Mail from wine-devel: 2004-August.txt: 22697
 https://web.archive.org/web/20010331041916/http://www.transgaming.com/news.php","Cedega","2004.6.22","https://en.wikipedia.org/wiki/Cedega_(software)","GameTree Linux","2011.2.28"
 "N","User Mode Linux",,,"2001","now",,,"Linux Kernel","In-Kernel Call","same","Linux","ABI",,,"2006: User Mode Linux",,,,,
-"N","Dynamite",,,"2001","x",,"Transitive (Apple)","Linux","ABI","ARM:MIPS,
+"N","Dynamite",,,"2001",2002.11,,"Transitive (Apple)","Linux","ABI","ARM:MIPS,
 x86:MIPS,
 PowerPC:x86","Linux",,,"IR,
 Lib wrapper","Mail from wine-devel: 2003-August.txt: 17434,
-http://www.transitives.com/tech_faq.htm (need wayback machine)",,,,,
+http://www.transitives.com/tech_faq.htm (need wayback machine)
+https://web.archive.org/web/20021129223838/http://transitives.com:80/",,,,,
+"N","Tarmac","#28789E",,"2001.3.13","x",,,"Sys","ISA","ARM_v2a:x86",,,,"IR: armlets","https://davidsharp.com/tarmac/
+https://davidsharp.com/tarmac/tarmacreport.pdf
+https://davidsharp.com/tarmac/tarmacdiary.pdf",,,,,
 "N","DOSBox","#113466",,"2002","now",,,"DOS App",,,"Win,
 BeOS,
 Linux,
@@ -70,6 +74,11 @@ http://www.specopslabs.com/david.htm",,,,,
 "N","Digital Bridge",,,"2004",2006,,"武成岗组","Linux User","ABI","X86:MIPS","Linux",,"Dynamic + static bt",,"2005: 优化动态二进制翻译器DigitalBridge",,,,,
 "N","skyeye",,,"2004.5.26","2013.5.2",,,,,,,,,,"https://sourceforge.net/projects/skyeye/files/skyeye/
 git://skyeye.git.sourceforge.net/gitroot/skyeye/skyeye",,,,,
+"N","bsnes","#DC1212",,"2004.10.14","now",,,"So many game systems, see its Github","uArch","See its Github","Win,
+Linux,
+Mac,
+FreeBSD","UserEnv","cycle accurate",,"https://higan.dev/about
+https://github.com/higan-emu/higan/tree/master/higan/component/processor","higan","2012.8.9",,,
 "N","Pin",,,"2005","now",,"Intel","Linux,
 Win,
 MacOS
@@ -112,6 +121,7 @@ ARM","Linux","UserEnv",,"multi thread opt","2012: HQEMU: A Multi-Threaded and Re
 "N","LLBT",,"LLVM","2012",,,"台交大","Linux User","API","ARM","Linux",,"static bt",,"2012: LLBT: An LLVM-based Static Binary Translator
 2013: Automatic Validation for Static Binary Translation
 2014: A Retargetable Static Binary Translator for the ARM Architecture",,,,,
+"N","Arm-js",,,"2012.5.20","2014.2.11",,,"Sys","ISA","ARM:JS","JS Engine","JS Runtime",,,"https://github.com/ozaki-r/arm-js",,,,,
 "N","citra","#FF8E03",,"2013.8.30","now",,,"3DS App",,,,,,,"https://github.com/citra-emu/citra",,,,,
 "C","citra","#FF8E03","skyeye","2013.5.2","2013.9.18",,,,,,,,,,"git commit: 7dcfb9c1cf6f8e51e7",,,,,
 "C","citra","#FF8E03","dynarmic","2016.9.2",,,,,,,,,,,"git commit: 1ea1affe0a77775f",,,,,
@@ -120,7 +130,14 @@ ARM","Linux","UserEnv",,"multi thread opt","2012: HQEMU: A Multi-Threaded and Re
 SysAPI","X86:ARM","Android","UserEnv",,,"https://4pda.to/forum/index.php?showtopic=992239",,,,,
 "N","Wine on Android","#800000","WINE","2014.2","now",,,"Win App","UserEnv
 SysAPI","same","Android","UserEnv",,,"https://wiki.winehq.org/Android",,,,,
-"N","unicorn","#E62129","QEMU-sys","2015.8.21","now",,,,,,,,,,"https://github.com/unicorn-engine/unicorn",,,,,
+"N","firebird","#FA0430",,"2014.4.26","now","GPL3",,"TI-Nspire (calculator) Sys","ISA","ARM","Android,
+JS,
+Linux,
+Win","UserEnv",,,"https://github.com/nspire-emus/firebird",,,,,
+"N","VisUAL","#3A9878",,2015,"now",,,"User","ISA","ARM URL","Win,
+Mac
+Linux","UserEnv",,"visualization","https://salmanarif.bitbucket.io/visual/about.html",,,,,
+"N","unicorn","#E62129","QEMU-sys","2015.8.21","now",,,,,,,,,"Framework","https://github.com/unicorn-engine/unicorn",,,,,
 "N","Anbox","#009688",,"2016.04.11","now","GPL3",,"Android Runtime","API (Native)
 & HAL?","same","Linux","UserEnv",,,,,,,,
 "N","Limbo","#383838","QEMU-sys","2016",2020,,,"Sys","ISA",,"Android",,,,,,,,,
@@ -139,6 +156,10 @@ Git commit: d15e15bd058f93f16",,,,,
 "C","yuzu","#5C93ED","unicorn","2017.10.10",,,,,,,,,,,,,,,,
 "N","box86","#B5E853",,"2018","now",,,"Linux User","API
 ABI","X86:ARM32","Linux","UserEnv",,"lib wrapper",,,,,,
+"N","Ryujinx","#FF5F55",,"2018.2.5","now","MIT",,"Nintendo Switch App","ISA","ARMv8:x86","Win,
+Linux","UserEnv",,,"https://github.com/Ryujinx/Ryujinx/",,,,,
+"N","ChocolArm64","#FF5F55","Ryujinx","2018.2.21","2019.11.1","Unlicense",,"User","ISA","ARMv8:x86",,,"Framework",,"https://github.com/Ryujinx/Ryujinx/
+https://github.com/Ryujinx/ChocolArm64",,,,,
 "N","UserLAnd","#221F1F","proot","2018.3.21","now",,,"Linux Distro","Sys App","same","Android","SysAPI","No-privilege fs isolation",,"https://github.com/CypherpunkArmory/UserLAnd.git",,,,,
 "N","xDroid","#009688","Anbox","2018.8.21","now",,"麟卓（国防科大）","Android Runtime",,,"Linux","UserEnv",,,"https://www.linzhuotech.com/index.php/home/index/article.html?page=4&id=2
 https://zhuanlan.zhihu.com/p/213300936",,,,,
@@ -153,6 +174,7 @@ Machine Code To LLVM
 2019: Raising Binaries to LLVM IR with MCTOLL (WIP Paper)",,,,,
 "N","UTM","#1D63EA","QEMU-sys","2019","now",,,"Sys","ISA",,"IOS","UserEnv",,,,,,,,
 "N","WSL2","#0C2AAE",,"2019.5","now",,"Microsoft","Linux","ISA","X86, ARM","Win","UserEnv",,,"https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux",,,,,
+"N","ARMeilleure","#FF5F55","Ryujinx","2019.08.09","now",,,"User","ISA","ARMv8:x86",,,"Framework",,"https://github.com/Ryujinx/Ryujinx/",,,,,
 "N","Rosetta 2","#525152",,"2020","now",,"Apple","MacOS User",,"X86:ARM","MacOS","UserEnv",,,"https://en.wikipedia.org/wiki/Rosetta_%28software%29",,,,,
 "N","exagear",,"exagear strategies","2020","now",,"eltech(华为)","Linux User","ABI","X86:ARM","Linux","UserEnv",,,,,,,,
 "N","edk2-sdm845",,"edk2-sagit","2020.05.25","now",,,"Sys","Firmware","same (ARM)","EDK2","Firmware",,,"Enable to run Win11, Support graphics card, can play ff14",,,,,
