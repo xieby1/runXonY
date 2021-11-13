@@ -96,6 +96,10 @@ LibAlky is DX10 runtime only work on WinXP",,,,,,
 "N","Linuxulator",,,"2006","now",,,"Linux User","ABI","same","FreeBSD","In-Kernel Call",,,"Mail from wine-devel: 2004-August.txt: 26171: `kernel compatibility layer`
 2006: Linux emulation in FreeBSD",,,,,
 "N","Rosetta","#525152",,"2006",2011,,"Apple","MacOS User",,"PowerPC:X86","MacOS","UserEnv",,,"https://en.wikipedia.org/wiki/Rosetta_%28software%29",,,,,
+"N","desmume","#A4A8FF",,"2006.4.6","now","GPL2",,"NDS Sys","ISA","ARM","Windows,
+Linux,
+MacOS","UserEnv",,,"https://desmume.org/
+https://github.com/TASEmulators/desmume",,,,,
 "N","playonlinux",,"WINE","2007","now",,,"-","-","-","-","-",,"GUI wrapper of WINE","zorin os",,,,,
 "N","KVM",,,"2007.02.05","now",,"Linux Kernel Community","Sys","ISA","same","Linux","ABI",,"Intel VT,
 AMD-V,
@@ -121,6 +125,17 @@ ARM","Linux","UserEnv",,"multi thread opt","2012: HQEMU: A Multi-Threaded and Re
 "N","LLBT",,"LLVM","2012",,,"台交大","Linux User","API","ARM","Linux",,"static bt",,"2012: LLBT: An LLVM-based Static Binary Translator
 2013: Automatic Validation for Static Binary Translation
 2014: A Retargetable Static Binary Translator for the ARM Architecture",,,,,
+"N","PPSSPP","#0086B2",,"2012.3.25","now","GPL2",,"PSP Sys","ISA","MIPS(R4000):…","Android,
+Windows,
+IOS,
+MacOS,
+Switch,
+Blackberry,
+Meego/Harmattan,
+Symbian,
+Pandora,
+Linux","UserEnv",,,"https://www.ppsspp.org/
+https://github.com/hrydgard/ppsspp",,,,,
 "N","Arm-js",,,"2012.5.20","2014.2.11",,,"Sys","ISA","ARM:JS","JS Engine","JS Runtime",,,"https://github.com/ozaki-r/arm-js",,,,,
 "N","citra","#FF8E03",,"2013.8.30","now",,,"3DS App",,,,,,,"https://github.com/citra-emu/citra",,,,,
 "C","citra","#FF8E03","skyeye","2013.5.2","2013.9.18",,,,,,,,,,"git commit: 7dcfb9c1cf6f8e51e7",,,,,
