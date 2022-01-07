@@ -163,6 +163,8 @@ Win","UserEnv",,,"https://github.com/nspire-emus/firebird",,,,,
 Mac
 Linux","UserEnv",,"visualization","https://salmanarif.bitbucket.io/visual/about.html",,,,,
 "N","unicorn","#E62129","QEMU-sys","2015.8.21","now",,,,,,,,,"Framework","https://github.com/unicorn-engine/unicorn",,,,,
+"N","browsix","#6D6B91",,"2015.9.26","now",,,"Unix User","SysAPI",,"Browser","JS Runtime",,,"https://browsix.org/
+https://github.com/plasma-umass/browsix",,,,,
 "N","Anbox","#009688",,"2016.04.11","now","GPL3",,"Android Runtime","API (Native)
 & HAL?","same","Linux","UserEnv",,,,,,,,
 "N","Limbo","#383838","QEMU-sys","2016",2020,,,"Sys","ISA",,"Android",,,,,,,,,
