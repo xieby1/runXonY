@@ -158,7 +158,7 @@ SysAPI","same","Android","UserEnv",,,"https://wiki.winehq.org/Android",,,,,
 JS,
 Linux,
 Win","UserEnv",,,"https://github.com/nspire-emus/firebird",,,,,
-"N","eBPF",,,"2014.7.23","now",,,"eBPF Byte Code",,"eBPF Byte Code:*","BPF JIT","Inner-Kernel",,,"linux git: f5bffecda951",,,,,
+"N","BPF (JIT)",,,2011.4,"now",,,"BPF Byte Code",,"BPF Byte Code:*","BPF JIT","Inner-Kernel",,,"https://lwn.net/Articles/437981/","eBPF","2014.9.4","https://lwn.net/Articles/740157/ : commit daedfb22451d in 2014, the eBPF virtual machine was exposed directly to user space.",,
 "N","VisUAL","#3A9878",,2015,"now",,,"User","ISA","ARM URL","Win,
 Mac
 Linux","UserEnv",,"visualization","https://salmanarif.bitbucket.io/visual/about.html",,,,,
