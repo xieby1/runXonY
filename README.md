@@ -49,6 +49,11 @@ Every row in csv represents either a **comment (#)**, or a **node (N)**, or a **
   * **Color, Other Parent, From, To**: same to Node's
   * Other attributes will be ignored
 
+User libreoffice as csv editor.
+Two settings need to be changed:
+Open csv -> Text Import -> Format quoted field as text
+Save as -> Edit filter settings -> Quote all text cells
+
 ## Tech stack
 
 * python3: translate runXonY.csv to gnuclad preferred format.
