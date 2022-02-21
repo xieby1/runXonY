@@ -187,6 +187,9 @@ Callbacks defined by framework user",,,,,,
 "N","yuzu","#5C93ED","citra","2017.10.10","now",,,"Nintendo Switch",,,,,,,"https://github.com/yuzu-emu/yuzu
 Git commit: d15e15bd058f93f16",,,,,
 "C","yuzu","#5C93ED","unicorn","2017.10.10",,,,,,,,,,,,,,,,
+"N","multipass","#E95420",,"2017.12.7","now","GPL3","Canonical","Ubuntu","ISA",,"Win,
+Mac,
+Linux","UserEnv",,,"https://github.com/canonical/multipass",,,,,
 "N","box86","#B5E853",,"2018","now",,,"Linux User","API
 ABI","X86:ARM32","Linux","UserEnv",,"lib wrapper",,,,,,
 "N","Ryujinx","#FF5F55",,"2018.2.5","now","MIT",,"Nintendo Switch App","ISA","ARMv8:x86","Win,
