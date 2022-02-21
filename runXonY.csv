@@ -25,6 +25,7 @@ https://en.wikipedia.org/wiki/Win4Lin
 2005: SUSE™ Linux 10 Unleashed: Chapter 11","Win4Lin 9x",2005.3,"https://web.archive.org/web/20050318033645/http://www.win4lin.com:80/",,
 "N","Code Morphing",,,"2000","x",,"Transmeta","X86 Sys","ISA",,"Crusoe (VLIW)","v-ISA",,,"2003: The Transmeta Code Morphing Software: Using Speculation, Recovery, and Adaptive Retranslation to Address Real-Life Challenges",,,,,
 "N","Dynamo",,,"2000","x",,"HP",,,"same",,,,"dynamic","2000: Dynamo: A Transparent Dynamic Optimization System",,,,,
+"N","Aries",,,"2000","x",,"HP","PA-RSIC App","ABI","PA-RSIC:IA-64","HP-UX","UserEnv",,"dynamic","2000: PA-RISC to IA-64: Transparent Execution, No Recompilation",,,,,
 "N","WineX","#800000","WINE","2000.12.27",2016,,"TransGaming (Nvidia)","Win App","UserEnv
 SysAPI",,"Linux",,,"Support DirectX","Mail from wine-devel: 2004-August.txt: 22697
 https://web.archive.org/web/20010331041916/http://www.transgaming.com/news.php","Cedega","2004.6.22","https://en.wikipedia.org/wiki/Cedega_(software)","GameTree Linux","2011.2.28"
@@ -103,6 +104,7 @@ Linux,
 MacOS","UserEnv",,,"https://desmume.org/
 https://github.com/TASEmulators/desmume",,,,,
 "N","playonlinux",,"WINE","2007","now",,,"-","-","-","-","-",,"GUI wrapper of WINE","zorin os",,,,,
+"N","MagiXen",,"Xen","2007",,,"HP","Sys","ISA","IA32:Itanium","bare","ISA","BT + Virt",,"2007: MagiXen: Combining Binary Translation and Virtualization",,,,,
 "N","VirtualBox","#2F61B4",,"2007.1.17","now",,"Oracle","Sys","ISA","same (X86,X64)","Windows,
 Linux,
 MacOS","UserEnv",,,"https://en.wikipedia.org/wiki/VirtualBox",,,,,
@@ -165,6 +167,10 @@ Linux","UserEnv",,"visualization","https://salmanarif.bitbucket.io/visual/about.
 "N","unicorn","#E62129","QEMU-sys","2015.8.21","now",,,,,,,,,"Framework","https://github.com/unicorn-engine/unicorn",,,,,
 "N","browsix","#6D6B91",,"2015.9.26","now",,,"Unix User","SysAPI",,"Browser","JS Runtime",,,"https://browsix.org/
 https://github.com/plasma-umass/browsix",,,,,
+"N","captive",,,2016,2019,,,"Sys","ISA","ARM:X86","bare(KVM)","ISA",,,"2016: Hardware-Accelerated Cross-Architecture Full-System Virtualization
+2017: Efficient Cross-architecture Hardware
+Virtualisation
+2019: A Retargetable System-Level DBT Hypervisor",,,,,
 "N","Anbox","#009688",,"2016.04.11","now","GPL3",,"Android Runtime","API (Native)
 & HAL?","same","Linux","UserEnv",,,,,,,,
 "N","Limbo","#383838","QEMU-sys","2016",2020,,,"Sys","ISA",,"Android",,,,,,,,,
