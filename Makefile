@@ -10,6 +10,7 @@ index.html: index.md web/template.html web/head.html
 	pandoc --metadata title="runXonY" \
 		--template $(word 2,$^) \
 		-H $(word 3,$^) \
+		--toc \
 		-o $@ \
 		$(word 1,$^)
 

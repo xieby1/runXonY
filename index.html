@@ -166,6 +166,10 @@
   body {
       max-width: none;
   }
+  a:-webkit-any-link {
+      color: -webkit-link;
+      text-decoration: underline;
+  }
   </style>
 
   <!--[if lt IE 9]>
@@ -177,6 +181,21 @@
 <header id="title-block-header">
 <h1 class="title">runXonY</h1>
 </header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#intro">Intro</a></li>
+<li><a href="#terminologies">Terminologies</a>
+<ul>
+<li><a href="#xy-or-guesthost">X&amp;Y or Guest&amp;Host</a></li>
+<li><a href="#layer-resource-and-interface">Layer, Resource and
+Interface</a></li>
+<li><a href="#well-defined-simple-machine">Well-defined Simple
+Machine</a></li>
+</ul></li>
+<li><a href="#diagram-runxony">Diagram runXonY</a></li>
+</ul>
+</nav>
+<h2 id="intro">Intro</h2>
 <p>RunXonY records “emulation/virtualization/…” project I have met. In
 order to make the records in runXonY more precie and consistent, I will
 first elaborate the terminolies used in runXonY.</p>
@@ -221,6 +240,7 @@ machine</p></li>
 <li>SysEnv</li>
 <li>UserEnv</li>
 </ul>
+<h2 id="diagram-runxony">Diagram runXonY</h2>
 </body>
 <script src="https://unpkg.com/papaparse@5.3.1/papaparse.min.js"></script>
 <script src="web/index.js"></script>
