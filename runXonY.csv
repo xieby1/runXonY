@@ -7,7 +7,7 @@ MIPS I","Syscall",,"SPARC",,,"dynamic","1994: shade a fast instruction set simul
 "N","WINE","#800000",,"1993.07.04","now","LGPL",,"Win App","UserEnv","-ISA,Syscall","Linux,
 MacOS,
 BSD","UserEnv",,,,,,,,
-"N","Cygwin","#99003F",,"1995.10.18","now",,,"Linux App Src","API",,"Win","API",,"Run on POSIX runtime,
+"N","Cygwin","#99003F",,"1995.10.18","now",,,"Linux App Src","Lib",,"Win","Lib",,"Run on POSIX runtime,
 Can be compiled on Win",,,,,,
 "N","FX!32",,,"1996","x",,"Digital","Win32(x86)","Syscall",,"WinNT(Alpha)",,,,"1997: DIGITAL FX!32: Combining Emulation and Binary Translation
 1998: FX!32 A Profile-Directed Binary Translator",,,,,
@@ -15,7 +15,7 @@ Can be compiled on Win",,,,,,
 2000: full system binary translation RISC to VLIW
 2000: simulation and debugging of full system bianry translation
 2001: Dynamic binary translation and optimization",,,,,
-"N","MinGW","#71B21F",,"1998.07.01","now",,,"Win App Src","API",,"Win","API",,"Run on MSVC runtime,
+"N","MinGW","#71B21F",,"1998.07.01","now",,,"Win App Src","Lib",,"Win","Lib",,"Run on MSVC runtime,
 Can be compiled on Win and Linux",,,,,,
 "N","VMware Workstation","#F38C00",,"1999.5.15","now",,"VMware","X86 Sys","ISA",,"x86-Win,
 x86-Linux","UserEnv",,,"https://en.wikipedia.org/wiki/VMware_Workstation",,,,,
@@ -26,9 +26,9 @@ https://en.wikipedia.org/wiki/Win4Lin
 "N","Dynamo",,,"2000","x",,"HP",,,"-",,,,"dynamic","2000: Dynamo: A Transparent Dynamic Optimization System",,,,,
 "N","Aries",,,"2000","x",,"HP","PA-RSIC App","Syscall",,"IA-64-HP_UX","UserEnv",,"dynamic","2000: PA-RISC to IA-64: Transparent Execution, No Recompilation",,,,,
 "N","WineX","#800000","WINE","2000.12.27",2016,,"TransGaming (Nvidia)","Win App","UserEnv
-SysAPI",,"Linux",,,"Support DirectX","Mail from wine-devel: 2004-August.txt: 22697
+SysLib",,"Linux",,,"Support DirectX","Mail from wine-devel: 2004-August.txt: 22697
 https://web.archive.org/web/20010331041916/http://www.transgaming.com/news.php","Cedega","2004.6.22","https://en.wikipedia.org/wiki/Cedega_(software)","GameTree Linux","2011.2.28"
-"N","User Mode Linux",,,"2001","now",,,"Linux Kernel","In-Kernel Call","+Syscall","Linux","ABI",,,"2006: User Mode Linux",,,,,
+"N","User Mode Linux",,,"2001","now",,,"Linux Kernel","In-Kernel Call","+Syscall","Linux","Syscall",,,"2006: User Mode Linux",,,,,
 "N","Dynamite",,,"2001",2002.11,,"Transitive (Apple)","Linux","Syscall","+ISA","Linux",,,"IR,
 Lib wrapper
 ARM:MIPS,
@@ -81,7 +81,7 @@ https://github.com/higan-emu/higan/tree/master/higan/component/processor","higan
 X86/64-Win-User,
 X86/64-MacOS-User","SysLib","-ISA","X86/64-Linux,
 X86/64-Win,
-X86/64-MacOS","SysAPI","Instrument","PinCRT","2005: Pin: Building Customized Program Analysis Tools with Dynamic Instrumentation",,,,,
+X86/64-MacOS","SysLib","Instrument","PinCRT","2005: Pin: Building Customized Program Analysis Tools with Dynamic Instrumentation",,,,,
 "N","Win4Lin Pro",,"Win4Lin","2005",2010.3,,,"Win NT",,,"Linux",,,,"https://en.wikipedia.org/wiki/Win4Lin",,,,,
 "C","Win4Lin Pro",,"QEMU-sys","2005",,,,,,,,,,,"https://en.wikipedia.org/wiki/Win4Lin",,,,,
 "N","Intel VT","#0071C5",,"2006","now",,"Intel","X86/64-Sys","ISA","-ISA","X86,
@@ -104,7 +104,7 @@ https://github.com/TASEmulators/desmume",,,,,
 X86/X64-Linux,
 X86/X64-MacOS","UserEnv",,,"https://en.wikipedia.org/wiki/VirtualBox",,,,,
 "C","VirtualBox","#0071C5","Intel VT","2007.1.17",,,,,,,,,,,,,,,,
-"N","KVM","#000000",,"2007.02.05","now",,"Linux Kernel Community","Sys","ISA","-ISA","Linux","ABI",,"Intel VT,
+"N","KVM","#000000",,"2007.02.05","now",,"Linux Kernel Community","Sys","ISA","-ISA","Linux","Syscall",,"Intel VT,
 AMD-V,
 ...","wikipedia: kvm (kernel-based virtual machine)",,,,,
 "C","KVM","#0071C5","Intel VT","2007.02.05",,,,,,,,,,,,,,,,
@@ -115,7 +115,7 @@ Linux","UserEnv",,,"https://en.wikipedia.org/wiki/VMware_Workstation_Player",,,,
 "N","DistriBit",,,"2009",2012,,"上交",,,,,,,"Server-client,
 2-level code cache,
 Server predicts client’s needing code",,,,,,
-"N","proot",,,"2010.5.22","now",,,"-","-","+FileSys","Linux","SysAPI","fs isolation",,"https://github.com/proot-me/proot.git",,,,,
+"N","proot",,,"2010.5.22","now",,,"-","-","+FileSys","Linux","SysLib","fs isolation",,"https://github.com/proot-me/proot.git",,,,,
 "N","DOSBox-X","#113466","DOSBox","2011","now",,,"DOS,
 DOS based Win (Win3.X, Win9X)
 * App",,,"Win,
@@ -127,7 +127,7 @@ DOS",,,,,,,,,
 ARM-Linux-User","Syscall","+ISA","Linux","UserEnv",,"multi thread opt","2012: HQEMU: A Multi-Threaded and Retargetable Dynamic Binary Translator on Multicores
 2013: Efficient and Retargetable Dynamic Binary Translation on Multicores",,,,,
 "C","HQEMU","#F60","LLVM","2012",,,,,,,,,,,,,,,,
-"N","LLBT",,"LLVM","2012",,,"台交大","ARM-Linux User","API","+ISA","Linux",,"static bt",,"2012: LLBT: An LLVM-based Static Binary Translator
+"N","LLBT",,"LLVM","2012",,,"台交大","ARM-Linux User","Lib","+ISA","Linux",,"static bt",,"2012: LLBT: An LLVM-based Static Binary Translator
 2013: Automatic Validation for Static Binary Translation
 2014: A Retargetable Static Binary Translator for the ARM Architecture",,,,,
 "N","PPSSPP","#0086B2",,"2012.3.25","now","GPL2",,"MIPS(R4000)-PSP Sys","ISA",,"Android,
@@ -148,9 +148,9 @@ https://github.com/hrydgard/ppsspp",,,,,
 "C","citra","#FF8E03","dynarmic","2016.9.2",,,,,,,,,,,"git commit: 1ea1affe0a77775f",,,,,
 "N","Qubes OS","#3874D8","Xen","2013.9.3","now",,"Invisible Things Lab","Para-Virt Sys","ISA","-ISA","bare","ISA",,,"https://en.wikipedia.org/wiki/Qubes_OS",,,,,
 "N","exagear strategies",,"WINE","2014",2020,,"eltech(俄罗斯)","X86-Win App","UserEnv
-SysAPI",,"ARM-Android","UserEnv",,,"https://4pda.to/forum/index.php?showtopic=992239",,,,,
+SysLib",,"ARM-Android","UserEnv",,,"https://4pda.to/forum/index.php?showtopic=992239",,,,,
 "N","Wine on Android","#800000","WINE","2014.2","now",,,"Win App","UserEnv
-SysAPI","-ISA","Android","UserEnv",,,"https://wiki.winehq.org/Android",,,,,
+SysLib","-ISA","Android","UserEnv",,,"https://wiki.winehq.org/Android",,,,,
 "N","firebird","#FA0430",,"2014.4.26","now","GPL3",,"ARM-TI-Nspire (calculator) Sys","ISA",,"Android,
 JS,
 Linux,
@@ -160,13 +160,13 @@ Win","UserEnv",,,"https://github.com/nspire-emus/firebird",,,,,
 Mac
 Linux","UserEnv",,"visualization","https://salmanarif.bitbucket.io/visual/about.html",,,,,
 "N","unicorn","#E62129","QEMU-sys","2015.8.21","now",,,,,,,,,"Framework","https://github.com/unicorn-engine/unicorn",,,,,
-"N","browsix","#6D6B91",,"2015.9.26","now",,,"Unix User","SysAPI",,"Browser","JS Runtime",,,"https://browsix.org/
+"N","browsix","#6D6B91",,"2015.9.26","now",,,"Unix User","SysLib",,"Browser","JS Runtime",,,"https://browsix.org/
 https://github.com/plasma-umass/browsix",,,,,
 "N","captive",,,2016,2019,,,"ARM-Sys","ISA",,"X86-bare(KVM)","ISA",,,"2016: Hardware-Accelerated Cross-Architecture Full-System Virtualization
 2017: Efficient Cross-architecture Hardware
 Virtualisation
 2019: A Retargetable System-Level DBT Hypervisor",,,,,
-"N","Anbox","#009688",,"2016.04.11","now","GPL3",,"Android Runtime","API (Native)
+"N","Anbox","#009688",,"2016.04.11","now","GPL3",,"Android Runtime","Lib (Native)
 & HAL?","-ISA","Linux","UserEnv",,,,,,,,
 "N","Limbo","#383838","QEMU-sys","2016",2020,,,"Sys","ISA",,"Android",,,,,,,,,
 "N","dynarmic",,,"2016.7.1","now",,,"ARM-User","ISA",,"X64",,"JIT","Framework,
@@ -175,7 +175,7 @@ Callbacks defined by framework user",,,,,,
 "N","MAMBO-X64",,,"2017",,,"Manchester","Aarch64-Linux User","Syscall","+ISA","Aarch32-Linux",,,,"2017: Low Overhead Dynamic Binary Translation on ARM",,,,,
 "N","HyperMAMBO-X64",,"MAMBO-X64","2017",,,"Manchester","Aarch64-Sys","ISA","+ISA","Aarch32-Linux",,,,"2017: HyperMAMBO-X64: Using Virtualization to Support High-Performance Transparent Binary Translation",,,,,
 "C","HyperMAMBO-X64",,"KVM","2017",,,,,,,,,,,,,,,,
-"N","REV.NG","#E92B29","QEMU-user","2017","now",,,"Linux User","API",,"Linux",,,"Multi => QEMU tcg => LLVM IR => multi","2017: REV.NG :A Unified Binary Analysis Framework to Recover CFGs and Function Boundaries
+"N","REV.NG","#E92B29","QEMU-user","2017","now",,,"Linux User","Syscall","+ISA","Linux",,,"Multi => QEMU tcg => LLVM IR => multi","2017: REV.NG :A Unified Binary Analysis Framework to Recover CFGs and Function Boundaries
 2018: rev.ng: A Multi-Architecture Framework for Reverse Engineering and Vulnerability Discovery
 2019: Performance, Correctness, Exceptions: Pick Three",,,,,
 "C","REV.NG","#E92B29","LLVM","2017",,,,,,,,,,,,,,,,
@@ -191,11 +191,9 @@ Syscall","+ISA","ARM32-Linux","UserEnv",,"lib wrapper",,,,,,
 x86-Linux","UserEnv",,,"https://github.com/Ryujinx/Ryujinx/",,,,,
 "N","ChocolArm64","#FF5F55","Ryujinx","2018.2.21","2019.11.1","Unlicense",,"ARMv8-User","ISA",,"x86",,"Framework",,"https://github.com/Ryujinx/Ryujinx/
 https://github.com/Ryujinx/ChocolArm64",,,,,
-"N","UserLAnd","#221F1F","proot","2018.3.21","now",,,"Linux Distro","Sys App","-ISA","Android","SysAPI","No-privilege fs isolation",,"https://github.com/CypherpunkArmory/UserLAnd.git",,,,,
+"N","UserLAnd","#221F1F","proot","2018.3.21","now",,,"Linux Distro","Syscall","+FileSys","Android","SysLib","No-privilege fs isolation",,"https://github.com/CypherpunkArmory/UserLAnd.git",,,,,
 "N","Proton",,"WINE","2018.8.21","now",,"Valve
-CodeWeavers","Win App","UserEnv
-SysAPI
-Runtime","-ISA","Linux","UserEnv","Runtime collection",,"https://github.com/ValveSoftware/Proton",,,,,
+CodeWeavers","Win App","UserEnv","-ISA","Linux","UserEnv","Runtime collection",,"https://github.com/ValveSoftware/Proton",,,,,
 "N","xDroid","#009688","Anbox","2018.8.21","now",,"麟卓（国防科大）","Android Runtime",,,"Linux","UserEnv",,,"https://www.linzhuotech.com/index.php/home/index/article.html?page=4&id=2
 https://zhuanlan.zhihu.com/p/213300936",,,,,
 "N","FEX",,,"2018.11.16","now","MIT",,"X86/X64-Linux User (5.0)","ISA","+ISA","X86-Linux,
@@ -207,10 +205,10 @@ git commit 5efab55ea9b: remove problematic LLVM JIT",,,,,
 "N","edk2-sagit",,,"2019.02.22","2020.05.25",,,"ARM-Sys","Firmware","-ISA","ARM-EDK2","Firmware",,,,,,,,
 "N","McSema","#9C1B45","LLVM","2019","now",,,"X86-Linux User,
 X86-64-Linux User,
-aarch64-Linux User","API","+ISA","LLVM",,"static bt",,"github
+aarch64-Linux User","Lib","+ISA","LLVM",,"static bt",,"github
 2019: DECOMPILING BINARIES INTO LLVM IR USING MCSEMA AND DYNINST",,,,,
 "N","MCTOLL",,"LLVM","2019","now",,,"X86-64-Linux User,
-ARM-Linux User","API","+ISA","LLVM",,"static bt",,"github
+ARM-Linux User","Lib","+ISA","LLVM",,"static bt",,"github
 Machine Code To LLVM
 2019: Raising Binaries to LLVM IR with MCTOLL (WIP Paper)",,,,,
 "N","UTM","#1D63EA","QEMU-sys","2019","now",,,"Sys","ISA",,"IOS","UserEnv",,,,,,,,
@@ -219,8 +217,7 @@ Machine Code To LLVM
 "N","Rosetta 2","#525152",,"2020","now",,"Apple","X86-MacOS User",,"+ISA","ARM-MacOS","UserEnv",,,"https://en.wikipedia.org/wiki/Rosetta_%28software%29",,,,,
 "N","exagear",,"exagear strategies","2020","now",,"eltech(华为)","X86-Linux User","Syscall","+ISA","ARM-Linux","UserEnv",,,,,,,,
 "N","edk2-sdm845",,"edk2-sagit","2020.05.25","now",,,"ARM-Sys","Firmware","-ISA","ARM-EDK2","Firmware",,,"Enable to run Win11, Support graphics card, can play ff14",,,,,
-"N","box64","#B5E853","box86","2020.12.1","now",,,"X64-Linux User","Lib
-Syscall","+ISA","ARM64-Linux","UserEnv",,,,,,,,
+"N","box64","#B5E853","box86","2020.12.1","now",,,"X64-Linux User","Lib","+ISA","ARM64-Linux","UserEnv",,,,,,,,
 "N","Anbox-halium","#009688","Anbox","2021.4.16","2021.8.27",,,"Android Runtime",,,"Linux",,,,"Mirror: https://github.com/my-helps/anbox-halium",,,,,
 "N","deepin android runtime",,,"2021.6.29","now",,"统信","Android Runtime",,,"Linux","UserEnv",,,"https://www.deepin.org/zh/2021/06/29/deepin-20-2-2/",,,,,
 "N","waydroid","#F0AD4E","Anbox-halium","2021.8.27","now",,,"x86-Android Runtime",,"-ISA","X86-Linux","UserEnv",,,"https://www.reddit.com/r/Ubports/comments/oovy13/anbox_for_halium9_aka_new_anbox_update/

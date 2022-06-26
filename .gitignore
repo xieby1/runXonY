@@ -1,1 +1,4 @@
 gnuclad/gnuclad.csv
+.obsidian
+*.bkp
+*.pyc
