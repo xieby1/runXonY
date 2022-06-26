@@ -70,17 +70,24 @@ function after_load_csv(results) {
 function after_load_svg() {
     docsvg = objsvg.contentDocument;
     docsvg.children[0].style.zoom = zoomDefault;
+    docsvg.children[0].style["-moz-transform"] = "scale("+zoomDefault+")";
+    docsvg.children[0].style["transform-origin"] = "top left";
 
     buttonZoomIn.addEventListener('click', (event) => {
         let zoomCurrent = parseFloat(docsvg.children[0].style.zoom);
-        docsvg.children[0].style.zoom = zoomCurrent * 1.1;
+        zoomCurrent *= 1.1;
+        docsvg.children[0].style.zoom = zoomCurrent;
+        docsvg.children[0].style["-moz-transform"] = "scale("+zoomCurrent+")";
     });
     buttonZoomOut.addEventListener('click', (event) => {
         let zoomCurrent = parseFloat(docsvg.children[0].style.zoom);
-        docsvg.children[0].style.zoom = zoomCurrent * 0.9;
+        zoomCurrent *= 0.9;
+        docsvg.children[0].style.zoom = zoomCurrent;
+        docsvg.children[0].style["-moz-transform"] = "scale("+zoomCurrent+")";
     });
     buttonZoomReset.addEventListener('click', (event) => {
         docsvg.children[0].style.zoom = zoomDefault;
+        docsvg.children[0].style["-moz-transform"] = "scale("+zoomDefault+")";
     });
 
     lines = docsvg.querySelectorAll('[id^=__line]');
