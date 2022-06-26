@@ -3,7 +3,6 @@ let buttonZoomOut = document.getElementById('buttonZoomOut');
 let buttonZoomReset = document.getElementById('buttonZoomReset');
 let zoomInputBox = document.getElementById('zoomInputBox');
 let buttonZoomSet = document.getElementById('buttonZoomSet');
-let zoomDefault;
 let objsvg = document.createElement('object');
 let docsvg;
 let lines;
@@ -63,6 +62,11 @@ function after_load_csv(results) {
     csv = results;
 }
 
+function get_default_zoom() {
+    zoom = objsvg.parentElement.clientWidth / docsvg.children[0].getBBox().width;
+    return zoom;
+}
+
 function set_zoom(zoom) {
     // only keep 2 decimal
     zoom = zoom.toFixed(2);
@@ -76,10 +80,9 @@ function after_load_svg() {
     // for debug
     objsvg.setAttribute("id", "runXonYsvg");
 
-    // fit screen width
-    zoomDefault = window.screen.availWidth / docsvg.children[0].getBBox().width;
+    // fit width
     docsvg.children[0].style["transform-origin"] = "top left";
-    set_zoom(zoomDefault);
+    set_zoom(get_default_zoom());
 
     buttonZoomIn.addEventListener('click', (event) => {
         let zoomCurrent = parseFloat(docsvg.children[0].style.zoom);
@@ -92,7 +95,7 @@ function after_load_svg() {
         set_zoom(zoomCurrent);
     });
     buttonZoomReset.addEventListener('click', (event) => {
-        set_zoom(zoomDefault);
+        set_zoom(get_default_zoom());
     });
     buttonZoomSet.addEventListener('click', (event) => {
         let zoomCurrent = parseFloat(zoomInputBox.value);
