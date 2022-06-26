@@ -1,10 +1,9 @@
-let buttonZoomIn = document.createElement('button');
-let buttonZoomOut = document.createElement('button');
-let buttonZoomReset = document.createElement('button');
-buttonZoomIn.innerHTML = "Zoom In";
-buttonZoomOut.innerHTML = "Zoom Out";
-buttonZoomReset.innerHTML = "Zoom Reset";
-let zoomDefault = 0.6;
+let buttonZoomIn = document.getElementById('buttonZoomIn');
+let buttonZoomOut = document.getElementById('buttonZoomOut');
+let buttonZoomReset = document.getElementById('buttonZoomReset');
+let zoomInputBox = document.getElementById('zoomInputBox');
+let buttonZoomSet = document.getElementById('buttonZoomSet');
+let zoomDefault;
 let objsvg = document.createElement('object');
 let docsvg;
 let lines;
@@ -17,9 +16,6 @@ let IDX_Info = 15;
 
 objsvg.setAttribute('type', 'image/svg+xml');
 objsvg.setAttribute('data', 'gnuclad/gnuclad.svg');
-document.body.appendChild(buttonZoomIn);
-document.body.appendChild(buttonZoomOut);
-document.body.appendChild(buttonZoomReset);
 document.body.appendChild(objsvg);
 
 function display_details(event) {
@@ -67,27 +63,40 @@ function after_load_csv(results) {
     csv = results;
 }
 
+function set_zoom(zoom) {
+    // only keep 2 decimal
+    zoom = zoom.toFixed(2);
+    docsvg.children[0].style.zoom = zoom;
+    docsvg.children[0].style["-moz-transform"] = "scale("+zoom+")";
+    zoomInputBox.value = zoom;
+}
+
 function after_load_svg() {
     docsvg = objsvg.contentDocument;
-    docsvg.children[0].style.zoom = zoomDefault;
-    docsvg.children[0].style["-moz-transform"] = "scale("+zoomDefault+")";
+    // for debug
+    objsvg.setAttribute("id", "runXonYsvg");
+
+    // fit screen width
+    zoomDefault = window.screen.availWidth / docsvg.children[0].getBBox().width;
     docsvg.children[0].style["transform-origin"] = "top left";
+    set_zoom(zoomDefault);
 
     buttonZoomIn.addEventListener('click', (event) => {
         let zoomCurrent = parseFloat(docsvg.children[0].style.zoom);
         zoomCurrent *= 1.1;
-        docsvg.children[0].style.zoom = zoomCurrent;
-        docsvg.children[0].style["-moz-transform"] = "scale("+zoomCurrent+")";
+        set_zoom(zoomCurrent);
     });
     buttonZoomOut.addEventListener('click', (event) => {
         let zoomCurrent = parseFloat(docsvg.children[0].style.zoom);
         zoomCurrent *= 0.9;
-        docsvg.children[0].style.zoom = zoomCurrent;
-        docsvg.children[0].style["-moz-transform"] = "scale("+zoomCurrent+")";
+        set_zoom(zoomCurrent);
     });
     buttonZoomReset.addEventListener('click', (event) => {
-        docsvg.children[0].style.zoom = zoomDefault;
-        docsvg.children[0].style["-moz-transform"] = "scale("+zoomDefault+")";
+        set_zoom(zoomDefault);
+    });
+    buttonZoomSet.addEventListener('click', (event) => {
+        let zoomCurrent = parseFloat(zoomInputBox.value);
+        set_zoom(zoomCurrent);
     });
 
     lines = docsvg.querySelectorAll('[id^=__line]');
