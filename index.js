@@ -1,3 +1,10 @@
+let buttonZoomIn = document.createElement('button');
+let buttonZoomOut = document.createElement('button');
+let buttonZoomReset = document.createElement('button');
+buttonZoomIn.innerHTML = "Zoom In";
+buttonZoomOut.innerHTML = "Zoom Out";
+buttonZoomReset.innerHTML = "Zoom Reset";
+let zoomDefault = 0.6;
 let objsvg = document.createElement('object');
 let docsvg;
 let lines;
@@ -10,6 +17,9 @@ let IDX_Info = 15;
 
 objsvg.setAttribute('type', 'image/svg+xml');
 objsvg.setAttribute('data', 'gnuclad.svg');
+document.body.appendChild(buttonZoomIn);
+document.body.appendChild(buttonZoomOut);
+document.body.appendChild(buttonZoomReset);
 document.body.appendChild(objsvg);
 
 function display_details(event) {
@@ -37,8 +47,8 @@ function display_details(event) {
 
     }
     details.style.visibility = 'visible';
-    details.style.top = event.pageY + 10 + 'px';
-    details.style.left = event.pageX + 'px';
+    details.style.top = event.pageY + objsvg.offsetTop + 10 + 'px';
+    details.style.left = event.pageX + objsvg.offsetLeft + 'px';
     details.textContent = content;
 }
 
@@ -59,6 +69,20 @@ function after_load_csv(results) {
 
 function after_load_svg() {
     docsvg = objsvg.contentDocument;
+    docsvg.children[0].style.zoom = zoomDefault;
+
+    buttonZoomIn.addEventListener('click', (event) => {
+        let zoomCurrent = parseFloat(docsvg.children[0].style.zoom);
+        docsvg.children[0].style.zoom = zoomCurrent * 1.1;
+    });
+    buttonZoomOut.addEventListener('click', (event) => {
+        let zoomCurrent = parseFloat(docsvg.children[0].style.zoom);
+        docsvg.children[0].style.zoom = zoomCurrent * 0.9;
+    });
+    buttonZoomReset.addEventListener('click', (event) => {
+        docsvg.children[0].style.zoom = zoomDefault;
+    });
+
     lines = docsvg.querySelectorAll('[id^=__line]');
     dots = docsvg.querySelectorAll('[id^=__dot]');
     Papa.parse('runXonY.csv', {
