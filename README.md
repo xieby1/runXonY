@@ -4,7 +4,7 @@ A timeline tree about  run X on Y.
 
 X and Y could be soft/hardware, and any layers in computers' world.
 
-[![runXonY](gnuclad.svg)](https://xieby1.github.io/runXonY/)
+[![runXonY](gnuclad/gnuclad.svg)](https://xieby1.github.io/runXonY/)
 
 This project was initially meant to track BT (Binary Translation) techs, while as time goes by, I found more and more related non-BT techs tangled with BT techs. All these BT and non-BT techs' goals are to run soft/hardware on different platform. So I change project's goal from "tracking BT techs" to "tracking runXonY techs".
 
