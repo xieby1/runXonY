@@ -814,91 +814,91 @@ style='opacity:0.6;' >
   <path id='__line_mx' d='M 810 130 L 810 130' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_mx)' />
   <path id='__line_Shade' d='M 810 150 L 810 150' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Shade)' />
   <path id='__line_VEST' d='M 810 170 L 810 170' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_VEST)' />
-  <path id='__line_exagear' d='M 3410 210 C 3485,210 3435,230 3510,230 L 3510 230 L 3734 230' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_exagear' d='M 3410 210 C 3485,210 3435,230 3510,230 L 3510 230 L 3757 230' stroke='#000' style='stroke-width:3;' />
   <path id='__line_exagear__strategies' d='M 2810 270 C 2885,270 2835,210 2910,210 L 2910 210 L 3510 210' stroke='#000' style='stroke-width:3.62132;' marker-end='url(#__stop_exagear__strategies)' />
-  <path id='__line_Proton' d='M 3273 270 C 3348,270 3298,250 3373,250 L 3373 250 L 3734 250' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_Proton' d='M 3273 270 C 3348,270 3298,250 3373,250 L 3373 250 L 3757 250' stroke='#000' style='stroke-width:3;' />
   <path id='__line_Project__David' d='M 1810 270 C 1885,270 1835,250 1910,250 L 1910 250 L 1910 250' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Project__David)' />
   <path id='__line_WineX' d='M 1508 270 C 1583,270 1533,330 1608,330 L 1608 330 L 3110 330' stroke='#800000' style='stroke-width:3;' marker-end='url(#__stop_WineX)' />
-  <path id='__line_Wine__on__Android' d='M 2818 270 C 2893,270 2843,290 2918,290 L 2918 290 L 3734 290' stroke='#800000' style='stroke-width:3;' />
-  <path id='__line_playonlinux' d='M 2110 270 C 2185,270 2135,310 2210,310 L 2210 310 L 3734 310' stroke='#000' style='stroke-width:3;' />
-  <path id='__line_WINE' d='M 860 270 L 3734 270' stroke='#800000' style='stroke-width:5.74264;' />
-  <path id='__line_Cygwin' d='M 1089 370 L 3734 370' stroke='#99003F' style='stroke-width:3;' />
+  <path id='__line_Wine__on__Android' d='M 2818 270 C 2893,270 2843,290 2918,290 L 2918 290 L 3757 290' stroke='#800000' style='stroke-width:3;' />
+  <path id='__line_playonlinux' d='M 2110 270 C 2185,270 2135,310 2210,310 L 2210 310 L 3757 310' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_WINE' d='M 860 270 L 3757 270' stroke='#800000' style='stroke-width:5.74264;' />
+  <path id='__line_Cygwin' d='M 1089 370 L 3757 370' stroke='#99003F' style='stroke-width:3;' />
   <path id='__line_FX!32' d='M 1110 390 L 1110 390' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_FX!32)' />
   <path id='__line_DAISY' d='M 1210 410 L 1210 410' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_DAISY)' />
-  <path id='__line_MinGW' d='M 1360 430 L 3734 430' stroke='#71B21F' style='stroke-width:3;' />
-  <path id='__line_VMware__Player' d='M 2252 450 C 2327,450 2277,470 2352,470 L 2352 470 L 3734 470' stroke='#FFE839' style='stroke-width:3;' />
-  <path id='__line_VMware__Workstation' d='M 1446 450 L 3734 450' stroke='#F38C00' style='stroke-width:3.62132;' />
+  <path id='__line_MinGW' d='M 1360 430 L 3757 430' stroke='#71B21F' style='stroke-width:3;' />
+  <path id='__line_VMware__Player' d='M 2252 450 C 2327,450 2277,470 2352,470 L 2352 470 L 3757 470' stroke='#FFE839' style='stroke-width:3;' />
+  <path id='__line_VMware__Workstation' d='M 1446 450 L 3757 450' stroke='#F38C00' style='stroke-width:3.62132;' />
   <path id='__line_Code__Morphing' d='M 1510 490 L 1510 490' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Code__Morphing)' />
   <path id='__line_Dynamo' d='M 1510 510 L 1510 510' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Dynamo)' />
   <path id='__line_Aries' d='M 1510 530 L 1510 530' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Aries)' />
-  <path id='__line_User__Mode__Linux' d='M 1610 550 L 3734 550' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_User__Mode__Linux' d='M 1610 550 L 3757 550' stroke='#000' style='stroke-width:3;' />
   <path id='__line_Dynamite' d='M 1610 570 L 1793 570' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Dynamite)' />
   <path id='__line_Tarmac' d='M 1629 590 L 1629 590' stroke='#28789E' style='stroke-width:3;' marker-end='url(#__stop_Tarmac)' />
-  <path id='__line_DOSBox-X' d='M 2510 610 C 2585,610 2535,630 2610,630 L 2610 630 L 3734 630' stroke='#113466' style='stroke-width:3;' />
-  <path id='__line_DOSBox' d='M 1710 610 L 3734 610' stroke='#113466' style='stroke-width:3.62132;' />
-  <path id='__line_McSema' d='M 3310 670 C 3385,670 3335,650 3410,650 L 3410 650 L 3734 650' stroke='#9C1B45' style='stroke-width:3;' />
+  <path id='__line_DOSBox-X' d='M 2510 610 C 2585,610 2535,630 2610,630 L 2610 630 L 3757 630' stroke='#113466' style='stroke-width:3;' />
+  <path id='__line_DOSBox' d='M 1710 610 L 3757 610' stroke='#113466' style='stroke-width:3.62132;' />
+  <path id='__line_McSema' d='M 3310 670 C 3385,670 3335,650 3410,650 L 3410 650 L 3757 650' stroke='#9C1B45' style='stroke-width:3;' />
   <path id='__line_LLBT' d='M 2610 670 C 2685,670 2635,690 2710,690 L 2710 690 L 2710 690' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_LLBT)' />
-  <path id='__line_MCTOLL' d='M 3310 670 C 3385,670 3335,690 3410,690 L 3410 690 L 3734 690' stroke='#000' style='stroke-width:3;' />
-  <path id='__line_LLVM' d='M 1810 670 L 3734 670' stroke='#556293' style='stroke-width:4.5;' />
-  <path id='__line_Qubes__OS' d='M 2776 730 C 2851,730 2801,710 2876,710 L 2876 710 L 3734 710' stroke='#3874D8' style='stroke-width:3;' />
+  <path id='__line_MCTOLL' d='M 3310 670 C 3385,670 3335,690 3410,690 L 3410 690 L 3757 690' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_LLVM' d='M 1810 670 L 3757 670' stroke='#556293' style='stroke-width:4.5;' />
+  <path id='__line_Qubes__OS' d='M 2776 730 C 2851,730 2801,710 2876,710 L 2876 710 L 3757 710' stroke='#3874D8' style='stroke-width:3;' />
   <path id='__line_MagiXen' d='M 2110 730 C 2185,730 2135,750 2210,750 L 2210 750 L 2210 750' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_MagiXen)' />
-  <path id='__line_Xen' d='M 1810 730 L 3734 730' stroke='#000' style='stroke-width:4.09808;' />
+  <path id='__line_Xen' d='M 1810 730 L 3757 730' stroke='#000' style='stroke-width:4.09808;' />
   <path id='__line_HQEMU' d='M 2610 810 C 2685,810 2635,790 2710,790 L 2710 790 L 2710 790' stroke='#F60' style='stroke-width:3;' marker-end='url(#__stop_HQEMU)' />
   <path id='__line_Limbo' d='M 3010 890 C 3085,890 3035,910 3110,910 L 3110 910 L 3510 910' stroke='#383838' style='stroke-width:3;' marker-end='url(#__stop_Limbo)' />
-  <path id='__line_REV.NG' d='M 3110 810 C 3185,810 3135,830 3210,830 L 3210 830 L 3734 830' stroke='#E92B29' style='stroke-width:3;' />
-  <path id='__line_unicorn' d='M 2973 890 C 3048,890 2998,850 3073,850 L 3073 850 L 3734 850' stroke='#E62129' style='stroke-width:3;' />
-  <path id='__line_UTM' d='M 3310 890 C 3385,890 3335,870 3410,870 L 3410 870 L 3734 870' stroke='#1D63EA' style='stroke-width:3;' />
-  <path id='__line_QEMU-KVM' d='M 2294 890 C 2369,890 2319,930 2394,930 L 2394 930 L 3734 930' stroke='#F60' style='stroke-width:3;' />
-  <path id='__line_QEMU-sys' d='M 1818 810 C 1868.25,810 1834.75,890 1885,890 L 1885 890 L 3734 890' stroke='#F60' style='stroke-width:4.8541;' />
-  <path id='__line_QEMU-user' d='M 1818 810 L 3734 810' stroke='#F60' style='stroke-width:5.74264;' />
-  <path id='__line_IA-32__EL' d='M 1810 970 L 3734 970' stroke='#000' style='stroke-width:3;' />
-  <path id='__line_NDISWrapper' d='M 1810 990 L 3734 990' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_REV.NG' d='M 3110 810 C 3185,810 3135,830 3210,830 L 3210 830 L 3757 830' stroke='#E92B29' style='stroke-width:3;' />
+  <path id='__line_unicorn' d='M 2973 890 C 3048,890 2998,850 3073,850 L 3073 850 L 3757 850' stroke='#E62129' style='stroke-width:3;' />
+  <path id='__line_UTM' d='M 3310 890 C 3385,890 3335,870 3410,870 L 3410 870 L 3757 870' stroke='#1D63EA' style='stroke-width:3;' />
+  <path id='__line_QEMU-KVM' d='M 2294 890 C 2369,890 2319,930 2394,930 L 2394 930 L 3757 930' stroke='#F60' style='stroke-width:3;' />
+  <path id='__line_QEMU-sys' d='M 1818 810 C 1868.25,810 1834.75,890 1885,890 L 1885 890 L 3757 890' stroke='#F60' style='stroke-width:4.8541;' />
+  <path id='__line_QEMU-user' d='M 1818 810 L 3757 810' stroke='#F60' style='stroke-width:5.74264;' />
+  <path id='__line_IA-32__EL' d='M 1810 970 L 3757 970' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_NDISWrapper' d='M 1810 990 L 3757 990' stroke='#000' style='stroke-width:3;' />
   <path id='__line_Digital__Bridge__2' d='M 2010 1010 C 2085,1010 2035,1030 2110,1030 L 2110 1030 L 2110 1030' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Digital__Bridge__2)' />
   <path id='__line_Digital__Bridge' d='M 1910 1010 L 2110 1010' stroke='#000' style='stroke-width:3.62132;' marker-end='url(#__stop_Digital__Bridge)' />
-  <path id='__line_skyeye__(Commercial)' d='M 2710 1050 C 2785,1050 2735,1070 2810,1070 L 2810 1070 L 3734 1070' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_skyeye__(Commercial)' d='M 2710 1050 C 2785,1050 2735,1070 2810,1070 L 2810 1070 L 3757 1070' stroke='#000' style='stroke-width:3;' />
   <path id='__line_skyeye' d='M 1949 1050 L 2843 1050' stroke='#000' style='stroke-width:3.62132;' marker-end='url(#__stop_skyeye)' />
-  <path id='__line_bsnes' d='M 1988 1090 L 3734 1090' stroke='#DC1212' style='stroke-width:3;' />
-  <path id='__line_Pin' d='M 2010 1110 L 3734 1110' stroke='#000' style='stroke-width:3;' />
-  <path id='__line_Intel__VT' d='M 2110 1130 L 3734 1130' stroke='#0071C5' style='stroke-width:3;' />
+  <path id='__line_bsnes' d='M 1988 1090 L 3757 1090' stroke='#DC1212' style='stroke-width:3;' />
+  <path id='__line_Pin' d='M 2010 1110 L 3757 1110' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_Intel__VT' d='M 2110 1130 L 3757 1130' stroke='#0071C5' style='stroke-width:3;' />
   <path id='__line_Alky' d='M 2110 1150 L 2310 1150' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Alky)' />
-  <path id='__line_Linuxulator' d='M 2110 1170 L 3734 1170' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_Linuxulator' d='M 2110 1170 L 3757 1170' stroke='#000' style='stroke-width:3;' />
   <path id='__line_Rosetta' d='M 2110 1190 L 2610 1190' stroke='#525152' style='stroke-width:3;' marker-end='url(#__stop_Rosetta)' />
-  <path id='__line_desmume' d='M 2136 1210 L 3734 1210' stroke='#A4A8FF' style='stroke-width:3;' />
-  <path id='__line_VirtualBox' d='M 2214 1230 L 3734 1230' stroke='#2F61B4' style='stroke-width:3;' />
-  <path id='__line_KVM' d='M 2219 1250 L 3734 1250' stroke='#000000' style='stroke-width:3;' />
+  <path id='__line_desmume' d='M 2136 1210 L 3757 1210' stroke='#A4A8FF' style='stroke-width:3;' />
+  <path id='__line_VirtualBox' d='M 2214 1230 L 3757 1230' stroke='#2F61B4' style='stroke-width:3;' />
+  <path id='__line_KVM' d='M 2219 1250 L 3757 1250' stroke='#000000' style='stroke-width:3;' />
   <path id='__line_DistriBit' d='M 2410 1270 L 2710 1270' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_DistriBit)' />
-  <path id='__line_UserLAnd' d='M 3231 1290 C 3306,1290 3256,1310 3331,1310 L 3331 1310 L 3734 1310' stroke='#221F1F' style='stroke-width:3;' />
-  <path id='__line_proot' d='M 2548 1290 L 3734 1290' stroke='#000' style='stroke-width:3.62132;' />
+  <path id='__line_UserLAnd' d='M 3231 1290 C 3306,1290 3256,1310 3331,1310 L 3331 1310 L 3757 1310' stroke='#221F1F' style='stroke-width:3;' />
+  <path id='__line_proot' d='M 2548 1290 L 3757 1290' stroke='#000' style='stroke-width:3.62132;' />
   <path id='__line_Denver' d='M 2626 1330 L 2988 1330' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Denver)' />
-  <path id='__line_PPSSPP' d='M 2732 1350 L 3734 1350' stroke='#0086B2' style='stroke-width:3;' />
+  <path id='__line_PPSSPP' d='M 2732 1350 L 3757 1350' stroke='#0086B2' style='stroke-width:3;' />
   <path id='__line_Arm-js' d='M 2748 1370 L 2920 1370' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Arm-js)' />
-  <path id='__line_yuzu' d='M 3187 1390 C 3262,1390 3212,1410 3287,1410 L 3287 1410 L 3734 1410' stroke='#5C93ED' style='stroke-width:3;' />
-  <path id='__line_citra' d='M 2876 1390 L 3734 1390' stroke='#FF8E03' style='stroke-width:3.62132;' />
-  <path id='__line_firebird' d='M 2941 1430 L 3734 1430' stroke='#FA0430' style='stroke-width:3;' />
-  <path id='__line_BPF__(JIT)' d='M 2635 1450 L 3734 1450' stroke='#000' style='stroke-width:3;' />
-  <path id='__line_VisUAL' d='M 3010 1470 L 3734 1470' stroke='#3A9878' style='stroke-width:3;' />
-  <path id='__line_browsix' d='M 3082 1490 L 3734 1490' stroke='#6D6B91' style='stroke-width:3;' />
+  <path id='__line_yuzu' d='M 3187 1390 C 3262,1390 3212,1410 3287,1410 L 3287 1410 L 3757 1410' stroke='#5C93ED' style='stroke-width:3;' />
+  <path id='__line_citra' d='M 2876 1390 L 3757 1390' stroke='#FF8E03' style='stroke-width:3.62132;' />
+  <path id='__line_firebird' d='M 2941 1430 L 3757 1430' stroke='#FA0430' style='stroke-width:3;' />
+  <path id='__line_BPF__(JIT)' d='M 2635 1450 L 3757 1450' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_VisUAL' d='M 3010 1470 L 3757 1470' stroke='#3A9878' style='stroke-width:3;' />
+  <path id='__line_browsix' d='M 3082 1490 L 3757 1490' stroke='#6D6B91' style='stroke-width:3;' />
   <path id='__line_captive' d='M 3110 1510 L 3410 1510' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_captive)' />
-  <path id='__line_waydroid' d='M 3639 1530 C 3666,1530 3648,1550 3675,1550 L 3675 1550 L 3734 1550' stroke='#F0AD4E' style='stroke-width:3;' />
+  <path id='__line_waydroid' d='M 3639 1530 C 3666,1530 3648,1550 3675,1550 L 3675 1550 L 3757 1550' stroke='#F0AD4E' style='stroke-width:3;' />
   <path id='__line_Anbox-halium' d='M 3539 1570 C 3614,1570 3564,1530 3639,1530 L 3639 1530 L 3675 1530' stroke='#009688' style='stroke-width:3.62132;' marker-end='url(#__stop_Anbox-halium)' />
-  <path id='__line_xDroid' d='M 3273 1570 C 3348,1570 3298,1590 3373,1590 L 3373 1590 L 3734 1590' stroke='#009688' style='stroke-width:3;' />
-  <path id='__line_Anbox' d='M 3137 1570 L 3734 1570' stroke='#009688' style='stroke-width:4.5;' />
-  <path id='__line_dynarmic' d='M 3160 1610 L 3734 1610' stroke='#000' style='stroke-width:3;' />
-  <path id='__line_WSL' d='M 3168 1630 L 3734 1630' stroke='#0C2AAE' style='stroke-width:3;' />
+  <path id='__line_xDroid' d='M 3273 1570 C 3348,1570 3298,1590 3373,1590 L 3373 1590 L 3757 1590' stroke='#009688' style='stroke-width:3;' />
+  <path id='__line_Anbox' d='M 3137 1570 L 3757 1570' stroke='#009688' style='stroke-width:4.5;' />
+  <path id='__line_dynarmic' d='M 3160 1610 L 3757 1610' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_WSL' d='M 3168 1630 L 3757 1630' stroke='#0C2AAE' style='stroke-width:3;' />
   <path id='__line_HyperMAMBO-X64' d='M 3210 1650 C 3210,1650 3210,1670 3210,1670 L 3210 1670 L 3210 1670' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_HyperMAMBO-X64)' />
   <path id='__line_MAMBO-X64' d='M 3210 1650 L 3210 1650' stroke='#000' style='stroke-width:3.62132;' marker-end='url(#__stop_MAMBO-X64)' />
-  <path id='__line_multipass' d='M 3302 1690 L 3734 1690' stroke='#E95420' style='stroke-width:3;' />
-  <path id='__line_box64' d='M 3501 1710 C 3576,1710 3526,1730 3601,1730 L 3601 1730 L 3734 1730' stroke='#B5E853' style='stroke-width:3;' />
-  <path id='__line_box86' d='M 3310 1710 L 3734 1710' stroke='#B5E853' style='stroke-width:3.62132;' />
-  <path id='__line_ARMeilleure' d='M 3370 1770 C 3445,1770 3395,1750 3470,1750 L 3470 1750 L 3734 1750' stroke='#FF5F55' style='stroke-width:3;' />
+  <path id='__line_multipass' d='M 3302 1690 L 3757 1690' stroke='#E95420' style='stroke-width:3;' />
+  <path id='__line_box64' d='M 3501 1710 C 3576,1710 3526,1730 3601,1730 L 3601 1730 L 3757 1730' stroke='#B5E853' style='stroke-width:3;' />
+  <path id='__line_box86' d='M 3310 1710 L 3757 1710' stroke='#B5E853' style='stroke-width:3.62132;' />
+  <path id='__line_ARMeilleure' d='M 3370 1770 C 3445,1770 3395,1750 3470,1750 L 3470 1750 L 3757 1750' stroke='#FF5F55' style='stroke-width:3;' />
   <path id='__line_ChocolArm64' d='M 3319 1770 C 3322,1770 3320,1790 3323,1790 L 3323 1790 L 3493 1790' stroke='#FF5F55' style='stroke-width:3;' marker-end='url(#__stop_ChocolArm64)' />
-  <path id='__line_Ryujinx' d='M 3319 1770 L 3734 1770' stroke='#FF5F55' style='stroke-width:4.09808;' />
-  <path id='__line_FEX' d='M 3397 1810 L 3734 1810' stroke='#000' style='stroke-width:3;' />
-  <path id='__line_edk2-sdm845' d='M 3449 1830 C 3524,1830 3474,1850 3549,1850 L 3549 1850 L 3734 1850' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_Ryujinx' d='M 3319 1770 L 3757 1770' stroke='#FF5F55' style='stroke-width:4.09808;' />
+  <path id='__line_FEX' d='M 3397 1810 L 3757 1810' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_edk2-sdm845' d='M 3449 1830 C 3524,1830 3474,1850 3549,1850 L 3549 1850 L 3757 1850' stroke='#000' style='stroke-width:3;' />
   <path id='__line_edk2-sagit' d='M 3423 1830 L 3549 1830' stroke='#000' style='stroke-width:3.62132;' marker-end='url(#__stop_edk2-sagit)' />
-  <path id='__line_WSL2' d='M 3443 1870 L 3734 1870' stroke='#0C2AAE' style='stroke-width:3;' />
-  <path id='__line_Rosetta__2' d='M 3510 1890 L 3734 1890' stroke='#525152' style='stroke-width:3;' />
-  <path id='__line_deepin__android__runtime' d='M 3658 1910 L 3734 1910' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_WSL2' d='M 3443 1870 L 3757 1870' stroke='#0C2AAE' style='stroke-width:3;' />
+  <path id='__line_Rosetta__2' d='M 3510 1890 L 3757 1890' stroke='#525152' style='stroke-width:3;' />
+  <path id='__line_deepin__android__runtime' d='M 3658 1910 L 3757 1910' stroke='#000' style='stroke-width:3;' />
 </g>
 
 <g inkscape:label='Dots' inkscape:groupmode='layer' id='layer_dots'
