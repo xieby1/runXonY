@@ -1,18 +1,19 @@
-all: gnuclad.svg index.html
+all: gnuclad/gnuclad.svg index.html
 
-gnuclad.csv: runXonY.csv scripts/genGnucladCsv.py
-	$(word 2,$^)
+gnuclad/gnuclad.csv: runXonY.csv scripts/genGnucladCsv.py
+	$(word 2,$^) > $@
 
-gnuclad.svg: gnuclad.csv gnuclad.conf
+gnuclad/gnuclad.svg: gnuclad/gnuclad.csv gnuclad/gnuclad.conf
 	gnuclad $< $@ $(word 2,$^)
 
-index.html: index.md template.html head.html
+index.html: web/index.md web/template.html web/head.html
 	pandoc --metadata title="runXonY" \
-		--template ./template.html \
-		-H ./head.html \
-		-o $@ ./index.md
+		--template $(word 2,$^) \
+		-H $(word 3,$^) \
+		-o $@ \
+		$(word 1,$^)
 
 clean:
-	rm -f gnuclad.svg
-	rm -f gnuclad.csv
-	rm -f index.html
+	rm -f genclad/gnuclad.svg
+	rm -f genclad/gnuclad.csv
+	rm -f genclad/index.html

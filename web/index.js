@@ -16,7 +16,7 @@ let IDX_Name = 1;
 let IDX_Info = 15;
 
 objsvg.setAttribute('type', 'image/svg+xml');
-objsvg.setAttribute('data', 'gnuclad.svg');
+objsvg.setAttribute('data', 'gnuclad/gnuclad.svg');
 document.body.appendChild(buttonZoomIn);
 document.body.appendChild(buttonZoomOut);
 document.body.appendChild(buttonZoomReset);

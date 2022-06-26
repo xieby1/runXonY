@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import sys
 import csv
 
 # column index
@@ -49,29 +50,28 @@ def color(c):
 
 with open("./runXonY.csv", newline='') as csvfile:
     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
-    with open("./gnuclad.csv", 'w', newline='') as gnucladfile:
-        writer = csv.writer(gnucladfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL)
-        for row in reader:
-            if row[IDX_Type] == "#":
-                continue
-            elif row[IDX_Type] == "N":
-                ## generate Node
-                ### Type, Name, Color, Parent
-                node = ["N", row[IDX_Name], color(row[IDX_Color]), row[IDX_Parent]]
-                ### Start, Stop
-                node +=[row[IDX_From], stopTime(row[IDX_From], row[IDX_To])]
-                ### Icon, Description
-                node += ["", ""]
-                ### TODO: Rename
-                node += row[IDX_Rename:]
-                writer.writerow(node)
-            elif row[IDX_Type] == "C":
-                ## generate Connector
-                ### From When, From
-                conn = ["C", row[IDX_From], row[IDX_Parent]]
-                ### To When, To, Thickness, Color
-                conn +=[row[IDX_To], row[IDX_Name], 2, color(row[IDX_Color]), ""]
-                ### TODO: Padding
-                conn +=[""]*(len(node) - len(conn))
-                writer.writerow(conn)
+    writer = csv.writer(sys.stdout, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL)
+    for row in reader:
+        if row[IDX_Type] == "#":
+            continue
+        elif row[IDX_Type] == "N":
+            ## generate Node
+            ### Type, Name, Color, Parent
+            node = ["N", row[IDX_Name], color(row[IDX_Color]), row[IDX_Parent]]
+            ### Start, Stop
+            node +=[row[IDX_From], stopTime(row[IDX_From], row[IDX_To])]
+            ### Icon, Description
+            node += ["", ""]
+            ### TODO: Rename
+            node += row[IDX_Rename:]
+            writer.writerow(node)
+        elif row[IDX_Type] == "C":
+            ## generate Connector
+            ### From When, From
+            conn = ["C", row[IDX_From], row[IDX_Parent]]
+            ### To When, To, Thickness, Color
+            conn +=[row[IDX_To], row[IDX_Name], 2, color(row[IDX_Color]), ""]
+            ### TODO: Padding
+            conn +=[""]*(len(node) - len(conn))
+            writer.writerow(conn)
 
