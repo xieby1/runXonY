@@ -2,6 +2,7 @@
 # https://stackoverflow.com/questions/33533148/
 from __future__ import annotations
 import enum
+import typing
 import warnings
 
 class App(enum.Enum):
@@ -262,49 +263,6 @@ class Metaface:
     def __repr__(self) -> str:
         return self.repr
 
-def addDummyModule(intfc: Interface) -> None:
-    name = intfc.isa.name
-    iargs = ()
-    oargs = ({intfc.isa},)
-    if name not in allios and \
-            intfc.isa.value > Isa.ANY.value:
-        DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
-    name = '-'.join((intfc.kernel.name, name))
-    iargs = oargs
-    oargs += ({intfc.kernel},)
-    if name not in allios and \
-            intfc.kernel.value > Kernel.ANY.value and \
-            intfc.isa.value > Isa.ANY.value:
-        DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
-    name = '-'.join((intfc.syslib.name, name))
-    iargs = oargs
-    oargs += ({intfc.syslib},)
-    if name not in allios and \
-            intfc.syslib.value > Syslib.NONE.value and \
-            intfc.kernel.value > Kernel.ANY.value:
-        DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
-    name = '-'.join((intfc.lib.name, name))
-    iargs = oargs
-    oargs += ({intfc.lib},)
-    if name not in allios and \
-            intfc.lib.value > Lib.NONE.value and \
-            intfc.syslib.value > Syslib.NONE.value:
-        DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
-    name = '-'.join((intfc.sysapp.name, name))
-    iargs = oargs
-    oargs += ({intfc.sysapp},)
-    if name not in allios and \
-            intfc.sysapp.value > Sysapp.NONE.value and \
-            intfc.lib.value > Lib.NONE.value:
-        DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
-    name = '-'.join((intfc.app.name, name))
-    iargs = oargs
-    oargs += ({intfc.app},)
-    if name not in allios and \
-            intfc.app.value > App.NONE.value and \
-            intfc.sysapp.value > Sysapp.NONE.value:
-        DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
-
 class IO:
     idx: int = 0
     def __init__(self,
@@ -437,57 +395,97 @@ class Transor(Module):
         super().__init__(name, ios)
 
 
+def addDummyModule(intfc: Interface) -> None:
+    name = intfc.isa.name
+    iargs = ()
+    oargs = ({intfc.isa},)
+    if name not in allios and \
+            intfc.isa.value > Isa.ANY.value:
+        DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
+    name = '-'.join((intfc.kernel.name, name))
+    iargs = oargs
+    oargs += ({intfc.kernel},)
+    if name not in allios and \
+            intfc.kernel.value > Kernel.ANY.value and \
+            intfc.isa.value > Isa.ANY.value:
+        DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
+    name = '-'.join((intfc.syslib.name, name))
+    iargs = oargs
+    oargs += ({intfc.syslib},)
+    if name not in allios and \
+            intfc.syslib.value > Syslib.NONE.value and \
+            intfc.kernel.value > Kernel.ANY.value:
+        DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
+    name = '-'.join((intfc.lib.name, name))
+    iargs = oargs
+    oargs += ({intfc.lib},)
+    if name not in allios and \
+            intfc.lib.value > Lib.NONE.value and \
+            intfc.syslib.value > Syslib.NONE.value:
+        DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
+    name = '-'.join((intfc.sysapp.name, name))
+    iargs = oargs
+    oargs += ({intfc.sysapp},)
+    if name not in allios and \
+            intfc.sysapp.value > Sysapp.NONE.value and \
+            intfc.lib.value > Lib.NONE.value:
+        DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
+    name = '-'.join((intfc.app.name, name))
+    iargs = oargs
+    oargs += ({intfc.app},)
+    if name not in allios and \
+            intfc.app.value > App.NONE.value and \
+            intfc.sysapp.value > Sysapp.NONE.value:
+        DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
+
 def addDummyModules() -> None:
     _interfaces = interfaces.copy()
     for intfc in _interfaces.values():
         addDummyModule(intfc)
 
-def printDot() -> None:
+def outputDot(f: typing.TextIO) -> None:
     def prefix(x: object) -> str:
         return x.__class__.__name__[0]
-    print('''
-        digraph {
-            node[shape=box];
-    ''')
+    f.write('digraph {\nnode[shape=box];\n')
     # nodes (IOs and Interfaces)
     for io in allios.values():
         ## Transors' IOs
         if isinstance(io.module, Transor):
-            print('%s%d[label="%s", style=filled, fontcolor=white, fillcolor=black];' %(prefix(io.module), io.idx, io.name))
+            f.write('%s%d[label="%s", style=filled, fontcolor=white, fillcolor=black];\n' %(prefix(io.module), io.idx, io.name))
         ## DummyModules' IOs
         elif isinstance(io.module, DummyModule):
-            print('%s%d[label="%s", style="dotted"];' % (prefix(io.module), io.idx, io.name))
+            f.write('%s%d[label="%s", style="dotted"];\n' % (prefix(io.module), io.idx, io.name))
         ## Other Modules' IOs
         else:
-            print('%s%d[label="%s"];' %(prefix(io.module), io.idx, io.name))
+            f.write('%s%d[label="%s"];\n' %(prefix(io.module), io.idx, io.name))
     ## Interfaces
     for intfc in interfaces.values():
         if len(intfc.name):
-            print('%s%d[label="%s", style=rounded];' %(prefix(intfc), intfc.idx, intfc.name))
+            f.write('%s%d[label="%s", style=rounded];\n' %(prefix(intfc), intfc.idx, intfc.name))
     # edges
     for intfc in interfaces.values():
         if len(intfc.name):
             for l in intfc.ls:
-                print('%s%d -> %s%d' % (prefix(l.module), l.idx, prefix(intfc), intfc.idx))
+                f.write('%s%d -> %s%d\n' % (prefix(l.module), l.idx, prefix(intfc), intfc.idx))
             for h in intfc.hs:
-                print('%s%d -> %s%d' % (prefix(intfc), intfc.idx, prefix(h.module), h.idx))
-    print("}")
+                f.write('%s%d -> %s%d\n' % (prefix(intfc), intfc.idx, prefix(h.module), h.idx))
+    f.write("}\n")
 
-def printEdges() -> None:
-    print('digraph {')
+def outputEdges(f: typing.TextIO) -> None:
+    f.write('digraph {\n')
     for intfc in interfaces.values():
         if len(intfc.name):
             for l in intfc.ls:
-                print('"%s" -> "intfc:%s"' % (l.name, intfc.name))
+                f.write('"%s" -> "intfc:%s"\n' % (l.name, intfc.name))
             for h in intfc.hs:
-                print('"intfc:%s" -> "%s"' % (intfc.name, h.name))
-    print("}")
+                f.write('"intfc:%s" -> "%s"\n' % (intfc.name, h.name))
+    f.write("}\n")
 
-def printGnucladCsv() -> None:
-    print("#, name, color, parent, start, stop, icon, desc, renames...")
+def outputGnucladCsv(f: typing.TextIO) -> None:
+    f.write("#, name, color, parent, start, stop, icon, desc, renames...\n")
     for module in modules.values():
         if isinstance(module, Transor):
-            print('"%s","%s","%s","%s","%s","%s","%s","%s"' % (
+            f.write('"%s","%s","%s","%s","%s","%s","%s","%s"\n' % (
                 "N", module.name, module.color, "",
                 module.start, module.stop, "", module.desc
             ))

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 from lib import *
 
 # https://github.com/torvalds/linux/tree/master/arch
@@ -75,8 +74,5 @@ Transor("QEMU-user",
     "2005: QEMU, a Fast and Portable Dynamic Translator",
 )
 
+# Lastly, add dummy modules after all modules are added
 addDummyModules()
-
-# printGnucladCsv()
-printDot()
-# printEdges()
