@@ -2,3 +2,5 @@ gnuclad/gnuclad.csv
 .obsidian
 *.bkp
 *.pyc
+.*
+node_modules/

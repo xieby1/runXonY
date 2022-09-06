@@ -17,6 +17,12 @@ parser.add_argument("-c", "--csv",
     type=pathlib.Path,
     help = "the output path of csv file"
 )
+parser.add_argument("-j", "--json",
+    nargs="?",
+    const=pathlib.Path("/dev/stdout"),
+    type=pathlib.Path,
+    help = "the output path of json file"
+)
 
 args = parser.parse_args()
 if args.dot:
@@ -26,4 +32,8 @@ if args.dot:
 if args.csv:
     f = open(args.csv, "w")
     outputGnucladCsv(f)
+    f.close()
+if args.json:
+    f = open(args.json, "w")
+    outputJson(f)
     f.close()

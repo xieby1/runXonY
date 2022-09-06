@@ -32,21 +32,34 @@ Syslib_ANYs = set(Syslib(i) for i in range(Syslib.ANY.value, Syslib.END.value))
 class Kernel(enum.Enum):
     NONE = enum.auto()
     KERNELS = ANY = enum.auto()
+
+    OPENVMS = VMS = enum.auto()
+
     SCO_UNIX = enum.auto()
     TRU64 = OSF1 = DIGITAL_UNIX = enum.auto()
     ULTRIX = enum.auto()
+    SUNOS5_UNIX = enum.auto()
     UNIX = enum.auto()
+
+    SUNOS4_BSD = enum.auto()
+    BSD = enum.auto()
+
     LINUX = enum.auto()
+
     DOS = enum.auto()
     WINDOWS3_1 = enum.auto()
     WINDOWS = enum.auto()
+
     MACOS = enum.auto()
-    BSD = enum.auto()
+
     END = enum.auto()
 
 class Isa(enum.Enum):
     NONE = enum.auto()
     ISAS = ANY = enum.auto()
+
+    VAX = enum.auto()
+
     I386 = enum.auto()
     I486 = enum.auto()
     I586 = enum.auto()
@@ -71,12 +84,22 @@ class Isa(enum.Enum):
     POWERPC = enum.auto()
     POWERPC64 = enum.auto()
 
-    MIPS = enum.auto()
+    # TODO
+    UMIPSV = enum.auto()
+
+    MIPSI = enum.auto()
+    MIPSII = enum.auto()
+    MIPSIII = enum.auto()
+    MIPSIV = enum.auto()
+    MIPSV = enum.auto()
+    MIPS32 = enum.auto()
     MIPS64 = enum.auto()
 
     RISCV32 = enum.auto()
     RISCV64 = enum.auto()
 
+    SPARCV8 = enum.auto()
+    SPARCV9 = enum.auto()
     SPARC = enum.auto()
     SPARC64 = enum.auto()
 
@@ -115,7 +138,7 @@ Isa_ARM32s = set(Isa(i) for i in range(Isa.ARM.value, Isa.ARM32.value+1))
 Isa_ARMV6s = {Isa.ARMV6L, Isa.ARMV6M}
 Isa_ARMV7s = {Isa.ARMV7L, Isa.ARMV7M, Isa.ARMV7A, Isa.ARMV7R}
 Isa_POWERPC64s = {Isa.POWERPC, Isa.POWERPC64}
-Isa_MIPS64s = {Isa.MIPS, Isa.MIPS64}
+Isa_MIPS64s = set(Isa(i) for i in range(Isa.MIPSI.value, Isa.MIPS64.value+1))
 Isa_RISCV64s = {Isa.RISCV32, Isa.RISCV64}
 Isa_SPARC64s = {Isa.SPARC, Isa.SPARC64}
 
@@ -470,6 +493,52 @@ def outputDot(f: typing.TextIO) -> None:
             for h in intfc.hs:
                 f.write('%s%d -> %s%d\n' % (prefix(intfc), intfc.idx, prefix(h.module), h.idx))
     f.write("}\n")
+
+def outputJson(f: typing.TextIO) -> None:
+    def prefix(x: object) -> str:
+        return x.__class__.__name__[0]
+    f.write('{\n')
+    # nodes (IOs and Interfaces)
+    f.write('"nodes": {\n')
+    num: int = 0
+    for io in allios.values():
+        if num>0:
+            f.write(',')
+        else:
+            f.write(' ')
+        num += 1
+        f.write(' "%s%d": "%s"\n' %(prefix(io.module), io.idx, io.name))
+    ## Interfaces
+    for intfc in interfaces.values():
+        if len(intfc.name):
+            if num>0:
+                f.write(',')
+            else:
+                f.write(' ')
+            num += 1
+            f.write(' "%s%d": "%s"\n' %(prefix(intfc), intfc.idx, intfc.name))
+    f.write('},\n')
+    # edges
+    f.write('"edges": [\n')
+    num = 0
+    for intfc in interfaces.values():
+        if len(intfc.name):
+            for l in intfc.ls:
+                if num>0:
+                    f.write(',')
+                else:
+                    f.write(' ')
+                num += 1
+                f.write(' ["%s%d", "%s%d"]\n' % (prefix(l.module), l.idx, prefix(intfc), intfc.idx))
+            for h in intfc.hs:
+                if num>0:
+                    f.write(',')
+                else:
+                    f.write(' ')
+                num += 1
+                f.write(' ["%s%d", "%s%d"]\n' % (prefix(intfc), intfc.idx, prefix(h.module), h.idx))
+    f.write(']\n')
+    f.write('}\n')
 
 def outputEdges(f: typing.TextIO) -> None:
     f.write('digraph {\n')

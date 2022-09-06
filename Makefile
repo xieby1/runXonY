@@ -1,10 +1,18 @@
-all: test/runXonY.svg test/runXonY.dot gnuclad/gnuclad.svg index.html
+all: test/runXonY.svg test/runXonY.dot test/web/test.js \
+	gnuclad/gnuclad.svg index.html
+
+test/web/test.js: test/web/test.ts
+	tsc $<
 
 gnuclad/gnuclad.csv: runXonY.csv scripts/genGnucladCsv.py
 	$(word 2,$^) > $@
 
-test/runXonY.csv test/runXonY.dot &: scripts/lib.py scripts/data.py scripts/cmdl.py
-	scripts/cmdl.py -c test/runXonY.csv -d test/runXonY.dot
+test/runXonY.csv test/runXonY.dot test/web/runXonY.json &: \
+	scripts/lib.py scripts/data.py scripts/cmdl.py
+	scripts/cmdl.py \
+		-c test/runXonY.csv \
+		-d test/runXonY.dot \
+		-j test/web/runXonY.json
 
 gnuclad/gnuclad.svg: gnuclad/gnuclad.csv gnuclad/gnuclad.conf
 	gnuclad $< $@ $(word 2,$^)
