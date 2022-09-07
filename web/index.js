@@ -15,7 +15,8 @@ let IDX_Info = 15;
 
 objsvg.setAttribute('type', 'image/svg+xml');
 objsvg.setAttribute('data', 'gnuclad/gnuclad.svg');
-document.body.appendChild(objsvg);
+let imgcontainer = document.getElementById("imgcontainer")
+imgcontainer.appendChild(objsvg);
 
 function display_details(event) {
     // get project name from event
@@ -42,8 +43,8 @@ function display_details(event) {
 
     }
     details.style.visibility = 'visible';
-    details.style.top = event.pageY + objsvg.offsetTop + 10 + 'px';
-    details.style.left = event.pageX + objsvg.offsetLeft + 'px';
+    details.style.top = event.pageY + 10 + 'px';
+    details.style.left = event.pageX + 'px';
     details.textContent = content;
 }
 
@@ -70,6 +71,8 @@ function get_default_zoom() {
 function set_zoom(zoom) {
     // only keep 2 decimal
     zoom = zoom.toFixed(2);
+    objsvg.style.width = zoom * docsvg.children[0].getBBox().width + "px";
+    objsvg.style.height = zoom * docsvg.children[0].getBBox().height + "px";
     docsvg.children[0].style.zoom = zoom;
     docsvg.children[0].style["-moz-transform"] = "scale("+zoom+")";
     zoomInputBox.value = zoom;
