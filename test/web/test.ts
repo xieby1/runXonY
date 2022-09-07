@@ -47,7 +47,7 @@ class RunXonY {
         }
     }
 
-    findPath(fid: string, tid:string, looplimit:number=20) {
+    findPaths(fid: string, tid:string, looplimit:number=20): Array<Array<_Node>> {
         let paths: Array<Array<_Node>> = [[this.nodes[fid]]]
         let newpaths: Array<Array<_Node>> = []
         let foundpaths: Array<Array<_Node>> = []
@@ -86,19 +86,7 @@ class RunXonY {
             newpaths = []
         }
 
-        if (foundpaths.length) {
-            for (let foundpath of foundpaths) {
-                for (let node of foundpath) {
-                    // print non-interface
-                    if (node.id[0] != 'I')
-                        console.log(node.name)
-                }
-                console.log('---')
-            }
-            console.log(foundpaths.length)
-        } else {
-            console.log(this.nodes[fid].name+" -> "+this.nodes[tid].name+" not found")
-        }
+        return foundpaths
     }
 }
 
@@ -107,9 +95,6 @@ fetch("runXonY.json").
         then((resp) => resp.json()).
         then((json: _File) => {
     runXonY = new RunXonY(json)
-    // X86 -> LIBS-SYSLIBS-LINUX-LA
-    runXonY.findPath("D120", "I171")
-    // LA -> LIBS-SYSLIBS-LINUX-X86
-    runXonY.findPath("D124", "I178")
+    document.dispatchEvent(new Event("runXonY_inited"))
 })
 

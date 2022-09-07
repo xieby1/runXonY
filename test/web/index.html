@@ -1,8 +1,73 @@
 <!doctype html>
 <html>
     <head>
-        <script type="text/javascript" src="test.js"></script>
+        <script src="test.js"></script>
+        <link href="https://cdn.bootcdn.net/ajax/libs/choices.js/10.1.0/choices.min.css" rel="stylesheet">
+        <script src="https://cdn.bootcdn.net/ajax/libs/choices.js/10.1.0/choices.min.js"></script>
     </head>
     <body>
+        <div>
+            run
+            <select id="X"></select>
+            on
+            <select id="Y"></select>
+        </div>
+        <button id="Search">Search</button>
+        <pre id="Result"></pre>
     </body>
+<script>
+document.addEventListener("runXonY_inited", () => {
+    const X = document.getElementById("X")
+    const Y = document.getElementById("Y")
+    let choices = []
+    for (id in runXonY.nodes) {
+        if (id[0] != 'I') {
+            choices.push({
+                value: id,
+                label: runXonY.nodes[id].name,
+                selected: false,
+                disabled: false,
+            })
+        }
+    }
+    let options = {
+        choices: choices,
+        searchFields: ['label'],
+        searchResultLimit: 999,
+    }
+    const selectX = new Choices(X, options)
+    const selectY = new Choices(Y, options)
+
+    function search() {
+        let resultPre = document.getElementById("Result")
+        let tid = selectX.getValue(true)
+        let fid = selectY.getValue(true)
+        let paths = runXonY.findPaths(fid, tid)
+        let content = ""
+        content += paths.length + " path(s) found\n\n"
+        if (paths.length) {
+            for (let path of paths) {
+                for (let idx=path.length-1; idx>=0; idx--) {
+                    let node = path[idx]
+                    // print non-interface
+                    if (node.id[0] != 'I')
+                        content += node.name + "\n"
+                }
+                content += "---\n"
+            }
+        }
+        resultPre.textContent = content
+    }
+    let searchButton = document.getElementById("Search")
+    searchButton.addEventListener('click', search)
+    document.addEventListener('keydown', (event) => {
+        if (event.defaultPrevented) {return}
+        switch (event.key) {
+            case "Enter":
+                search()
+                break
+        }
+    })
+})
+</script>
 </html>
