@@ -44,6 +44,8 @@ Module(Kernel.BSD.name, set(
     IO(isa.name, Metaface({isa}), Metaface({isa}, {Kernel.BSD}))
 for isa in Isa_BSDs))
 
+Isa_MODERN_WINDOWSs: set[Isa] = {Isa.AARCH64, Isa.X86_64, Isa.X86}
+
 ###############################################################
 #    _______
 #   |__   __|
@@ -78,19 +80,19 @@ Transor("mx",
 )
 Transor("Shade",
     {  IO("MIPS.V8",
-        Metaface({Isa.SPARCV8}, {Kernel.SUNOS4_BSD}, Syslib_ANYs, Lib_ANYs),
+        Metaface({Isa.SPARCV8}, {Kernel.SUNOS4_BSD}, {Syslib.DEFAULT}, Lib_ANYs),
         Metaface({Isa.UMIPSV, Isa.MIPSI}, {Kernel.SUNOS4_BSD}),
     ), IO("V8.V8-BSD",
-        Metaface({Isa.SPARCV8}, {Kernel.SUNOS4_BSD}, Syslib_ANYs, Lib_ANYs),
+        Metaface({Isa.SPARCV8}, {Kernel.SUNOS4_BSD}, {Syslib.DEFAULT}, Lib_ANYs),
         Metaface({Isa.SPARCV8}, {Kernel.SUNOS4_BSD}),
     ), IO("V9.V8-BSD",
-        Metaface({Isa.SPARCV8}, {Kernel.SUNOS4_BSD}, Syslib_ANYs, Lib_ANYs),
+        Metaface({Isa.SPARCV8}, {Kernel.SUNOS4_BSD}, {Syslib.DEFAULT}, Lib_ANYs),
         Metaface({Isa.SPARCV9}, {Kernel.SUNOS4_BSD}),
     ), IO("V8.V8-UNIX",
-        Metaface({Isa.SPARCV8}, {Kernel.SUNOS5_UNIX}, Syslib_ANYs, Lib_ANYs),
+        Metaface({Isa.SPARCV8}, {Kernel.SUNOS5_UNIX}, {Syslib.DEFAULT}, Lib_ANYs),
         Metaface({Isa.SPARCV8}, {Kernel.SUNOS5_UNIX}),
     ), IO("V9.V8-UNIX",
-        Metaface({Isa.SPARCV8}, {Kernel.SUNOS5_UNIX}, Syslib_ANYs, Lib_ANYs),
+        Metaface({Isa.SPARCV8}, {Kernel.SUNOS5_UNIX}, {Syslib.DEFAULT}, Lib_ANYs),
         Metaface({Isa.SPARCV9}, {Kernel.SUNOS5_UNIX}),
     )},
     Date(1993), dev="SUN",
@@ -98,20 +100,21 @@ Transor("Shade",
 )
 Transor("VEST",
     {  IO("",
-        Metaface({Isa.ALPHA}, {Kernel.OPENVMS}, Syslib_ANYs, Lib_ANYs),
+        Metaface({Isa.ALPHA}, {Kernel.OPENVMS}, {Syslib.DEFAULT}, Lib_ANYs),
         Metaface({Isa.VAX}, {Kernel.OPENVMS}),
     )},
     Date(1993), dev="Digital",
     desc="1993: Binary Translation by Richard L. Sites",
 )
-Isa_MODERN_WINDOWSs: set[Isa] = {Isa.AARCH64, Isa.X86_64, Isa.X86}
+# TODO: Android
 Kernel_WINEs: set[Kernel] = {Kernel.LINUX, Kernel.MACOS, Kernel.BSD}
+Syslib_WINEs: set[Syslib] = {Syslib.LINUX, Syslib.MACOS, Syslib.BSD}
 Transor("WINE",
     set(IO(
         "-".join((kernel.name, isa.name)),
-        Metaface({isa}, {kernel}, Syslib_ANYs, Lib_ANYs),
-        Metaface({isa}, {Kernel.WINDOWS}, Syslib_ANYs),
-    ) for isa in Isa_MODERN_WINDOWSs for kernel in Kernel_WINEs),
+        Metaface({isa}, {kernel}, {syslib}, Lib_ANYs),
+        Metaface({isa}, {Kernel.NO_KERNEL}, {Syslib.WINDOWS}),
+    ) for isa in Isa_MODERN_WINDOWSs for kernel, syslib in zip(Kernel_WINEs, Syslib_WINEs)),
     Date(1993,7,4), Date.today(), "#800000", "LGPL",
 )
 
@@ -131,16 +134,16 @@ Isa_QEMU_user_os: set[Isa] = {
 }
 Transor("QEMU-user",
     {  IO("linux",
-        Metaface(Isa_QEMU_user_is & Isa_LINUXs, {Kernel.LINUX}, Syslib_ANYs, Lib_ANYs),
+        Metaface(Isa_QEMU_user_is & Isa_LINUXs, {Kernel.LINUX}, {Syslib.LINUX_SYSLIBS}, Lib_ANYs),
         Metaface(Isa_QEMU_user_os & Isa_LINUXs, {Kernel.LINUX})
     ), IO("bsd",
-        Metaface(Isa_QEMU_user_is & Isa_BSDs, {Kernel.BSD}, Syslib_ANYs, Lib_ANYs),
+        Metaface(Isa_QEMU_user_is & Isa_BSDs, {Kernel.BSD}, {Syslib.BSD_SYSLIBS}, Lib_ANYs),
         Metaface(Isa_QEMU_user_os & Isa_BSDs, {Kernel.BSD})
     ), IO("tci-linux",
-        Metaface(Isa_LINUXs, {Kernel.LINUX}, Syslib_ANYs, Lib_ANYs),
+        Metaface(Isa_LINUXs, {Kernel.LINUX}, {Syslib.LINUX_SYSLIBS}, Lib_ANYs),
         Metaface(Isa_QEMU_user_os & Isa_LINUXs, {Kernel.LINUX})
     ), IO("tci-bsd",
-        Metaface(Isa_BSDs, {Kernel.BSD}, Syslib_ANYs, Lib_ANYs),
+        Metaface(Isa_BSDs, {Kernel.BSD}, {Syslib.BSD_SYSLIBS}, Lib_ANYs),
         Metaface(Isa_QEMU_user_os & Isa_BSDs, {Kernel.BSD})
     )},
     Date(2003,2), Date.today(), "#F60", "IR",

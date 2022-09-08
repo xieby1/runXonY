@@ -25,9 +25,18 @@ Lib_ANYs = set(Lib(i) for i in range(Lib.ANY.value, Lib.END.value))
 
 class Syslib(enum.Enum):
     NONE = enum.auto()
-    SYSLIBS = ANY = enum.auto()
+
+    SYSLIBS = DEFAULT = enum.auto()
+
+    LINUX_SYSLIBS = LINUX = enum.auto()
+
+    BSD_SYSLIBS = BSD = enum.auto()
+
+    MACOS_SYSLIBS = MACOS = enum.auto()
+
+    WINDOWS_SYSLIBS = WINDOWS = enum.auto()
+
     END = enum.auto()
-Syslib_ANYs = set(Syslib(i) for i in range(Syslib.ANY.value, Syslib.END.value))
 
 class Kernel(enum.Enum):
     NONE = enum.auto()
@@ -440,8 +449,8 @@ def addDummyModule(intfc: Interface) -> None:
             return
     iargs = oargs
     if intfc.syslib == Syslib.NONE:
-        oargs += ({Syslib.ANY},)
-        name = '-'.join((Syslib.ANY.name, name))
+        oargs += ({Syslib.DEFAULT},)
+        name = '-'.join((Syslib.DEFAULT.name, name))
     else:
         oargs += ({intfc.syslib},)
         name = '-'.join((intfc.syslib.name, name))
