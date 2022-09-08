@@ -53,6 +53,8 @@ class Kernel(enum.Enum):
     MACOS = enum.auto()
 
     END = enum.auto()
+# https://en.wikipedia.org/wiki/POSIX
+Kernel_POSIXs: set[Kernel] = {Kernel.MACOS, Kernel.BSD, Kernel.LINUX}
 
 class Isa(enum.Enum):
     NONE = enum.auto()
@@ -419,46 +421,61 @@ class Transor(Module):
 
 
 def addDummyModule(intfc: Interface) -> None:
-    name = intfc.isa.name
     iargs = ()
     oargs = ({intfc.isa},)
-    if name not in allios and \
-            intfc.isa.value > Isa.ANY.value:
-        DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
-    name = '-'.join((intfc.kernel.name, name))
+    name = intfc.isa.name
+    if name not in allios:
+        if intfc.isa.value > Isa.ANY.value:
+            DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
+        else:
+            return
     iargs = oargs
     oargs += ({intfc.kernel},)
-    if name not in allios and \
-            intfc.kernel.value > Kernel.ANY.value and \
-            intfc.isa.value > Isa.ANY.value:
-        DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
-    name = '-'.join((intfc.syslib.name, name))
+    name = '-'.join((intfc.kernel.name, name))
+    if name not in allios:
+        if intfc.kernel.value > Kernel.ANY.value and \
+                intfc.isa.value > Isa.ANY.value:
+            DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
+        else:
+            return
     iargs = oargs
-    oargs += ({intfc.syslib},)
-    if name not in allios and \
-            intfc.syslib.value > Syslib.NONE.value and \
-            intfc.kernel.value > Kernel.ANY.value:
-        DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
-    name = '-'.join((intfc.lib.name, name))
+    if intfc.syslib == Syslib.NONE:
+        oargs += ({Syslib.ANY},)
+        name = '-'.join((Syslib.ANY.name, name))
+    else:
+        oargs += ({intfc.syslib},)
+        name = '-'.join((intfc.syslib.name, name))
+    if name not in allios:
+        if intfc.kernel.value > Kernel.ANY.value:
+            DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
+        else:
+            return
     iargs = oargs
-    oargs += ({intfc.lib},)
-    if name not in allios and \
-            intfc.lib.value > Lib.NONE.value and \
-            intfc.syslib.value > Syslib.NONE.value:
+    if intfc.lib == Lib.NONE:
+        oargs += ({Lib.ANY},)
+        name = '-'.join((Lib.ANY.name, name))
+    else:
+        oargs += ({intfc.lib},)
+        name = '-'.join((intfc.lib.name, name))
+    if name not in allios:
         DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
-    name = '-'.join((intfc.sysapp.name, name))
     iargs = oargs
-    oargs += ({intfc.sysapp},)
-    if name not in allios and \
-            intfc.sysapp.value > Sysapp.NONE.value and \
-            intfc.lib.value > Lib.NONE.value:
+    if intfc.sysapp == Sysapp.NONE:
+        oargs += ({Sysapp.ANY},)
+        name = '-'.join((Sysapp.ANY.name, name))
+    else:
+        oargs += ({intfc.sysapp},)
+        name = '-'.join((intfc.sysapp.name, name))
+    if name not in allios:
         DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
-    name = '-'.join((intfc.app.name, name))
     iargs = oargs
-    oargs += ({intfc.app},)
-    if name not in allios and \
-            intfc.app.value > App.NONE.value and \
-            intfc.sysapp.value > Sysapp.NONE.value:
+    if intfc.app == App.NONE:
+        oargs += ({App.ANY},)
+        name = '-'.join((App.ANY.name, name))
+    else:
+        oargs += ({intfc.app},)
+        name = '-'.join((intfc.app.name, name))
+    if name not in allios:
         DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
 
 def addDummyModules() -> None:

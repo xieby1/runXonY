@@ -104,13 +104,16 @@ Transor("VEST",
     Date(1993), dev="Digital",
     desc="1993: Binary Translation by Richard L. Sites",
 )
-#Transor("",
-#    {  IO("",
-#        Metaface(),
-#        Metaface(),
-#    )},
-#    Date(),
-#)
+Isa_MODERN_WINDOWSs: set[Isa] = {Isa.AARCH64, Isa.X86_64, Isa.X86}
+Kernel_WINEs: set[Kernel] = {Kernel.LINUX, Kernel.MACOS, Kernel.BSD}
+Transor("WINE",
+    set(IO(
+        "-".join((kernel.name, isa.name)),
+        Metaface({isa}, {kernel}, Syslib_ANYs, Lib_ANYs),
+        Metaface({isa}, {Kernel.WINDOWS}, Syslib_ANYs),
+    ) for isa in Isa_MODERN_WINDOWSs for kernel in Kernel_WINEs),
+    Date(1993,7,4), Date.today(), "#800000", "LGPL",
+)
 
 
 # TODO: user-mode linux
