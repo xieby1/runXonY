@@ -67,6 +67,7 @@ class Kernel(enum.Enum):
 
     DOS = enum.auto()
     WINDOWS3_1 = enum.auto()
+    WINDOWS_NT4_0 = enum.auto()
     WINDOWS = enum.auto()
 
     MACOS = enum.auto()
@@ -74,6 +75,13 @@ class Kernel(enum.Enum):
     END = enum.auto()
 # https://en.wikipedia.org/wiki/POSIX
 Kernel_POSIXs: set[Kernel] = {Kernel.MACOS, Kernel.BSD, Kernel.LINUX}
+
+class Up(enum.Enum):
+    NONE = enum.auto()
+    USR = USER = UNPVL = UNPRIVILEGE = enum.auto()
+    PVL = PRIVILEGE = enum.auto()
+    USR_PVL = USER_PRIVILEGE = enum.auto()
+    END = enum.auto()
 
 class Isa(enum.Enum):
     NONE = enum.auto()
@@ -162,6 +170,14 @@ Isa_POWERPC64s = {Isa.POWERPC, Isa.POWERPC64}
 Isa_MIPS64s = set(Isa(i) for i in range(Isa.MIPSI.value, Isa.MIPS64.value+1))
 Isa_RISCV64s = {Isa.RISCV32, Isa.RISCV64}
 Isa_SPARC64s = {Isa.SPARC, Isa.SPARC64}
+def IsasUp(isas: set[Isa], up: Up) -> set[typing.Tuple[Isa, Up]]:
+    return set((isa, up) for isa in isas)
+def IsasUSR(isas: set[Isa]) -> set[typing.Tuple[Isa, Up]]:
+    return IsasUp(isas, Up.USR)
+def IsasPVL(isas: set[Isa]) -> set[typing.Tuple[Isa, Up]]:
+    return IsasUp(isas, Up.PVL)
+def IsasUSR_PVL(isas: set[Isa]) -> set[typing.Tuple[Isa, Up]]:
+    return IsasUp(isas, Up.USR_PVL)
 
 
 # TODO: use hashmap
@@ -171,7 +187,7 @@ interfaces: dict[int, Interface] = dict()
 class Interface:
     idx: int = 0
     def __init__(self,
-            isa:    Isa     = Isa.NONE,
+            isa_up: typing.Tuple[Isa, Up] = (Isa.NONE, Up.NONE),
             kernel: Kernel  = Kernel.NONE,
             syslib: Syslib  = Syslib.NONE,
             lib:    Lib     = Lib.NONE,
@@ -181,7 +197,9 @@ class Interface:
             ) -> None:
         self.idx = Interface.idx
         Interface.idx += 1
+        isa, up = isa_up
         self.isa    = isa
+        self.up     = up
         self.kernel = kernel
         self.syslib = syslib
         self.lib    = lib
@@ -192,7 +210,7 @@ class Interface:
         self.ls: set[HG] = set()
         self.us: set[HG] = set()
         strings = ()
-        for ele in (src, app, sysapp, lib, syslib, kernel, isa):
+        for ele in (src, app, sysapp, lib, syslib, kernel, isa, up):
             if ele.value > 1: # not NONE
                 strings += (ele.name,)
         self.name = '-'.join(strings)
@@ -205,6 +223,8 @@ class Interface:
         mul = 1
         val += self.isa.value * mul
         mul *= Isa.END.value
+        val += self.up.value * mul
+        mul += Up.END.value
         val += self.kernel.value * mul
         mul *= Kernel.END.value
         val += self.syslib.value * mul
@@ -222,6 +242,7 @@ class Interface:
     def __eq__(self, other: Interface) -> bool:
         if \
                 self.isa == other.isa and \
+                self.up == other.up and \
                 self.kernel == other.kernel and \
                 self.syslib == other.syslib and \
                 self.lib == other.lib and \
@@ -237,7 +258,7 @@ allios: dict[str, HG] = dict()
 
 class Metaface:
     def __init__(self,
-            isas:       set[Isa]    = {Isa.NONE},
+            isas_ups:   set[typing.Tuple[Isa, Up]] = {(Isa.NONE, Up.NONE)},
             kernels:    set[Kernel] = {Kernel.NONE},
             syslibs:    set[Syslib] = {Syslib.NONE},
             libs:       set[Lib]    = {Lib.NONE},
@@ -245,7 +266,7 @@ class Metaface:
             apps:       set[App]    = {App.NONE},
             srcs:       set[Src]    = {Src.NONE},
             ) -> None:
-        self.isas:      set[Isa]    = isas
+        self.isas_ups:  set[typing.Tuple[Isa, Up]] = isas_ups
         self.kernels:   set[Kernel] = kernels
         self.syslibs:   set[Syslib] = syslibs
         self.libs:      set[Lib]    = libs
@@ -253,14 +274,16 @@ class Metaface:
         self.apps:      set[App]    = apps
         self.srcs:      set[Src]    = srcs
         self.repr = ''
-        for set in (srcs, isas, kernels, syslibs, libs, sysapps, apps):
+        for isa, up in isas_ups:
+            self.repr += isa.name[0] + up.name[0]
+        for set in (kernels, syslibs, libs, sysapps, apps, srcs):
+            self.repr += '|'
             for ele in set:
                 self.repr += ele.name[0]
-            self.repr += '|'
 
     def getInterfaces(self) -> set[Interface]:
         _interfaces = set()
-        for isa in self.isas:
+        for isa_up in self.isas_ups:
             for kernel in self.kernels:
                 for syslib in self.syslibs:
                     for lib in self.libs:
@@ -268,7 +291,7 @@ class Metaface:
                             for app in self.apps:
                                 for src in self.srcs:
                                     _interfaces.add(Interface(
-                                        isa,
+                                        isa_up,
                                         kernel,
                                         syslib,
                                         lib,
@@ -281,9 +304,9 @@ class Metaface:
     def __hash__(self) -> int:
         val = 0
         mul = 1
-        for isa in self.isas:
-            val ^= hash(isa.value * mul)
-        mul *= Isa.END.value
+        for isa, up in self.isas_ups:
+            val ^= hash(isa.value * up.value* mul)
+        mul *= Isa.END.value * Up.END.value
         for kernel in self.kernels:
             val ^= hash(kernel.value * mul)
         mul *= Kernel.END.value
@@ -306,7 +329,7 @@ class Metaface:
 
     def __eq__(self, other: Metaface) -> bool:
         if \
-                self.isas == other.isas and \
+                self.isas_ups == other.isas_ups and \
                 self.kernels == other.kernels and \
                 self.syslibs == other.syslibs and \
                 self.libs == other.libs and \
@@ -446,16 +469,16 @@ class Transor(Module):
         self.color = color
         self.license = license
         self.dev = dev
-        self.feat = feat
-        self.desc = desc
+        self.feat = feat.replace("\n", r"\n")
+        self.desc = desc.replace("\n", r"\n")
         self.renames = renames
         super().__init__(name, hgs)
 
 
 def addDummyModule(intfc: Interface) -> None:
     hargs = ()
-    gargs = ({intfc.isa},)
-    name = intfc.isa.name
+    gargs = ({(intfc.isa, intfc.up)},)
+    name = "-".join((intfc.isa.name, intfc.up.name))
     if name not in allios:
         if intfc.isa.value > Isa.ANY.value:
             DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
