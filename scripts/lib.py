@@ -5,6 +5,14 @@ import enum
 import typing
 import warnings
 
+class Src(enum.Enum):
+    NONE = enum.auto()
+
+    C_SRC = C = enum.auto()
+    CPP_SRC = CPP = enum.auto()
+
+    END = enum.auto()
+
 class App(enum.Enum):
     NONE = enum.auto()
     APPS = ANY = enum.auto()
@@ -169,6 +177,7 @@ class Interface:
             lib:    Lib     = Lib.NONE,
             sysapp: Sysapp  = Sysapp.NONE,
             app:    App     = App.NONE,
+            src:    Src     = Src.NONE,
             ) -> None:
         self.idx = Interface.idx
         Interface.idx += 1
@@ -183,7 +192,7 @@ class Interface:
         self.ls: set[HG] = set()
         self.us: set[HG] = set()
         strings = ()
-        for ele in (app, sysapp, lib, syslib, kernel, isa):
+        for ele in (src, app, sysapp, lib, syslib, kernel, isa):
             if ele.value > 1: # not NONE
                 strings += (ele.name,)
         self.name = '-'.join(strings)
@@ -206,6 +215,8 @@ class Interface:
         mul *= Sysapp.END.value
         val += self.app.value * mul
         mul *= App.END.value
+        val += self.src.value * mul
+        mul *= Src.END.value
         return val
 
     def __eq__(self, other: Interface) -> bool:
@@ -215,7 +226,8 @@ class Interface:
                 self.syslib == other.syslib and \
                 self.lib == other.lib and \
                 self.sysapp == other.sysapp and \
-                self.app == other.app:
+                self.app == other.app and \
+                self.src == other.src:
             return True
         else:
             return False
@@ -231,6 +243,7 @@ class Metaface:
             libs:       set[Lib]    = {Lib.NONE},
             sysapps:    set[Sysapp] = {Sysapp.NONE},
             apps:       set[App]    = {App.NONE},
+            srcs:       set[Src]    = {Src.NONE},
             ) -> None:
         self.isas:      set[Isa]    = isas
         self.kernels:   set[Kernel] = kernels
@@ -238,8 +251,9 @@ class Metaface:
         self.libs:      set[Lib]    = libs
         self.sysapps:   set[Sysapp] = sysapps
         self.apps:      set[App]    = apps
+        self.srcs:      set[Src]    = srcs
         self.repr = ''
-        for set in (isas, kernels, syslibs, libs, sysapps, apps):
+        for set in (srcs, isas, kernels, syslibs, libs, sysapps, apps):
             for ele in set:
                 self.repr += ele.name[0]
             self.repr += '|'
@@ -252,14 +266,16 @@ class Metaface:
                     for lib in self.libs:
                         for sysapp in self.sysapps:
                             for app in self.apps:
-                                _interfaces.add(Interface(
-                                    isa,
-                                    kernel,
-                                    syslib,
-                                    lib,
-                                    sysapp,
-                                    app
-                                ))
+                                for src in self.srcs:
+                                    _interfaces.add(Interface(
+                                        isa,
+                                        kernel,
+                                        syslib,
+                                        lib,
+                                        sysapp,
+                                        app,
+                                        src,
+                                    ))
         return _interfaces
 
     def __hash__(self) -> int:
@@ -283,6 +299,9 @@ class Metaface:
         for app in self.apps:
             val ^= hash(app.value * mul)
         mul *= App.END.value
+        for src in self.srcs:
+            val ^= hash(src.value * mul)
+        mul *= Src.END.value
         return val
 
     def __eq__(self, other: Metaface) -> bool:
@@ -292,7 +311,8 @@ class Metaface:
                 self.syslibs == other.syslibs and \
                 self.libs == other.libs and \
                 self.sysapps == other.sysapps and \
-                self.apps == other.apps:
+                self.apps == other.apps and \
+                self.srcs == other.srcs:
             return True
         else:
             return False

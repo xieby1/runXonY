@@ -54,6 +54,8 @@ Isa_MODERN_WINDOWSs: set[Isa] = {Isa.AARCH64, Isa.X86_64, Isa.X86}
 #        |__/
 #                           figlet -f small Syslib
 
+Syslib_POSIXs: set[Syslib] = {Syslib.LINUX, Syslib.BSD, Syslib.MACOS}
+
 ###############################################
 #    _    _ _
 #   | |  (_) |__
@@ -166,6 +168,13 @@ Transor("WINE",
         Metaface({isa}, {Kernel.NO_KERNEL}, {Syslib.WINDOWS}),
     ) for isa in Isa_MODERN_WINDOWSs for kname in Kernel_WINEs_str),
     Date(1993,7,4), Date.today(), "#800000", "LGPL",
+)
+Transor("Cygwin",
+    {  HG("",
+        Metaface(Isa_MODERN_WINDOWSs, {Kernel.WINDOWS}),
+        Metaface({Isa.NONE}, {Kernel.NONE}, Syslib_POSIXs, srcs={Src.C, Src.CPP}),
+    )},
+    Date(1995,10,18), Date.today(), "#99003F",
 )
 
 
