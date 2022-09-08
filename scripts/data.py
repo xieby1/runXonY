@@ -156,14 +156,15 @@ Transor("VEST",
     desc="1993: Binary Translation by Richard L. Sites",
 )
 # TODO: Android
-Kernel_WINEs: set[Kernel] = {Kernel.LINUX, Kernel.MACOS, Kernel.BSD}
-Syslib_WINEs: set[Syslib] = {Syslib.LINUX, Syslib.MACOS, Syslib.BSD}
+Kernel_WINEs_str: set[str] = {Kernel.LINUX.name, Kernel.MACOS.name, Kernel.BSD.name}
+Kernel_WINEs: set[Kernel] = set(Kernel[name] for name in Kernel_WINEs_str)
+Syslib_WINEs: set[Syslib] = set(Syslib[name] for name in Kernel_WINEs_str)
 Transor("WINE",
     set(IO(
-        "-".join((kernel.name, isa.name)),
-        Metaface({isa}, {kernel}, {syslib}, Lib_ANYs),
+        "-".join((kname, isa.name)),
+        Metaface({isa}, {Kernel[kname]}, {Syslib[kname]}, Lib_ANYs),
         Metaface({isa}, {Kernel.NO_KERNEL}, {Syslib.WINDOWS}),
-    ) for isa in Isa_MODERN_WINDOWSs for kernel, syslib in zip(Kernel_WINEs, Syslib_WINEs)),
+    ) for isa in Isa_MODERN_WINDOWSs for kname in Kernel_WINEs_str),
     Date(1993,7,4), Date.today(), "#800000", "LGPL",
 )
 

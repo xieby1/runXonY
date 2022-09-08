@@ -444,7 +444,7 @@ def addDummyModule(intfc: Interface) -> None:
     oargs += ({intfc.kernel},)
     name = '-'.join((intfc.kernel.name, name))
     if name not in allios:
-        if intfc.kernel.value > Kernel.ANY.value and \
+        if intfc.kernel.value > Kernel.NO_KERNEL.value and \
                 intfc.isa.value > Isa.ANY.value:
             DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
         else:
