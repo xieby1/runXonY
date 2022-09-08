@@ -5,6 +5,59 @@ import enum
 import typing
 import warnings
 
+HashItem = typing.TypeVar("HashItem", bound=typing.Hashable)
+
+class HashMap(typing.Generic[HashItem]):
+    def __init__(self) -> None:
+        self.buckets: dict[int, list[HashItem]] = dict()
+
+    def _common(self, item: HashItem, add: bool, replace: bool) -> typing.Optional[HashItem]:
+        found: typing.Optional[HashItem] = None
+        hash = item.__hash__()
+        if hash in self.buckets:
+            bucket: list[HashItem] = self.buckets[hash]
+            for i, record in enumerate(bucket):
+                if record == item:
+                    found = record
+                    if replace:
+                        bucket[i] = item
+                    break
+            if not found and add:
+                bucket.append(item)
+        elif add: # hash not in self.buckets
+            self.buckets[hash] = [item]
+        return found
+
+    def add(self, item: HashItem) -> None:
+        self._common(item, True, False)
+
+    def get(self, item: HashItem) -> typing.Optional[HashItem]:
+        return self._common(item, False, False)
+
+    def copy(self) -> HashMap[HashItem]:
+        copied = HashMap[HashItem]()
+        copied.buckets = self.buckets.copy()
+        return copied
+
+    def __contains__(self, item: HashItem) -> bool:
+        return bool(self.get(item))
+
+    def __iter__(self) -> HashMap[HashItem]:
+        self.buckets_iter: typing.Iterator[int] = self.buckets.__iter__()
+        self.item_iter: typing.Iterator[HashItem] = list().__iter__()
+        return self
+
+    def __next__(self) -> HashItem:
+        try:
+            return self.item_iter.__next__()
+        except StopIteration:
+            try:
+                hash: int = self.buckets_iter.__next__()
+                self.item_iter = self.buckets[hash].__iter__()
+                return self.__next__()
+            except StopIteration:
+                raise StopIteration
+
 class Src(enum.Enum):
     NONE = enum.auto()
 
@@ -180,9 +233,7 @@ def IsasUSR_PVL(isas: set[Isa]) -> set[typing.Tuple[Isa, Up]]:
     return IsasUp(isas, Up.USR_PVL)
 
 
-# TODO: use hashmap
-#       though currently there will be no collision
-interfaces: dict[int, Interface] = dict()
+interfaces: HashMap[Interface] = HashMap()
 
 class Interface:
     idx: int = 0
@@ -253,8 +304,8 @@ class Interface:
         else:
             return False
 
-modules: dict[str, Module] = dict()
-allios: dict[str, HG] = dict()
+modules: HashMap[Module] = HashMap()
+allhgs: HashMap[HG] = HashMap()
 
 class Metaface:
     def __init__(self,
@@ -361,27 +412,29 @@ class HG:
 
         hinterfaces =  h.getInterfaces()
         for intfc in hinterfaces:
-            hash = intfc.__hash__()
-            if hash not in interfaces:
-                interfaces[hash] = intfc
-            interfaces[hash].us.add(self)
+            record: typing.Optional[Interface] = interfaces.get(intfc)
+            if not record:
+                interfaces.add(intfc)
+                record = intfc
+            record.us.add(self)
         ginterfaces = g.getInterfaces()
         for intfc in ginterfaces:
-            hash = intfc.__hash__()
-            if hash not in interfaces:
-                interfaces[hash] = intfc
-            interfaces[hash].ls.add(self)
+            record: typing.Optional[Interface] = interfaces.get(intfc)
+            if not record:
+                interfaces.add(intfc)
+                record = intfc
+            record.ls.add(self)
 
-    def setmodule_then_addio(self, module: Module) -> None:
+    def setmodule_then_addhg(self, module: Module) -> None:
         self.module = module
         if len(self.name):
             self.name = "-".join((module.name, self.name))
         else:
             self.name = module.name
-        if self.name in allios:
+        if self in allhgs:
             warnings.warn("io %s has been defined!" % self.name)
         else:
-            allios[self.name] = self
+            allhgs.add(self)
 
     def __hash__(self) -> int:
         # make h and g not commutative
@@ -421,12 +474,12 @@ class Module:
             ) -> None:
         self.name = name
         self.ios = ios
-        if name in modules and \
-                not isinstance(modules[name], DummyModule):
+        record: typing.Optional[Module] = modules.get(self)
+        if record:
             warnings.warn("module %s has been defined!" % name)
-        modules[name] = self
+        modules.add(self)
         for io in ios:
-            io.setmodule_then_addio(modules[name])
+            io.setmodule_then_addhg(self)
     def __repr__(self) -> str:
         return self.name
     def __hash__(self) -> int:
@@ -441,10 +494,11 @@ class DummyModule(Module):
             ) -> None:
         self.name = name
         self.hgs = hgs
-        if name not in modules:
-            modules[name] = self
-        for hg in hgs:
-            hg.setmodule_then_addio(modules[name])
+        record: typing.Optional[Module] = modules.get(self)
+        if not record:
+            modules.add(self)
+            for hg in hgs:
+                hg.setmodule_then_addhg(self)
 
 class Transor(Module):
     def __init__(self,
@@ -479,20 +533,18 @@ def addDummyModule(intfc: Interface) -> None:
     hargs = ()
     gargs = ({(intfc.isa, intfc.up)},)
     name = "-".join((intfc.isa.name, intfc.up.name))
-    if name not in allios:
-        if intfc.isa.value > Isa.ANY.value:
-            DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
-        else:
-            return
+    if intfc.isa.value > Isa.ANY.value:
+        DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
+    else:
+        return
     hargs = gargs
     gargs += ({intfc.kernel},)
     name = '-'.join((intfc.kernel.name, name))
-    if name not in allios:
-        if intfc.kernel.value > Kernel.NO_KERNEL.value and \
-                intfc.isa.value > Isa.ANY.value:
-            DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
-        else:
-            return
+    if intfc.kernel.value > Kernel.NO_KERNEL.value and \
+            intfc.isa.value > Isa.ANY.value:
+        DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
+    else:
+        return
     hargs = gargs
     if intfc.syslib == Syslib.NONE:
         gargs += ({Syslib.DEFAULT},)
@@ -500,11 +552,10 @@ def addDummyModule(intfc: Interface) -> None:
     else:
         gargs += ({intfc.syslib},)
         name = '-'.join((intfc.syslib.name, name))
-    if name not in allios:
-        if intfc.kernel.value > Kernel.ANY.value:
-            DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
-        else:
-            return
+    if intfc.kernel.value > Kernel.ANY.value:
+        DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
+    else:
+        return
     hargs = gargs
     if intfc.lib == Lib.NONE:
         gargs += ({Lib.ANY},)
@@ -512,8 +563,7 @@ def addDummyModule(intfc: Interface) -> None:
     else:
         gargs += ({intfc.lib},)
         name = '-'.join((intfc.lib.name, name))
-    if name not in allios:
-        DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
+    DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
     hargs = gargs
     if intfc.sysapp == Sysapp.NONE:
         gargs += ({Sysapp.ANY},)
@@ -521,8 +571,7 @@ def addDummyModule(intfc: Interface) -> None:
     else:
         gargs += ({intfc.sysapp},)
         name = '-'.join((intfc.sysapp.name, name))
-    if name not in allios:
-        DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
+    DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
     hargs = gargs
     if intfc.app == App.NONE:
         gargs += ({App.ANY},)
@@ -530,12 +579,11 @@ def addDummyModule(intfc: Interface) -> None:
     else:
         gargs += ({intfc.app},)
         name = '-'.join((intfc.app.name, name))
-    if name not in allios:
-        DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
+    DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
 
 def addDummyModules() -> None:
     _interfaces = interfaces.copy()
-    for intfc in _interfaces.values():
+    for intfc in _interfaces:
         addDummyModule(intfc)
 
 def outputDot(f: typing.TextIO) -> None:
@@ -543,22 +591,22 @@ def outputDot(f: typing.TextIO) -> None:
         return x.__class__.__name__[0]
     f.write('digraph {\nnode[shape=box];\n')
     # nodes (IOs and Interfaces)
-    for io in allios.values():
+    for hg in allhgs:
         ## Transors' IOs
-        if isinstance(io.module, Transor):
-            f.write('%s%d[label="%s", style=filled, fontcolor=white, fillcolor=black];\n' %(prefix(io.module), io.idx, io.name))
+        if isinstance(hg.module, Transor):
+            f.write('%s%d[label="%s", style=filled, fontcolor=white, fillcolor=black];\n' %(prefix(hg.module), hg.idx, hg.name))
         ## DummyModules' IOs
-        elif isinstance(io.module, DummyModule):
-            f.write('%s%d[label="%s", style="dotted"];\n' % (prefix(io.module), io.idx, io.name))
+        elif isinstance(hg.module, DummyModule):
+            f.write('%s%d[label="%s", style="dotted"];\n' % (prefix(hg.module), hg.idx, hg.name))
         ## Other Modules' IOs
         else:
-            f.write('%s%d[label="%s"];\n' %(prefix(io.module), io.idx, io.name))
+            f.write('%s%d[label="%s"];\n' %(prefix(hg.module), hg.idx, hg.name))
     ## Interfaces
-    for intfc in interfaces.values():
+    for intfc in interfaces:
         if len(intfc.name):
             f.write('%s%d[label="%s", style=rounded];\n' %(prefix(intfc), intfc.idx, intfc.name))
     # edges
-    for intfc in interfaces.values():
+    for intfc in interfaces:
         if len(intfc.name):
             for l in intfc.ls:
                 f.write('%s%d -> %s%d\n' % (prefix(l.module), l.idx, prefix(intfc), intfc.idx))
@@ -573,15 +621,15 @@ def outputJson(f: typing.TextIO) -> None:
     # nodes (IOs and Interfaces)
     f.write('"nodes": {\n')
     num: int = 0
-    for io in allios.values():
+    for hg in allhgs:
         if num>0:
             f.write(',')
         else:
             f.write(' ')
         num += 1
-        f.write(' "%s%d": "%s"\n' %(prefix(io.module), io.idx, io.name))
+        f.write(' "%s%d": "%s"\n' %(prefix(hg.module), hg.idx, hg.name))
     ## Interfaces
-    for intfc in interfaces.values():
+    for intfc in interfaces:
         if len(intfc.name):
             if num>0:
                 f.write(',')
@@ -593,7 +641,7 @@ def outputJson(f: typing.TextIO) -> None:
     # edges
     f.write('"edges": [\n')
     num = 0
-    for intfc in interfaces.values():
+    for intfc in interfaces:
         if len(intfc.name):
             for l in intfc.ls:
                 if num>0:
@@ -614,7 +662,7 @@ def outputJson(f: typing.TextIO) -> None:
 
 def outputEdges(f: typing.TextIO) -> None:
     f.write('digraph {\n')
-    for intfc in interfaces.values():
+    for intfc in interfaces:
         if len(intfc.name):
             for l in intfc.ls:
                 f.write('"%s" -> "intfc:%s"\n' % (l.name, intfc.name))
@@ -624,7 +672,7 @@ def outputEdges(f: typing.TextIO) -> None:
 
 def outputGnucladCsv(f: typing.TextIO) -> None:
     f.write("#, name, color, parent, start, stop, icon, desc, renames...\n")
-    for module in modules.values():
+    for module in modules:
         if isinstance(module, Transor):
             f.write('"%s","%s","%s","%s","%s","%s","%s","%s"\n' % (
                 "N", module.name, module.color, "",
