@@ -46,6 +46,55 @@ for isa in Isa_BSDs))
 
 Isa_MODERN_WINDOWSs: set[Isa] = {Isa.AARCH64, Isa.X86_64, Isa.X86}
 
+###############################################
+#    ___         _ _ _
+#   / __|_  _ __| (_) |__
+#   \__ \ || (_-< | | '_ \
+#   |___/\_, /__/_|_|_.__/
+#        |__/
+#                           figlet -f small Syslib
+
+###############################################
+#    _    _ _
+#   | |  (_) |__
+#   | |__| | '_ \
+#   |____|_|_.__/
+#                           figlet -f small Lib
+Module("-".join((Lib.ANY.name, Syslib.WINDOWS.name, Kernel.NO_KERNEL.name)), set (
+    IO(isa.name,
+        Metaface({isa}, {Kernel.WINDOWS, Kernel.NO_KERNEL}, {Syslib.WINDOWS}),
+        Metaface({isa}, {Kernel.NO_KERNEL}, {Syslib.WINDOWS}, Lib_ANYs)
+    )
+for isa in Isa_MODERN_WINDOWSs))
+
+###############################################
+#    ___
+#   / __|_  _ ___ __ _ _ __ _ __
+#   \__ \ || (_-</ _` | '_ \ '_ \
+#   |___/\_, /__/\__,_| .__/ .__/
+#        |__/         |_|  |_|
+#                           figlet -f small Sysapp
+Module("-".join((Sysapp.ANY.name, Lib.ANY.name, Syslib.WINDOWS.name, Kernel.NO_KERNEL.name)), set (
+    IO(isa.name,
+        Metaface({isa}, {Kernel.WINDOWS, Kernel.NO_KERNEL}, {Syslib.WINDOWS}, Lib_ANYs),
+        Metaface({isa}, {Kernel.NO_KERNEL}, {Syslib.WINDOWS}, Lib_ANYs, Sysapp_ANYs)
+    )
+for isa in Isa_MODERN_WINDOWSs))
+
+###############################################
+#      _
+#     /_\  _ __ _ __
+#    / _ \| '_ \ '_ \
+#   /_/ \_\ .__/ .__/
+#         |_|  |_|
+#                           figlet -f small App
+Module("-".join((App.ANY.name, Sysapp.ANY.name, Lib.ANY.name, Syslib.WINDOWS.name, Kernel.NO_KERNEL.name)), set (
+    IO(isa.name,
+        Metaface({isa}, {Kernel.WINDOWS, Kernel.NO_KERNEL}, {Syslib.WINDOWS}, Lib_ANYs, Sysapp_ANYs),
+        Metaface({isa}, {Kernel.NO_KERNEL}, {Syslib.WINDOWS}, Lib_ANYs, Sysapp_ANYs, App_ANYs)
+    )
+for isa in Isa_MODERN_WINDOWSs))
+
 ###############################################################
 #    _______
 #   |__   __|
