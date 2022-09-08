@@ -178,9 +178,10 @@ class Interface:
         self.lib    = lib
         self.sysapp = sysapp
         self.app    = app
-        # higher, lower modules
-        self.ls: set[IO] = set()
-        self.hs: set[IO] = set()
+        self.src    = src
+        # upper, lower modules
+        self.ls: set[HG] = set()
+        self.us: set[HG] = set()
         strings = ()
         for ele in (app, sysapp, lib, syslib, kernel, isa):
             if ele.value > 1: # not NONE
@@ -220,7 +221,7 @@ class Interface:
             return False
 
 modules: dict[str, Module] = dict()
-allios: dict[str, IO] = dict()
+allios: dict[str, HG] = dict()
 
 class Metaface:
     def __init__(self,
@@ -299,30 +300,30 @@ class Metaface:
     def __repr__(self) -> str:
         return self.repr
 
-class IO:
+class HG:
     idx: int = 0
     def __init__(self,
             name: str,
-            i: Metaface,
-            o: Metaface,
+            h: Metaface, # Host
+            g: Metaface, # Guest
             # TODO: add efficiency
             # eff,
             ) -> None:
-        self.idx = IO.idx
-        IO.idx += 1
+        self.idx = HG.idx
+        HG.idx += 1
         self.name = name
-        self.i = i
-        self.o = o
-        self.repr = i.repr + ':' + o.repr
+        self.h = h
+        self.g = g
+        self.repr = h.repr + ':' + g.repr
 
-        iinterfaces =  i.getInterfaces()
-        for intfc in iinterfaces:
+        hinterfaces =  h.getInterfaces()
+        for intfc in hinterfaces:
             hash = intfc.__hash__()
             if hash not in interfaces:
                 interfaces[hash] = intfc
-            interfaces[hash].hs.add(self)
-        ointerfaces = o.getInterfaces()
-        for intfc in ointerfaces:
+            interfaces[hash].us.add(self)
+        ginterfaces = g.getInterfaces()
+        for intfc in ginterfaces:
             hash = intfc.__hash__()
             if hash not in interfaces:
                 interfaces[hash] = intfc
@@ -340,11 +341,11 @@ class IO:
             allios[self.name] = self
 
     def __hash__(self) -> int:
-        # make i and o not commutative
-        return hash(self.i.__hash__()) ^ self.o.__hash__()
+        # make h and g not commutative
+        return hash(self.h.__hash__()) ^ self.g.__hash__()
 
-    def __eq__(self, other: IO) -> bool:
-        if self.i == other.i and self.o == other.o:
+    def __eq__(self, other: HG) -> bool:
+        if self.h == other.h and self.g == other.g:
             return True
         else:
             return False
@@ -373,7 +374,7 @@ class Rename:
 class Module:
     def __init__(self,
             name: str,
-            ios: set[IO],
+            ios: set[HG],
             ) -> None:
         self.name = name
         self.ios = ios
@@ -393,19 +394,19 @@ class Module:
 class DummyModule(Module):
     def __init__(self,
             name: str,
-            ios: set[IO],
+            hgs: set[HG],
             ) -> None:
         self.name = name
-        self.ios = ios
+        self.hgs = hgs
         if name not in modules:
             modules[name] = self
-        for io in ios:
-            io.setmodule_then_addio(modules[name])
+        for hg in hgs:
+            hg.setmodule_then_addio(modules[name])
 
 class Transor(Module):
     def __init__(self,
             name: str,
-            ios: set[IO],
+            hgs: set[HG],
             start: Date,
             stop: Date = Date(),
             color: str = '#000',
@@ -428,66 +429,66 @@ class Transor(Module):
         self.feat = feat
         self.desc = desc
         self.renames = renames
-        super().__init__(name, ios)
+        super().__init__(name, hgs)
 
 
 def addDummyModule(intfc: Interface) -> None:
-    iargs = ()
-    oargs = ({intfc.isa},)
+    hargs = ()
+    gargs = ({intfc.isa},)
     name = intfc.isa.name
     if name not in allios:
         if intfc.isa.value > Isa.ANY.value:
-            DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
+            DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
         else:
             return
-    iargs = oargs
-    oargs += ({intfc.kernel},)
+    hargs = gargs
+    gargs += ({intfc.kernel},)
     name = '-'.join((intfc.kernel.name, name))
     if name not in allios:
         if intfc.kernel.value > Kernel.NO_KERNEL.value and \
                 intfc.isa.value > Isa.ANY.value:
-            DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
+            DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
         else:
             return
-    iargs = oargs
+    hargs = gargs
     if intfc.syslib == Syslib.NONE:
-        oargs += ({Syslib.DEFAULT},)
+        gargs += ({Syslib.DEFAULT},)
         name = '-'.join((Syslib.DEFAULT.name, name))
     else:
-        oargs += ({intfc.syslib},)
+        gargs += ({intfc.syslib},)
         name = '-'.join((intfc.syslib.name, name))
     if name not in allios:
         if intfc.kernel.value > Kernel.ANY.value:
-            DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
+            DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
         else:
             return
-    iargs = oargs
+    hargs = gargs
     if intfc.lib == Lib.NONE:
-        oargs += ({Lib.ANY},)
+        gargs += ({Lib.ANY},)
         name = '-'.join((Lib.ANY.name, name))
     else:
-        oargs += ({intfc.lib},)
+        gargs += ({intfc.lib},)
         name = '-'.join((intfc.lib.name, name))
     if name not in allios:
-        DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
-    iargs = oargs
+        DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
+    hargs = gargs
     if intfc.sysapp == Sysapp.NONE:
-        oargs += ({Sysapp.ANY},)
+        gargs += ({Sysapp.ANY},)
         name = '-'.join((Sysapp.ANY.name, name))
     else:
-        oargs += ({intfc.sysapp},)
+        gargs += ({intfc.sysapp},)
         name = '-'.join((intfc.sysapp.name, name))
     if name not in allios:
-        DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
-    iargs = oargs
+        DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
+    hargs = gargs
     if intfc.app == App.NONE:
-        oargs += ({App.ANY},)
+        gargs += ({App.ANY},)
         name = '-'.join((App.ANY.name, name))
     else:
-        oargs += ({intfc.app},)
+        gargs += ({intfc.app},)
         name = '-'.join((intfc.app.name, name))
     if name not in allios:
-        DummyModule(name, {IO("", Metaface(*iargs), Metaface(*oargs))})
+        DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
 
 def addDummyModules() -> None:
     _interfaces = interfaces.copy()
@@ -518,8 +519,8 @@ def outputDot(f: typing.TextIO) -> None:
         if len(intfc.name):
             for l in intfc.ls:
                 f.write('%s%d -> %s%d\n' % (prefix(l.module), l.idx, prefix(intfc), intfc.idx))
-            for h in intfc.hs:
-                f.write('%s%d -> %s%d\n' % (prefix(intfc), intfc.idx, prefix(h.module), h.idx))
+            for u in intfc.us:
+                f.write('%s%d -> %s%d\n' % (prefix(intfc), intfc.idx, prefix(u.module), u.idx))
     f.write("}\n")
 
 def outputJson(f: typing.TextIO) -> None:
@@ -558,13 +559,13 @@ def outputJson(f: typing.TextIO) -> None:
                     f.write(' ')
                 num += 1
                 f.write(' ["%s%d", "%s%d"]\n' % (prefix(l.module), l.idx, prefix(intfc), intfc.idx))
-            for h in intfc.hs:
+            for u in intfc.us:
                 if num>0:
                     f.write(',')
                 else:
                     f.write(' ')
                 num += 1
-                f.write(' ["%s%d", "%s%d"]\n' % (prefix(intfc), intfc.idx, prefix(h.module), h.idx))
+                f.write(' ["%s%d", "%s%d"]\n' % (prefix(intfc), intfc.idx, prefix(u.module), u.idx))
     f.write(']\n')
     f.write('}\n')
 
@@ -574,8 +575,8 @@ def outputEdges(f: typing.TextIO) -> None:
         if len(intfc.name):
             for l in intfc.ls:
                 f.write('"%s" -> "intfc:%s"\n' % (l.name, intfc.name))
-            for h in intfc.hs:
-                f.write('"intfc:%s" -> "%s"\n' % (intfc.name, h.name))
+            for u in intfc.us:
+                f.write('"intfc:%s" -> "%s"\n' % (intfc.name, u.name))
     f.write("}\n")
 
 def outputGnucladCsv(f: typing.TextIO) -> None:

@@ -30,7 +30,7 @@ Isa_LINUXs: set[Isa] = \
     Isa.PARISC} | Isa_POWERPC64s | Isa_RISCV64s | {Isa.S390,
     Isa.SH} | Isa_SPARC64s | Isa_X86_64s | {Isa.XTENSA}
 Module(Kernel.LINUX.name, set(
-    IO(isa.name, Metaface({isa}), Metaface({isa}, {Kernel.LINUX}))
+    HG(isa.name, Metaface({isa}), Metaface({isa}, {Kernel.LINUX}))
 for isa in Isa_LINUXs))
 
 # https://www.freebsd.org/platforms/
@@ -41,7 +41,7 @@ Isa_BSDs: set[Isa] = \
 # https://www.openbsd.org/plat.html
 Isa_BSDs |= {Isa.ALPHA, Isa.HPPA}
 Module(Kernel.BSD.name, set(
-    IO(isa.name, Metaface({isa}), Metaface({isa}, {Kernel.BSD}))
+    HG(isa.name, Metaface({isa}), Metaface({isa}, {Kernel.BSD}))
 for isa in Isa_BSDs))
 
 Isa_MODERN_WINDOWSs: set[Isa] = {Isa.AARCH64, Isa.X86_64, Isa.X86}
@@ -61,7 +61,7 @@ Isa_MODERN_WINDOWSs: set[Isa] = {Isa.AARCH64, Isa.X86_64, Isa.X86}
 #   |____|_|_.__/
 #                           figlet -f small Lib
 Module("-".join((Lib.ANY.name, Syslib.WINDOWS.name, Kernel.NO_KERNEL.name)), set (
-    IO(isa.name,
+    HG(isa.name,
         Metaface({isa}, {Kernel.WINDOWS, Kernel.NO_KERNEL}, {Syslib.WINDOWS}),
         Metaface({isa}, {Kernel.NO_KERNEL}, {Syslib.WINDOWS}, Lib_ANYs)
     )
@@ -75,7 +75,7 @@ for isa in Isa_MODERN_WINDOWSs))
 #        |__/         |_|  |_|
 #                           figlet -f small Sysapp
 Module("-".join((Sysapp.ANY.name, Lib.ANY.name, Syslib.WINDOWS.name, Kernel.NO_KERNEL.name)), set (
-    IO(isa.name,
+    HG(isa.name,
         Metaface({isa}, {Kernel.WINDOWS, Kernel.NO_KERNEL}, {Syslib.WINDOWS}, Lib_ANYs),
         Metaface({isa}, {Kernel.NO_KERNEL}, {Syslib.WINDOWS}, Lib_ANYs, Sysapp_ANYs)
     )
@@ -89,7 +89,7 @@ for isa in Isa_MODERN_WINDOWSs))
 #         |_|  |_|
 #                           figlet -f small App
 Module("-".join((App.ANY.name, Sysapp.ANY.name, Lib.ANY.name, Syslib.WINDOWS.name, Kernel.NO_KERNEL.name)), set (
-    IO(isa.name,
+    HG(isa.name,
         Metaface({isa}, {Kernel.WINDOWS, Kernel.NO_KERNEL}, {Syslib.WINDOWS}, Lib_ANYs, Sysapp_ANYs),
         Metaface({isa}, {Kernel.NO_KERNEL}, {Syslib.WINDOWS}, Lib_ANYs, Sysapp_ANYs, App_ANYs)
     )
@@ -105,14 +105,14 @@ for isa in Isa_MODERN_WINDOWSs))
 #                                       figlet -f big Transors
 
 #Transor("",
-#    {  IO("",
+#    {  HG("",
 #        Metaface(),
 #        Metaface(),
 #    )},
 #    Date(),
 #)
 Transor("Merge",
-    {  IO("",
+    {  HG("",
         Metaface({Isa.I386}, {Kernel.SCO_UNIX}),
         Metaface({Isa.I386}, {Kernel.DOS, Kernel.WINDOWS3_1})
     )},
@@ -120,7 +120,7 @@ Transor("Merge",
     desc="https://en.wikipedia.org/wiki/Merge_(software)"
 )
 Transor("mx",
-    {  IO("",
+    {  HG("",
         Metaface({Isa.ALPHA}, {Kernel.OSF1}),
         Metaface({Isa.MIPS32}, {Kernel.ULTRIX}),
     )},
@@ -128,19 +128,19 @@ Transor("mx",
     desc="1993: Binary Translation by Richard L. Sites"
 )
 Transor("Shade",
-    {  IO("MIPS.V8",
+    {  HG("MIPS.V8",
         Metaface({Isa.SPARCV8}, {Kernel.SUNOS4_BSD}, {Syslib.DEFAULT}, Lib_ANYs),
         Metaface({Isa.UMIPSV, Isa.MIPSI}, {Kernel.SUNOS4_BSD}),
-    ), IO("V8.V8-BSD",
+    ), HG("V8.V8-BSD",
         Metaface({Isa.SPARCV8}, {Kernel.SUNOS4_BSD}, {Syslib.DEFAULT}, Lib_ANYs),
         Metaface({Isa.SPARCV8}, {Kernel.SUNOS4_BSD}),
-    ), IO("V9.V8-BSD",
+    ), HG("V9.V8-BSD",
         Metaface({Isa.SPARCV8}, {Kernel.SUNOS4_BSD}, {Syslib.DEFAULT}, Lib_ANYs),
         Metaface({Isa.SPARCV9}, {Kernel.SUNOS4_BSD}),
-    ), IO("V8.V8-UNIX",
+    ), HG("V8.V8-UNIX",
         Metaface({Isa.SPARCV8}, {Kernel.SUNOS5_UNIX}, {Syslib.DEFAULT}, Lib_ANYs),
         Metaface({Isa.SPARCV8}, {Kernel.SUNOS5_UNIX}),
-    ), IO("V9.V8-UNIX",
+    ), HG("V9.V8-UNIX",
         Metaface({Isa.SPARCV8}, {Kernel.SUNOS5_UNIX}, {Syslib.DEFAULT}, Lib_ANYs),
         Metaface({Isa.SPARCV9}, {Kernel.SUNOS5_UNIX}),
     )},
@@ -148,7 +148,7 @@ Transor("Shade",
     desc="1994: Shade: a fast instruction-set simulator for execution profiling"
 )
 Transor("VEST",
-    {  IO("",
+    {  HG("",
         Metaface({Isa.ALPHA}, {Kernel.OPENVMS}, {Syslib.DEFAULT}, Lib_ANYs),
         Metaface({Isa.VAX}, {Kernel.OPENVMS}),
     )},
@@ -160,7 +160,7 @@ Kernel_WINEs_str: set[str] = {Kernel.LINUX.name, Kernel.MACOS.name, Kernel.BSD.n
 Kernel_WINEs: set[Kernel] = set(Kernel[name] for name in Kernel_WINEs_str)
 Syslib_WINEs: set[Syslib] = set(Syslib[name] for name in Kernel_WINEs_str)
 Transor("WINE",
-    set(IO(
+    set(HG(
         "-".join((kname, isa.name)),
         Metaface({isa}, {Kernel[kname]}, {Syslib[kname]}, Lib_ANYs),
         Metaface({isa}, {Kernel.NO_KERNEL}, {Syslib.WINDOWS}),
@@ -183,16 +183,16 @@ Isa_QEMU_user_os: set[Isa] = {
     Isa.S390X, Isa.SH4, Isa.SPARC, Isa.TRICORE, Isa.XTENSA,
 }
 Transor("QEMU-user",
-    {  IO("linux",
+    {  HG("linux",
         Metaface(Isa_QEMU_user_is & Isa_LINUXs, {Kernel.LINUX}, {Syslib.LINUX_SYSLIBS}, Lib_ANYs),
         Metaface(Isa_QEMU_user_os & Isa_LINUXs, {Kernel.LINUX})
-    ), IO("bsd",
+    ), HG("bsd",
         Metaface(Isa_QEMU_user_is & Isa_BSDs, {Kernel.BSD}, {Syslib.BSD_SYSLIBS}, Lib_ANYs),
         Metaface(Isa_QEMU_user_os & Isa_BSDs, {Kernel.BSD})
-    ), IO("tci-linux",
+    ), HG("tci-linux",
         Metaface(Isa_LINUXs, {Kernel.LINUX}, {Syslib.LINUX_SYSLIBS}, Lib_ANYs),
         Metaface(Isa_QEMU_user_os & Isa_LINUXs, {Kernel.LINUX})
-    ), IO("tci-bsd",
+    ), HG("tci-bsd",
         Metaface(Isa_BSDs, {Kernel.BSD}, {Syslib.BSD_SYSLIBS}, Lib_ANYs),
         Metaface(Isa_QEMU_user_os & Isa_BSDs, {Kernel.BSD})
     )},
