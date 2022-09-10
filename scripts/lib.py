@@ -571,6 +571,13 @@ class DummyModule(Module):
             ) -> None:
         super().__init__(name, hgs, True)
 
+def fixMultiLineString(s: str) -> str:
+    res: str
+    if len(s)>0 and s[0] == '\n':
+        res = s[1:].replace(' '*4, '')
+    else:
+        res = s
+    return res.replace('\n', r'\n')
 class Transor(Module):
     def __init__(self,
             name: str,
@@ -594,8 +601,8 @@ class Transor(Module):
         self.color = color
         self.license = license
         self.dev = dev
-        self.feat = feat.replace("\n", r"\n")
-        self.desc = desc.replace("\n", r"\n")
+        self.feat = fixMultiLineString(feat)
+        self.desc = fixMultiLineString(desc)
         self.renames = renames
         super().__init__(name, hgs)
 
