@@ -62,10 +62,10 @@ Syslib_POSIXs: set[Syslib] = {Syslib.LINUX, Syslib.BSD, Syslib.MACOS}
 #   | |__| | '_ \
 #   |____|_|_.__/
 #                           figlet -f small Lib
-Module("-".join((Lib.ANY.name, Syslib.WINDOWS.name, Kernel.NO_KERNEL.name)), set (
+Module("-".join((Lib.ANY.name, Syslib.WINDOWS.name, Kernel.NO_SYSCALL.name)), set (
     HG(isa.name,
-        Metaface({(isa, Up.USR)}, {Kernel.WINDOWS, Kernel.NO_KERNEL}, {Syslib.WINDOWS}),
-        Metaface({(isa, Up.USR)}, {Kernel.NO_KERNEL}, {Syslib.WINDOWS}, Lib_ANYs)
+        Metaface({(isa, Up.USR)}, {Kernel.WINDOWS, Kernel.NO_SYSCALL}, {Syslib.WINDOWS}),
+        Metaface({(isa, Up.USR)}, {Kernel.NO_SYSCALL}, {Syslib.WINDOWS}, Lib_ANYs)
     )
 for isa in Isa_MODERN_WINDOWSs))
 
@@ -76,10 +76,10 @@ for isa in Isa_MODERN_WINDOWSs))
 #   |___/\_, /__/\__,_| .__/ .__/
 #        |__/         |_|  |_|
 #                           figlet -f small Sysapp
-Module("-".join((Sysapp.ANY.name, Lib.ANY.name, Syslib.WINDOWS.name, Kernel.NO_KERNEL.name)), set (
+Module("-".join((Sysapp.ANY.name, Lib.ANY.name, Syslib.WINDOWS.name, Kernel.NO_SYSCALL.name)), set (
     HG(isa.name,
-        Metaface({(isa, Up.USR)}, {Kernel.WINDOWS, Kernel.NO_KERNEL}, {Syslib.WINDOWS}, Lib_ANYs),
-        Metaface({(isa, Up.USR)}, {Kernel.NO_KERNEL}, {Syslib.WINDOWS}, Lib_ANYs, Sysapp_ANYs)
+        Metaface({(isa, Up.USR)}, {Kernel.WINDOWS, Kernel.NO_SYSCALL}, {Syslib.WINDOWS}, Lib_ANYs),
+        Metaface({(isa, Up.USR)}, {Kernel.NO_SYSCALL}, {Syslib.WINDOWS}, Lib_ANYs, Sysapp_ANYs)
     )
 for isa in Isa_MODERN_WINDOWSs))
 
@@ -90,10 +90,10 @@ for isa in Isa_MODERN_WINDOWSs))
 #   /_/ \_\ .__/ .__/
 #         |_|  |_|
 #                           figlet -f small App
-Module("-".join((App.ANY.name, Sysapp.ANY.name, Lib.ANY.name, Syslib.WINDOWS.name, Kernel.NO_KERNEL.name)), set (
+Module("APPS-WINDOWS-NO_SYSCALL", set (
     HG(isa.name,
-        Metaface({(isa, Up.USR)}, {Kernel.WINDOWS, Kernel.NO_KERNEL}, {Syslib.WINDOWS}, Lib_ANYs, Sysapp_ANYs),
-        Metaface({(isa, Up.USR)}, {Kernel.NO_KERNEL}, {Syslib.WINDOWS}, Lib_ANYs, Sysapp_ANYs, App_ANYs)
+        Metaface({(isa, Up.USR)}, {Kernel.WINDOWS, Kernel.NO_SYSCALL}, {Syslib.WINDOWS}, Lib_ANYs, Sysapp_ANYs),
+        Metaface({(isa, Up.USR)}, {Kernel.NO_SYSCALL}, {Syslib.WINDOWS}, Lib_ANYs, Sysapp_ANYs, App_ANYs)
     )
 for isa in Isa_MODERN_WINDOWSs))
 
@@ -165,7 +165,7 @@ Transor("WINE",
     set(HG(
         "-".join((kname, isa.name)),
         Metaface({(isa, Up.USR)}, {Kernel[kname]}, {Syslib[kname]}, Lib_ANYs),
-        Metaface({(isa, Up.USR)}, {Kernel.NO_KERNEL}, {Syslib.WINDOWS}),
+        Metaface({(isa, Up.USR)}, {Kernel.NO_SYSCALL}, {Syslib.WINDOWS}),
     ) for isa in Isa_MODERN_WINDOWSs for kname in Kernel_WINEs_str),
     Date(1993,7,4), Date.today(), "#800000", "LGPL",
 )

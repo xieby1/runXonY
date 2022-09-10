@@ -103,7 +103,7 @@ class Kernel(enum.Enum):
     NONE = enum.auto()
     KERNELS = ANY = enum.auto()
 
-    NO_KERNEL = enum.auto()
+    NO_SYSCALL = NO_KERNEL = enum.auto()
 
     OPENVMS = VMS = enum.auto()
 
