@@ -185,19 +185,20 @@ Transor("FX!32",
     desc = '''1997: DIGITAL FX!32: Combining Emulation and Binary Translation
 1998: FX!32 A Profile-Directed Binary Translator'''
 )
-# Transor("DAISY",
-#     {  HG("",
-#         Metaface(),
-#         Metaface(),
-#     )},
-#     Date(1997), dev="IBM", feat="VLIW",
-#     desc = '''
-#         1997: DAISY dynamic compilation for 100% architecutral compatibility
-#         2000: full system binary translation RISC to VLIW
-#         2000: simulation and debugging of full system bianry translation
-#         2001: Dynamic binary translation and optimization
-#     '''
-# )
+Transor("DAISY",
+    {  HG("",
+        Metaface({(Isa.DAISY_VLIW, Up.USR_PVL)}),
+        Metaface({(Isa.POWERPC, Up.USR_PVL)}),
+    )},
+    Date(1998), Date(2001), dev="IBM",
+    desc = '''
+        1997: DAISY dynamic compilation for 100% architecutral compatibility
+        2000: Binary Translation and Architecture Convergence Issues for IBM System/390
+        2000: full system binary translation RISC to VLIW
+        2000: simulation and debugging of full system bianry translation
+        2001: Dynamic binary translation and optimization
+    '''
+)
 
 
 # TODO: user-mode linux

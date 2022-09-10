@@ -219,6 +219,8 @@ class Isa(enum.Enum):
     IA64 = enum.auto()
     PARISC = enum.auto()
 
+    DAISY_VLIW = DAISY = enum.auto()
+
     END = enum.auto()
     idx = 0
 Isa_ANYs = set(Isa(i) for i in range(Isa.ANY.value, Isa.END.value))
