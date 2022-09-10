@@ -65,23 +65,27 @@ class Src(enum.Enum):
     CPP_SRC = CPP = enum.auto()
 
     END = enum.auto()
+    idx = 6
 
 class App(enum.Enum):
     NONE = enum.auto()
     APPS = ANY = enum.auto()
     END = enum.auto()
+    idx = 5
 App_ANYs = set(App(i) for i in range(App.ANY.value, App.END.value))
 
 class Sysapp(enum.Enum):
     NONE = enum.auto()
     SYSAPPS = ANY = enum.auto()
     END = enum.auto()
+    idx = 4
 Sysapp_ANYs = set(Sysapp(i) for i in range(Sysapp.ANY.value, Sysapp.END.value))
 
 class Lib(enum.Enum):
     NONE = enum.auto()
     LIBS = ANY = enum.auto()
     END = enum.auto()
+    idx = 3
 Lib_ANYs = set(Lib(i) for i in range(Lib.ANY.value, Lib.END.value))
 
 class Syslib(enum.Enum):
@@ -98,6 +102,7 @@ class Syslib(enum.Enum):
     WINDOWS_SYSLIBS = WINDOWS = enum.auto()
 
     END = enum.auto()
+    idx = 2
 
 class Kernel(enum.Enum):
     NONE = enum.auto()
@@ -126,6 +131,7 @@ class Kernel(enum.Enum):
     MACOS = enum.auto()
 
     END = enum.auto()
+    idx = 1
 # https://en.wikipedia.org/wiki/POSIX
 Kernel_POSIXs: set[Kernel] = {Kernel.MACOS, Kernel.BSD, Kernel.LINUX}
 
@@ -135,6 +141,7 @@ class Up(enum.Enum):
     PVL = PRIVILEGE = enum.auto()
     USR_PVL = USER_PRIVILEGE = enum.auto()
     END = enum.auto()
+    idx = 0
 
 class Isa(enum.Enum):
     NONE = enum.auto()
@@ -213,6 +220,7 @@ class Isa(enum.Enum):
     PARISC = enum.auto()
 
     END = enum.auto()
+    idx = 0
 Isa_ANYs = set(Isa(i) for i in range(Isa.ANY.value, Isa.END.value))
 Isa_X86s = set(Isa(i) for i in range(Isa.I386.value, Isa.X86.value+1))
 Isa_X86_64s = set(Isa(i) for i in range(Isa.I386.value, Isa.X86_64.value+1))
@@ -232,6 +240,15 @@ def IsasPVL(isas: set[Isa]) -> set[typing.Tuple[Isa, Up]]:
 def IsasUSR_PVL(isas: set[Isa]) -> set[typing.Tuple[Isa, Up]]:
     return IsasUp(isas, Up.USR_PVL)
 
+hierarchy: dict[int, type] = {
+    Isa.idx.value: Isa,
+    Kernel.idx.value: Kernel,
+    Syslib.idx.value: Syslib,
+    Lib.idx.value: Lib,
+    Sysapp.idx.value: Sysapp,
+    App.idx.value: App,
+    Src.idx.value: Src,
+}
 
 interfaces: HashMap[Interface] = HashMap()
 
@@ -308,6 +325,19 @@ modules: HashMap[Module] = HashMap()
 allhgs: HashMap[HG] = HashMap()
 
 class Metaface:
+    @classmethod
+    # Meta-lize an Interface
+    def metalize(cls, intfc: Interface) -> Metaface:
+        return cls(
+            {(intfc.isa, intfc.up)},
+            {intfc.kernel},
+            {intfc.syslib},
+            {intfc.lib},
+            {intfc.sysapp},
+            {intfc.app},
+            {intfc.src},
+        )
+
     def __init__(self,
             isas_ups:   set[typing.Tuple[Isa, Up]] = {(Isa.NONE, Up.NONE)},
             kernels:    set[Kernel] = {Kernel.NONE},
@@ -402,6 +432,7 @@ class HG:
             g: Metaface, # Guest
             # TODO: add efficiency
             # eff,
+            add: bool = True,
             ) -> None:
         self.idx = HG.idx
         HG.idx += 1
@@ -410,6 +441,8 @@ class HG:
         self.g = g
         self.repr = h.repr + ':' + g.repr
 
+        if not add:
+            return
         hinterfaces =  h.getInterfaces()
         for intfc in hinterfaces:
             record: typing.Optional[Interface] = interfaces.get(intfc)
@@ -497,8 +530,9 @@ class DummyModule(Module):
         record: typing.Optional[Module] = modules.get(self)
         if not record:
             modules.add(self)
-            for hg in hgs:
-                hg.setmodule_then_addhg(self)
+            record = self
+        for hg in hgs:
+            hg.setmodule_then_addhg(self)
 
 class Transor(Module):
     def __init__(self,
@@ -528,63 +562,94 @@ class Transor(Module):
         self.renames = renames
         super().__init__(name, hgs)
 
+# return True for added, False for not add
+DMargs = tuple[tuple[Isa, Up], Kernel, Syslib, Lib, Sysapp, App]
+def addDummyModule(args: DMargs, hierarchyIdx: int) -> bool:
+    if hierarchyIdx == Isa.idx.value:
+        hintfc = Interface()
+        gintfc = Interface((args[0][0], Up.USR_PVL))
+    elif hierarchyIdx == Kernel.idx.value:
+        hintfc = Interface((args[0][0], Up.USR_PVL))
+        gintfc = Interface(*(args[:hierarchyIdx+1]))
+    else:
+        hintfc = Interface(*(args[:hierarchyIdx]))
+        gintfc = Interface(*(args[:hierarchyIdx+1]))
+    hg = HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc), False)
+    if hintfc != gintfc and hintfc in interfaces and gintfc in interfaces:
+        if hg not in allhgs:
+            # print(args)
+            # print("%d - %d" % (hierarchyIdx, hierarchyIdx+1))
+            # print("%s - %s" % (hintfc.name, gintfc.name))
+            DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc))})
+        return False
+    if hierarchyIdx == Isa.idx.value:
+        if args[Isa.idx.value][0].value > Isa.ANY.value:
+            DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc))})
+        else:
+            return False
+    elif hierarchyIdx == Kernel.idx.value:
+        if args[Kernel.idx.value].value > Kernel.NO_KERNEL.value and \
+                args[Isa.idx.value][0].value > Isa.ANY.value:
+            DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc))})
+        else:
+            return False
+    elif hierarchyIdx == Syslib.idx.value:
+        if args[Kernel.idx.value].value > Kernel.ANY.value:
+            DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc))})
+        else:
+            return False
+    elif hierarchyIdx == Lib.idx.value:
+        DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc))})
+    elif hierarchyIdx == Sysapp.idx.value:
+        DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc))})
+    elif hierarchyIdx == App.idx.value:
+        DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc))})
+    else:
+        warnings.warn("addDummyModule unknown hierarchyIdx %d" % hierarchyIdx)
+    return True
 
-def addDummyModule(intfc: Interface) -> None:
-    hargs = ()
-    gargs = ({(intfc.isa, intfc.up)},)
-    name = "-".join((intfc.isa.name, intfc.up.name))
-    if intfc.isa.value > Isa.ANY.value:
-        DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
+Intfctype = typing.Union[tuple[Isa, Up], Kernel, Syslib, Lib, Sysapp, App, Src]
+intfctypes = (tuple[Isa, Up], Kernel, Syslib, Lib, Sysapp, App, Src)
+def addDummyModulesByIntfc(intfc: Interface) -> None:
+    toptype: type
+    if intfc.src != Src.NONE:
+        return
+    if intfc.app != App.NONE:
+        toptype = App
+    elif intfc.sysapp != Sysapp.NONE:
+        toptype = Sysapp
+    elif intfc.lib != Lib.NONE:
+        toptype = Lib
+    elif intfc.syslib != Syslib.NONE:
+        toptype = Syslib
+    elif intfc.kernel != Kernel.NONE:
+        toptype = Kernel
+    elif intfc.isa != Isa.NONE:
+        toptype = Isa
     else:
         return
-    hargs = gargs
-    gargs += ({intfc.kernel},)
-    name = '-'.join((intfc.kernel.name, name))
-    if intfc.kernel.value > Kernel.NO_KERNEL.value and \
-            intfc.isa.value > Isa.ANY.value:
-        DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
-    else:
-        return
-    hargs = gargs
-    if intfc.syslib == Syslib.NONE:
-        gargs += ({Syslib.DEFAULT},)
-        name = '-'.join((Syslib.DEFAULT.name, name))
-    else:
-        gargs += ({intfc.syslib},)
-        name = '-'.join((intfc.syslib.name, name))
-    if intfc.kernel.value > Kernel.ANY.value:
-        DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
-    else:
-        return
-    hargs = gargs
-    if intfc.lib == Lib.NONE:
-        gargs += ({Lib.ANY},)
-        name = '-'.join((Lib.ANY.name, name))
-    else:
-        gargs += ({intfc.lib},)
-        name = '-'.join((intfc.lib.name, name))
-    DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
-    hargs = gargs
-    if intfc.sysapp == Sysapp.NONE:
-        gargs += ({Sysapp.ANY},)
-        name = '-'.join((Sysapp.ANY.name, name))
-    else:
-        gargs += ({intfc.sysapp},)
-        name = '-'.join((intfc.sysapp.name, name))
-    DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
-    hargs = gargs
-    if intfc.app == App.NONE:
-        gargs += ({App.ANY},)
-        name = '-'.join((App.ANY.name, name))
-    else:
-        gargs += ({intfc.app},)
-        name = '-'.join((intfc.app.name, name))
-    DummyModule(name, {HG("", Metaface(*hargs), Metaface(*gargs))})
+    args = (
+        (intfc.isa, intfc.up),
+        intfc.kernel,
+        Syslib.DEFAULT if intfc.syslib==Syslib.NONE else intfc.syslib,
+        Lib.ANY if intfc.lib==Lib.NONE else intfc.lib,
+        Sysapp.ANY if intfc.sysapp==Sysapp.NONE else intfc.sysapp,
+        App.ANY if intfc.app==App.NONE else intfc.app,
+    )
+
+    # upwards
+    for i in range(toptype.idx.value+1, App.idx.value+1): # [toptype+1, App]
+        if not addDummyModule(args, i):
+            break
+    # downward
+    for i in reversed(range(Isa.idx.value, toptype.idx.value+1)): # reversed([Isa, toptype])
+        if not addDummyModule(args, i):
+            break
 
 def addDummyModules() -> None:
     _interfaces = interfaces.copy()
     for intfc in _interfaces:
-        addDummyModule(intfc)
+        addDummyModulesByIntfc(intfc)
 
 def outputDot(f: typing.TextIO) -> None:
     def prefix(x: object) -> str:
