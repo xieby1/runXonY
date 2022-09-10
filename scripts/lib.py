@@ -537,16 +537,24 @@ class Rename:
 class Module:
     def __init__(self,
             name: str,
-            ios: set[HG],
+            hgs: set[HG],
+            dummy: bool = False,
             ) -> None:
         self.name = name
-        self.ios = ios
+        self.hgs = hgs
         record: typing.Optional[Module] = modules.get(self)
-        if record:
-            warnings.warn("module %s has been defined!" % name)
-        modules.add(self)
-        for io in ios:
-            io.setmodule_then_addhg(self)
+        if dummy:
+            if not record:
+                modules.add(self)
+                record = self
+        else:
+            if record:
+                warnings.warn("module %s has been defined!" % name)
+            modules.add(self)
+            record = self
+        for hg in hgs:
+            hg.setmodule_then_addhg(record)
+
     def __repr__(self) -> str:
         return self.name
     def __hash__(self) -> int:
@@ -559,14 +567,7 @@ class DummyModule(Module):
             name: str,
             hgs: set[HG],
             ) -> None:
-        self.name = name
-        self.hgs = hgs
-        record: typing.Optional[Module] = modules.get(self)
-        if not record:
-            modules.add(self)
-            record = self
-        for hg in hgs:
-            hg.setmodule_then_addhg(self)
+        super().__init__(name, hgs, True)
 
 class Transor(Module):
     def __init__(self,
