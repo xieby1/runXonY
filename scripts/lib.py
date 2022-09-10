@@ -323,6 +323,7 @@ class Interface:
 
 modules: HashMap[Module] = HashMap()
 allhgs: HashMap[HG] = HashMap()
+allunihgs: HashMap[UniHG] = HashMap()
 
 class Metaface:
     @classmethod
@@ -423,6 +424,38 @@ class Metaface:
 
     def __repr__(self) -> str:
         return self.repr
+ 
+# UniHG help addDummyModule to determine whether a dummy module has a counterpart module?
+# E.g.
+#       +---+     +---+
+#       | O |     | F |
+#       +---+     +---+
+#           \     /   ?
+#            \   /     ?
+#            +---+     +---+
+#            | A |     | B |
+#            +---+     +---+
+#                \     ?
+#                 \   ? 
+#                 +---+
+#                 | T |
+#                 +---+
+#
+# HG_B should not be added.
+# HG_A={OF,T} are HG_B={F,T} are diff, therefore class UniHG is added.
+# UniHG only contain one H, one G.
+class UniHG:
+    def __init__(self, h: Interface, g: Interface, add: bool = True) -> None:
+        self.h = h
+        self.g = g
+        if add:
+            allunihgs.add(self)
+
+    def __hash__(self) -> int:
+        return hash(self.h.__hash__()) ^ self.g.__hash__()
+
+    def __eq__(self, other: UniHG) -> bool:
+        return  self.h == other.h and self.g == other.g
 
 class HG:
     idx: int = 0
@@ -457,6 +490,10 @@ class HG:
                 interfaces.add(intfc)
                 record = intfc
             record.ls.add(self)
+        # UniHG
+        for hintfc in hinterfaces:
+            for gintfc in ginterfaces:
+                allunihgs.add(UniHG(hintfc, gintfc))
 
     def setmodule_then_addhg(self, module: Module) -> None:
         self.module = module
@@ -474,10 +511,7 @@ class HG:
         return hash(self.h.__hash__()) ^ self.g.__hash__()
 
     def __eq__(self, other: HG) -> bool:
-        if self.h == other.h and self.g == other.g:
-            return True
-        else:
-            return False
+        return self.h == other.h and self.g == other.g
 
     def __repr__(self) -> str:
         return self.repr
@@ -574,9 +608,9 @@ def addDummyModule(args: DMargs, hierarchyIdx: int) -> bool:
     else:
         hintfc = Interface(*(args[:hierarchyIdx]))
         gintfc = Interface(*(args[:hierarchyIdx+1]))
-    hg = HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc), False)
+    unihg = UniHG(hintfc, gintfc, False)
     if hintfc != gintfc and hintfc in interfaces and gintfc in interfaces:
-        if hg not in allhgs:
+        if unihg not in allunihgs:
             # print(args)
             # print("%d - %d" % (hierarchyIdx, hierarchyIdx+1))
             # print("%s - %s" % (hintfc.name, gintfc.name))
