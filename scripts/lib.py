@@ -426,7 +426,20 @@ class Metaface:
 
     def __repr__(self) -> str:
         return self.repr
- 
+
+class Term(enum.Enum):
+    UNK = UNKNOWN = enum.auto()
+
+    # Transor
+    UBT = USER_LEVEL_BINARY_TRANSLATOR = enum.auto()
+    SBT = SYSTEM_LEVEL_BINARY_TRANSLATOR = enum.auto()
+    VM1 = TYPE1_VIRTUAL_MACHINE = enum.auto()
+    VM2 = TYPE2_VIRTUAL_MACHINE = enum.auto()
+
+    # Module
+    OS_ = OPERATING_SYSTEM = enum.auto()
+    CPL = COMPILER = enum.auto()
+
 # UniHG help addDummyModule to determine whether a dummy module has a counterpart module?
 # E.g.
 #       +---+     +---+
@@ -453,6 +466,48 @@ class UniHG:
         if add:
             allunihgs.add(self)
 
+    def term(self) -> Term:
+        class Cond(enum.Enum):
+            IGN = IGNORE = enum.auto()
+            EQL = EQUAL = enum.auto()
+            NEQ = NOTEQUAL = enum.auto()
+        IGN, EQL, NEQ = Cond.IGN, Cond.EQL, Cond.NEQ
+        # h none test
+        def hntest(conds: typing.Tuple[Cond, Cond, Cond, Cond, Cond, Cond, Cond, Cond]) -> bool:
+            hhs = (self.h.isa, self.h.up, self.h.kernel, self.h.syslib, self.h.lib, self.h.sysapp, self.h.app, self.h.src)
+            for hh, cond in zip(hhs, conds):
+                if not ((cond==IGN) or (cond==EQL and hh.value==1) or (cond==NEQ and hh.value!=1)):
+                    return False
+            return True
+        # g none test
+        def gntest(conds: typing.Tuple[Cond, Cond, Cond, Cond, Cond, Cond, Cond, Cond]) -> bool:
+            ghs = (self.g.isa, self.g.up, self.g.kernel, self.g.syslib, self.g.lib, self.g.sysapp, self.g.app, self.g.src)
+            for gh, cond in zip(ghs, conds):
+                if not ((cond==IGN) or (cond==EQL and gh.value==1) or (cond==NEQ and gh.value!=1)):
+                    return False
+            return True
+        # h g test
+        def hgtest(conds: typing.Tuple[Cond, ...]) -> bool:
+            hhs = (self.h.isa, self.h.up, self.h.kernel, self.h.syslib, self.h.lib, self.h.sysapp, self.h.app, self.h.src)
+            ghs = (self.g.isa, self.g.up, self.g.kernel, self.g.syslib, self.g.lib, self.g.sysapp, self.g.app, self.g.src)
+            for hh, gh, cond in zip(hhs, ghs, conds):
+                if not ((cond==IGN) or (cond==EQL and hh==gh) or (cond==NEQ and hh!=gh)):
+                    return False
+            return True
+
+        if      hntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL)) and \
+                gntest((NEQ, NEQ, NEQ, EQL, EQL, EQL, EQL, EQL)) and \
+                hgtest((IGN, EQL, EQL)):
+            return Term.USER_LEVEL_BINARY_TRANSLATOR
+        elif    self.h.src==Src.NONE and self.g.src!=Src.NONE:
+            return Term.COMPILER
+        elif    hntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+                gntest((NEQ, NEQ, NEQ, EQL, EQL, EQL, EQL, EQL)) and \
+                hgtest((EQL,)):
+            return Term.OS_
+        else:
+            return Term.UNKNOWN
+
     def __hash__(self) -> int:
         return hash(self.h.__hash__()) ^ self.g.__hash__()
 
@@ -475,6 +530,7 @@ class HG:
         self.h = h
         self.g = g
         self.repr = h.repr + ':' + g.repr
+        self.terms: dict[Term, int] = dict()
 
         if not add:
             return
@@ -495,7 +551,23 @@ class HG:
         # UniHG
         for hintfc in hinterfaces:
             for gintfc in ginterfaces:
-                allunihgs.add(UniHG(hintfc, gintfc))
+                unihg = UniHG(hintfc, gintfc)
+                allunihgs.add(unihg)
+                if unihg.term() not in self.terms:
+                    self.terms[unihg.term()] = 1
+                else:
+                    self.terms[unihg.term()] += 1
+        if len(self.terms) > 1:
+            warnings.warn("hg %s has more than one terms %s"
+                    %(self.name, self.terms))
+        maxcnt: int = 0
+        for term in self.terms:
+            if self.terms[term] > maxcnt:
+                self.term = term
+                maxcnt = self.terms[term]
+            elif self.terms[term] == maxcnt:
+                warnings.warn("hg term %s and %s has same count %d" %
+                        (self.term.name, term.name, maxcnt))
 
     def setmodule_then_addhg(self, module: Module) -> None:
         self.module = module
@@ -544,6 +616,7 @@ class Module:
             ) -> None:
         self.name = name
         self.hgs = hgs
+        self.terms: dict[Term, int] = dict()
         record: typing.Optional[Module] = modules.get(self)
         if dummy:
             if not record:
@@ -556,6 +629,24 @@ class Module:
             record = self
         for hg in hgs:
             hg.setmodule_then_addhg(record)
+            for term in hg.terms:
+                if term not in self.terms:
+                    self.terms[term] = hg.terms[term]
+                else:
+                    self.terms[term] += hg.terms[term]
+        if len(self.terms) == 0:
+            self.terms = {Term.UNKNOWN: 1}
+        elif len(self.terms) > 1:
+            warnings.warn("module %s has more than one terms %s"
+                    %(self.name, self.terms))
+        maxcnt: int = 0
+        for term in self.terms:
+            if self.terms[term] > maxcnt:
+                self.term = term
+                maxcnt = self.terms[term]
+            elif self.terms[term] == maxcnt:
+                warnings.warn("module term %s and %s has same count %d" %
+                        (self.term.name, term.name, maxcnt))
 
     def __repr__(self) -> str:
         return self.name
@@ -695,21 +786,23 @@ def addDummyModules() -> None:
     for intfc in _interfaces:
         addDummyModulesByIntfc(intfc)
 
+def prefix(x: object) -> str:
+    return x.__class__.__name__[0]
+def nodeNameHG(hg: HG) -> str:
+    return "%s%s%d" % (prefix(hg.module), hg.term.name, hg.idx)
 def outputDot(f: typing.TextIO) -> None:
-    def prefix(x: object) -> str:
-        return x.__class__.__name__[0]
     f.write('digraph {\nnode[shape=box];\n')
     # nodes (IOs and Interfaces)
     for hg in allhgs:
         ## Transors' IOs
         if isinstance(hg.module, Transor):
-            f.write('%s%d[label="%s", style=filled, fontcolor=white, fillcolor=black];\n' %(prefix(hg.module), hg.idx, hg.name))
+            f.write('%s[label="%s", style=filled, fontcolor=white, fillcolor=black];\n' %(nodeNameHG(hg), hg.name))
         ## DummyModules' IOs
         elif isinstance(hg.module, DummyModule):
-            f.write('%s%d[label="%s", style="dotted"];\n' % (prefix(hg.module), hg.idx, hg.name))
+            f.write('%s[label="%s", style="dotted"];\n' % (nodeNameHG(hg), hg.name))
         ## Other Modules' IOs
         else:
-            f.write('%s%d[label="%s"];\n' %(prefix(hg.module), hg.idx, hg.name))
+            f.write('%s[label="%s"];\n' %(nodeNameHG(hg), hg.name))
     ## Interfaces
     for intfc in interfaces:
         if len(intfc.name):
@@ -718,14 +811,12 @@ def outputDot(f: typing.TextIO) -> None:
     for intfc in interfaces:
         if len(intfc.name):
             for l in intfc.ls:
-                f.write('%s%d -> %s%d\n' % (prefix(l.module), l.idx, prefix(intfc), intfc.idx))
+                f.write('%s -> %s%d\n' % (nodeNameHG(l), prefix(intfc), intfc.idx))
             for u in intfc.us:
-                f.write('%s%d -> %s%d\n' % (prefix(intfc), intfc.idx, prefix(u.module), u.idx))
+                f.write('%s%d -> %s\n' % (prefix(intfc), intfc.idx, nodeNameHG(u)))
     f.write("}\n")
 
 def outputJson(f: typing.TextIO) -> None:
-    def prefix(x: object) -> str:
-        return x.__class__.__name__[0]
     f.write('{\n')
     # nodes (IOs and Interfaces)
     f.write('"nodes": {\n')
@@ -736,7 +827,7 @@ def outputJson(f: typing.TextIO) -> None:
         else:
             f.write(' ')
         num += 1
-        f.write(' "%s%d": "%s"\n' %(prefix(hg.module), hg.idx, hg.name))
+        f.write(' "%s": "%s"\n' %(nodeNameHG(hg), hg.name))
     ## Interfaces
     for intfc in interfaces:
         if len(intfc.name):
@@ -758,14 +849,14 @@ def outputJson(f: typing.TextIO) -> None:
                 else:
                     f.write(' ')
                 num += 1
-                f.write(' ["%s%d", "%s%d"]\n' % (prefix(l.module), l.idx, prefix(intfc), intfc.idx))
+                f.write(' ["%s", "%s%d"]\n' % (nodeNameHG(l), prefix(intfc), intfc.idx))
             for u in intfc.us:
                 if num>0:
                     f.write(',')
                 else:
                     f.write(' ')
                 num += 1
-                f.write(' ["%s%d", "%s%d"]\n' % (prefix(intfc), intfc.idx, prefix(u.module), u.idx))
+                f.write(' ["%s%d", "%s"]\n' % (prefix(intfc), intfc.idx, nodeNameHG(u)))
     f.write(']\n')
     f.write('}\n')
 
