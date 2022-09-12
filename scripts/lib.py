@@ -437,8 +437,13 @@ class Term(enum.Enum):
     VM2 = TYPE2_VIRTUAL_MACHINE = enum.auto()
 
     # Module
-    OS_ = OPERATING_SYSTEM = enum.auto()
+    OS_ = KERNEL = OPERATING_SYSTEM = enum.auto()
     CPL = COMPILER = enum.auto()
+
+    # Dummy Module
+    APP = SYSAPP = enum.auto()
+    LIB = SYSLIB = enum.auto()
+    ISA = enum.auto()
 
 # UniHG help addDummyModule to determine whether a dummy module has a counterpart module?
 # E.g.
@@ -522,6 +527,7 @@ class HG:
             g: Metaface, # Guest
             # TODO: add efficiency
             # eff,
+            term: Term = Term.UNKNOWN,
             add: bool = True,
             ) -> None:
         self.idx = HG.idx
@@ -530,7 +536,8 @@ class HG:
         self.h = h
         self.g = g
         self.repr = h.repr + ':' + g.repr
-        self.terms: dict[Term, int] = dict()
+        self.term = term
+        self.terms: dict[Term, int] = {term:1} if term!=Term.UNKNOWN else dict()
 
         if not add:
             return
@@ -552,22 +559,24 @@ class HG:
         for hintfc in hinterfaces:
             for gintfc in ginterfaces:
                 unihg = UniHG(hintfc, gintfc)
-                allunihgs.add(unihg)
-                if unihg.term() not in self.terms:
-                    self.terms[unihg.term()] = 1
-                else:
-                    self.terms[unihg.term()] += 1
+                if term==Term.UNKNOWN:
+                    allunihgs.add(unihg)
+                    if unihg.term() not in self.terms:
+                        self.terms[unihg.term()] = 1
+                    else:
+                        self.terms[unihg.term()] += 1
         if len(self.terms) > 1:
             warnings.warn("hg %s has more than one terms %s"
                     %(self.name, self.terms))
-        maxcnt: int = 0
-        for term in self.terms:
-            if self.terms[term] > maxcnt:
-                self.term = term
-                maxcnt = self.terms[term]
-            elif self.terms[term] == maxcnt:
-                warnings.warn("hg term %s and %s has same count %d" %
-                        (self.term.name, term.name, maxcnt))
+        if term==Term.UNKNOWN:
+            maxcnt: int = 0
+            for t in self.terms:
+                if self.terms[t] > maxcnt:
+                    self.term = t
+                    maxcnt = self.terms[t]
+                elif self.terms[t] == maxcnt:
+                    warnings.warn("hg term %s and %s has same count %d" %
+                            (self.term.name, t.name, maxcnt))
 
     def setmodule_then_addhg(self, module: Module) -> None:
         self.module = module
@@ -700,6 +709,18 @@ class Transor(Module):
 # return True for added, False for not add
 DMargs = tuple[tuple[Isa, Up], Kernel, Syslib, Lib, Sysapp, App]
 def addDummyModule(args: DMargs, hierarchyIdx: int) -> bool:
+    term: Term
+    if hierarchyIdx == Isa.idx.value:
+        term = Term.ISA
+    elif hierarchyIdx == Kernel.idx.value:
+        term = Term.KERNEL
+    elif hierarchyIdx == Syslib.idx.value or hierarchyIdx == Lib.idx.value:
+        term = Term.LIB
+    elif hierarchyIdx == Sysapp.idx.value or hierarchyIdx == App.idx.value:
+        term = Term.APP
+    else:
+        term = Term.UNKNOWN
+
     if hierarchyIdx == Isa.idx.value:
         hintfc = Interface()
         gintfc = Interface((args[0][0], Up.USR_PVL))
@@ -715,30 +736,30 @@ def addDummyModule(args: DMargs, hierarchyIdx: int) -> bool:
             # print(args)
             # print("%d - %d" % (hierarchyIdx, hierarchyIdx+1))
             # print("%s - %s" % (hintfc.name, gintfc.name))
-            DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc))})
+            DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc), term)})
         return False
     if hierarchyIdx == Isa.idx.value:
         if args[Isa.idx.value][0].value > Isa.ANY.value:
-            DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc))})
+            DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc), term)})
         else:
             return False
     elif hierarchyIdx == Kernel.idx.value:
         if args[Kernel.idx.value].value > Kernel.NO_KERNEL.value and \
                 args[Isa.idx.value][0].value > Isa.ANY.value:
-            DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc))})
+            DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc), term)})
         else:
             return False
     elif hierarchyIdx == Syslib.idx.value:
         if args[Kernel.idx.value].value > Kernel.ANY.value:
-            DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc))})
+            DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc), term)})
         else:
             return False
     elif hierarchyIdx == Lib.idx.value:
-        DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc))})
+        DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc), term)})
     elif hierarchyIdx == Sysapp.idx.value:
-        DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc))})
+        DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc), term)})
     elif hierarchyIdx == App.idx.value:
-        DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc))})
+        DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc), term)})
     else:
         warnings.warn("addDummyModule unknown hierarchyIdx %d" % hierarchyIdx)
     return True
