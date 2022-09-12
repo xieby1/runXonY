@@ -431,10 +431,12 @@ class Term(enum.Enum):
     UNK = UNKNOWN = enum.auto()
 
     # Transor
-    UBT = USER_LEVEL_BINARY_TRANSLATOR = enum.auto()
+    V1_ = TYPE1_VIRTUAL_MACHINE = enum.auto()
+    V1B = TYPE1_VIRTUAL_MACHINE_WITH_BINARY_TRANSLATION = enum.auto()
+    V2_ = TYPE2_VIRTUAL_MACHINE = enum.auto()
+    V2B = TYPE2_VIRTUAL_MACHINE_WITH_BINARY_TRANSLATION = \
     SBT = SYSTEM_LEVEL_BINARY_TRANSLATOR = enum.auto()
-    VM1 = TYPE1_VIRTUAL_MACHINE = enum.auto()
-    VM2 = TYPE2_VIRTUAL_MACHINE = enum.auto()
+    UBT = USER_LEVEL_BINARY_TRANSLATOR = enum.auto()
 
     # Module
     OS_ = KERNEL = OPERATING_SYSTEM = enum.auto()
@@ -504,6 +506,10 @@ class UniHG:
                 gntest((NEQ, NEQ, NEQ, EQL, EQL, EQL, EQL, EQL)) and \
                 hgtest((IGN, EQL, EQL)):
             return Term.USER_LEVEL_BINARY_TRANSLATOR
+        elif    hntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+                gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+                hgtest((NEQ, EQL, EQL)):
+            return Term.TYPE1_VIRTUAL_MACHINE_WITH_BINARY_TRANSLATION
         elif    self.h.src==Src.NONE and self.g.src!=Src.NONE:
             return Term.COMPILER
         elif    hntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
