@@ -668,11 +668,13 @@ class Module:
     def __init__(self,
             name: str,
             hgs: set[HG],
+            term: Term = Term.UNKNOWN,
             dummy: bool = False,
             ) -> None:
         self.name = name
         self.hgs = hgs
-        self.terms: dict[Term, int] = dict()
+        self.term = term
+        self.terms: dict[Term, int] = {term:1} if term!=Term.UNKNOWN else dict()
         record: typing.Optional[Module] = modules.get(self)
         if dummy:
             if not record:
@@ -685,24 +687,26 @@ class Module:
             record = self
         for hg in hgs:
             hg.setmodule_then_addhg(record)
-            for term in hg.terms:
-                if term not in self.terms:
-                    self.terms[term] = hg.terms[term]
-                else:
-                    self.terms[term] += hg.terms[term]
+            if term==Term.UNKNOWN:
+                for t in hg.terms:
+                    if t not in self.terms:
+                        self.terms[t] = hg.terms[t]
+                    else:
+                        self.terms[t] += hg.terms[t]
         if len(self.terms) == 0:
             self.terms = {Term.UNKNOWN: 1}
         elif len(self.terms) > 1:
             warnings.warn("module %s has more than one terms %s"
                     %(self.name, self.terms))
-        maxcnt: int = 0
-        for term in self.terms:
-            if self.terms[term] > maxcnt:
-                self.term = term
-                maxcnt = self.terms[term]
-            elif self.terms[term] == maxcnt:
-                warnings.warn("module term %s and %s has same count %d" %
-                        (self.term.name, term.name, maxcnt))
+        if term==Term.UNKNOWN:
+            maxcnt: int = 0
+            for t in self.terms:
+                if self.terms[t] > maxcnt:
+                    self.term = t
+                    maxcnt = self.terms[t]
+                elif self.terms[t] == maxcnt:
+                    warnings.warn("module %s term %s and %s has same count %d" %
+                            (self.name, self.term.name, t.name, maxcnt))
 
     def __repr__(self) -> str:
         return self.name
@@ -716,7 +720,7 @@ class DummyModule(Module):
             name: str,
             hgs: set[HG],
             ) -> None:
-        super().__init__(name, hgs, True)
+        super().__init__(name, hgs, dummy=True)
 
 def fixMultiLineString(s: str) -> str:
     res: str
@@ -735,6 +739,7 @@ class Transor(Module):
             # TODO: enum licenses
             license: str = '',
             dev: Dev = Dev.NONE,
+            term: Term = Term.UNKNOWN,
             feat: str = '',
             desc: str = '',
             parent: typing.Optional[Transor] = None,
@@ -752,7 +757,7 @@ class Transor(Module):
         self.desc = fixMultiLineString(desc)
         self.parent = parent
         self.renames = renames
-        super().__init__(name, hgs)
+        super().__init__(name, hgs, term=term)
 
 # return True for added, False for not add
 DMargs = tuple[tuple[Isa, Up], Kernel, Syslib, Lib, Sysapp, App]
