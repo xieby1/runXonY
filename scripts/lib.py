@@ -623,9 +623,9 @@ class Rename:
             date: Date,
             desc: str = '',
             ) -> None:
-        self.rename = rename
-        self.date = date,
-        self.desc = desc
+        self.rename: str = rename
+        self.date: Date = date
+        self.desc: str = desc
 
 class Module:
     def __init__(self,
@@ -701,6 +701,7 @@ class Transor(Module):
             dev: str = '',
             feat: str = '',
             desc: str = '',
+            parent: typing.Optional[Transor] = None,
             renames: list[Rename] = list(),
             ) -> None:
         self.start = start
@@ -713,6 +714,7 @@ class Transor(Module):
         self.dev = dev
         self.feat = fixMultiLineString(feat)
         self.desc = fixMultiLineString(desc)
+        self.parent = parent
         self.renames = renames
         super().__init__(name, hgs)
 
@@ -905,7 +907,13 @@ def outputGnucladCsv(f: typing.TextIO) -> None:
     f.write("#, name, color, parent, start, stop, icon, desc, renames...\n")
     for module in modules:
         if isinstance(module, Transor):
-            f.write('"%s","%s","%s","%s","%s","%s","%s","%s"\n' % (
-                "N", module.name, module.color, "",
+            f.write('"%s","%s","%s","%s","%s","%s","%s","%s"' % (
+                "N", module.name, module.color,
+                module.parent.name if module.parent else "",
                 module.start, module.stop, "", module.desc
             ))
+            for rename in module.renames:
+                f.write(',"%s","%s","%s"' % (
+                    rename.rename, rename.date, rename.desc
+                ))
+            f.write('\n')

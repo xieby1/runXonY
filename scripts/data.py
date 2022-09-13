@@ -113,7 +113,7 @@ for isa in Isa_MODERN_WINDOWSs))
 #    )},
 #    Date(),
 #)
-Transor("Merge",
+Merge = Transor("Merge",
     {  HG("",
         Metaface({(Isa.I386, Up.USR)}, {Kernel.SCO_UNIX}, {Syslib.DEFAULT}, {Lib.ANY}),
         Metaface({(Isa.I386, Up.USR_PVL)})
@@ -231,7 +231,11 @@ Transor("Win4Lin",
         http://freshmeat.sourceforge.net/projects/win4lin
         https://en.wikipedia.org/wiki/Win4Lin
         2005: SUSE™ Linux 10 Unleashed: Chapter 11
-    '''
+    ''',
+    parent=Merge,
+    renames=[Rename("Win4Lin 9x", Date(2005,3),
+        desc="https://web.archive.org/web/20050318033645/http://www.win4lin.com:80/"
+    )],
 )
 
 
