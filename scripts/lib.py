@@ -203,7 +203,6 @@ class Isa(enum.Enum):
     AVR = enum.auto()
     CRIS = enum.auto()
     HEXAGON = enum.auto()
-    HPPA = enum.auto()
     M68K = enum.auto()
     MICROBLAZE = enum.auto()
     NIOS2 = enum.auto()
@@ -217,9 +216,11 @@ class Isa(enum.Enum):
     ARC = enum.auto()
     CSKY = enum.auto()
     IA64 = enum.auto()
-    PARISC = enum.auto()
+    PARISC = HPPA = enum.auto()
 
     DAISY_VLIW = DAISY = enum.auto()
+
+    CRUSOE_VLIW = CRUSOE = enum.auto()
 
     END = enum.auto()
     idx = 0
@@ -250,6 +251,9 @@ class Dev(enum.Enum):
     VMware = VMWARE = enum.auto()
     Win4Lin = WIN4LIN = enum.auto()
     Transmeta = TRANSMETA = enum.auto()
+    HP = enum.auto()
+    TransGaming_Nvidia = TRANSGAMING_NVIDIA = enum.auto()
+    Transitive_Apple = TRANSITIVE_APPLE = enum.auto()
 
 hierarchy: dict[int, type] = {
     Isa.idx.value: Isa,
@@ -447,6 +451,11 @@ class Term(enum.Enum):
     V2B = TYPE2_VIRTUAL_MACHINE_WITH_BINARY_TRANSLATION = \
     SBT = SYSTEM_LEVEL_BINARY_TRANSLATOR = enum.auto()
     UBT = USER_LEVEL_BINARY_TRANSLATOR = enum.auto()
+    UBL = USER_LEVEL_BINARY_TRANSLATOR_WITH_LIB_PASS_THROUGH = enum.auto()
+    INS = INSTRUMENTER = enum.auto()
+    OPT = OPTIMIZER = enum.auto()
+    I_O = INSTRUMENTER_AND_OPTIMIZER = enum.auto()
+    SCL = SYSCALL_COMPATIBLE_LAYER = enum.auto()
 
     # Module
     OS_ = KERNEL = OPERATING_SYSTEM = enum.auto()
@@ -516,6 +525,10 @@ class UniHG:
                 gntest((NEQ, NEQ, NEQ, EQL, EQL, EQL, EQL, EQL)) and \
                 hgtest((NEQ, EQL, EQL)):
             return Term.USER_LEVEL_BINARY_TRANSLATOR
+        if      hntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL)) and \
+                gntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL)) and \
+                hgtest((NEQ, EQL, EQL, EQL, EQL)):
+            return Term.USER_LEVEL_BINARY_TRANSLATOR_WITH_LIB_PASS_THROUGH
         elif    hntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
                 gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
                 hgtest((NEQ, EQL)):
@@ -524,6 +537,10 @@ class UniHG:
                 gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
                 hgtest((EQL, NEQ)):
             return Term.TYPE2_VIRTUAL_MACHINE
+        elif    hntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL)) and \
+                gntest((NEQ, NEQ, NEQ, IGN, EQL, EQL, EQL, EQL)) and \
+                hgtest((EQL, EQL, NEQ)):
+            return Term.SYSCALL_COMPATIBLE_LAYER
         elif    self.h.src==Src.NONE and self.g.src!=Src.NONE:
             return Term.COMPILER
         elif    hntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \

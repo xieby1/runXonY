@@ -164,7 +164,7 @@ Transor("VEST",
 Kernel_WINEs_str: set[str] = {Kernel.LINUX.name, Kernel.MACOS.name, Kernel.BSD.name}
 Kernel_WINEs: set[Kernel] = set(Kernel[name] for name in Kernel_WINEs_str)
 Syslib_WINEs: set[Syslib] = set(Syslib[name] for name in Kernel_WINEs_str)
-Transor("WINE",
+WINE = Transor("WINE",
     set(HG(
         "-".join((kname, isa.name)),
         Metaface({(isa, Up.USR)}, {Kernel[kname]}, {Syslib[kname]}, Lib_ANYs),
@@ -215,6 +215,31 @@ Transor("MinGW",
         Can be compiled on Win and Linux
     '''
 )
+Dynamo = Transor("Dynamo",
+    {  HG("",
+        Metaface({(Isa.PARISC, Up.USR)}, {Kernel.UNIX}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface({(Isa.PARISC, Up.USR)}, {Kernel.UNIX}),
+        term=Term.OPT,
+    )},
+    Date(1999), Date(2000), dev=Dev.HP,
+    desc='''
+        1999: Transparent Dynamic Optimization: The Design and Implementation of Dynamo
+        2000: Dynamo: A Transparent Dynamic Optimization System
+    ''',
+)
+# TODO: Android
+Transor("DynamoRIO",
+    {  HG('-'.join((kernel.name, isa.name)),
+        Metaface(IsasUSR({isa}), {kernel}, {syslib}, {Lib.ANY}),
+        Metaface(IsasUSR({isa}), {kernel}),
+        term=Term.I_O,
+    ) for isa in [Isa.X86, Isa.X86_64, Isa.ARM32, Isa.AARCH64]
+      for kernel, syslib in zip([Kernel.WINDOWS, Kernel.LINUX, Kernel.MACOS], [Syslib.WINDOWS, Syslib.LINUX, Syslib.MACOS])},
+    Date(2000), Date.today(), dev=Dev.HP,
+    desc="https://dynamorio.org/index.html",
+    parent=Dynamo,
+    renames=[Rename("DynamoRIO(VMware)", Date(2007), "")]
+)
 Transor("VMware Workstation",
     {  HG("",
         Metaface({(Isa.X86_64, Up.USR)}, {Kernel.LINUX, Kernel.WINDOWS}, {Syslib.WINDOWS}, {Lib.ANY}),
@@ -239,6 +264,179 @@ Transor("Win4Lin",
         desc="https://web.archive.org/web/20050318033645/http://www.win4lin.com:80/"
     )],
 )
+Transor("Code Morphing",
+    {  HG("",
+        Metaface({(Isa.CRUSOE_VLIW, Up.USR_PVL)}),
+        Metaface({(Isa.X86, Up.USR_PVL)}),
+    )},
+    Date(2000), Date(2009), dev=Dev.TRANSMETA,
+    desc='''
+        2003: The Transmeta Code Morphing Software: Using Speculation, Recovery, and Adaptive Retranslation to Address Real-Life Challenges
+        https://en.wikipedia.org/wiki/Transmeta
+    ''',
+)
+Transor("Aries",
+    {  HG("",
+        Metaface({(Isa.IA64, Up.USR)}, {Kernel.UNIX}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface({(Isa.PARISC, Up.USR)}, {Kernel.UNIX}),
+    )},
+    Date(2000), dev=Dev.HP,
+    desc='''
+        2000: PA-RISC to IA-64: Transparent Execution, No Recompilatio
+    ''',
+)
+Transor("WineX",
+    set(),
+    Date(2000,12,27), Date(2016), "#800000", dev=Dev.TRANSGAMING_NVIDIA,
+    feat="Support DirectX",
+    desc='''
+        Mail from wine-devel: 2004-August.txt: 22697
+        https://web.archive.org/web/20010331041916/http://www.transgaming.com/news.php
+    ''',
+    parent=WINE,
+    renames=[
+        Rename("Cedega", Date(2004,6,22), "https://en.wikipedia.org/wiki/Cedega_(software)"),
+        Rename("GameTree Linux", Date(2011,2,28), ""),
+    ],
+)
+Transor("User Mode Linux",
+    {  HG(isa.name,
+        Metaface({(isa, Up.USR)}, {Kernel.LINUX}, {Syslib.LINUX}, {Lib.ANY}),
+        Metaface({(isa, Up.USR)}, {Kernel.LINUX}),
+        term=Term.SYSCALL_COMPATIBLE_LAYER,
+    ) for isa in Isa_LINUXs},
+    Date(2001), Date.today(),
+    desc="2006: User Mode Linux",
+)
+Transor("Dynamite",
+    {  HG("",
+        Metaface(IsasUSR({hisa}), {Kernel.LINUX}, {Syslib.LINUX}, {Lib.ANY}),
+        Metaface(IsasUSR({gisa}), {Kernel.LINUX}),
+        ) for hisa,gisa in zip([Isa.MIPS32, Isa.MIPS32, Isa.X86],[Isa.ARM32, Isa.X86, Isa.POWERPC])
+    } | { HG("",
+        Metaface(IsasUSR({hisa}), {Kernel.LINUX}, {Syslib.LINUX}, {Lib.ANY}),
+        Metaface(IsasUSR({gisa}), {Kernel.LINUX}, {Syslib.LINUX}, {Lib.ANY}),
+        ) for hisa,gisa in zip([Isa.MIPS32, Isa.MIPS32, Isa.X86],[Isa.ARM32, Isa.X86, Isa.POWERPC])
+    },
+    Date(2001), Date(2002,11), dev=Dev.TRANSITIVE_APPLE, feat="IR",
+    desc='''
+        Mail from wine-devel: 2003-August.txt: 17434,
+        http://www.transitives.com/tech_faq.htm (need wayback machine)
+        https://web.archive.org/web/20021129223838/http://transitives.com:80/
+    '''
+)
+#Transor("",
+#    {  HG("",
+#        Metaface(),
+#        Metaface(),
+#    )},
+#    Date(),
+#)
+#Transor("",
+#    {  HG("",
+#        Metaface(),
+#        Metaface(),
+#    )},
+#    Date(),
+#)
+#Transor("",
+#    {  HG("",
+#        Metaface(),
+#        Metaface(),
+#    )},
+#    Date(),
+#)
+#Transor("",
+#    {  HG("",
+#        Metaface(),
+#        Metaface(),
+#    )},
+#    Date(),
+#)
+#Transor("",
+#    {  HG("",
+#        Metaface(),
+#        Metaface(),
+#    )},
+#    Date(),
+#)
+#Transor("",
+#    {  HG("",
+#        Metaface(),
+#        Metaface(),
+#    )},
+#    Date(),
+#)
+#Transor("",
+#    {  HG("",
+#        Metaface(),
+#        Metaface(),
+#    )},
+#    Date(),
+#)
+#Transor("",
+#    {  HG("",
+#        Metaface(),
+#        Metaface(),
+#    )},
+#    Date(),
+#)
+#Transor("",
+#    {  HG("",
+#        Metaface(),
+#        Metaface(),
+#    )},
+#    Date(),
+#)
+#Transor("",
+#    {  HG("",
+#        Metaface(),
+#        Metaface(),
+#    )},
+#    Date(),
+#)
+#Transor("",
+#    {  HG("",
+#        Metaface(),
+#        Metaface(),
+#    )},
+#    Date(),
+#)
+#Transor("",
+#    {  HG("",
+#        Metaface(),
+#        Metaface(),
+#    )},
+#    Date(),
+#)
+#Transor("",
+#    {  HG("",
+#        Metaface(),
+#        Metaface(),
+#    )},
+#    Date(),
+#)
+#Transor("",
+#    {  HG("",
+#        Metaface(),
+#        Metaface(),
+#    )},
+#    Date(),
+#)
+#Transor("",
+#    {  HG("",
+#        Metaface(),
+#        Metaface(),
+#    )},
+#    Date(),
+#)
+#Transor("",
+#    {  HG("",
+#        Metaface(),
+#        Metaface(),
+#    )},
+#    Date(),
+#)
 
 
 # TODO: user-mode linux
@@ -273,7 +471,7 @@ Transor("QEMU-user",
         term=Term.USER_LEVEL_BINARY_TRANSLATOR,
     )},
     Date(2003,2), Date.today(), "#F60", "IR",
-    "2005: QEMU, a Fast and Portable Dynamic Translator",
+    desc="2005: QEMU, a Fast and Portable Dynamic Translator",
 )
 
 # Lastly, add dummy modules after all modules are added
