@@ -514,7 +514,7 @@ class UniHG:
 
         if      hntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL)) and \
                 gntest((NEQ, NEQ, NEQ, EQL, EQL, EQL, EQL, EQL)) and \
-                hgtest((IGN, EQL, EQL)):
+                hgtest((NEQ, EQL, EQL)):
             return Term.USER_LEVEL_BINARY_TRANSLATOR
         elif    hntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
                 gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
