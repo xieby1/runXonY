@@ -335,6 +335,7 @@ class Interface:
 modules: HashMap[Module] = HashMap()
 allhgs: HashMap[HG] = HashMap()
 allunihgs: HashMap[UniHG] = HashMap()
+allhgs_hashname: HashMap[HG_hashname] = HashMap()
 
 class Metaface:
     @classmethod
@@ -603,10 +604,13 @@ class HG:
             self.name = "-".join((module.name, self.name))
         else:
             self.name = module.name
-        if self in allhgs:
-            warnings.warn("io %s has been defined!" % self.name)
+        if isinstance(module, DummyModule) and self in allhgs:
+            warnings.warn("hg %s from Dummy Module has been defined!" % self.name)
+        elif not isinstance(module, DummyModule) and HG_hashname(self) in allhgs_hashname:
+            warnings.warn("hg %s has been defined!" % self.name)
         else:
             allhgs.add(self)
+            allhgs_hashname.add(HG_hashname(self))
 
     def __hash__(self) -> int:
         # make h and g not commutative
@@ -617,6 +621,13 @@ class HG:
 
     def __repr__(self) -> str:
         return self.repr
+class HG_hashname:
+    def __init__(self, hg: HG) -> None:
+        self.hg = hg
+    def __hash__(self) -> int:
+        return hash(self.hg.name) ^ self.hg.__hash__()
+    def __eq__(self, other: HG_hashname) -> bool:
+        return self.hg==other.hg and self.hg.name==other.hg.name
 
 import datetime
 
@@ -834,7 +845,8 @@ def nodeNameHG(hg: HG) -> str:
 def outputDot(f: typing.TextIO) -> None:
     f.write('digraph {\nnode[shape=box];\n')
     # nodes (IOs and Interfaces)
-    for hg in allhgs:
+    for hg_hn in allhgs_hashname:
+        hg = hg_hn.hg
         ## Transors' IOs
         if isinstance(hg.module, Transor):
             f.write('%s[label="%s", style=filled, fontcolor=white, fillcolor=black];\n' %(nodeNameHG(hg), hg.name))
@@ -862,7 +874,8 @@ def outputJson(f: typing.TextIO) -> None:
     # nodes (IOs and Interfaces)
     f.write('"nodes": {\n')
     num: int = 0
-    for hg in allhgs:
+    for hg_hn in allhgs_hashname:
+        hg = hg_hn.hg
         if num>0:
             f.write(',')
         else:
