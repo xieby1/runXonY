@@ -127,7 +127,7 @@ Transor("mx",
         Metaface({(Isa.ALPHA, Up.USR)}, {Kernel.OSF1}),
         Metaface({(Isa.MIPS32, Up.USR)}, {Kernel.ULTRIX}),
     )},
-    Date(1993), dev="Digital",
+    Date(1993), dev=Dev.DIGITAL,
     desc="1993: Binary Translation by Richard L. Sites"
 )
 Transor("Shade",
@@ -147,7 +147,7 @@ Transor("Shade",
         Metaface({(Isa.SPARCV8, Up.USR)}, {Kernel.SUNOS5_UNIX}, {Syslib.DEFAULT}, Lib_ANYs),
         Metaface({(Isa.SPARCV9, Up.USR)}, {Kernel.SUNOS5_UNIX}),
     )},
-    Date(1993), dev="SUN",
+    Date(1993), dev=Dev.SUN,
     desc="1994: Shade: a fast instruction-set simulator for execution profiling"
 )
 Transor("VEST",
@@ -155,7 +155,7 @@ Transor("VEST",
         Metaface({(Isa.ALPHA, Up.USR)}, {Kernel.OPENVMS}, {Syslib.DEFAULT}, Lib_ANYs),
         Metaface({(Isa.VAX, Up.USR)}, {Kernel.OPENVMS}),
     )},
-    Date(1993), dev="Digital",
+    Date(1993), dev=Dev.DIGITAL,
     desc="1993: Binary Translation by Richard L. Sites",
 )
 # TODO: Android
@@ -182,7 +182,7 @@ Transor("FX!32",
         Metaface({(Isa.ALPHA, Up.USR)}, {Kernel.WINDOWS_NT4_0}, {Syslib.DEFAULT}, Lib_ANYs),
         Metaface({(Isa.X86, Up.USR)}, {Kernel.WINDOWS_NT4_0}),
     )},
-    Date(1996), dev="Digital",
+    Date(1996), dev=Dev.DIGITAL,
     desc = '''
         1997: DIGITAL FX!32: Combining Emulation and Binary Translation
         1998: FX!32 A Profile-Directed Binary Translator
@@ -193,7 +193,7 @@ Transor("DAISY",
         Metaface({(Isa.DAISY_VLIW, Up.USR_PVL)}),
         Metaface({(Isa.POWERPC, Up.USR_PVL)}),
     )},
-    Date(1998), Date(2001), dev="IBM",
+    Date(1998), Date(2001), dev=Dev.IBM,
     desc = '''
         1997: DAISY dynamic compilation for 100% architecutral compatibility
         2000: Binary Translation and Architecture Convergence Issues for IBM System/390
@@ -218,14 +218,14 @@ Transor("VMware Workstation",
         Metaface({(Isa.X86_64, Up.USR)}, {Kernel.LINUX, Kernel.WINDOWS}, {Syslib.WINDOWS}, {Lib.ANY}),
         Metaface({(Isa.X86_64, Up.USR_PVL)}),
     )},
-    Date(1999,5,15), Date.today(), "#F38C00", dev="VMware",
+    Date(1999,5,15), Date.today(), "#F38C00", dev=Dev.VMWARE,
 )
 Transor("Win4Lin",
     {  HG("",
         Metaface({(Isa.X86, Up.USR)}, {Kernel.LINUX}, {Syslib.LINUX}, {Lib.ANY}),
         Metaface({(Isa.X86, Up.USR_PVL)})
     )},
-    Date(2000), Date(2008,6,4), dev="Win4Lin",
+    Date(2000), Date(2008,6,4), dev=Dev.WIN4LIN,
     feat="run  Windows 9x, Windows 2000 or Windows XP",
     desc='''
         http://freshmeat.sourceforge.net/projects/win4lin

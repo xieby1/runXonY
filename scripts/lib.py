@@ -242,6 +242,15 @@ def IsasPVL(isas: set[Isa]) -> set[typing.Tuple[Isa, Up]]:
 def IsasUSR_PVL(isas: set[Isa]) -> set[typing.Tuple[Isa, Up]]:
     return IsasUp(isas, Up.USR_PVL)
 
+class Dev(enum.Enum):
+    NONE = enum.auto()
+    Digital = DIGITAL = enum.auto()
+    SUN = enum.auto()
+    IBM = enum.auto()
+    VMware = VMWARE = enum.auto()
+    Win4Lin = WIN4LIN = enum.auto()
+    Transmeta = TRANSMETA = enum.auto()
+
 hierarchy: dict[int, type] = {
     Isa.idx.value: Isa,
     Kernel.idx.value: Kernel,
@@ -697,8 +706,7 @@ class Transor(Module):
             color: str = '#000',
             # TODO: enum licenses
             license: str = '',
-            # TODO: enum devs
-            dev: str = '',
+            dev: Dev = Dev.NONE,
             feat: str = '',
             desc: str = '',
             parent: typing.Optional[Transor] = None,
