@@ -387,7 +387,26 @@ Isa_QEMU_user_gs: set[Isa] = {
     Isa.OPENRISC, Isa.POWERPC, Isa.RISCV64, Isa.RX,
     Isa.S390X, Isa.SH4, Isa.SPARC, Isa.TRICORE, Isa.XTENSA,
 }
-Transor("QEMU-user",
+Transor("IA-32 EL",
+    {  HG("",
+        Metaface({(Isa.IA64, Up.USR)}, {kernel}, {syslib}, {Lib.ANY}),
+        Metaface({(Isa.IA32, Up.USR)}, {kernel}),
+    ) for kernel,syslib in zip(
+        [Kernel.LINUX, Kernel.WINDOWS],
+        [Syslib.LINUX, Syslib.WINDOWS]
+    )},
+    Date(2003), Date.today(),
+)
+# TODO:
+Transor("NDISWrapper",
+    {  HG("",
+        Metaface(),
+        Metaface(),
+    )},
+    Date(2003), Date.today(),
+    desc="github: pgiri/ndiswrapper: manpage: ndiswrapper.8",
+)
+QEMU_user = Transor("QEMU-user",
     {  HG("linux",
         Metaface(IsasUSR(Isa_QEMU_user_hs) & IsasUSR(Isa_LINUXs), {Kernel.LINUX}, {Syslib.LINUX_SYSLIBS}, Lib_ANYs),
         Metaface(IsasUSR(Isa_QEMU_user_gs) & IsasUSR(Isa_LINUXs), {Kernel.LINUX}),
@@ -407,6 +426,30 @@ Transor("QEMU-user",
     )},
     Date(2003,2), Date.today(), "#F60", "IR",
     desc="2005: QEMU, a Fast and Portable Dynamic Translator",
+)
+Transor("QEMU-sys",
+    {  HG(Kernel.LINUX.name,
+        Metaface(IsasUSR(Isa_QEMU_user_hs) & IsasUSR(Isa_LINUXs), {Kernel.LINUX}, {Syslib.LINUX}, {Lib.ANY}),
+        Metaface(IsasUSR_PVL(Isa_QEMU_user_gs)),
+        term=Term.TYPE2_VIRTUAL_MACHINE_WITH_BINARY_TRANSLATION,
+    ), HG(Kernel.MACOS.name,
+        Metaface(IsasUSR(Isa_QEMU_user_hs) & IsasUSR(Isa_MODERN_MACOSs), {Kernel.MACOS}, {Syslib.MACOS}, {Lib.ANY}),
+        Metaface(IsasUSR_PVL(Isa_QEMU_user_gs)),
+        term=Term.TYPE2_VIRTUAL_MACHINE_WITH_BINARY_TRANSLATION,
+    ), HG(Kernel.WINDOWS.name,
+        Metaface(IsasUSR(Isa_QEMU_user_hs) & IsasUSR(Isa_MODERN_WINDOWSs), {Kernel.WINDOWS}, {Syslib.WINDOWS}, {Lib.ANY}),
+        Metaface(IsasUSR_PVL(Isa_QEMU_user_gs)),
+        term=Term.TYPE2_VIRTUAL_MACHINE_WITH_BINARY_TRANSLATION,
+    ), HG(Kernel.BSD.name,
+        Metaface(IsasUSR(Isa_QEMU_user_hs) & IsasUSR(Isa_BSDs), {Kernel.BSD}, {Syslib.BSD}, {Lib.ANY}),
+        Metaface(IsasUSR_PVL(Isa_QEMU_user_gs)),
+        term=Term.TYPE2_VIRTUAL_MACHINE_WITH_BINARY_TRANSLATION,
+    )},
+    Date(2003,10), Date.today(), "#F60", "IR", parent=QEMU_user,
+    desc='''
+        2005: QEMU, a Fast and Portable Dynamic Translator
+        gitL v0.5.0
+    ''',
 )
 
 

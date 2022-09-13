@@ -153,7 +153,7 @@ class Isa(enum.Enum):
     I486 = enum.auto()
     I586 = enum.auto()
     I686 = enum.auto()
-    X86 = enum.auto()
+    X86 = IA32 = enum.auto()
     X86_64 = enum.auto()
 
     ARM = enum.auto()
