@@ -46,6 +46,8 @@ for isa in Isa_BSDs))
 
 Isa_MODERN_WINDOWSs: set[Isa] = {Isa.AARCH64, Isa.X86_64, Isa.X86}
 
+Isa_MODERN_MACOSs: set[Isa] = {Isa.AARCH64, Isa.X86_64}
+
 ###############################################
 #    ___         _ _ _
 #   / __|_  _ __| (_) |__
@@ -318,127 +320,60 @@ Transor("Dynamite",
         Metaface(IsasUSR({gisa}), {Kernel.LINUX}, {Syslib.LINUX}, {Lib.ANY}),
         ) for hisa,gisa in zip([Isa.MIPS32, Isa.MIPS32, Isa.X86],[Isa.ARM32, Isa.X86, Isa.POWERPC])
     },
-    Date(2001), Date(2002,11), dev=Dev.TRANSITIVE_APPLE, feat="IR",
+    Date(2001), Date(2002,11), dev=Dev.TRANSITIVE_APPLE, term=Term.UBL,
+    feat="IR",
     desc='''
         Mail from wine-devel: 2003-August.txt: 17434,
         http://www.transitives.com/tech_faq.htm (need wayback machine)
         https://web.archive.org/web/20021129223838/http://transitives.com:80/
     '''
 )
-#Transor("",
-#    {  HG("",
-#        Metaface(),
-#        Metaface(),
-#    )},
-#    Date(),
-#)
-#Transor("",
-#    {  HG("",
-#        Metaface(),
-#        Metaface(),
-#    )},
-#    Date(),
-#)
-#Transor("",
-#    {  HG("",
-#        Metaface(),
-#        Metaface(),
-#    )},
-#    Date(),
-#)
-#Transor("",
-#    {  HG("",
-#        Metaface(),
-#        Metaface(),
-#    )},
-#    Date(),
-#)
-#Transor("",
-#    {  HG("",
-#        Metaface(),
-#        Metaface(),
-#    )},
-#    Date(),
-#)
-#Transor("",
-#    {  HG("",
-#        Metaface(),
-#        Metaface(),
-#    )},
-#    Date(),
-#)
-#Transor("",
-#    {  HG("",
-#        Metaface(),
-#        Metaface(),
-#    )},
-#    Date(),
-#)
-#Transor("",
-#    {  HG("",
-#        Metaface(),
-#        Metaface(),
-#    )},
-#    Date(),
-#)
-#Transor("",
-#    {  HG("",
-#        Metaface(),
-#        Metaface(),
-#    )},
-#    Date(),
-#)
-#Transor("",
-#    {  HG("",
-#        Metaface(),
-#        Metaface(),
-#    )},
-#    Date(),
-#)
-#Transor("",
-#    {  HG("",
-#        Metaface(),
-#        Metaface(),
-#    )},
-#    Date(),
-#)
-#Transor("",
-#    {  HG("",
-#        Metaface(),
-#        Metaface(),
-#    )},
-#    Date(),
-#)
-#Transor("",
-#    {  HG("",
-#        Metaface(),
-#        Metaface(),
-#    )},
-#    Date(),
-#)
-#Transor("",
-#    {  HG("",
-#        Metaface(),
-#        Metaface(),
-#    )},
-#    Date(),
-#)
-#Transor("",
-#    {  HG("",
-#        Metaface(),
-#        Metaface(),
-#    )},
-#    Date(),
-#)
-#Transor("",
-#    {  HG("",
-#        Metaface(),
-#        Metaface(),
-#    )},
-#    Date(),
-#)
-
-
+Transor("Tarmac",
+    {  HG("",
+        Metaface(),
+        Metaface(),
+    )},
+    Date(2001,3,13), color="#28789E",
+    desc='''
+        https://davidsharp.com/tarmac/
+        https://davidsharp.com/tarmac/tarmacreport.pdf
+        https://davidsharp.com/tarmac/tarmacdiary.pdf
+    '''
+)
+Isa_DOSBOXs = {Isa.X86_64, Isa.X86, Isa.MIPS32, Isa.ARM32, Isa.POWERPC}
+Transor("DOSBox",
+    {  HG("",
+        Metaface(IsasUSR(isas), {kernel}, {syslib}, {Lib.ANY}),
+        Metaface({(Isa.X86, Up.USR_PVL)}),
+        term=Term.V2B,
+    ) for isas,kernel,syslib in zip(
+        [Isa_MODERN_WINDOWSs, Isa_MODERN_MACOSs, Isa_LINUXs, Isa_BSDs],
+        [Kernel.WINDOWS, Kernel.MACOS, Kernel.LINUX, Kernel.BSD],
+        [Syslib.WINDOWS, Syslib.MACOS, Syslib.LINUX, Syslib.BSD])},
+    Date(2002), Date.today(), "#113466",
+    desc="https://sourceforge.net/projects/dosbox/",
+)
+# TODO:
+Transor("LLVM",
+    {  HG("",
+        Metaface(),
+        Metaface(),
+    )},
+    Date(2003), Date.today(), "#556293",
+)
+Transor("Xen",
+    {  HG("",
+        Metaface({(isa, Up.USR_PVL)}),
+        Metaface({(isa, Up.USR_PVL)}),
+        ) for isa in [Isa.X86, Isa.X86_64]
+    } | { HG("Paravirtualized",
+        Metaface({(isa, Up.USR_PVL)}),
+        Metaface({(isa, Up.USR)}),
+        ) for isa in [Isa.X86, Isa.X86_64]
+    },
+    Date(2003), Date.today(), term=Term.TYPE1_VIRTUAL_MACHINE_AND_PARAVIRTUALIZATION,
+    desc="https://en.wikipedia.org/wiki/Xen",
+)
 # TODO: user-mode linux
 Isa_QEMU_user_hs: set[Isa] = {
     Isa.AARCH64, Isa.ARM, Isa.X86, Isa.X86_64,
@@ -473,6 +408,8 @@ Transor("QEMU-user",
     Date(2003,2), Date.today(), "#F60", "IR",
     desc="2005: QEMU, a Fast and Portable Dynamic Translator",
 )
+
+
 
 # Lastly, add dummy modules after all modules are added
 addDummyModules()

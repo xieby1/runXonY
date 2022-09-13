@@ -447,6 +447,8 @@ class Term(enum.Enum):
     # Transor
     V1_ = TYPE1_VIRTUAL_MACHINE = enum.auto()
     V1B = TYPE1_VIRTUAL_MACHINE_WITH_BINARY_TRANSLATION = enum.auto()
+    P1_ = TYPE1_PARAVIRTUALIZATION = enum.auto()
+    VP1 = TYPE1_VIRTUAL_MACHINE_AND_PARAVIRTUALIZATION = enum.auto()
     V2_ = TYPE2_VIRTUAL_MACHINE = enum.auto()
     V2B = TYPE2_VIRTUAL_MACHINE_WITH_BINARY_TRANSLATION = \
     SBT = SYSTEM_LEVEL_BINARY_TRANSLATOR = enum.auto()
@@ -531,12 +533,24 @@ class UniHG:
             return Term.USER_LEVEL_BINARY_TRANSLATOR_WITH_LIB_PASS_THROUGH
         elif    hntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
                 gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+                hgtest((EQL, EQL)):
+            return Term.TYPE1_VIRTUAL_MACHINE
+        elif    hntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+                gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
                 hgtest((NEQ, EQL)):
             return Term.TYPE1_VIRTUAL_MACHINE_WITH_BINARY_TRANSLATION
+        elif    hntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+                gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+                hgtest((EQL, NEQ)):
+            return Term.TYPE1_PARAVIRTUALIZATION
         elif    hntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL)) and \
                 gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
                 hgtest((EQL, NEQ)):
             return Term.TYPE2_VIRTUAL_MACHINE
+        elif    hntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL)) and \
+                gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+                hgtest((NEQ, NEQ)):
+            return Term.TYPE2_VIRTUAL_MACHINE_WITH_BINARY_TRANSLATION
         elif    hntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL)) and \
                 gntest((NEQ, NEQ, NEQ, IGN, EQL, EQL, EQL, EQL)) and \
                 hgtest((EQL, EQL, NEQ)):
