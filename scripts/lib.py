@@ -508,8 +508,12 @@ class UniHG:
             return Term.USER_LEVEL_BINARY_TRANSLATOR
         elif    hntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
                 gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
-                hgtest((NEQ, EQL, EQL)):
+                hgtest((NEQ, EQL)):
             return Term.TYPE1_VIRTUAL_MACHINE_WITH_BINARY_TRANSLATION
+        elif    hntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL)) and \
+                gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+                hgtest((EQL, NEQ)):
+            return Term.TYPE2_VIRTUAL_MACHINE
         elif    self.h.src==Src.NONE and self.g.src!=Src.NONE:
             return Term.COMPILER
         elif    hntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \

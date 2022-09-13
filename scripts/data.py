@@ -115,10 +115,11 @@ for isa in Isa_MODERN_WINDOWSs))
 #)
 Transor("Merge",
     {  HG("",
-        Metaface({(Isa.I386, Up.USR)}, {Kernel.SCO_UNIX}),
-        Metaface({(Isa.I386, Up.USR)}, {Kernel.DOS, Kernel.WINDOWS3_1})
+        Metaface({(Isa.I386, Up.USR)}, {Kernel.SCO_UNIX}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface({(Isa.I386, Up.USR_PVL)})
     )},
     Date(1985,10,9), Date(2000),
+    feat="run DOS/Windows 3.1",
     desc="https://en.wikipedia.org/wiki/Merge_(software)"
 )
 Transor("mx",
@@ -199,6 +200,37 @@ Transor("DAISY",
         2000: full system binary translation RISC to VLIW
         2000: simulation and debugging of full system bianry translation
         2001: Dynamic binary translation and optimization
+    '''
+)
+Transor("MinGW",
+    {  HG("",
+        Metaface(IsasUSR(Isa_MODERN_WINDOWSs), {Kernel.WINDOWS}),
+        Metaface({(Isa.NONE, Up.NONE)}, {Kernel.NONE}, {Syslib.WINDOWS}, srcs={Src.C, Src.CPP}),
+    )},
+    Date(1998,7,1), Date.today(), "#71B21F",
+    feat='''
+        Run on MSVC runtime
+        Can be compiled on Win and Linux
+    '''
+)
+Transor("VMware Workstation",
+    {  HG("",
+        Metaface({(Isa.X86_64, Up.USR)}, {Kernel.LINUX, Kernel.WINDOWS}, {Syslib.WINDOWS}, {Lib.ANY}),
+        Metaface({(Isa.X86_64, Up.USR_PVL)}),
+    )},
+    Date(1999,5,15), Date.today(), "#F38C00", dev="VMware",
+)
+Transor("Win4Lin",
+    {  HG("",
+        Metaface({(Isa.X86, Up.USR)}, {Kernel.LINUX}, {Syslib.LINUX}, {Lib.ANY}),
+        Metaface({(Isa.X86, Up.USR_PVL)})
+    )},
+    Date(2000), Date(2008,6,4), dev="Win4Lin",
+    feat="run  Windows 9x, Windows 2000 or Windows XP",
+    desc='''
+        http://freshmeat.sourceforge.net/projects/win4lin
+        https://en.wikipedia.org/wiki/Win4Lin
+        2005: SUSE™ Linux 10 Unleashed: Chapter 11
     '''
 )
 
