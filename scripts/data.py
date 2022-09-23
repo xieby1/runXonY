@@ -92,10 +92,16 @@ for isa in Isa_MODERN_WINDOWSs))
 #   /_/ \_\ .__/ .__/
 #         |_|  |_|
 #                           figlet -f small App
-Module("APPS-WINDOWS-NO_SYSCALL", set (
+Module("APPS-WINDOWS", set (
     HG(isa.name,
         Metaface({(isa, Up.USR)}, {Kernel.WINDOWS, Kernel.NO_SYSCALL}, {Syslib.WINDOWS}, Lib_ANYs, Sysapp_ANYs),
         Metaface({(isa, Up.USR)}, {Kernel.NO_SYSCALL}, {Syslib.WINDOWS}, Lib_ANYs, Sysapp_ANYs, App_ANYs)
+    )
+for isa in Isa_MODERN_WINDOWSs))
+Module("APPS-WINDOWS-WITH_SYSCALL", set (
+    HG(isa.name,
+        Metaface({(isa, Up.USR)}, {Kernel.WINDOWS}, {Syslib.WINDOWS}, Lib_ANYs, Sysapp_ANYs),
+        Metaface({(isa, Up.USR)}, {Kernel.WINDOWS}, {Syslib.WINDOWS}, Lib_ANYs, Sysapp_ANYs, App_ANYs)
     )
 for isa in Isa_MODERN_WINDOWSs))
 
