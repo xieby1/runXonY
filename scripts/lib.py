@@ -4,6 +4,7 @@ from __future__ import annotations
 import enum
 import typing
 import warnings
+from multimethod import multimethod
 
 HashItem = typing.TypeVar("HashItem", bound=typing.Hashable)
 
@@ -373,22 +374,8 @@ allhgs: HashMap[HG] = HashMap()
 allunihgs: HashMap[UniHG] = HashMap()
 allhgs_hashname: HashMap[HG_hashname] = HashMap()
 
-class Metaface:
-    @classmethod
-    # Meta-lize an Interface
-    def metalize(cls, intfc: Interface) -> Metaface:
-        return cls(
-            {(intfc.isa, intfc.up)},
-            {intfc.kernel},
-            {intfc.syslib},
-            {intfc.lib},
-            {intfc.sysapp},
-            {intfc.app},
-            {intfc.rtlib},
-            {intfc.rtapp},
-            {intfc.src},
-        )
-
+class Metaface():
+    @multimethod
     def __init__(self,
             isas_ups:   set[typing.Tuple[Isa, Up]] = {(Isa.NONE, Up.NONE)},
             kernels:    set[Kernel] = {Kernel.NONE},
@@ -400,35 +387,17 @@ class Metaface:
             rtapps:     set[Rtapp]  = {Rtapp.NONE},
             srcs:       set[Src]    = {Src.NONE},
             ) -> None:
-        self.isas_ups:  set[typing.Tuple[Isa, Up]] = isas_ups
-        self.kernels:   set[Kernel] = kernels
-        self.syslibs:   set[Syslib] = syslibs
-        self.libs:      set[Lib]    = libs
-        self.sysapps:   set[Sysapp] = sysapps
-        self.apps:      set[App]    = apps
-        self.rtlibs:    set[Rtlib]  = rtlibs
-        self.rtapps:    set[Rtapp]  = rtapps
-        self.srcs:      set[Src]    = srcs
-        self.repr = ''
-        for isa, up in isas_ups:
-            self.repr += isa.name[0] + up.name[0]
-        for set in (kernels, syslibs, libs, sysapps, apps, rtlibs, rtapps, srcs):
-            self.repr += '|'
-            for ele in set:
-                self.repr += ele.name[0]
-
-    def getInterfaces(self) -> set[Interface]:
-        _interfaces = set()
-        for isa_up in self.isas_ups:
-            for kernel in self.kernels:
-                for syslib in self.syslibs:
-                    for lib in self.libs:
-                        for sysapp in self.sysapps:
-                            for app in self.apps:
-                                for rtlib in self.rtlibs:
-                                    for rtapp in self.rtapps:
-                                        for src in self.srcs:
-                                            _interfaces.add(Interface(
+        self.interfaces: set[Interface] = set()
+        for isa_up in isas_ups:
+            for kernel in kernels:
+                for syslib in syslibs:
+                    for lib in libs:
+                        for sysapp in sysapps:
+                            for app in apps:
+                                for rtlib in rtlibs:
+                                    for rtapp in rtapps:
+                                        for src in srcs:
+                                            self.interfaces.add(Interface(
                                                 isa_up,
                                                 kernel,
                                                 syslib,
@@ -439,57 +408,31 @@ class Metaface:
                                                 rtapp,
                                                 src,
                                             ))
-        return _interfaces
+
+    @__init__.register
+    def _(self, intfc: Interface):
+        self.interfaces: set[Interface] = {intfc}
+
+    @__init__.register
+    def _(self, intfcs: set[Interface]):
+        self.interfaces: set[Interface] = intfcs
 
     def __hash__(self) -> int:
-        val = 0
-        mul = 1
-        for isa, up in self.isas_ups:
-            val ^= hash(isa.value * up.value* mul)
-        mul *= Isa.END.value * Up.END.value
-        for kernel in self.kernels:
-            val ^= hash(kernel.value * mul)
-        mul *= Kernel.END.value
-        for syslib in self.syslibs:
-            val ^= hash(syslib.value * mul)
-        mul *= Syslib.END.value
-        for lib in self.libs:
-            val ^= hash(lib.value * mul)
-        mul *= Lib.END.value
-        for sysapp in self.sysapps:
-            val ^= hash(sysapp.value * mul)
-        mul *= Sysapp.END.value
-        for app in self.apps:
-            val ^= hash(app.value * mul)
-        mul *= App.END.value
-        for rtlib in self.rtlibs:
-            val ^= hash(rtlib.value * mul)
-        mul *= Rtlib.END.value
-        for rtapp in self.rtapps:
-            val ^= hash(rtapp.value * mul)
-        mul *= Rtapp.END.value
-        for src in self.srcs:
-            val ^= hash(src.value * mul)
-        mul *= Src.END.value
+        val: int = 0;
+        for intfc in self.interfaces:
+            val ^= intfc.__hash__()
         return val
 
     def __eq__(self, other: Metaface) -> bool:
-        if \
-                self.isas_ups == other.isas_ups and \
-                self.kernels == other.kernels and \
-                self.syslibs == other.syslibs and \
-                self.libs == other.libs and \
-                self.sysapps == other.sysapps and \
-                self.apps == other.apps and \
-                self.rtlibs == other.rtlibs and \
-                self.rtapps == other.rtapps and \
-                self.srcs == other.srcs:
-            return True
-        else:
-            return False
+        return self.interfaces == other.interfaces
 
     def __repr__(self) -> str:
-        return self.repr
+        try:
+            return self._repr
+        except:
+            repr = ','.join(set(intfc.__repr__() for intfc in self.interfaces))
+            self._repr: str = '{%s}' % repr
+            return self._repr
 
 class Term(enum.Enum):
     UNK = UNKNOWN = enum.auto()
@@ -636,20 +579,20 @@ class HG:
         self.name = name
         self.h = h
         self.g = g
-        self.repr = h.repr + ':' + g.repr
+        self.repr = h.__repr__() + ':' + g.__repr__()
         self.term = term
         self.terms: dict[Term, int] = {term:1} if term!=Term.UNKNOWN else dict()
 
         if not add:
             return
-        hinterfaces =  h.getInterfaces()
+        hinterfaces =  h.interfaces
         for intfc in hinterfaces:
             record: typing.Optional[Interface] = interfaces.get(intfc)
             if not record:
                 interfaces.add(intfc)
                 record = intfc
             record.us.add(self)
-        ginterfaces = g.getInterfaces()
+        ginterfaces = g.interfaces
         for intfc in ginterfaces:
             record: typing.Optional[Interface] = interfaces.get(intfc)
             if not record:
@@ -853,34 +796,34 @@ def addDummyModule(args: DMargs, hierarchyIdx: int) -> bool:
             # print(args)
             # print("%d - %d" % (hierarchyIdx, hierarchyIdx+1))
             # print("%s - %s" % (hintfc.name, gintfc.name))
-            DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc), term)})
+            DummyModule(gintfc.name, {HG("", Metaface(hintfc), Metaface(gintfc), term)})
         return False
     if hierarchyIdx == Isa.idx.value:
         if args[Isa.idx.value][0].value > Isa.ANY.value:
-            DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc), term)})
+            DummyModule(gintfc.name, {HG("", Metaface(hintfc), Metaface(gintfc), term)})
         else:
             return False
     elif hierarchyIdx == Kernel.idx.value:
         if args[Kernel.idx.value].value > Kernel.NO_KERNEL.value and \
                 args[Isa.idx.value][0].value > Isa.ANY.value:
-            DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc), term)})
+            DummyModule(gintfc.name, {HG("", Metaface(hintfc), Metaface(gintfc), term)})
         else:
             return False
     elif hierarchyIdx == Syslib.idx.value:
         if args[Kernel.idx.value].value > Kernel.ANY.value:
-            DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc), term)})
+            DummyModule(gintfc.name, {HG("", Metaface(hintfc), Metaface(gintfc), term)})
         else:
             return False
     elif hierarchyIdx == Lib.idx.value:
-        DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc), term)})
+        DummyModule(gintfc.name, {HG("", Metaface(hintfc), Metaface(gintfc), term)})
     elif hierarchyIdx == Sysapp.idx.value:
-        DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc), term)})
+        DummyModule(gintfc.name, {HG("", Metaface(hintfc), Metaface(gintfc), term)})
     elif hierarchyIdx == App.idx.value:
-        DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc), term)})
+        DummyModule(gintfc.name, {HG("", Metaface(hintfc), Metaface(gintfc), term)})
     elif hierarchyIdx == Rtlib.idx.value:
-        DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc), term)})
+        DummyModule(gintfc.name, {HG("", Metaface(hintfc), Metaface(gintfc), term)})
     elif hierarchyIdx == Rtapp.idx.value:
-        DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc), term)})
+        DummyModule(gintfc.name, {HG("", Metaface(hintfc), Metaface(gintfc), term)})
     else:
         warnings.warn("addDummyModule unknown hierarchyIdx %d" % hierarchyIdx)
     return True
