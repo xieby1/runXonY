@@ -65,14 +65,33 @@ class Src(enum.Enum):
     CPP_SRC = CPP = enum.auto()
 
     END = enum.auto()
+    idx = 8
+
+class Rtapp(enum.Enum):
+    NONE = enum.auto()
+
+    APPS = ANY = enum.auto()
+
+    END = enum.auto()
+    idx = 7
+
+class Rtlib(enum.Enum):
+    NONE = enum.auto()
+
+    LIBS = ANY = enum.auto()
+
+    END = enum.auto()
     idx = 6
 
 class App(enum.Enum):
     NONE = enum.auto()
+
     APPS = ANY = enum.auto()
+
+    ANDROID_RUNTIME = enum.auto()
+
     END = enum.auto()
     idx = 5
-App_ANYs = set(App(i) for i in range(App.ANY.value, App.END.value))
 
 class Sysapp(enum.Enum):
     NONE = enum.auto()
@@ -122,6 +141,7 @@ class Kernel(enum.Enum):
     BSD = enum.auto()
 
     LINUX = enum.auto()
+    LINUX_ANDROID = enum.auto()
 
     DOS = enum.auto()
     WINDOWS3_1 = enum.auto()
@@ -262,6 +282,8 @@ hierarchy: dict[int, type] = {
     Lib.idx.value: Lib,
     Sysapp.idx.value: Sysapp,
     App.idx.value: App,
+    Rtlib.idx.value: Rtlib,
+    Rtapp.idx.value: Rtapp,
     Src.idx.value: Src,
 }
 
@@ -276,6 +298,8 @@ class Interface:
             lib:    Lib     = Lib.NONE,
             sysapp: Sysapp  = Sysapp.NONE,
             app:    App     = App.NONE,
+            rtlib:  Rtlib   = Rtlib.NONE,
+            rtapp:  Rtapp   = Rtapp.NONE,
             src:    Src     = Src.NONE,
             ) -> None:
         self.idx = Interface.idx
@@ -288,12 +312,14 @@ class Interface:
         self.lib    = lib
         self.sysapp = sysapp
         self.app    = app
+        self.rtlib  = rtlib
+        self.rtapp  = rtapp
         self.src    = src
         # upper, lower modules
         self.ls: set[HG] = set()
         self.us: set[HG] = set()
         strings = ()
-        for ele in (src, app, sysapp, lib, syslib, kernel, isa, up):
+        for ele in (src, rtapp, rtlib, app, sysapp, lib, syslib, kernel, isa, up):
             if ele.value > 1: # not NONE
                 strings += (ele.name,)
         self.name = '-'.join(strings)
@@ -318,6 +344,10 @@ class Interface:
         mul *= Sysapp.END.value
         val += self.app.value * mul
         mul *= App.END.value
+        val += self.rtlib.value * mul
+        mul *= Rtlib.END.value
+        val += self.rtapp.value * mul
+        mul *= Rtapp.END.value
         val += self.src.value * mul
         mul *= Src.END.value
         return val
@@ -331,6 +361,8 @@ class Interface:
                 self.lib == other.lib and \
                 self.sysapp == other.sysapp and \
                 self.app == other.app and \
+                self.rtlib == other.rtlib and \
+                self.rtapp == other.rtapp and \
                 self.src == other.src:
             return True
         else:
@@ -352,6 +384,8 @@ class Metaface:
             {intfc.lib},
             {intfc.sysapp},
             {intfc.app},
+            {intfc.rtlib},
+            {intfc.rtapp},
             {intfc.src},
         )
 
@@ -362,6 +396,8 @@ class Metaface:
             libs:       set[Lib]    = {Lib.NONE},
             sysapps:    set[Sysapp] = {Sysapp.NONE},
             apps:       set[App]    = {App.NONE},
+            rtlibs:     set[Rtlib]  = {Rtlib.NONE},
+            rtapps:     set[Rtapp]  = {Rtapp.NONE},
             srcs:       set[Src]    = {Src.NONE},
             ) -> None:
         self.isas_ups:  set[typing.Tuple[Isa, Up]] = isas_ups
@@ -370,11 +406,13 @@ class Metaface:
         self.libs:      set[Lib]    = libs
         self.sysapps:   set[Sysapp] = sysapps
         self.apps:      set[App]    = apps
+        self.rtlibs:    set[Rtlib]  = rtlibs
+        self.rtapps:    set[Rtapp]  = rtapps
         self.srcs:      set[Src]    = srcs
         self.repr = ''
         for isa, up in isas_ups:
             self.repr += isa.name[0] + up.name[0]
-        for set in (kernels, syslibs, libs, sysapps, apps, srcs):
+        for set in (kernels, syslibs, libs, sysapps, apps, rtlibs, rtapps, srcs):
             self.repr += '|'
             for ele in set:
                 self.repr += ele.name[0]
@@ -387,16 +425,20 @@ class Metaface:
                     for lib in self.libs:
                         for sysapp in self.sysapps:
                             for app in self.apps:
-                                for src in self.srcs:
-                                    _interfaces.add(Interface(
-                                        isa_up,
-                                        kernel,
-                                        syslib,
-                                        lib,
-                                        sysapp,
-                                        app,
-                                        src,
-                                    ))
+                                for rtlib in self.rtlibs:
+                                    for rtapp in self.rtapps:
+                                        for src in self.srcs:
+                                            _interfaces.add(Interface(
+                                                isa_up,
+                                                kernel,
+                                                syslib,
+                                                lib,
+                                                sysapp,
+                                                app,
+                                                rtlib,
+                                                rtapp,
+                                                src,
+                                            ))
         return _interfaces
 
     def __hash__(self) -> int:
@@ -420,6 +462,12 @@ class Metaface:
         for app in self.apps:
             val ^= hash(app.value * mul)
         mul *= App.END.value
+        for rtlib in self.rtlibs:
+            val ^= hash(rtlib.value * mul)
+        mul *= Rtlib.END.value
+        for rtapp in self.rtapps:
+            val ^= hash(rtapp.value * mul)
+        mul *= Rtapp.END.value
         for src in self.srcs:
             val ^= hash(src.value * mul)
         mul *= Src.END.value
@@ -433,6 +481,8 @@ class Metaface:
                 self.libs == other.libs and \
                 self.sysapps == other.sysapps and \
                 self.apps == other.apps and \
+                self.rtlibs == other.rtlibs and \
+                self.rtapps == other.rtapps and \
                 self.srcs == other.srcs:
             return True
         else:
@@ -500,16 +550,16 @@ class UniHG:
             EQL = EQUAL = enum.auto()
             NEQ = NOTEQUAL = enum.auto()
         IGN, EQL, NEQ = Cond.IGN, Cond.EQL, Cond.NEQ
-        # h none test
-        def hntest(conds: typing.Tuple[Cond, Cond, Cond, Cond, Cond, Cond, Cond, Cond]) -> bool:
-            hhs = (self.h.isa, self.h.up, self.h.kernel, self.h.syslib, self.h.lib, self.h.sysapp, self.h.app, self.h.src)
+        # h none test, default eql
+        def hntest(conds: typing.Tuple[Cond, Cond, Cond, Cond, Cond, Cond, Cond, Cond, Cond, Cond]) -> bool:
+            hhs = (self.h.isa, self.h.up, self.h.kernel, self.h.syslib, self.h.lib, self.h.sysapp, self.h.app, self.h.rtlib, self.h.rtapp, self.h.src)
             for hh, cond in zip(hhs, conds):
                 if not ((cond==IGN) or (cond==EQL and hh.value==1) or (cond==NEQ and hh.value!=1)):
                     return False
             return True
         # g none test
-        def gntest(conds: typing.Tuple[Cond, Cond, Cond, Cond, Cond, Cond, Cond, Cond]) -> bool:
-            ghs = (self.g.isa, self.g.up, self.g.kernel, self.g.syslib, self.g.lib, self.g.sysapp, self.g.app, self.g.src)
+        def gntest(conds: typing.Tuple[Cond, Cond, Cond, Cond, Cond, Cond, Cond, Cond, Cond, Cond]) -> bool:
+            ghs = (self.g.isa, self.g.up, self.g.kernel, self.g.syslib, self.g.lib, self.g.sysapp, self.g.app, self.g.rtlib, self.g.rtapp, self.g.src)
             for gh, cond in zip(ghs, conds):
                 if not ((cond==IGN) or (cond==EQL and gh.value==1) or (cond==NEQ and gh.value!=1)):
                     return False
@@ -523,42 +573,42 @@ class UniHG:
                     return False
             return True
 
-        if      hntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL)) and \
-                gntest((NEQ, NEQ, NEQ, EQL, EQL, EQL, EQL, EQL)) and \
+        if      hntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL, EQL, EQL)) and \
+                gntest((NEQ, NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL, EQL)) and \
                 hgtest((NEQ, EQL, EQL)):
             return Term.USER_LEVEL_BINARY_TRANSLATOR
-        if      hntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL)) and \
-                gntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL)) and \
+        if      hntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL, EQL, EQL)) and \
+                gntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL, EQL, EQL)) and \
                 hgtest((NEQ, EQL, EQL, EQL, EQL)):
             return Term.USER_LEVEL_BINARY_TRANSLATOR_WITH_LIB_PASS_THROUGH
-        elif    hntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
-                gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+        elif    hntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+                gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL, EQL, EQL)) and \
                 hgtest((EQL, EQL)):
             return Term.TYPE1_VIRTUAL_MACHINE
-        elif    hntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
-                gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+        elif    hntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+                gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL, EQL, EQL)) and \
                 hgtest((NEQ, EQL)):
             return Term.TYPE1_VIRTUAL_MACHINE_WITH_BINARY_TRANSLATION
-        elif    hntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
-                gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+        elif    hntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+                gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL, EQL, EQL)) and \
                 hgtest((EQL, NEQ)):
             return Term.TYPE1_PARAVIRTUALIZATION
-        elif    hntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL)) and \
-                gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+        elif    hntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL, EQL, EQL)) and \
+                gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL, EQL, EQL)) and \
                 hgtest((EQL, NEQ)):
             return Term.TYPE2_VIRTUAL_MACHINE
-        elif    hntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL)) and \
-                gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+        elif    hntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL, EQL, EQL)) and \
+                gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL, EQL, EQL)) and \
                 hgtest((NEQ, NEQ)):
             return Term.TYPE2_VIRTUAL_MACHINE_WITH_BINARY_TRANSLATION
-        elif    hntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL)) and \
-                gntest((NEQ, NEQ, NEQ, IGN, EQL, EQL, EQL, EQL)) and \
+        elif    hntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL, EQL, EQL)) and \
+                gntest((NEQ, NEQ, NEQ, IGN, EQL, EQL, EQL, EQL, EQL, EQL)) and \
                 hgtest((EQL, EQL, NEQ)):
             return Term.SYSCALL_COMPATIBLE_LAYER
         elif    self.h.src==Src.NONE and self.g.src!=Src.NONE:
             return Term.COMPILER
-        elif    hntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL)) and \
-                gntest((NEQ, NEQ, NEQ, EQL, EQL, EQL, EQL, EQL)) and \
+        elif    hntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+                gntest((NEQ, NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL, EQL)) and \
                 hgtest((EQL,)):
             return Term.OS_
         else:
@@ -774,7 +824,7 @@ class Transor(Module):
         super().__init__(name, hgs, term=term)
 
 # return True for added, False for not add
-DMargs = tuple[tuple[Isa, Up], Kernel, Syslib, Lib, Sysapp, App]
+DMargs = tuple[tuple[Isa, Up], Kernel, Syslib, Lib, Sysapp, App, Rtlib, Rtapp]
 def addDummyModule(args: DMargs, hierarchyIdx: int) -> bool:
     term: Term
     if hierarchyIdx == Isa.idx.value:
@@ -827,17 +877,28 @@ def addDummyModule(args: DMargs, hierarchyIdx: int) -> bool:
         DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc), term)})
     elif hierarchyIdx == App.idx.value:
         DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc), term)})
+    elif hierarchyIdx == Rtlib.idx.value:
+        DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc), term)})
+    elif hierarchyIdx == Rtapp.idx.value:
+        DummyModule(gintfc.name, {HG("", Metaface.metalize(hintfc), Metaface.metalize(gintfc), term)})
     else:
         warnings.warn("addDummyModule unknown hierarchyIdx %d" % hierarchyIdx)
     return True
 
 Intfctype = typing.Union[tuple[Isa, Up], Kernel, Syslib, Lib, Sysapp, App, Src]
-intfctypes = (tuple[Isa, Up], Kernel, Syslib, Lib, Sysapp, App, Src)
+intfctypes = (tuple[Isa, Up], Kernel, Syslib, Lib, Sysapp, App, Rtlib, Rtapp, Src)
 def addDummyModulesByIntfc(intfc: Interface) -> None:
     toptype: type
+    autofill: bool = True
     if intfc.src != Src.NONE:
         return
-    if intfc.app != App.NONE:
+    if intfc.rtapp != Rtapp.NONE:
+        toptype = Rtapp
+        autofill = False
+    elif intfc.rtlib != Rtlib.NONE:
+        toptype = Rtlib
+        autofill = False
+    elif intfc.app != App.NONE:
         toptype = App
     elif intfc.sysapp != Sysapp.NONE:
         toptype = Sysapp
@@ -854,10 +915,12 @@ def addDummyModulesByIntfc(intfc: Interface) -> None:
     args = (
         (intfc.isa, intfc.up),
         intfc.kernel,
-        Syslib.DEFAULT if intfc.syslib==Syslib.NONE else intfc.syslib,
-        Lib.ANY if intfc.lib==Lib.NONE else intfc.lib,
-        Sysapp.ANY if intfc.sysapp==Sysapp.NONE else intfc.sysapp,
-        App.ANY if intfc.app==App.NONE else intfc.app,
+        Syslib.DEFAULT if intfc.syslib==Syslib.NONE and autofill else intfc.syslib,
+        Lib.ANY if intfc.lib==Lib.NONE and autofill else intfc.lib,
+        Sysapp.ANY if intfc.sysapp==Sysapp.NONE and autofill else intfc.sysapp,
+        App.ANY if intfc.app==App.NONE and autofill else intfc.app,
+        intfc.rtlib,
+        intfc.rtapp,
     )
 
     # upwards
