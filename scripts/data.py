@@ -95,15 +95,57 @@ for isa in Isa_MODERN_WINDOWSs))
 Module("APPS-WINDOWS", set (
     HG(isa.name,
         Metaface({(isa, Up.USR)}, {Kernel.WINDOWS, Kernel.NO_SYSCALL}, {Syslib.WINDOWS}, Lib_ANYs, Sysapp_ANYs),
-        Metaface({(isa, Up.USR)}, {Kernel.NO_SYSCALL}, {Syslib.WINDOWS}, Lib_ANYs, Sysapp_ANYs, App_ANYs)
+        Metaface({(isa, Up.USR)}, {Kernel.NO_SYSCALL}, {Syslib.WINDOWS}, Lib_ANYs, Sysapp_ANYs, {App.APPS})
     )
 for isa in Isa_MODERN_WINDOWSs))
 Module("APPS-WINDOWS-WITH_SYSCALL", set (
     HG(isa.name,
         Metaface({(isa, Up.USR)}, {Kernel.WINDOWS}, {Syslib.WINDOWS}, Lib_ANYs, Sysapp_ANYs),
-        Metaface({(isa, Up.USR)}, {Kernel.WINDOWS}, {Syslib.WINDOWS}, Lib_ANYs, Sysapp_ANYs, App_ANYs)
+        Metaface({(isa, Up.USR)}, {Kernel.WINDOWS}, {Syslib.WINDOWS}, Lib_ANYs, Sysapp_ANYs, {App.APPS})
     )
 for isa in Isa_MODERN_WINDOWSs))
+
+Isa_MODERN_ANDROID: set[Isa] = {Isa.X86_64, Isa.AARCH64}
+Module("ANDROID", set(
+    HG(isa.name,
+        Metaface({(isa, Up.USR)}, {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, Lib_ANYs, Sysapp_ANYs),
+        Metaface({(isa, Up.USR)}, {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, Lib_ANYs, Sysapp_ANYs, {App.ANDROID_RUNTIME})
+    ) for isa in Isa_MODERN_ANDROID) | {
+    HG("UNIVERAL",
+        Metaface(IsasUSR(Isa_MODERN_ANDROID), {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, Lib_ANYs, Sysapp_ANYs),
+        Metaface({(Isa.NONE, Up.NONE)}, {Kernel.NONE}, {Syslib.NONE}, {Lib.NONE}, {Sysapp.NONE}, {App.ANDROID_RUNTIME})
+    )}
+)
+
+###############################################
+#    ___ _   _ _ _    
+#   | _ \ |_| (_) |__ 
+#   |   /  _| | | '_ \
+#   |_|_\\__|_|_|_.__/
+#                           figlet -f small Rtlib
+
+###############################################
+#    ___ _                  
+#   | _ \ |_ __ _ _ __ _ __ 
+#   |   /  _/ _` | '_ \ '_ \
+#   |_|_\\__\__,_| .__/ .__/
+#                |_|  |_|   
+#                           figlet -f small Rtapp
+Module("APPS-ANDROID", set(
+    HG(isa.name,
+        Metaface({(isa, Up.USR)}, {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, Lib_ANYs, Sysapp_ANYs, {App.ANDROID_RUNTIME}, {Rtlib.ANY}),
+        Metaface({(isa, Up.USR)}, {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, Lib_ANYs, Sysapp_ANYs, {App.ANDROID_RUNTIME}, {Rtlib.ANY}, {Rtapp.APPS})
+    )
+    for isa in Isa_MODERN_ANDROID) | {
+    HG("UNIVERAL",
+        Metaface({
+            Interface((Isa.NONE, Up.NONE), Kernel.NONE, Syslib.NONE, Lib.NONE, Sysapp.NONE, App.ANDROID_RUNTIME, Rtlib.ANY),
+            } | set(
+            Interface((isa, Up.USR), Kernel.LINUX_ANDROID, Syslib.DEFAULT, Lib.ANY, Sysapp.ANY, App.ANDROID_RUNTIME, Rtlib.ANY)
+        for isa in Isa_MODERN_ANDROID)),
+        Metaface({(Isa.NONE, Up.NONE)}, {Kernel.NONE}, {Syslib.NONE}, {Lib.NONE}, {Sysapp.NONE}, {App.ANDROID_RUNTIME}, {Rtlib.ANY}, {Rtapp.APPS})
+    )}
+)
 
 ###############################################################
 #    _______

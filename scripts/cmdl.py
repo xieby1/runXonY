@@ -2,7 +2,6 @@
 import argparse
 from data import *
 import pathlib
-import sys
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-d", "--dot",
