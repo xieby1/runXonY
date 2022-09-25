@@ -5,6 +5,7 @@ import enum
 import typing
 import warnings
 from multimethod import multimethod
+from itertools import zip_longest
 
 HashItem = typing.TypeVar("HashItem", bound=typing.Hashable)
 
@@ -494,20 +495,20 @@ class UniHG:
             NEQ = NOTEQUAL = enum.auto()
         IGN, EQL, NEQ = Cond.IGN, Cond.EQL, Cond.NEQ
         # h none test, default eql
-        def hntest(conds: typing.Tuple[Cond, Cond, Cond, Cond, Cond, Cond, Cond, Cond, Cond, Cond]) -> bool:
+        def hntest_eql(conds: typing.Tuple[Cond, ...]) -> bool:
             hhs = (self.h.isa, self.h.up, self.h.kernel, self.h.syslib, self.h.lib, self.h.sysapp, self.h.app, self.h.rtlib, self.h.rtapp, self.h.src)
-            for hh, cond in zip(hhs, conds):
-                if not ((cond==IGN) or (cond==EQL and hh.value==1) or (cond==NEQ and hh.value!=1)):
+            for hh, cond in zip_longest(hhs, conds):
+                if not ((cond==IGN) or ((cond==EQL or cond==None) and hh.value==1) or (cond==NEQ and hh.value!=1)):
                     return False
             return True
-        # g none test
-        def gntest(conds: typing.Tuple[Cond, Cond, Cond, Cond, Cond, Cond, Cond, Cond, Cond, Cond]) -> bool:
+        # g none test, default eql
+        def gntest_eql(conds: typing.Tuple[Cond, ...]) -> bool:
             ghs = (self.g.isa, self.g.up, self.g.kernel, self.g.syslib, self.g.lib, self.g.sysapp, self.g.app, self.g.rtlib, self.g.rtapp, self.g.src)
-            for gh, cond in zip(ghs, conds):
-                if not ((cond==IGN) or (cond==EQL and gh.value==1) or (cond==NEQ and gh.value!=1)):
+            for gh, cond in zip_longest(ghs, conds):
+                if not ((cond==IGN) or ((cond==EQL or cond==None) and gh.value==1) or (cond==NEQ and gh.value!=1)):
                     return False
             return True
-        # h g test
+        # h g test, default ign
         def hgtest(conds: typing.Tuple[Cond, ...]) -> bool:
             hhs = (self.h.isa, self.h.up, self.h.kernel, self.h.syslib, self.h.lib, self.h.sysapp, self.h.app, self.h.src)
             ghs = (self.g.isa, self.g.up, self.g.kernel, self.g.syslib, self.g.lib, self.g.sysapp, self.g.app, self.g.src)
@@ -516,42 +517,42 @@ class UniHG:
                     return False
             return True
 
-        if      hntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL, EQL, EQL)) and \
-                gntest((NEQ, NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+        if      hntest_eql((NEQ, NEQ, NEQ, NEQ, NEQ)) and \
+                gntest_eql((NEQ, NEQ, NEQ)) and \
                 hgtest((NEQ, EQL, EQL)):
             return Term.USER_LEVEL_BINARY_TRANSLATOR
-        if      hntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL, EQL, EQL)) and \
-                gntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL, EQL, EQL)) and \
+        if      hntest_eql((NEQ, NEQ, NEQ, NEQ, NEQ)) and \
+                gntest_eql((NEQ, NEQ, NEQ, NEQ, NEQ)) and \
                 hgtest((NEQ, EQL, EQL, EQL, EQL)):
             return Term.USER_LEVEL_BINARY_TRANSLATOR_WITH_LIB_PASS_THROUGH
-        elif    hntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL, EQL, EQL)) and \
-                gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+        elif    hntest_eql((NEQ, NEQ)) and \
+                gntest_eql((NEQ, NEQ)) and \
                 hgtest((EQL, EQL)):
             return Term.TYPE1_VIRTUAL_MACHINE
-        elif    hntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL, EQL, EQL)) and \
-                gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+        elif    hntest_eql((NEQ, NEQ)) and \
+                gntest_eql((NEQ, NEQ)) and \
                 hgtest((NEQ, EQL)):
             return Term.TYPE1_VIRTUAL_MACHINE_WITH_BINARY_TRANSLATION
-        elif    hntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL, EQL, EQL)) and \
-                gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+        elif    hntest_eql((NEQ, NEQ)) and \
+                gntest_eql((NEQ, NEQ)) and \
                 hgtest((EQL, NEQ)):
             return Term.TYPE1_PARAVIRTUALIZATION
-        elif    hntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL, EQL, EQL)) and \
-                gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+        elif    hntest_eql((NEQ, NEQ, NEQ, NEQ, NEQ)) and \
+                gntest_eql((NEQ, NEQ)) and \
                 hgtest((EQL, NEQ)):
             return Term.TYPE2_VIRTUAL_MACHINE
-        elif    hntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL, EQL, EQL)) and \
-                gntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+        elif    hntest_eql((NEQ, NEQ, NEQ, NEQ, NEQ)) and \
+                gntest_eql((NEQ, NEQ)) and \
                 hgtest((NEQ, NEQ)):
             return Term.TYPE2_VIRTUAL_MACHINE_WITH_BINARY_TRANSLATION
-        elif    hntest((NEQ, NEQ, NEQ, NEQ, NEQ, EQL, EQL, EQL, EQL, EQL)) and \
-                gntest((NEQ, NEQ, NEQ, IGN, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+        elif    hntest_eql((NEQ, NEQ, NEQ, NEQ, NEQ)) and \
+                gntest_eql((NEQ, NEQ, NEQ, IGN)) and \
                 hgtest((EQL, EQL, NEQ)):
             return Term.SYSCALL_COMPATIBLE_LAYER
         elif    self.h.src==Src.NONE and self.g.src!=Src.NONE:
             return Term.COMPILER
-        elif    hntest((NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL, EQL, EQL)) and \
-                gntest((NEQ, NEQ, NEQ, EQL, EQL, EQL, EQL, EQL, EQL, EQL)) and \
+        elif    hntest_eql((NEQ, NEQ)) and \
+                gntest_eql((NEQ, NEQ, NEQ)) and \
                 hgtest((EQL,)):
             return Term.OS_
         else:
