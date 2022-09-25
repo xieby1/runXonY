@@ -330,42 +330,18 @@ class Interface:
         return self.name
 
     def __hash__(self) -> int:
-        val = 0
-        mul = 1
-        val += self.isa * mul
-        mul *= Isa.END
-        val += self.up * mul
-        mul += Up.END
-        val += self.kernel * mul
-        mul *= Kernel.END
-        val += self.syslib * mul
-        mul *= Syslib.END
-        val += self.lib * mul
-        mul *= Lib.END
-        val += self.sysapp * mul
-        mul *= Sysapp.END
-        val += self.app * mul
-        mul *= App.END
-        val += self.rtlib * mul
-        mul *= Rtlib.END
-        val += self.rtapp * mul
-        mul *= Rtapp.END
-        val += self.src * mul
-        mul *= Src.END
+        val: int = 0
+        mul: int = 1
+        for v,m in zip( \
+                (self.isa, self.up, self.kernel, self.syslib, self.lib, self.sysapp, self.app, self.rtlib, self.rtapp, self.src),\
+                (Isa.END,  Up.END,  Kernel.END,  Syslib.END,  Lib.END,  Sysapp.END,  App.END,  Rtlib.END,  Rtapp.END,  Src.END)):
+            val += v
+            mul *= m
         return val
 
-    def __eq__(self, other: Interface) -> bool:
-        if \
-                self.isa == other.isa and \
-                self.up == other.up and \
-                self.kernel == other.kernel and \
-                self.syslib == other.syslib and \
-                self.lib == other.lib and \
-                self.sysapp == other.sysapp and \
-                self.app == other.app and \
-                self.rtlib == other.rtlib and \
-                self.rtapp == other.rtapp and \
-                self.src == other.src:
+    def __eq__(self, othr: Interface) -> bool:
+        if (self.isa, self.up, self.kernel, self.syslib, self.lib, self.sysapp, self.app, self.rtlib, self.rtapp, self.src) == \
+           (othr.isa, othr.up, othr.kernel, othr.syslib, othr.lib, othr.sysapp, othr.app, othr.rtlib, othr.rtapp, othr.src):
             return True
         else:
             return False
