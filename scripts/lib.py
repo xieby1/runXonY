@@ -472,22 +472,26 @@ class UniHG:
         IGN, EQL, NEQ = Cond.IGN, Cond.EQL, Cond.NEQ
         # h none test, default eql
         def hntest_eql(conds: typing.Tuple[Cond, ...]) -> bool:
-            hhs = (self.h.isa, self.h.up, self.h.kernel, self.h.syslib, self.h.lib, self.h.sysapp, self.h.app, self.h.rtlib, self.h.rtapp, self.h.src)
+            h = self.h
+            hhs: typing.Tuple[int, ...] = (h.isa, h.up, h.kernel, h.syslib, h.lib, h.sysapp, h.app, h.rtlib, h.rtapp, h.src)
             for hh, cond in zip_longest(hhs, conds):
                 if not ((cond==IGN) or ((cond==EQL or cond==None) and hh==1) or (cond==NEQ and hh!=1)):
                     return False
             return True
         # g none test, default eql
         def gntest_eql(conds: typing.Tuple[Cond, ...]) -> bool:
-            ghs = (self.g.isa, self.g.up, self.g.kernel, self.g.syslib, self.g.lib, self.g.sysapp, self.g.app, self.g.rtlib, self.g.rtapp, self.g.src)
+            g = self.g
+            ghs: typing.Tuple[int, ...] = (g.isa, g.up, g.kernel, g.syslib, g.lib, g.sysapp, g.app, g.rtlib, g.rtapp, g.src)
             for gh, cond in zip_longest(ghs, conds):
                 if not ((cond==IGN) or ((cond==EQL or cond==None) and gh==1) or (cond==NEQ and gh!=1)):
                     return False
             return True
         # h g test, default ign
         def hgtest(conds: typing.Tuple[Cond, ...]) -> bool:
-            hhs = (self.h.isa, self.h.up, self.h.kernel, self.h.syslib, self.h.lib, self.h.sysapp, self.h.app, self.h.src)
-            ghs = (self.g.isa, self.g.up, self.g.kernel, self.g.syslib, self.g.lib, self.g.sysapp, self.g.app, self.g.src)
+            h = self.h
+            hhs: typing.Tuple[int, ...] = (h.isa, h.up, h.kernel, h.syslib, h.lib, h.sysapp, h.app, h.rtlib, h.rtapp, h.src)
+            g = self.g
+            ghs: typing.Tuple[int, ...] = (g.isa, g.up, g.kernel, g.syslib, g.lib, g.sysapp, g.app, g.rtlib, g.rtapp, g.src)
             for hh, gh, cond in zip(hhs, ghs, conds):
                 if not ((cond==IGN) or (cond==EQL and hh==gh) or (cond==NEQ and hh!=gh)):
                     return False
