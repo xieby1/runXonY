@@ -60,7 +60,7 @@ class HashMap(typing.Generic[HashItem]):
             except StopIteration:
                 raise StopIteration
 
-class Src(enum.Enum):
+class Src(enum.IntEnum):
     NONE = enum.auto()
 
     C_SRC = C = enum.auto()
@@ -69,7 +69,7 @@ class Src(enum.Enum):
     END = enum.auto()
     idx = 8
 
-class Rtapp(enum.Enum):
+class Rtapp(enum.IntEnum):
     NONE = enum.auto()
 
     APPS = ANY = enum.auto()
@@ -77,7 +77,7 @@ class Rtapp(enum.Enum):
     END = enum.auto()
     idx = 7
 
-class Rtlib(enum.Enum):
+class Rtlib(enum.IntEnum):
     NONE = enum.auto()
 
     LIBS = ANY = enum.auto()
@@ -85,7 +85,7 @@ class Rtlib(enum.Enum):
     END = enum.auto()
     idx = 6
 
-class App(enum.Enum):
+class App(enum.IntEnum):
     NONE = enum.auto()
 
     APPS = ANY = enum.auto()
@@ -95,21 +95,21 @@ class App(enum.Enum):
     END = enum.auto()
     idx = 5
 
-class Sysapp(enum.Enum):
+class Sysapp(enum.IntEnum):
     NONE = enum.auto()
     SYSAPPS = ANY = enum.auto()
     END = enum.auto()
     idx = 4
-Sysapp_ANYs = set(Sysapp(i) for i in range(Sysapp.ANY.value, Sysapp.END.value))
+Sysapp_ANYs = set(Sysapp(i) for i in range(Sysapp.ANY, Sysapp.END))
 
-class Lib(enum.Enum):
+class Lib(enum.IntEnum):
     NONE = enum.auto()
     LIBS = ANY = enum.auto()
     END = enum.auto()
     idx = 3
-Lib_ANYs = set(Lib(i) for i in range(Lib.ANY.value, Lib.END.value))
+Lib_ANYs = set(Lib(i) for i in range(Lib.ANY, Lib.END))
 
-class Syslib(enum.Enum):
+class Syslib(enum.IntEnum):
     NONE = enum.auto()
 
     SYSLIBS = DEFAULT = enum.auto()
@@ -125,7 +125,7 @@ class Syslib(enum.Enum):
     END = enum.auto()
     idx = 2
 
-class Kernel(enum.Enum):
+class Kernel(enum.IntEnum):
     NONE = enum.auto()
     KERNELS = ANY = enum.auto()
 
@@ -157,7 +157,7 @@ class Kernel(enum.Enum):
 # https://en.wikipedia.org/wiki/POSIX
 Kernel_POSIXs: set[Kernel] = {Kernel.MACOS, Kernel.BSD, Kernel.LINUX}
 
-class Up(enum.Enum):
+class Up(enum.IntEnum):
     NONE = enum.auto()
     USR = USER = UNPVL = UNPRIVILEGE = enum.auto()
     PVL = PRIVILEGE = enum.auto()
@@ -165,7 +165,7 @@ class Up(enum.Enum):
     END = enum.auto()
     idx = 0
 
-class Isa(enum.Enum):
+class Isa(enum.IntEnum):
     NONE = enum.auto()
     ISAS = ANY = enum.auto()
 
@@ -246,14 +246,14 @@ class Isa(enum.Enum):
 
     END = enum.auto()
     idx = 0
-Isa_ANYs = set(Isa(i) for i in range(Isa.ANY.value, Isa.END.value))
-Isa_X86s = set(Isa(i) for i in range(Isa.I386.value, Isa.X86.value+1))
-Isa_X86_64s = set(Isa(i) for i in range(Isa.I386.value, Isa.X86_64.value+1))
-Isa_ARM32s = set(Isa(i) for i in range(Isa.ARM.value, Isa.ARM32.value+1))
+Isa_ANYs = set(Isa(i) for i in range(Isa.ANY, Isa.END))
+Isa_X86s = set(Isa(i) for i in range(Isa.I386, Isa.X86+1))
+Isa_X86_64s = set(Isa(i) for i in range(Isa.I386, Isa.X86_64+1))
+Isa_ARM32s = set(Isa(i) for i in range(Isa.ARM, Isa.ARM32+1))
 Isa_ARMV6s = {Isa.ARMV6L, Isa.ARMV6M}
 Isa_ARMV7s = {Isa.ARMV7L, Isa.ARMV7M, Isa.ARMV7A, Isa.ARMV7R}
 Isa_POWERPC64s = {Isa.POWERPC, Isa.POWERPC64}
-Isa_MIPS64s = set(Isa(i) for i in range(Isa.MIPSI.value, Isa.MIPS64.value+1))
+Isa_MIPS64s = set(Isa(i) for i in range(Isa.MIPSI, Isa.MIPS64+1))
 Isa_RISCV64s = {Isa.RISCV32, Isa.RISCV64}
 Isa_SPARC64s = {Isa.SPARC, Isa.SPARC64}
 def IsasUp(isas: set[Isa], up: Up) -> set[typing.Tuple[Isa, Up]]:
@@ -265,7 +265,7 @@ def IsasPVL(isas: set[Isa]) -> set[typing.Tuple[Isa, Up]]:
 def IsasUSR_PVL(isas: set[Isa]) -> set[typing.Tuple[Isa, Up]]:
     return IsasUp(isas, Up.USR_PVL)
 
-class Dev(enum.Enum):
+class Dev(enum.IntEnum):
     NONE = enum.auto()
     Digital = DIGITAL = enum.auto()
     SUN = enum.auto()
@@ -278,15 +278,15 @@ class Dev(enum.Enum):
     Transitive_Apple = TRANSITIVE_APPLE = enum.auto()
 
 hierarchy: dict[int, type] = {
-    Isa.idx.value: Isa,
-    Kernel.idx.value: Kernel,
-    Syslib.idx.value: Syslib,
-    Lib.idx.value: Lib,
-    Sysapp.idx.value: Sysapp,
-    App.idx.value: App,
-    Rtlib.idx.value: Rtlib,
-    Rtapp.idx.value: Rtapp,
-    Src.idx.value: Src,
+    Isa.idx: Isa,
+    Kernel.idx: Kernel,
+    Syslib.idx: Syslib,
+    Lib.idx: Lib,
+    Sysapp.idx: Sysapp,
+    App.idx: App,
+    Rtlib.idx: Rtlib,
+    Rtapp.idx: Rtapp,
+    Src.idx: Src,
 }
 
 interfaces: HashMap[Interface] = HashMap()
@@ -322,7 +322,7 @@ class Interface:
         self.us: set[HG] = set()
         strings = ()
         for ele in (src, rtapp, rtlib, app, sysapp, lib, syslib, kernel, isa, up):
-            if ele.value > 1: # not NONE
+            if ele > 1: # not NONE
                 strings += (ele.name,)
         self.name = '-'.join(strings)
 
@@ -332,26 +332,26 @@ class Interface:
     def __hash__(self) -> int:
         val = 0
         mul = 1
-        val += self.isa.value * mul
-        mul *= Isa.END.value
-        val += self.up.value * mul
-        mul += Up.END.value
-        val += self.kernel.value * mul
-        mul *= Kernel.END.value
-        val += self.syslib.value * mul
-        mul *= Syslib.END.value
-        val += self.lib.value * mul
-        mul *= Lib.END.value
-        val += self.sysapp.value * mul
-        mul *= Sysapp.END.value
-        val += self.app.value * mul
-        mul *= App.END.value
-        val += self.rtlib.value * mul
-        mul *= Rtlib.END.value
-        val += self.rtapp.value * mul
-        mul *= Rtapp.END.value
-        val += self.src.value * mul
-        mul *= Src.END.value
+        val += self.isa * mul
+        mul *= Isa.END
+        val += self.up * mul
+        mul += Up.END
+        val += self.kernel * mul
+        mul *= Kernel.END
+        val += self.syslib * mul
+        mul *= Syslib.END
+        val += self.lib * mul
+        mul *= Lib.END
+        val += self.sysapp * mul
+        mul *= Sysapp.END
+        val += self.app * mul
+        mul *= App.END
+        val += self.rtlib * mul
+        mul *= Rtlib.END
+        val += self.rtapp * mul
+        mul *= Rtapp.END
+        val += self.src * mul
+        mul *= Src.END
         return val
 
     def __eq__(self, other: Interface) -> bool:
@@ -435,7 +435,7 @@ class Metaface():
             self._repr: str = '{%s}' % repr
             return self._repr
 
-class Term(enum.Enum):
+class Term(enum.IntEnum):
     UNK = UNKNOWN = enum.auto()
 
     # Transor
@@ -489,7 +489,7 @@ class UniHG:
             allunihgs.add(self)
 
     def term(self) -> Term:
-        class Cond(enum.Enum):
+        class Cond(enum.IntEnum):
             IGN = IGNORE = enum.auto()
             EQL = EQUAL = enum.auto()
             NEQ = NOTEQUAL = enum.auto()
@@ -498,14 +498,14 @@ class UniHG:
         def hntest_eql(conds: typing.Tuple[Cond, ...]) -> bool:
             hhs = (self.h.isa, self.h.up, self.h.kernel, self.h.syslib, self.h.lib, self.h.sysapp, self.h.app, self.h.rtlib, self.h.rtapp, self.h.src)
             for hh, cond in zip_longest(hhs, conds):
-                if not ((cond==IGN) or ((cond==EQL or cond==None) and hh.value==1) or (cond==NEQ and hh.value!=1)):
+                if not ((cond==IGN) or ((cond==EQL or cond==None) and hh==1) or (cond==NEQ and hh!=1)):
                     return False
             return True
         # g none test, default eql
         def gntest_eql(conds: typing.Tuple[Cond, ...]) -> bool:
             ghs = (self.g.isa, self.g.up, self.g.kernel, self.g.syslib, self.g.lib, self.g.sysapp, self.g.app, self.g.rtlib, self.g.rtapp, self.g.src)
             for gh, cond in zip_longest(ghs, conds):
-                if not ((cond==IGN) or ((cond==EQL or cond==None) and gh.value==1) or (cond==NEQ and gh.value!=1)):
+                if not ((cond==IGN) or ((cond==EQL or cond==None) and gh==1) or (cond==NEQ and gh!=1)):
                     return False
             return True
         # h g test, default ign
@@ -771,26 +771,26 @@ class Transor(Module):
 DMargs = tuple[tuple[Isa, Up], Kernel, Syslib, Lib, Sysapp, App, Rtlib, Rtapp]
 def addDummyModule(args: DMargs, hierarchyIdx: int) -> bool:
     term: Term
-    if hierarchyIdx == Isa.idx.value:
+    if hierarchyIdx == Isa.idx:
         term = Term.ISA
-    elif hierarchyIdx == Kernel.idx.value:
+    elif hierarchyIdx == Kernel.idx:
         term = Term.KERNEL
-    elif hierarchyIdx == Syslib.idx.value or hierarchyIdx == Lib.idx.value:
+    elif hierarchyIdx == Syslib.idx or hierarchyIdx == Lib.idx:
         term = Term.LIB
-    elif hierarchyIdx == Sysapp.idx.value or hierarchyIdx == App.idx.value:
+    elif hierarchyIdx == Sysapp.idx or hierarchyIdx == App.idx:
         term = Term.APP
     else:
         term = Term.UNKNOWN
 
-    if hierarchyIdx == Isa.idx.value:
+    if hierarchyIdx == Isa.idx:
         hintfc = Interface()
         gintfc = Interface((args[0][0], Up.USR_PVL))
-    elif hierarchyIdx == Kernel.idx.value:
+    elif hierarchyIdx == Kernel.idx:
         hintfc = Interface((args[0][0], Up.USR_PVL))
-        gintfc = Interface(*(args[:hierarchyIdx+1]))
+        gintfc = Interface(*(args[:hierarchyIdx+1])) # type: ignore
     else:
-        hintfc = Interface(*(args[:hierarchyIdx]))
-        gintfc = Interface(*(args[:hierarchyIdx+1]))
+        hintfc = Interface(*(args[:hierarchyIdx])) # type: ignore
+        gintfc = Interface(*(args[:hierarchyIdx+1])) # type: ignore
     unihg = UniHG(hintfc, gintfc, False)
     if hintfc != gintfc and hintfc in interfaces and gintfc in interfaces:
         if unihg not in allunihgs:
@@ -799,31 +799,30 @@ def addDummyModule(args: DMargs, hierarchyIdx: int) -> bool:
             # print("%s - %s" % (hintfc.name, gintfc.name))
             DummyModule(gintfc.name, {HG("", Metaface(hintfc), Metaface(gintfc), term)})
         return False
-    if hierarchyIdx == Isa.idx.value:
-        if args[Isa.idx.value][0].value > Isa.ANY.value:
+    if hierarchyIdx == Isa.idx:
+        if args[Isa.idx][0] > Isa.ANY: # type: ignore
             DummyModule(gintfc.name, {HG("", Metaface(hintfc), Metaface(gintfc), term)})
         else:
             return False
-    elif hierarchyIdx == Kernel.idx.value:
-        if args[Kernel.idx.value].value > Kernel.NO_KERNEL.value and \
-                args[Isa.idx.value][0].value > Isa.ANY.value:
+    elif hierarchyIdx == Kernel.idx:
+        if args[Kernel.idx] > Kernel.NO_KERNEL and args[Isa.idx][0] > Isa.ANY: # type: ignore
             DummyModule(gintfc.name, {HG("", Metaface(hintfc), Metaface(gintfc), term)})
         else:
             return False
-    elif hierarchyIdx == Syslib.idx.value:
-        if args[Kernel.idx.value].value > Kernel.ANY.value:
+    elif hierarchyIdx == Syslib.idx:
+        if args[Kernel.idx] > Kernel.ANY: # type: ignore
             DummyModule(gintfc.name, {HG("", Metaface(hintfc), Metaface(gintfc), term)})
         else:
             return False
-    elif hierarchyIdx == Lib.idx.value:
+    elif hierarchyIdx == Lib.idx:
         DummyModule(gintfc.name, {HG("", Metaface(hintfc), Metaface(gintfc), term)})
-    elif hierarchyIdx == Sysapp.idx.value:
+    elif hierarchyIdx == Sysapp.idx:
         DummyModule(gintfc.name, {HG("", Metaface(hintfc), Metaface(gintfc), term)})
-    elif hierarchyIdx == App.idx.value:
+    elif hierarchyIdx == App.idx:
         DummyModule(gintfc.name, {HG("", Metaface(hintfc), Metaface(gintfc), term)})
-    elif hierarchyIdx == Rtlib.idx.value:
+    elif hierarchyIdx == Rtlib.idx:
         DummyModule(gintfc.name, {HG("", Metaface(hintfc), Metaface(gintfc), term)})
-    elif hierarchyIdx == Rtapp.idx.value:
+    elif hierarchyIdx == Rtapp.idx:
         DummyModule(gintfc.name, {HG("", Metaface(hintfc), Metaface(gintfc), term)})
     else:
         warnings.warn("addDummyModule unknown hierarchyIdx %d" % hierarchyIdx)
@@ -868,11 +867,11 @@ def addDummyModulesByIntfc(intfc: Interface) -> None:
     )
 
     # upwards
-    for i in range(toptype.idx.value+1, App.idx.value+1): # [toptype+1, App]
+    for i in range(toptype.idx+1, App.idx+1): # [toptype+1, App]
         if not addDummyModule(args, i):
             break
     # downward
-    for i in reversed(range(Isa.idx.value, toptype.idx.value+1)): # reversed([Isa, toptype])
+    for i in reversed(range(Isa.idx, toptype.idx+1)): # reversed([Isa, toptype])
         if not addDummyModule(args, i):
             break
 
