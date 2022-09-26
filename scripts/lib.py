@@ -1062,7 +1062,7 @@ def outputGnucladCsv(f: typing.TextIO) -> None:
             f.write('\n')
 
 def outputRelplot():
-    import seaborn as sns
+    import seaborn.objects as so
     import matplotlib.pyplot as plt
     types = (Isa, Kernel, Syslib, Lib, Sysapp, App, Rtlib, Rtapp, Src)
     htype_cnt: typing.Dict[type, int] = dict()
@@ -1088,6 +1088,13 @@ def outputRelplot():
         "toptype": list(),
         "name": list(),
     }
+    class HGDataEle(typing.TypedDict):
+        hdate: int
+        gdate: int
+        htoptype: float
+        gtoptype: float
+        name: str
+    hg_data: typing.List[HGDataEle] = list()
     htype_idx: typing.Dict[type, int] = dict()
     gtype_idx: typing.Dict[type, int] = dict()
     _hti: int = 1
@@ -1106,24 +1113,42 @@ def outputRelplot():
                 continue
             # Host/Start
             _herr: float = math.log10(module.hnum())
+            _hidx: int = htype_idx[ht]
             data["date"].append(module.start.toordinal())
-            data["toptype"].append(htype_idx[ht] + _herr/2)
+            data["toptype"].append(_hidx + _herr/2)
             data["name"].append(module.name)
             data["date"].append(module.start.toordinal())
-            data["toptype"].append(htype_idx[ht] - _herr/2)
+            data["toptype"].append(_hidx - _herr/2)
             data["name"].append(module.name)
+            # print("%s\t%s\t%s" %(module.start.toordinal(), ht, module.name))
             htype_idx[ht] += 1
 
             # Guest/Stop
             _gerr: float = math.log10(module.gnum())
+            _gidx: int = gtype_idx[gt]
             data["date"].append(module.stop.toordinal())
-            data["toptype"].append(gtype_idx[gt] + _gerr/2)
+            data["toptype"].append(_gidx + _gerr/2)
             data["name"].append(module.name)
             data["date"].append(module.stop.toordinal())
-            data["toptype"].append(gtype_idx[gt] - _gerr/2)
+            data["toptype"].append(_gidx - _gerr/2)
             data["name"].append(module.name)
+            # print("%s\t%s\t%s" %(module.start.toordinal(), ht, module.name))
             gtype_idx[gt] += 1
-    # for d,t,n in zip(data['date'], data['toptype'], data['name']):
-    #     print("%s\t%s\t%s" %(d,t,n))
-    sns.lineplot(data=data, x='date', y='toptype', hue='name')
-    plt.show()
+            hg_data.append({
+                "hdate": module.start.toordinal(),
+                "gdate": module.stop.toordinal(),
+                "htoptype": _hidx,
+                "gtoptype": _gidx,
+                "name": module.name
+            })
+    plot: so.Plot = so.Plot(data=data, x='date', y='toptype', color='name')
+    plot = plot.add(so.Line(), so.Agg(), legend=False)
+    plot = plot.add(so.Band(), so.Est(), legend=False)
+    f: plt.Figure = plt.figure()
+    plot = plot.on(f)
+    plotter = plot.plot()
+    ax: plt.Axes = f.axes[0]
+    for hg in hg_data:
+        ax.text(hg['hdate'], hg['htoptype'], hg['name'], va='center', ha='right')
+        ax.text(hg['gdate'], hg['gtoptype'], hg['name'], va='center', ha='left')
+    plotter.show()
