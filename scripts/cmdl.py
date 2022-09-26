@@ -22,6 +22,9 @@ parser.add_argument("-j", "--json",
     type=pathlib.Path,
     help = "the output path of json file"
 )
+parser.add_argument("-r", "--rel",
+    action="store_true",
+    help="relplot")
 
 args = parser.parse_args()
 if args.dot:
@@ -36,3 +39,5 @@ if args.json:
     f = open(args.json, "w")
     outputJson(f)
     f.close()
+if args.rel:
+    outputRelplot()

@@ -326,6 +326,19 @@ class Interface:
                 strings += (ele.name,)
         self.name = '-'.join(strings)
 
+    def toptype(self) -> typing.Optional[type]:
+        try:
+            return self._toptype
+        except:
+            self._toptype: typing.Optional[type] = None
+            for ele,ty in zip(\
+                    (self.src, self.rtapp, self.rtlib, self.app, self.sysapp, self.lib, self.syslib, self.kernel, self.isa),\
+                    (     Src,      Rtapp,      Rtlib,      App,      Sysapp,      Lib,      Syslib,      Kernel,      Isa)):
+                if ele > 1: # not NONE
+                    self._toptype = ty
+                    break
+            return self._toptype
+
     def __repr__(self) -> str:
         return self.name
 
@@ -393,6 +406,25 @@ class Metaface():
     @__init__.register
     def _(self, intfcs: set[Interface]):
         self.interfaces: set[Interface] = intfcs
+
+    def toptype(self) -> typing.Optional[type]:
+        try:
+            return self._toptype
+        except:
+            toptypes: typing.Dict[typing.Optional[type], int] = dict()
+            for intfc in self.interfaces:
+                t: typing.Optional[type] = intfc.toptype()
+                if t not in toptypes:
+                    toptypes[t] = 1
+                else:
+                    toptypes[t] += 1
+            maxcnt: int = 0
+            self._toptype: typing.Optional[type] = None
+            for t in toptypes:
+                if toptypes[t] > maxcnt:
+                    self._toptype = t
+                    maxcnt = toptypes[t]
+            return self._toptype
 
     def __hash__(self) -> int:
         val: int = 0;
@@ -696,6 +728,74 @@ class Module:
                     warnings.warn("module %s term %s and %s has same count %d" %
                             (self.name, self.term.name, t.name, maxcnt))
 
+    def _hgtoptype(self) -> None:
+        htoptypes: typing.Dict[typing.Optional[type], int] = dict()
+        gtoptypes: typing.Dict[typing.Optional[type], int] = dict()
+        for hg in self.hgs:
+            ht = hg.h.toptype()
+            if ht not in htoptypes:
+                htoptypes[ht] = 1
+            else:
+                htoptypes[ht] += 1
+            gt = hg.g.toptype()
+            if gt not in gtoptypes:
+                gtoptypes[gt] = 1
+            else:
+                gtoptypes[gt] += 1
+        self._htoptype: typing.Optional[type] = None
+        maxcnt: int = 0
+        for ht in htoptypes:
+            if htoptypes[ht] > maxcnt:
+                self._htoptype = ht
+        self._gtoptype: typing.Optional[type] = None
+        maxcnt = 0
+        for gt in gtoptypes:
+            if gtoptypes[gt] > maxcnt:
+                self._gtoptype = gt
+    def gtoptype(self) -> typing.Optional[type]:
+        try:
+            return self._gtoptype
+        except:
+            self._hgtoptype()
+            try:
+                return self._gtoptype
+            except:
+                raise Exception("gtoptype loop?")
+    def htoptype(self) -> typing.Optional[type]:
+        try:
+            return self._htoptype
+        except:
+            self._hgtoptype()
+            try:
+                return self._htoptype
+            except:
+                raise Exception("htoptype loop?")
+
+    def _hgnum(self) -> None:
+        self._hnum: int = 0
+        self._gnum: int = 0
+        for hg in self.hgs:
+            self._hnum += len(hg.h.interfaces)
+            self._gnum += len(hg.g.interfaces)
+    def hnum(self) -> int:
+        try:
+            return self._hnum
+        except:
+            self._hgnum()
+            try:
+                return self._hnum
+            except:
+                raise Exception("hnum loop?")
+    def gnum(self) -> int:
+        try:
+            return self._gnum
+        except:
+            self._hgnum()
+            try:
+                return self._gnum
+            except:
+                raise Exception("gnum loop?")
+
     def __repr__(self) -> str:
         return self.name
     def __hash__(self) -> int:
@@ -960,3 +1060,70 @@ def outputGnucladCsv(f: typing.TextIO) -> None:
                     rename.rename, rename.date, rename.desc
                 ))
             f.write('\n')
+
+def outputRelplot():
+    import seaborn as sns
+    import matplotlib.pyplot as plt
+    types = (Isa, Kernel, Syslib, Lib, Sysapp, App, Rtlib, Rtapp, Src)
+    htype_cnt: typing.Dict[type, int] = dict()
+    gtype_cnt: typing.Dict[type, int] = dict()
+    for ty in types:
+        htype_cnt[ty] = 1
+        gtype_cnt[ty] = 1
+    for module in modules:
+        if isinstance(module, Transor):
+            ht: typing.Optional[type] = module.htoptype()
+            gt: typing.Optional[type] = module.gtoptype()
+            if ht == None or gt == None:
+                continue
+            htype_cnt[ht] += 1
+            gtype_cnt[gt] += 1
+
+    class Data(typing.TypedDict):
+        date: typing.List[int]
+        toptype: typing.List[float]
+        name: typing.List[str]
+    data: Data = {
+        "date": list(),
+        "toptype": list(),
+        "name": list(),
+    }
+    htype_idx: typing.Dict[type, int] = dict()
+    gtype_idx: typing.Dict[type, int] = dict()
+    _hti: int = 1
+    _gti: int = 1
+    for ty in types:
+        htype_idx[ty] = _hti
+        _hti += htype_cnt[ty] + 1
+        gtype_idx[ty] = _gti
+        _gti += gtype_cnt[ty] + 1
+    import math
+    for module in modules:
+        if isinstance(module, Transor):
+            ht: typing.Optional[type] = module.htoptype()
+            gt: typing.Optional[type] = module.gtoptype()
+            if ht == None or gt == None:
+                continue
+            # Host/Start
+            _herr: float = math.log10(module.hnum())
+            data["date"].append(module.start.toordinal())
+            data["toptype"].append(htype_idx[ht] + _herr/2)
+            data["name"].append(module.name)
+            data["date"].append(module.start.toordinal())
+            data["toptype"].append(htype_idx[ht] - _herr/2)
+            data["name"].append(module.name)
+            htype_idx[ht] += 1
+
+            # Guest/Stop
+            _gerr: float = math.log10(module.gnum())
+            data["date"].append(module.stop.toordinal())
+            data["toptype"].append(gtype_idx[gt] + _gerr/2)
+            data["name"].append(module.name)
+            data["date"].append(module.stop.toordinal())
+            data["toptype"].append(gtype_idx[gt] - _gerr/2)
+            data["name"].append(module.name)
+            gtype_idx[gt] += 1
+    # for d,t,n in zip(data['date'], data['toptype'], data['name']):
+    #     print("%s\t%s\t%s" %(d,t,n))
+    sns.lineplot(data=data, x='date', y='toptype', hue='name')
+    plt.show()
