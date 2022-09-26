@@ -1080,13 +1080,13 @@ def outputRelplot():
             gtype_cnt[gt] += 1
 
     class Data(typing.TypedDict):
-        date: typing.List[int]
-        toptype: typing.List[float]
-        name: typing.List[str]
+        dates: typing.List[int]
+        toptypes: typing.List[float]
+        names: typing.List[str]
     data: Data = {
-        "date": list(),
-        "toptype": list(),
-        "name": list(),
+        "dates": list(),
+        "toptypes": list(),
+        "names": list(),
     }
     class HGDataEle(typing.TypedDict):
         hdate: int
@@ -1114,24 +1114,24 @@ def outputRelplot():
             # Host/Start
             _herr: float = math.log10(module.hnum())
             _hidx: int = htype_idx[ht]
-            data["date"].append(module.start.toordinal())
-            data["toptype"].append(_hidx + _herr/2)
-            data["name"].append(module.name)
-            data["date"].append(module.start.toordinal())
-            data["toptype"].append(_hidx - _herr/2)
-            data["name"].append(module.name)
+            data["dates"].append(module.start.toordinal())
+            data["toptypes"].append(_hidx + _herr/2)
+            data["names"].append(module.name)
+            data["dates"].append(module.start.toordinal())
+            data["toptypes"].append(_hidx - _herr/2)
+            data["names"].append(module.name)
             # print("%s\t%s\t%s" %(module.start.toordinal(), ht, module.name))
             htype_idx[ht] += 1
 
             # Guest/Stop
             _gerr: float = math.log10(module.gnum())
             _gidx: int = gtype_idx[gt]
-            data["date"].append(module.stop.toordinal())
-            data["toptype"].append(_gidx + _gerr/2)
-            data["name"].append(module.name)
-            data["date"].append(module.stop.toordinal())
-            data["toptype"].append(_gidx - _gerr/2)
-            data["name"].append(module.name)
+            data["dates"].append(module.stop.toordinal())
+            data["toptypes"].append(_gidx + _gerr/2)
+            data["names"].append(module.name)
+            data["dates"].append(module.stop.toordinal())
+            data["toptypes"].append(_gidx - _gerr/2)
+            data["names"].append(module.name)
             # print("%s\t%s\t%s" %(module.start.toordinal(), ht, module.name))
             gtype_idx[gt] += 1
             hg_data.append({
@@ -1141,7 +1141,7 @@ def outputRelplot():
                 "gtoptype": _gidx,
                 "name": module.name
             })
-    plot: so.Plot = so.Plot(data=data, x='date', y='toptype', color='name')
+    plot: so.Plot = so.Plot(data=data, x='dates', y='toptypes', color='names')
     plot = plot.add(so.Line(), so.Agg(), legend=False)
     plot = plot.add(so.Band(), so.Est(), legend=False)
     f: plt.Figure = plt.figure()
