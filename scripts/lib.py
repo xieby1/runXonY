@@ -1120,6 +1120,27 @@ def outputRelplot():
         ], color='white' if _cbool else 'gray', alpha=0.2))
         _cbool = not _cbool
 
+    # make sure start and stop position lay in right background band
+    # hg True for h, False for g
+    def trapezoidFix(hg:bool, t:type, x:float, y:float) -> float:
+        xratiol: float = (x-xmin)/(xmax-xmin) # x ratio left
+        xratior: float = (xmax-x)/(xmax-xmin) # x ratio right
+        hc: float = htype_celling[t]
+        hf: float = htype_floor[t]
+        gc: float = gtype_celling[t]
+        gf: float = gtype_floor[t]
+        yratiol: float # y ratio lower
+        yratioh: float # y ratio higher
+        if hg: # h
+            yratiol = (y-hf)/(hc-hf)
+            yratioh = (hc-y)/(hc-hf)
+        else: # g
+            yratiol = (y-gf)/(gc-gf)
+            yratioh = (gc-y)/(gc-gf)
+        lc: float = xratior*hc + xratiol*gc # local celling
+        lf: float = xratior*hf + xratiol*gf # local floor
+        return yratioh*lf + yratiol*lc
+
     import math
     for module in modules:
         if isinstance(module, Transor):
@@ -1143,14 +1164,16 @@ def outputRelplot():
             gtype_idx[gt] += 1
 
             # add transor band
+            _yh: float = trapezoidFix(True, ht, _xh, _hidx)
+            _yg: float = trapezoidFix(False, gt, _xg, _gidx)
             ax.add_patch(plt.Polygon([
-                (_xh, _hidx - _herr/2), (_xh, _hidx + _herr/2),
-                (_xg, _gidx + _gerr/2), (_xg, _gidx - _gerr/2),
+                (_xh, _yh - _herr/2), (_xh, _yh + _herr/2),
+                (_xg, _yg + _gerr/2), (_xg, _yg - _gerr/2),
             ], color=module.color, alpha=0.4))
 
             # add text
-            ax.text(_xh, _hidx, module.name, va='center', ha='right', color=module.color)
-            ax.text(_xg, _gidx, module.name, va='center', ha='left',  color=module.color)
+            ax.text(_xh, _yh, module.name, va='center', ha='right', color=module.color)
+            ax.text(_xg, _yg, module.name, va='center', ha='left',  color=module.color)
 
     # x axis
     years: typing.List[int] = list(range(Date.fromordinal(xmin).year, Date.fromordinal(xmax).year + 1))
