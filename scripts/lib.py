@@ -1120,7 +1120,7 @@ def outputRelplot():
             data["dates"].append(module.start.toordinal())
             data["toptypes"].append(_hidx - _herr/2)
             data["names"].append(module.name)
-            # print("%s\t%s\t%s" %(module.start.toordinal(), ht, module.name))
+            #print("%s\t%s\t%s" %(module.start.toordinal(), ht, module.name))
             htype_idx[ht] += 1
 
             # Guest/Stop
@@ -1132,7 +1132,7 @@ def outputRelplot():
             data["dates"].append(module.stop.toordinal())
             data["toptypes"].append(_gidx - _gerr/2)
             data["names"].append(module.name)
-            # print("%s\t%s\t%s" %(module.start.toordinal(), ht, module.name))
+            #print("%s\t%s\t%s" %(module.start.toordinal(), gt, module.name))
             gtype_idx[gt] += 1
             hg_data.append({
                 "hdate": module.start.toordinal(),
