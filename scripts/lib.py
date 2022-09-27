@@ -1062,11 +1062,16 @@ def outputGnucladCsv(f: typing.TextIO) -> None:
             f.write('\n')
 
 def outputRelplot():
-    import seaborn.objects as so
     import matplotlib.pyplot as plt
+    f: plt.Figure
+    ax: plt.Axes
+    f, ax = plt.subplots()
+
     types = (Isa, Kernel, Syslib, Lib, Sysapp, App, Rtlib, Rtapp, Src)
     htype_cnt: typing.Dict[type, int] = dict()
     gtype_cnt: typing.Dict[type, int] = dict()
+    xmin: int = Date.today().toordinal()
+    xmax: int = 0
     for ty in types:
         htype_cnt[ty] = 1
         gtype_cnt[ty] = 1
@@ -1078,23 +1083,13 @@ def outputRelplot():
                 continue
             htype_cnt[ht] += 1
             gtype_cnt[gt] += 1
+            _xh = module.start.toordinal()
+            if _xh < xmin:
+                xmin = _xh
+            _xg = module.stop.toordinal()
+            if _xg > xmax:
+                xmax = _xg
 
-    class Data(typing.TypedDict):
-        dates: typing.List[int]
-        toptypes: typing.List[float]
-        names: typing.List[str]
-    data: Data = {
-        "dates": list(),
-        "toptypes": list(),
-        "names": list(),
-    }
-    class HGDataEle(typing.TypedDict):
-        hdate: int
-        gdate: int
-        htoptype: float
-        gtoptype: float
-        name: str
-    hg_data: typing.List[HGDataEle] = list()
     htype_idx: typing.Dict[type, int] = dict()
     gtype_idx: typing.Dict[type, int] = dict()
     _hti: int = 1
@@ -1104,6 +1099,25 @@ def outputRelplot():
         _hti += htype_cnt[ty] + 1
         gtype_idx[ty] = _gti
         _gti += gtype_cnt[ty] + 1
+
+    # draw background bands
+    _hlower: float = 0
+    _glower: float = 0
+    _cbool: bool = True
+    ymax: float = 0
+    for hi, gi in zip(htype_idx.values(), gtype_idx.values()):
+        ax.add_patch(plt.Polygon([
+            (xmin, _hlower), (xmin, hi),
+            (xmax, gi), (xmax, _glower),
+        ], color='white' if _cbool else 'gray', alpha=0.2))
+        _hlower = hi
+        _glower = gi
+        _cbool = not _cbool
+        if hi > ymax:
+            ymax = hi
+        if gi > ymax:
+            ymax = gi
+
     import math
     for module in modules:
         if isinstance(module, Transor):
@@ -1111,60 +1125,31 @@ def outputRelplot():
             gt: typing.Optional[type] = module.gtoptype()
             if ht == None or gt == None:
                 continue
-            # Host/Start
+
+            # prepare data
+            ## Host/Start
             _herr: float = math.log10(module.hnum())
             _hidx: int = htype_idx[ht]
-            data["dates"].append(module.start.toordinal())
-            data["toptypes"].append(_hidx + _herr/2)
-            data["names"].append(module.name)
-            data["dates"].append(module.start.toordinal())
-            data["toptypes"].append(_hidx - _herr/2)
-            data["names"].append(module.name)
+            _xh = module.start.toordinal()
             #print("%s\t%s\t%s" %(module.start.toordinal(), ht, module.name))
             htype_idx[ht] += 1
-
-            # Guest/Stop
+            ## Guest/Stop
             _gerr: float = math.log10(module.gnum())
             _gidx: int = gtype_idx[gt]
-            data["dates"].append(module.stop.toordinal())
-            data["toptypes"].append(_gidx + _gerr/2)
-            data["names"].append(module.name)
-            data["dates"].append(module.stop.toordinal())
-            data["toptypes"].append(_gidx - _gerr/2)
-            data["names"].append(module.name)
+            _xg = module.stop.toordinal()
             #print("%s\t%s\t%s" %(module.start.toordinal(), gt, module.name))
             gtype_idx[gt] += 1
-            hg_data.append({
-                "hdate": module.start.toordinal(),
-                "gdate": module.stop.toordinal(),
-                "htoptype": _hidx,
-                "gtoptype": _gidx,
-                "name": module.name
-            })
-    plot: so.Plot = so.Plot(data=data, x='dates', y='toptypes', color='names')
-    plot = plot.add(so.Line(), so.Agg(), legend=False)
-    plot = plot.add(so.Band(), so.Est(), legend=False)
-    f: plt.Figure = plt.figure()
-    plot = plot.on(f)
-    plotter = plot.plot()
-    ax: plt.Axes = f.axes[0]
 
-    # draw background bands
-    _bdx1: int = min(data['dates'])
-    _bdx2: int = max(data['dates'])
-    _hlower: float = 0
-    _glower: float = 0
-    _cbool: bool = True
-    for hi, gi in zip(htype_idx.values(), gtype_idx.values()):
-        ax.add_patch(plt.Polygon([
-            (_bdx1, _hlower), (_bdx1, hi),
-            (_bdx2, gi), (_bdx2, _glower),
-        ], color='white' if _cbool else 'gray', alpha=0.3))
-        _hlower = hi
-        _glower = gi
-        _cbool = not _cbool
+            # add transor band
+            ax.add_patch(plt.Polygon([
+                (_xh, _hidx - _herr/2), (_xh, _hidx + _herr/2),
+                (_xg, _gidx + _gerr/2), (_xg, _gidx - _gerr/2),
+            ], color=module.color, alpha=0.5))
 
-    for hg in hg_data:
-        ax.text(hg['hdate'], hg['htoptype'], hg['name'], va='center', ha='right', color=hg['name'])
-        ax.text(hg['gdate'], hg['gtoptype'], hg['name'], va='center', ha='left',  color=hg['name'])
-    plotter.show()
+            # add text
+            ax.text(_xh, _hidx, module.name, va='center', ha='right', color=module.color)
+            ax.text(_xg, _gidx, module.name, va='center', ha='left',  color=module.color)
+
+
+    ax.set(xlim=(xmin, xmax), ylim=(0, ymax))
+    plt.show()
