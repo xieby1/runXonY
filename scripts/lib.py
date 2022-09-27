@@ -1092,31 +1092,33 @@ def outputRelplot():
 
     htype_idx: typing.Dict[type, int] = dict()
     gtype_idx: typing.Dict[type, int] = dict()
-    _hti: int = 1
-    _gti: int = 1
+    htype_floor: typing.Dict[type, int] = dict()
+    gtype_floor: typing.Dict[type, int] = dict()
+    htype_celling: typing.Dict[type, int] = dict()
+    gtype_celling: typing.Dict[type, int] = dict()
+    _htf: int = 0
+    _gtf: int = 0
     for ty in types:
-        htype_idx[ty] = _hti
-        _hti += htype_cnt[ty] + 1
-        gtype_idx[ty] = _gti
-        _gti += gtype_cnt[ty] + 1
+        htype_floor[ty] = _htf
+        htype_idx[ty] = _htf + 1
+        _htf += htype_cnt[ty] + 1
+        htype_celling[ty] = _htf
+
+        gtype_floor[ty] = _gtf
+        gtype_idx[ty] = _gtf + 1
+        _gtf += gtype_cnt[ty] + 1
+        gtype_celling[ty] = _gtf
+
+    ymax: float = gtype_celling[types[len(types)-1]] # last element of gtype_celling
 
     # draw background bands
-    _hlower: float = 0
-    _glower: float = 0
     _cbool: bool = True
-    ymax: float = 0
-    for hi, gi in zip(htype_idx.values(), gtype_idx.values()):
+    for hf, gf, hc, gc in zip(htype_floor.values(), gtype_floor.values(), htype_celling.values(), gtype_celling.values()):
         ax.add_patch(plt.Polygon([
-            (xmin, _hlower-1), (xmin, hi-1),
-            (xmax, gi-1), (xmax, _glower-1),
+            (xmin, hf), (xmin, hc),
+            (xmax, gc), (xmax, gf),
         ], color='white' if _cbool else 'gray', alpha=0.2))
-        _hlower = hi
-        _glower = gi
         _cbool = not _cbool
-        if hi > ymax:
-            ymax = hi
-        if gi > ymax:
-            ymax = gi
 
     import math
     for module in modules:
