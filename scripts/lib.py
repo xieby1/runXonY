@@ -1148,7 +1148,23 @@ def outputRelplot():
     plot = plot.on(f)
     plotter = plot.plot()
     ax: plt.Axes = f.axes[0]
+
+    # draw background bands
+    _bdx1: int = min(data['dates'])
+    _bdx2: int = max(data['dates'])
+    _hlower: float = 0
+    _glower: float = 0
+    _cbool: bool = True
+    for hi, gi in zip(htype_idx.values(), gtype_idx.values()):
+        ax.add_patch(plt.Polygon([
+            (_bdx1, _hlower), (_bdx1, hi),
+            (_bdx2, gi), (_bdx2, _glower),
+        ], color='white' if _cbool else 'gray', alpha=0.3))
+        _hlower = hi
+        _glower = gi
+        _cbool = not _cbool
+
     for hg in hg_data:
-        ax.text(hg['hdate'], hg['htoptype'], hg['name'], va='center', ha='right')
-        ax.text(hg['gdate'], hg['gtoptype'], hg['name'], va='center', ha='left')
+        ax.text(hg['hdate'], hg['htoptype'], hg['name'], va='center', ha='right', color=hg['name'])
+        ax.text(hg['gdate'], hg['gtoptype'], hg['name'], va='center', ha='left',  color=hg['name'])
     plotter.show()
