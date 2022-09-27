@@ -1150,6 +1150,20 @@ def outputRelplot():
             ax.text(_xh, _hidx, module.name, va='center', ha='right', color=module.color)
             ax.text(_xg, _gidx, module.name, va='center', ha='left',  color=module.color)
 
+    # x axis
+    years: typing.List[int] = list(range(Date.fromordinal(xmin).year, Date.fromordinal(xmax).year + 1))
+    xs: typing.List[int] = list(map(lambda y: Date(y).toordinal(), years))
+    ax.xaxis.set_ticks(xs, years, rotation=90)
+    # y axis
+    ## host
+    ys: typing.List[float] = list(map(lambda l,h: (l+h)/2+1, [0]+list(htype_idx.values()), htype_idx.values()))
+    names: typing.List[str] = list(map(lambda t: t.__name__, types))
+    ax.yaxis.set_ticks(ys, names)
+    ## guest
+    ax1: plt.Axes = ax.twinx()
+    ys1: typing.List[float] = list(map(lambda l,h: (l+h)/2+1, [0]+list(gtype_idx.values()), gtype_idx.values()))
+    ax1.yaxis.set_ticks(ys1, names)
 
     ax.set(xlim=(xmin, xmax), ylim=(0, ymax))
+    ax1.set(xlim=(xmin, xmax), ylim=(0, ymax))
     plt.show()
