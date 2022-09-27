@@ -1089,6 +1089,7 @@ def outputRelplot():
             _xg = module.stop.toordinal()
             if _xg > xmax:
                 xmax = _xg
+    xmin -= 365
 
     htype_idx: typing.Dict[type, int] = dict()
     gtype_idx: typing.Dict[type, int] = dict()
@@ -1180,15 +1181,9 @@ def outputRelplot():
     xs: typing.List[int] = list(map(lambda y: Date(y).toordinal(), years))
     ax.xaxis.set_ticks(xs, years, rotation=90)
     # y axis
-    ## host
     ys: typing.List[float] = list(map(lambda l,h: (l+h)/2+1, [0]+list(htype_idx.values()), htype_idx.values()))
     names: typing.List[str] = list(map(lambda t: t.__name__, types))
     ax.yaxis.set_ticks(ys, names)
-    ## guest
-    ax1: plt.Axes = ax.twinx()
-    ys1: typing.List[float] = list(map(lambda l,h: (l+h)/2+1, [0]+list(gtype_idx.values()), gtype_idx.values()))
-    ax1.yaxis.set_ticks(ys1, names)
 
     ax.set(xlim=(xmin, xmax), ylim=(0, ymax))
-    ax1.set(xlim=(xmin, xmax), ylim=(0, ymax))
     plt.show()
