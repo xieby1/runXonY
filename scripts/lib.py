@@ -1107,8 +1107,8 @@ def outputRelplot():
     ymax: float = 0
     for hi, gi in zip(htype_idx.values(), gtype_idx.values()):
         ax.add_patch(plt.Polygon([
-            (xmin, _hlower), (xmin, hi),
-            (xmax, gi), (xmax, _glower),
+            (xmin, _hlower-1), (xmin, hi-1),
+            (xmax, gi-1), (xmax, _glower-1),
         ], color='white' if _cbool else 'gray', alpha=0.2))
         _hlower = hi
         _glower = gi
@@ -1144,7 +1144,7 @@ def outputRelplot():
             ax.add_patch(plt.Polygon([
                 (_xh, _hidx - _herr/2), (_xh, _hidx + _herr/2),
                 (_xg, _gidx + _gerr/2), (_xg, _gidx - _gerr/2),
-            ], color=module.color, alpha=0.5))
+            ], color=module.color, alpha=0.4))
 
             # add text
             ax.text(_xh, _hidx, module.name, va='center', ha='right', color=module.color)
