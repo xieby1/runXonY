@@ -313,7 +313,19 @@ class Interface:
         self.isa    = isa
         self.up     = up
         self.kernel = kernel
-        self.syslib = syslib
+        if syslib == Syslib.DEFAULT:
+            if kernel ==        Kernel.LINUX:
+                self.syslib =   Syslib.LINUX
+            elif kernel ==      Kernel.BSD:
+                self.syslib =   Syslib.BSD
+            elif kernel ==      Kernel.MACOS:
+                self.syslib =   Syslib.MACOS
+            elif kernel ==      Kernel.WINDOWS:
+                self.syslib =   Syslib.WINDOWS
+            else:
+                self.syslib = syslib
+        else:
+            self.syslib = syslib
         self.lib    = lib
         self.sysapp = sysapp
         self.app    = app

@@ -280,11 +280,11 @@ Dynamo = Transor("Dynamo",
 # TODO: Android
 Transor("DynamoRIO",
     {  HG('-'.join((kernel.name, isa.name)),
-        Metaface(IsasUSR({isa}), {kernel}, {syslib}, {Lib.ANY}),
+        Metaface(IsasUSR({isa}), {kernel}, {Syslib.DEFAULT}, {Lib.ANY}),
         Metaface(IsasUSR({isa}), {kernel}),
         term=Term.I_O,
     ) for isa in [Isa.X86, Isa.X86_64, Isa.ARM32, Isa.AARCH64]
-      for kernel, syslib in zip([Kernel.WINDOWS, Kernel.LINUX, Kernel.MACOS], [Syslib.WINDOWS, Syslib.LINUX, Syslib.MACOS])},
+      for kernel in [Kernel.WINDOWS, Kernel.LINUX, Kernel.MACOS]},
     Date(2000), Date.today(), dev=Dev.HP,
     desc="https://dynamorio.org/index.html",
     parent=Dynamo,
@@ -391,13 +391,12 @@ Transor("Tarmac",
 Isa_DOSBOXs = {Isa.X86_64, Isa.X86, Isa.MIPS32, Isa.ARM32, Isa.POWERPC}
 Transor("DOSBox",
     {  HG("",
-        Metaface(IsasUSR(isas), {kernel}, {syslib}, {Lib.ANY}),
+        Metaface(IsasUSR(isas), {kernel}, {Syslib.DEFAULT}, {Lib.ANY}),
         Metaface({(Isa.X86, Up.USR_PVL)}),
         term=Term.V2B,
-    ) for isas,kernel,syslib in zip(
+    ) for isas,kernel in zip(
         [Isa_MODERN_WINDOWSs, Isa_MODERN_MACOSs, Isa_LINUXs, Isa_BSDs],
-        [Kernel.WINDOWS, Kernel.MACOS, Kernel.LINUX, Kernel.BSD],
-        [Syslib.WINDOWS, Syslib.MACOS, Syslib.LINUX, Syslib.BSD])},
+        [Kernel.WINDOWS, Kernel.MACOS, Kernel.LINUX, Kernel.BSD])},
     Date(2002), Date.today(), "#113466",
     desc="https://sourceforge.net/projects/dosbox/",
 )
@@ -437,12 +436,9 @@ Isa_QEMU_user_gs: set[Isa] = {
 }
 Transor("IA-32 EL",
     {  HG("",
-        Metaface({(Isa.IA64, Up.USR)}, {kernel}, {syslib}, {Lib.ANY}),
+        Metaface({(Isa.IA64, Up.USR)}, {kernel}, {Syslib.DEFAULT}, {Lib.ANY}),
         Metaface({(Isa.IA32, Up.USR)}, {kernel}),
-    ) for kernel,syslib in zip(
-        [Kernel.LINUX, Kernel.WINDOWS],
-        [Syslib.LINUX, Syslib.WINDOWS]
-    )},
+    ) for kernel in [Kernel.LINUX, Kernel.WINDOWS]},
     Date(2003), Date.today(),
 )
 # TODO:
@@ -537,17 +533,13 @@ Transor("skyeye",
     '''
 )
 
-Transor("bsnes", set(
-    HG("",
-        Metaface({(Isa.X86_64, Up.USR)}, {kernel}, {syslib}, {Lib.ANY}),
+Transor("bsnes",
+    { HG("",
+        Metaface({(Isa.X86_64, Up.USR)}, {Kernel.WINDOWS, Kernel.LINUX, Kernel.MACOS, Kernel.BSD}, {Syslib.DEFAULT}, {Lib.ANY}),
         # TODO: Too many old chips!!!
         Metaface(),
-    )
-        for kernel, syslib in zip(\
-            (Kernel.WINDOWS, Kernel.LINUX, Kernel.MACOS, Kernel.BSD),\
-            (Syslib.WINDOWS, Syslib.LINUX, Syslib.MACOS, Syslib.BSD))
-    ),
-    Date(2004,10,14), Date.today(), "#DC1212", 
+    )},
+    Date(2004,10,14), Date.today(), "#DC1212",
     desc='''
         https://higan.dev/about
         https://github.com/higan-emu/higan/tree/master/higan/component/processor
@@ -557,12 +549,10 @@ Transor("bsnes", set(
 
 Transor("Pin", set(
     HG("",
-        Metaface({(Isa.X86, Up.USR)}, {kernel}, {syslib}, {Lib.ANY}),
+        Metaface({(Isa.X86, Up.USR)}, {kernel}, {Syslib.DEFAULT}, {Lib.ANY}),
         Metaface({(Isa.X86, Up.USR)}, {kernel}),
     )
-    for kernel, syslib in zip(\
-            (Kernel.LINUX, Kernel.WINDOWS, Kernel.MACOS),\
-            (Syslib.LINUX, Syslib.WINDOWS, Syslib.MACOS))),
+    for kernel in (Kernel.LINUX, Kernel.WINDOWS, Kernel.MACOS)),
     Date(2005), Date.today(), dev=Dev.INTEL, term=Term.INSTRUMENTER,
     feat="PinCRT",
     desc='''
