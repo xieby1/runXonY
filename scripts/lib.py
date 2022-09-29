@@ -699,6 +699,16 @@ class Rename:
         self.date: Date = date
         self.desc: str = desc
 
+class Connector:
+    def __init__(self,
+            transor: Transor,
+            start: Date,
+            stop: Date = Date(),
+            ) -> None:
+        self.transor: Transor = transor
+        self.start: Date = start
+        self.stop: Date = stop if stop>=start else start
+
 class Module:
     def __init__(self,
             name: str,
@@ -847,6 +857,7 @@ class Transor(Module):
             desc: str = '',
             parent: typing.Optional[Transor] = None,
             renames: list[Rename] = list(),
+            connectors: list[Connector] = list(),
             ) -> None:
         self.start = start
         if stop < start:
@@ -860,6 +871,7 @@ class Transor(Module):
         self.desc = fixMultiLineString(desc)
         self.parent = parent
         self.renames = renames
+        self.connectors = connectors
         super().__init__(name, hgs, term=term)
 
 # return True for added, False for not add
@@ -1075,6 +1087,11 @@ def outputGnucladCsv(f: typing.TextIO) -> None:
                     rename.rename, rename.date, rename.desc
                 ))
             f.write('\n')
+            for conn in module.connectors:
+                f.write('"%s","%s","%s","%s","%s","%s","%s"\n' % (
+                "C", conn.start, conn.transor.name,
+                conn.stop, module.name, 2, module.color,
+            ))
 
 def outputRelplot():
     import matplotlib.pyplot as plt

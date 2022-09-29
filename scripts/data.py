@@ -297,7 +297,7 @@ Transor("VMware Workstation",
     )},
     Date(1999,5,15), Date.today(), "#F38C00", dev=Dev.VMWARE,
 )
-Transor("Win4Lin",
+Win4Lin = Transor("Win4Lin",
     {  HG("",
         Metaface({(Isa.X86, Up.USR)}, {Kernel.LINUX}, {Syslib.LINUX}, {Lib.ANY}),
         Metaface({(Isa.X86, Up.USR_PVL)})
@@ -471,7 +471,7 @@ QEMU_user = Transor("QEMU-user",
     Date(2003,2), Date.today(), "#F60", "IR",
     desc="2005: QEMU, a Fast and Portable Dynamic Translator",
 )
-Transor("QEMU-sys",
+QEMU_sys = Transor("QEMU-sys",
     {  HG(Kernel.LINUX.name,
         Metaface(IsasUSR(Isa_QEMU_user_hs) & IsasUSR(Isa_LINUXs), {Kernel.LINUX}, {Syslib.LINUX}, {Lib.ANY}),
         Metaface(IsasUSR_PVL(Isa_QEMU_user_gs)),
@@ -560,5 +560,14 @@ Transor("Pin", set(
     ''',
 )
 
+Transor("Win4Lin Pro",
+    {  HG("",
+        Metaface(),
+        Metaface(),
+    )},
+    Date(2005), Date(2010,3), parent=Win4Lin,
+    desc="https://en.wikipedia.org/wiki/Win4Lin",
+    connectors=[Connector(QEMU_sys, Date(2005))]
+)
 # Lastly, add dummy modules after all modules are added
 addDummyModules()
