@@ -279,6 +279,8 @@ class Dev(enum.IntEnum):
     SpecOps_Labs = SPECOPS_LABS = enum.auto()
     WCG_LAB = enum.auto()
     Intel = INTEL = enum.auto()
+    Falling_Leaf_System = FALLING_LEAF_SYSTEM = enum.auto()
+    Apple = APPLE = enum.auto()
 
 hierarchy: dict[int, type] = {
     Isa.idx: Isa,

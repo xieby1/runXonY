@@ -34,12 +34,13 @@ Module(Kernel.LINUX.name, set(
 for isa in Isa_LINUXs))
 
 # https://www.freebsd.org/platforms/
-Isa_BSDs: set[Isa] = \
+Isa_FreeBSDs: set[Isa] = \
     Isa_X86_64s | Isa_X86s | {Isa.AARCH64, Isa.ARM} | \
     Isa_ARMV6s | Isa_ARMV7s | Isa_MIPS64s | Isa_POWERPC64s | \
     Isa_RISCV64s | Isa_SPARC64s
 # https://www.openbsd.org/plat.html
-Isa_BSDs |= {Isa.ALPHA, Isa.HPPA}
+Isa_OpenBSDs: set[Isa] = Isa_FreeBSDs | {Isa.ALPHA, Isa.HPPA}
+Isa_BSDs: set[Isa] = Isa_FreeBSDs | Isa_OpenBSDs
 Module(Kernel.BSD.name, set(
     HG(isa.name, Metaface({(isa, Up.USR_PVL)}), Metaface({(isa, Up.USR)}, {Kernel.BSD}))
 for isa in Isa_BSDs))
@@ -510,7 +511,7 @@ Transor("Project David",
     parent=WINE,
 )
 
-Transor("Digital Bridge",
+Digital_Bridge = Transor("Digital Bridge",
     {  HG("",
         Metaface({(Isa.MIPS32, Up.USR)}, {Kernel.LINUX}, {Syslib.LINUX}, {Lib.ANY}),
         Metaface({(Isa.X86, Up.USR)}, {Kernel.LINUX}, {Syslib.LINUX}, {Lib.ANY}),
@@ -568,6 +569,63 @@ Transor("Win4Lin Pro",
     Date(2005), Date(2010,3), parent=Win4Lin,
     desc="https://en.wikipedia.org/wiki/Win4Lin",
     connectors=[Connector(QEMU_sys, Date(2005))]
+)
+
+Transor("Intel VT", set(  HG("",
+        Metaface({(isa, Up.USR_PVL)}),
+        Metaface({(isa, Up.USR_PVL)}),
+    )
+    for isa in (Isa.X86, Isa.X86_64)),
+    Date(2006), Date.today(), "#0071C5", dev=Dev.INTEL,
+    desc="Intel ® Virtualization Technology: Hardware Support for Efficient Processor Virtualization",
+)
+
+Transor("Alky",
+    {  HG("",
+        Metaface({(Isa.X86, Up.USR)}, {Kernel.LINUX, Kernel.MACOS}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface({(Isa.X86, Up.USR)}, {Kernel.NO_SYSCALL}, {Syslib.WINDOWS}),
+    )},
+    Date(2006), Date(2008,1), license="LGPL", dev=Dev.FALLING_LEAF_SYSTEM,
+    feat='''
+        OpenGL static converter,
+        written in python,
+        LibAlky is DX10 runtime only work on WinXP
+    '''
+)
+
+Transor("Digital Bridge 2",
+    {  HG("",
+        Metaface({(Isa.MIPS32, Up.USR)}, {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface({(Isa.X86, Up.USR)}, {Kernel.LINUX}),
+    )},
+    Date(2006), parent=Digital_Bridge, dev=Dev.WCG_LAB,
+    feat='''
+        Dynamic + static bt
+        lib wrapper
+    ''',
+    desc="2006: 二进制翻译中的库函数处理",
+)
+
+Transor("Linuxulator", set(
+    HG(isa.name,
+        Metaface({(isa, Up.USR)}, {Kernel.BSD}),
+        Metaface({(isa, Up.USR)}, {Kernel.LINUX}),
+    )
+    for isa in Isa_FreeBSDs),
+    Date(2006), Date.today(),
+    desc='''
+        Mail from wine-devel: 2004-August.txt: 26171: `kernel compatibility layer`
+        2006: Linux emulation in FreeBSD
+    '''
+)
+
+Transor("Rosetta",
+    {  HG("",
+        Metaface({(Isa.X86, Up.USR)}, {Kernel.MACOS}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface({(Isa.POWERPC, Up.USR)}, {Kernel.MACOS}),
+    )},
+    Date(2006), Date(2011), "#525152", dev=Dev.APPLE,
+    desc="https://en.wikipedia.org/wiki/Rosetta_%28software%29",
 )
 # Lastly, add dummy modules after all modules are added
 addDummyModules()
