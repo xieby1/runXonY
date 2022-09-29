@@ -276,6 +276,9 @@ class Dev(enum.IntEnum):
     HP = enum.auto()
     TransGaming_Nvidia = TRANSGAMING_NVIDIA = enum.auto()
     Transitive_Apple = TRANSITIVE_APPLE = enum.auto()
+    SpecOps_Labs = SPECOPS_LABS = enum.auto()
+    WCG_LAB = enum.auto()
+    Intel = INTEL = enum.auto()
 
 hierarchy: dict[int, type] = {
     Isa.idx: Isa,

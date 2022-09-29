@@ -500,7 +500,75 @@ Transor("QEMU-sys",
     ''',
 )
 
+Transor("Project David",
+    {  HG("",
+        Metaface(),
+        Metaface(),
+    )},
+    Date(2004), Date(2004), dev=Dev.SPECOPS_LABS,
+    desc='''
+        Mail from wine-devel: 2004-April.txt: project David
+        Turbo Linux: https://web.archive.org/web/20051201013454/http://digital.hmx.net/02contents/pc/linux/fuji.shtml
+        http://www.specopslabs.com/david.htm
+    ''',
+    parent=WINE,
+)
 
+Transor("Digital Bridge",
+    {  HG("",
+        Metaface({(Isa.MIPS32, Up.USR)}, {Kernel.LINUX}, {Syslib.LINUX}, {Lib.ANY}),
+        Metaface({(Isa.X86, Up.USR)}, {Kernel.LINUX}, {Syslib.LINUX}, {Lib.ANY}),
+    )},
+    Date(2004), Date(2006), dev=Dev.WCG_LAB, feat="Dynamic + static bt",
+    desc='''
+        2005: 优化动态二进制翻译器DigitalBridge
+    ''',
+)
+
+Transor("skyeye",
+    {  HG("",
+        Metaface(),
+        Metaface(),
+    )},
+    Date(2004,5,26), Date(2013,5,2),
+    desc='''
+        https://sourceforge.net/projects/skyeye/files/skyeye/
+        git://skyeye.git.sourceforge.net/gitroot/skyeye/skyeye
+    '''
+)
+
+Transor("bsnes", set(
+    HG("",
+        Metaface({(Isa.X86_64, Up.USR)}, {kernel}, {syslib}, {Lib.ANY}),
+        # TODO: Too many old chips!!!
+        Metaface(),
+    )
+        for kernel, syslib in zip(\
+            (Kernel.WINDOWS, Kernel.LINUX, Kernel.MACOS, Kernel.BSD),\
+            (Syslib.WINDOWS, Syslib.LINUX, Syslib.MACOS, Syslib.BSD))
+    ),
+    Date(2004,10,14), Date.today(), "#DC1212", 
+    desc='''
+        https://higan.dev/about
+        https://github.com/higan-emu/higan/tree/master/higan/component/processor
+    ''',
+    renames=[Rename("higan", Date(2012,8,9))],
+)
+
+Transor("Pin", set(
+    HG("",
+        Metaface({(Isa.X86, Up.USR)}, {kernel}, {syslib}, {Lib.ANY}),
+        Metaface({(Isa.X86, Up.USR)}, {kernel}),
+    )
+    for kernel, syslib in zip(\
+            (Kernel.LINUX, Kernel.WINDOWS, Kernel.MACOS),\
+            (Syslib.LINUX, Syslib.WINDOWS, Syslib.MACOS))),
+    Date(2005), Date.today(), dev=Dev.INTEL, term=Term.INSTRUMENTER,
+    feat="PinCRT",
+    desc='''
+        2005: Pin: Building Customized Program Analysis Tools with Dynamic Instrumentation
+    ''',
+)
 
 # Lastly, add dummy modules after all modules are added
 addDummyModules()
