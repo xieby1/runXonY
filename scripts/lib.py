@@ -164,6 +164,11 @@ class Up(enum.IntEnum):
     USR_PVL = USER_PRIVILEGE = enum.auto()
     END = enum.auto()
     idx = 0
+# dummy class for convenient when calculating toptype
+class Usr(enum.IntEnum):
+    pass
+class UsrPvl(enum.IntEnum):
+    pass
 
 class Isa(enum.IntEnum):
     NONE = enum.auto()
@@ -366,11 +371,16 @@ class Interface:
         except:
             self._toptype: typing.Optional[type] = None
             for ele,ty in zip(\
-                    (self.src, self.rtapp, self.rtlib, self.app, self.sysapp, self.lib, self.syslib, self.kernel, self.isa),\
-                    (     Src,      Rtapp,      Rtlib,      App,      Sysapp,      Lib,      Syslib,      Kernel,      Isa)):
+                    (self.src, self.rtapp, self.rtlib, self.app, self.sysapp, self.lib, self.syslib, self.kernel),\
+                    (     Src,      Rtapp,      Rtlib,      App,      Sysapp,      Lib,      Syslib,      Kernel)):
                 if ele > 1: # not NONE
                     self._toptype = ty
                     break
+            if self._toptype == None:
+                if self.up == Up.USR:
+                    self._toptype = Usr
+                elif self.up == Up.USR_PVL:
+                    self._toptype = UsrPvl
             return self._toptype
 
     def __repr__(self) -> str:
@@ -1115,15 +1125,14 @@ def outputGnucladCsv(f: typing.TextIO) -> None:
         2, conn.startTransor.color,
     ))
 
-# TODO: distinguish isa-USR and isa-USR_PVL
-# TODO: make guest(left) and host(right) axis same scale
+# TODO: neccessary? make guest(left) and host(right) axis same scale
 def outputRelplot():
     import matplotlib.pyplot as plt
     f: plt.Figure
     ax: plt.Axes
     f, ax = plt.subplots()
 
-    types = (Isa, Kernel, Syslib, Lib, Sysapp, App, Rtlib, Rtapp, Src)
+    types = (UsrPvl, Usr, Kernel, Syslib, Lib, Sysapp, App, Rtlib, Rtapp, Src)
     htype_cnt: typing.Dict[type, int] = dict()
     gtype_cnt: typing.Dict[type, int] = dict()
     xmin: int = Date.today().toordinal()
