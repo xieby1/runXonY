@@ -216,7 +216,6 @@ Transor("VEST",
     Date(1993), dev=Dev.DIGITAL,
     desc="1993: Binary Translation by Richard L. Sites",
 )
-# TODO: Android
 Kernel_WINEs_str: set[str] = {Kernel.LINUX.name, Kernel.MACOS.name, Kernel.BSD.name}
 Kernel_WINEs: set[Kernel] = set(Kernel[name] for name in Kernel_WINEs_str)
 Syslib_WINEs: set[Syslib] = set(Syslib[name] for name in Kernel_WINEs_str)
@@ -539,6 +538,7 @@ skyeye = Transor("skyeye",
     '''
 )
 
+# TODO: non-general, game
 Transor("bsnes",
     { HG("",
         Metaface({(Isa.X86_64, Up.USR)}, {Kernel.WINDOWS, Kernel.LINUX, Kernel.MACOS, Kernel.BSD}, {Syslib.DEFAULT}, {Lib.ANY}),
@@ -633,6 +633,7 @@ Transor("Rosetta",
     desc="https://en.wikipedia.org/wiki/Rosetta_%28software%29",
 )
 
+# TODO: non-general, game
 Transor("DeSmuME",
     {  HG("",
         Metaface(IsasUSR({Isa.X86, Isa.X86_64}), {Kernel.WINDOWS, Kernel.LINUX, Kernel.MACOS}, {Syslib.DEFAULT}, {Lib.ANY}),
@@ -753,6 +754,19 @@ Transor("Denver",
     desc="https://en.wikipedia.org/wiki/Project_Denver",
 )
 
+Transor("BPF(JIT)",
+    {  HG("",
+        Metaface(IsasUSR(Isa_LINUXs), {Kernel.LINUX}),
+        Metaface({(Isa.BPF, Up.USR)}),
+    )},
+    Date(2011,4), Date.today(),
+    renames=[Rename(
+        "eBPF",
+        Date(2014,9,4),
+        "https://lwn.net/Articles/740157/ : commit daedfb22451d in 2014, the eBPF virtual machine was exposed directly to user space."
+    )],
+)
+
 HQEMU = Transor("HQEMU",
     {  HG("",
         Metaface(IsasUSR({Isa.X86, Isa.X86_64, Isa.ARM64, Isa.POWERPC64}), {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
@@ -783,6 +797,7 @@ Transor("LLBT",
     ''',
 )
 
+# TODO: non-general, game
 Transor("PPSSPP",
     {  HG("",
         Metaface(IsasUSR(isas), {kernel}, {Syslib.DEFAULT}, {Lib.ANY}),
@@ -823,5 +838,220 @@ Transor("skyeye(Commercial)",
     desc="https://www.digiproto.com/product/24.html",
 )
 
+# TODO: non-general, game
+citra = Transor("citra",
+    {  HG("",
+        Metaface(),
+        # TODO: 3DS
+        Metaface(),
+    )},
+    Date(2013,8,30), Date.today(), color="#FF8E03",
+    desc="https://github.com/citra-emu/citra",
+)
+Connector(skyeye, citra, Date(2013,5,2), Date(2013,9,18))
+
+Transor("Qubes OS",
+    {  HG("",
+        Metaface({(Isa.X86_64, Up.USR_PVL)}),
+        Metaface({(Isa.X86_64, Up.USR)}),
+    )},
+    Date(2013,9,3), Date.today(), color="#3874D8", dev=Dev.INVISIBLE_THINGS_LAB, parent=Xen,
+    desc="https://en.wikipedia.org/wiki/Qubes_OS",
+)
+
+Transor("exagear strategies",
+    {  HG("",
+        Metaface({(Isa.ARM64, Up.USR)}, {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, {Lib.ANY}, {Sysapp.ANY}, {App.ANDROID_RUNTIME}, {Rtlib.ANY}),
+        Metaface(IsasUSR({Isa.X86, Isa.X86_64}), {Kernel.NO_SYSCALL}, {Syslib.WINDOWS}),
+    )},
+    Date(2014), Date(2020), dev=Dev.ELTECH_RUSSIA, parent=WINE,
+    desc="https://4pda.to/forum/index.php?showtopic=992239",
+)
+
+Transor("WINE-Android",
+    {  HG(isa.name,
+        Metaface({(isa, Up.USR)}, {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, {Lib.ANY}, {Sysapp.ANY}, {App.ANDROID_RUNTIME}, {Rtlib.ANY}),
+        Metaface({(isa, Up.USR)}, {Kernel.NO_SYSCALL}, {Syslib.WINDOWS}),
+    ) for isa in Isa_MODERN_ANDROIDs},
+    Date(2014,2), Date.today(), color="#800000", parent=WINE,
+    desc="https://wiki.winehq.org/Android",
+)
+
+# non-general
+Transor("firebird",
+    {  HG("",
+        Metaface(),
+        Metaface(),
+    )},
+    Date(2014,4,26), Date.today(), color="#FA0430", license="GPL3",
+    desc="https://github.com/nspire-emus/firebird",
+)
+
+Transor("VisUAL",
+    {  HG("",
+        Metaface(IsasUSR(isas), {kenerl}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface({(Isa.ARM, Up.USR)}),
+    ) for isas,kenerl in zip(
+        [Isa_MODERN_WINDOWSs, Isa_MODERN_MACOSs, Isa_LINUXs],
+        [Kernel.WINDOWS, Kernel.MACOS, Kernel.LINUX]
+    )},
+    Date(2015), Date.today(), color="#3A9878",
+    feat="visualization",
+    desc="https://salmanarif.bitbucket.io/visual/about.html",
+)
+
+unicorn = Transor("unicorn",
+    {  HG("",
+        Metaface(),
+        Metaface(),
+    )},
+    Date(2015,8,21), Date.today(), color="#E62129", parent=QEMU_sys,
+    feat="Framework",
+    desc="https://github.com/unicorn-engine/unicorn",
+)
+
+# a Unix-like operating system
+# actually, not a transor
+Transor("browsix",
+    {  HG("",
+        Metaface(),
+        Metaface(),
+    )},
+    Date(2015,9,26), Date.today(), color="#6D6B91",
+    desc='''
+        https://browsix.org/
+        https://github.com/plasma-umass/browsix
+    ''',
+)
+
+captive = Transor("captive",
+    {  HG("",
+        Metaface({(Isa.X86_64, Up.USR_PVL)}),
+        Metaface({(Isa.ARM32, Up.USR_PVL)}),
+    )},
+    Date(2016), Date(2019),
+    desc='''
+        2016: Hardware-Accelerated Cross-Architecture Full-System Virtualization
+        2017: Efficient Cross-architecture Hardware Virtualisation
+        2019: A Retargetable System-Level DBT Hypervisor
+    ''',
+)
+Connector(KVM, captive, Date(2016))
+
+Transor("Limbo",
+    {  HG("",
+        Metaface(IsasUSR(Isa_MODERN_ANDROIDs), {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, {Lib.ANY}, {Sysapp.ANY}, {App.ANDROID_RUNTIME}, {Rtlib.ANY}),
+        Metaface(),
+    )},
+    Date(2016), Date(2022), color="#383838", parent=QEMU_sys,
+)
+
+Transor("Anbox",
+    {  HG("",
+        Metaface({(isa, Up.USR)}, {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface({(isa, Up.USR)}, {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, {Lib.ANY}, {Sysapp.ANY}, {App.ANDROID_RUNTIME}),
+    ) for isa in [Isa.X86_64, Isa.ARM64]},
+    Date(2016,4,11), Date.today(), color="#009688", license="GPL3",
+)
+
+dynarmic = Transor("dynarmic",
+    {  HG("",
+        Metaface({(Isa.X86_64, Up.USR)}, {Kernel.ANY}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface(IsasUSR({Isa.ARM64, Isa.ARM32})),
+    )},
+    Date(2016,7,1), Date.today(),
+    feat="Framework",
+)
+Connector(dynarmic, citra, Date(2016,9,2))
+
+Transor("WSL",
+    {  HG("",
+        Metaface({(isa, Up.USR)}, {Kernel.WINDOWS}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface({(isa, Up.USR)}, {Kernel.LINUX}),
+    ) for isa in Isa_MODERN_WINDOWSs},
+    Date(2016,8,2), Date.today(), color="#0C2AAE", dev=Dev.MICROSOFT,
+    desc="https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux",
+)
+
+MAMBO_X64 = Transor("MAMBO-X64",
+    {  HG("",
+        Metaface({(Isa.ARM64, Up.USR)}, {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface({(Isa.ARM32, Up.USR)}, {Kernel.LINUX}),
+    )},
+    Date(2017), Date.today(), dev=Dev.MANCHESTER,
+    desc='''
+        2017: Low Overhead Dynamic Binary Translation on ARMhttps://github.com/beehive-lab/mambo
+    ''',
+)
+HyperMAMBO_X64 = Transor("HyperMAMBO-X64",
+    {  HG("",
+        Metaface({(Isa.ARM64, Up.USR)}, {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface({(Isa.ARM32, Up.USR_PVL)}),
+    )},
+    Date(2017), parent=MAMBO_X64, dev=Dev.MANCHESTER,
+    desc="2017: HyperMAMBO-X64: Using Virtualization to Support High-Performance Transparent Binary Translation",
+)
+Connector(KVM, HyperMAMBO_X64, Date(2017))
+
+REV_NG = Transor("REV.NG",
+    {  HG("",
+        Metaface(IsasUSR(Isa_QEMU_user_hs) & IsasUSR(Isa_LINUXs), {Kernel.LINUX}, {Syslib.LINUX_SYSLIBS}, Lib_ANYs),
+        Metaface({(Isa.LLVM, Up.USR)}, {Kernel.LINUX}),
+    )},
+    Date(2017), Date.today(), color="#E92B29", parent=QEMU_user,
+    desc='''
+        2017: REV.NG :A Unified Binary Analysis Framework to Recover CFGs and Function Boundaries
+        2018: rev.ng: A Multi-Architecture Framework for Reverse Engineering and Vulnerability Discovery
+        2019: Performance, Correctness, Exceptions: Pick Three
+''',
+)
+Connector(LLVM, REV_NG, Date(2017))
+
+yuzu = Transor("yuzu",
+    {  HG("",
+        Metaface(),
+        # Nintendo Switch
+        Metaface(),
+    )},
+    Date(2017,10,10), Date.today(), color="#5C93ED", parent=citra,
+    desc='''
+        https://github.com/yuzu-emu/yuzu
+        Git commit: d15e15bd058f93f16
+    ''',
+)
+Connector(unicorn, yuzu, Date(2017,10,10))
+
+multipass = Transor("multipass",
+    {  HG("",
+        Metaface({(Isa.X86_64, Up.USR)}, {Kernel.WINDOWS, Kernel.MACOS, Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface({(Isa.X86_64, Up.USR)}, {Kernel.LINUX}),
+        term=Term.V2_,
+    )},
+    Date(2017,12,7), Date.today(), color="#E95420", license="GPL3", dev=Dev.CANONICAL,
+    desc="https://github.com/canonical/multipass",
+)
+# TODO: windows:hyper-v, macos:hyperkit
+Connector(KVM, multipass, Date(2017,12,7))
+
+Transor("box86",
+    {  HG("",
+        Metaface({(Isa.ARM32, Up.USR)}, {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface({(Isa.X86, Up.USR)}, {Kernel.LINUX}),
+    )},
+    Date(2018), Date.today(), color="#B5E853",
+    feat="lib warp",
+    desc="https://github.com/ptitSeb/box86",
+)
+
+# non-general game
+Ryujinx = Transor("Ryujinx",
+    {  HG("",
+        Metaface(IsasUSR({Isa.X86_64}), {Kernel.WINDOWS, Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
+        # Nintendo switch
+        Metaface(),
+    )},
+    Date(2018,2,5), Date.today(), color="#FF5F55", license="MIT",
+    desc="https://github.com/Ryujinx/Ryujinx/",
+)
 # Lastly, add dummy modules after all modules are added
 addDummyModules()

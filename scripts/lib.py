@@ -240,13 +240,15 @@ class Isa(enum.IntEnum):
     IA64 = ITANIUM = enum.auto()
     PARISC = HPPA = enum.auto()
 
+    # VLIW
     DAISY_VLIW = DAISY = enum.auto()
-
     CRUSOE_VLIW = CRUSOE = enum.auto()
-
     DENVER_VLIW = DENVER = enum.auto()
 
+    # IR / byte code
     LLVM_IR = LLVM = enum.auto()
+
+    BPF = enum.auto()
 
     END = enum.auto()
     idx = 0
@@ -291,6 +293,11 @@ class Dev(enum.IntEnum):
     台清华 = TQH = enum.auto()
     台交大 = TJD = enum.auto()
     迪捷软件 = DIGIPROTO = enum.auto()
+    Invisible_Things_Lab = INVISIBLE_THINGS_LAB = enum.auto()
+    Eltech_Russia = ELTECH_RUSSIA = enum.auto()
+    Microsoft = MICROSOFT = enum.auto()
+    Manchester = MANCHESTER = enum.auto()
+    Canonical = CANONICAL = enum.auto()
 
 hierarchy: dict[int, type] = {
     Isa.idx: Isa,
@@ -1108,6 +1115,8 @@ def outputGnucladCsv(f: typing.TextIO) -> None:
         2, conn.startTransor.color,
     ))
 
+# TODO: distinguish isa-USR and isa-USR_PVL
+# TODO: make guest(left) and host(right) axis same scale
 def outputRelplot():
     import matplotlib.pyplot as plt
     f: plt.Figure
