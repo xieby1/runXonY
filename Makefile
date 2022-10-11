@@ -7,12 +7,13 @@ test/web/test.js: test/web/test.ts
 gnuclad/gnuclad.csv: runXonY.csv scripts/genGnucladCsv.py
 	$(word 2,$^) > $@
 
-test/runXonY.csv test/runXonY.dot test/web/runXonY.json &: \
+test/runXonY.csv test/runXonY.dot test/web/runXonY.json test/relplot.svg &: \
 	scripts/lib.py scripts/data.py scripts/cmdl.py
 	scripts/cmdl.py \
 		-c test/runXonY.csv \
 		-d test/runXonY.dot \
-		-j test/web/runXonY.json
+		-j test/web/runXonY.json \
+		-r test/relplot.svg
 
 gnuclad/gnuclad.svg: gnuclad/gnuclad.csv gnuclad/gnuclad.conf
 	gnuclad $< $@ $(word 2,$^)

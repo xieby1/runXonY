@@ -23,8 +23,11 @@ parser.add_argument("-j", "--json",
     help = "the output path of json file"
 )
 parser.add_argument("-r", "--rel",
-    action="store_true",
-    help="relplot")
+    nargs="?",
+    const=pathlib.Path("/dev/stdout"),
+    type=pathlib.Path,
+    help = "the output path of relplot file"
+)
 
 args = parser.parse_args()
 if args.dot:
@@ -40,4 +43,4 @@ if args.json:
     outputJson(f)
     f.close()
 if args.rel:
-    outputRelplot()
+    outputRelplot(args.rel)

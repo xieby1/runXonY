@@ -1132,11 +1132,14 @@ def outputGnucladCsv(f: typing.TextIO) -> None:
     ))
 
 # TODO: neccessary? make guest(left) and host(right) axis same scale
-def outputRelplot():
+def outputRelplot(path: str):
     import matplotlib.pyplot as plt
+    plt.rcParams['svg.fonttype'] = 'none'
     f: plt.Figure
     ax: plt.Axes
-    f, ax = plt.subplots()
+    # figsize, see
+    #   https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.figure.html
+    f, ax = plt.subplots(figsize=(12, 40))
 
     types = (UsrPvl, Usr, Kernel, Syslib, Lib, Sysapp, App, Rtlib, Rtapp, Src)
     htype_cnt: typing.Dict[type, int] = dict()
@@ -1257,4 +1260,4 @@ def outputRelplot():
     ax.yaxis.set_ticks(ys, names)
 
     ax.set(xlim=(xmin, xmax), ylim=(0, ymax))
-    plt.show()
+    plt.savefig(path, bbox_inches="tight")
