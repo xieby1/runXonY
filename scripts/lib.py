@@ -151,6 +151,7 @@ class Kernel(enum.IntEnum):
     WINDOWS = enum.auto()
 
     MACOS = enum.auto()
+    IOS = enum.auto()
 
     END = enum.auto()
     idx = 1
@@ -300,9 +301,13 @@ class Dev(enum.IntEnum):
     迪捷软件 = DIGIPROTO = enum.auto()
     Invisible_Things_Lab = INVISIBLE_THINGS_LAB = enum.auto()
     Eltech_Russia = ELTECH_RUSSIA = enum.auto()
+    Eltech_Huawei = ELTECH_HUAWEI = enum.auto()
     Microsoft = MICROSOFT = enum.auto()
     Manchester = MANCHESTER = enum.auto()
     Canonical = CANONICAL = enum.auto()
+    Valve = VALVE = enum.auto()
+    麟卓_国防科大 = LINZHUOTECH = enum.auto()
+    统信 = UnionTech = enum.auto()
 
 hierarchy: dict[int, type] = {
     Isa.idx: Isa,
@@ -497,8 +502,9 @@ class Term(enum.IntEnum):
     P1_ = TYPE1_PARAVIRTUALIZATION = enum.auto()
     VP1 = TYPE1_VIRTUAL_MACHINE_AND_PARAVIRTUALIZATION = enum.auto()
     V2_ = TYPE2_VIRTUAL_MACHINE = enum.auto()
-    V2B = TYPE2_VIRTUAL_MACHINE_WITH_BINARY_TRANSLATION = \
+    V2B = TYPE2_VIRTUAL_MACHINE_WITH_BINARY_TRANSLATION = SYSTEM_LEVEL_BINARY_TRANSLATOR = enum.auto()
     SBT = STATIC_BINARY_TRANSLATOR = enum.auto()
+    DSB = DYNAMIC_STATIC_BINARY_TRANSLATOR = enum.auto()
     UBT = USER_LEVEL_BINARY_TRANSLATOR = enum.auto()
     UBL = USER_LEVEL_BINARY_TRANSLATOR_WITH_LIB_PASS_THROUGH = enum.auto()
     INS = INSTRUMENTER = enum.auto()

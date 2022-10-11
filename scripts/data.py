@@ -162,6 +162,7 @@ Module("APPS-ANDROID", set(
 #      |_|_|  \__,_|_| |_|___/\___/|_|  |___/
 #                                       figlet -f big Transors
 
+# Template
 #Transor("",
 #    {  HG("",
 #        Metaface(),
@@ -169,6 +170,7 @@ Module("APPS-ANDROID", set(
 #    )},
 #    Date(),
 #)
+
 Merge = Transor("Merge",
     {  HG("",
         Metaface({(Isa.I386, Up.USR)}, {Kernel.SCO_UNIX}, {Syslib.DEFAULT}, {Lib.ANY}),
@@ -602,6 +604,7 @@ Transor("Digital Bridge 2",
     {  HG("",
         Metaface({(Isa.MIPS32, Up.USR)}, {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
         Metaface({(Isa.X86, Up.USR)}, {Kernel.LINUX}),
+        term=Term.USER_LEVEL_BINARY_TRANSLATOR_WITH_LIB_PASS_THROUGH
     )},
     Date(2006), parent=Digital_Bridge, dev=Dev.WCG_LAB,
     feat='''
@@ -724,7 +727,7 @@ Transor("DistriBit",
     desc="2010: DistriBit: A Distributed Dynamic Binary Translator System for Thin Client Computing",
 )
 
-Transor("proot",
+proot = Transor("proot",
     {  HG("",
         Metaface(),
         Metaface(),
@@ -859,7 +862,7 @@ Transor("Qubes OS",
     desc="https://en.wikipedia.org/wiki/Qubes_OS",
 )
 
-Transor("exagear strategies",
+exagear_strategies = Transor("exagear strategies",
     {  HG("",
         Metaface({(Isa.ARM64, Up.USR)}, {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, {Lib.ANY}, {Sysapp.ANY}, {App.ANDROID_RUNTIME}, {Rtlib.ANY}),
         Metaface(IsasUSR({Isa.X86, Isa.X86_64}), {Kernel.NO_SYSCALL}, {Syslib.WINDOWS}),
@@ -946,7 +949,7 @@ Transor("Limbo",
     Date(2016), Date(2022), color="#383838", parent=QEMU_sys,
 )
 
-Transor("Anbox",
+Anbox = Transor("Anbox",
     {  HG("",
         Metaface({(isa, Up.USR)}, {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
         Metaface({(isa, Up.USR)}, {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, {Lib.ANY}, {Sysapp.ANY}, {App.ANDROID_RUNTIME}),
@@ -995,10 +998,11 @@ Connector(KVM, HyperMAMBO_X64, Date(2017))
 
 REV_NG = Transor("REV.NG",
     {  HG("",
-        Metaface(IsasUSR(Isa_QEMU_user_hs) & IsasUSR(Isa_LINUXs), {Kernel.LINUX}, {Syslib.LINUX_SYSLIBS}, Lib_ANYs),
         Metaface({(Isa.LLVM, Up.USR)}, {Kernel.LINUX}),
+        Metaface(IsasUSR(Isa_QEMU_user_gs) & IsasUSR(Isa_LINUXs), {Kernel.LINUX}),
     )},
     Date(2017), Date.today(), color="#E92B29", parent=QEMU_user,
+    term=Term.DYNAMIC_STATIC_BINARY_TRANSLATOR,
     desc='''
         2017: REV.NG :A Unified Binary Analysis Framework to Recover CFGs and Function Boundaries
         2018: rev.ng: A Multi-Architecture Framework for Reverse Engineering and Vulnerability Discovery
@@ -1033,10 +1037,11 @@ multipass = Transor("multipass",
 # TODO: windows:hyper-v, macos:hyperkit
 Connector(KVM, multipass, Date(2017,12,7))
 
-Transor("box86",
+box86 = Transor("box86",
     {  HG("",
         Metaface({(Isa.ARM32, Up.USR)}, {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
         Metaface({(Isa.X86, Up.USR)}, {Kernel.LINUX}),
+        term=Term.USER_LEVEL_BINARY_TRANSLATOR_WITH_LIB_PASS_THROUGH,
     )},
     Date(2018), Date.today(), color="#B5E853",
     feat="lib warp",
@@ -1052,6 +1057,196 @@ Ryujinx = Transor("Ryujinx",
     )},
     Date(2018,2,5), Date.today(), color="#FF5F55", license="MIT",
     desc="https://github.com/Ryujinx/Ryujinx/",
+)
+Transor("ChocolArm64",
+    {  HG("",
+        Metaface(IsasUSR({Isa.X86_64}), {Kernel.WINDOWS, Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface({(Isa.ARM64, Up.USR)}),
+    )},
+    Date(2018,2,21), Date(2019,11,1), color="#FF5F55", parent=Ryujinx, license="Unlicense",
+    feat="Framework",
+    desc='''
+        https://github.com/Ryujinx/Ryujinx/
+        https://github.com/Ryujinx/ChocolArm64
+    ''',
+)
+
+Transor("UserLAnd",
+    {  HG("",
+        Metaface({(Isa.ARM64, Up.USR)}, {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, Lib_ANYs, Sysapp_ANYs, {App.ANDROID_RUNTIME}, {Rtlib.ANY}),
+        Metaface({(Isa.ARM64, Up.USR)}, {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, Lib_ANYs),
+    )},
+    Date(2018,3,21), Date.today(), color="#221F1F", parent=proot,
+    feat="No-privilege fs isolation",
+    desc="https://github.com/CypherpunkArmory/UserLAnd.git",
+)
+
+Transor("Proton",
+    {  HG("",
+        Metaface(),
+        Metaface(),
+    )},
+    Date(2018,8,21), Date.today(), parent=WINE, dev=Dev.VALVE,
+    desc="https://github.com/ValveSoftware/Proton",
+)
+
+Transor("xDroid",
+    {  HG("",
+        Metaface(),
+        Metaface(),
+    )},
+    Date(2018,8,21), Date.today(), color="#009688", parent=Anbox, dev=Dev.LINZHUOTECH,
+    desc='''
+        https://www.linzhuotech.com/index.php/home/index/article.html?page=4&id=2
+        https://zhuanlan.zhihu.com/p/213300936
+    ''',
+)
+
+Transor("FEX",
+    {  HG("",
+        Metaface(IsasUSR({Isa.X86_64, Isa.ARM64}), {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface(IsasUSR({Isa.X86_64, Isa.X86}), {Kernel.LINUX}),
+        term=Term.USER_LEVEL_BINARY_TRANSLATOR_WITH_LIB_PASS_THROUGH,
+    )},
+    Date(2018,11,16), Date.today(), license="MIT",
+    feat='''
+        Interp,
+        JIT,
+        LLVM disasm,
+        thunklib: guest ↔ host
+    ''',
+    desc='''
+        https://github.com/FEX-Emu/FEX
+        git commit 5efab55ea9b: remove problematic LLVM JIT
+    ''',
+)
+
+# Firmware, actually not a transor
+edk2_sagit = Transor("edk2-sagit",
+    {  HG("",
+        Metaface(),
+        Metaface(),
+    )},
+    Date(2019,2,22), Date(2020,5,25),
+)
+
+Transor("McSema",
+    {  HG("",
+        Metaface({(Isa.LLVM, Up.USR)}, {Kernel.LINUX}),
+        Metaface(IsasUSR({Isa.X86, Isa.X86_64, Isa.AARCH64}), {Kernel.LINUX}),
+        term=Term.STATIC_BINARY_TRANSLATOR,
+    )},
+    Date(2019), Date(2022,4,26), color="#9C1B45", parent=LLVM,
+    desc='''
+        https://github.com/lifting-bits/mcsema
+        2019: DECOMPILING BINARIES INTO LLVM IR USING MCSEMA AND DYNINST
+    ''',
+)
+
+Transor("MCTOLL",
+    {  HG("",
+        Metaface({(Isa.LLVM, Up.USR)}, {Kernel.LINUX}),
+        Metaface(IsasUSR({Isa.X86_64, Isa.AARCH64}), {Kernel.LINUX}),
+    )},
+    Date(2019), Date.today(), dev=Dev.MICROSOFT, parent=LLVM,
+    desc='''
+        https://github.com/microsoft/llvm-mctoll
+        2019: Raising Binaries to LLVM IR with MCTOLL (WIP Paper)
+    ''',
+)
+
+Transor("UTM",
+    {  HG("",
+        Metaface({(Isa.AARCH64, Up.USR)}, {Kernel.IOS}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface(),
+    )},
+    Date(2019), Date.today(), color="#1D63EA", parent=QEMU_sys,
+)
+
+Transor("WSL2",
+    {  HG("",
+        Metaface({(isa, Up.USR)}, {Kernel.WINDOWS}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface({(isa, Up.USR_PVL)}),
+    ) for isa in Isa_MODERN_WINDOWSs},
+    Date(2019,5), Date.today(), color="#0C2AAE", dev=Dev.MICROSOFT,
+    desc="https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux",
+)
+
+Transor("ARMeilleure",
+    {  HG("",
+        Metaface(IsasUSR({Isa.X86_64}), {Kernel.WINDOWS, Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface({(Isa.ARM64, Up.USR)}),
+    )},
+    Date(2019,8,9), Date.today(), color="#FF5F55", parent=Ryujinx,
+    feat="Framework",
+    desc="https://github.com/Ryujinx/Ryujinx/",
+)
+
+Transor("Rosetta 2",
+    {  HG("",
+        Metaface({(Isa.AARCH64, Up.USR)}, {Kernel.MACOS}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface({(Isa.X86_64, Up.USR)}, {Kernel.MACOS}),
+    )},
+    Date(2020), Date.today(), color="#525152", dev=Dev.APPLE,
+    desc="https://en.wikipedia.org/wiki/Rosetta_%28software%29",
+)
+
+Transor("exagear",
+    {  HG("",
+        Metaface({(Isa.ARM64, Up.USR)}, {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface(IsasUSR({Isa.X86, Isa.X86_64}), {Kernel.LINUX}),
+    )},
+    Date(2020), Date.today(), parent=exagear_strategies, dev=Dev.ELTECH_HUAWEI,
+)
+
+# Firmware, actually not a transor
+Transor("edk2-sdm845",
+    {  HG("",
+        Metaface(),
+        Metaface(),
+    )},
+    Date(2020,5,25), Date.today(), parent=edk2_sagit,
+    desc="Enable to run Win11, Support graphics card, can play ff14",
+)
+
+Transor("box64",
+    {  HG("",
+        Metaface({(Isa.ARM64, Up.USR)}, {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface({(Isa.X86_64, Up.USR)}, {Kernel.LINUX}),
+        term=Term.USER_LEVEL_BINARY_TRANSLATOR_WITH_LIB_PASS_THROUGH,
+    )},
+    Date(2020,12,1), Date.today(), color="#B5E853", parent=box86,
+    desc="https://github.com/ptitSeb/box64",
+)
+
+Anbox_halium = Transor("Anbox-halium",
+    {  HG("",
+        Metaface(),
+        Metaface(),
+    )},
+    Date(2021,4,16), Date(2021,8,27), color="#009688", parent=Anbox,
+    desc="Mirror: https://github.com/my-helps/anbox-halium",
+)
+
+Transor("Deepin Android Runtime",
+    {  HG("",
+        Metaface(),
+        Metaface(),
+    )},
+    Date(2021,6,29), Date.today(), dev=Dev.UnionTech,
+    desc="https://www.deepin.org/zh/2021/06/29/deepin-20-2-2/",
+)
+
+Transor("waydroid",
+    {  HG("",
+        Metaface({(isa, Up.USR)}, {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface({(isa, Up.USR)}, {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, {Lib.ANY}, {Sysapp.ANY}, {App.ANDROID_RUNTIME}),
+    ) for isa in [Isa.X86_64, Isa.ARM64]},
+    Date(2021,8,27), Date.today(), color="#F0AD4E", parent=Anbox_halium,
+    desc='''
+        https://www.reddit.com/r/Ubports/comments/oovy13/anbox_for_halium9_aka_new_anbox_update/
+        https://github.com/waydroid/waydroid
+    ''',
 )
 # Lastly, add dummy modules after all modules are added
 addDummyModules()
