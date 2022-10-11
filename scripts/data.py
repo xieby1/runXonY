@@ -566,15 +566,15 @@ Transor("Pin", set(
     ''',
 )
 
-Transor("Win4Lin Pro",
+Win4Lin_Pro = Transor("Win4Lin Pro",
     {  HG("",
         Metaface(),
         Metaface(),
     )},
     Date(2005), Date(2010,3), parent=Win4Lin,
     desc="https://en.wikipedia.org/wiki/Win4Lin",
-    connectors=[Connector(QEMU_sys, Date(2005))]
 )
+Connector(QEMU_sys, Win4Lin_Pro, Date(2005))
 
 IntelVT = Transor("Intel VT", set(  HG("",
         Metaface({(isa, Up.USR_PVL)}),
@@ -668,15 +668,15 @@ Transor("MagiXen",
     desc="2007: MagiXen: Combining Binary Translation and Virtualization",
 )
 
-Transor("VirtualBox",
+VirtualBox = Transor("VirtualBox",
     {  HG("",
         Metaface(IsasUSR({isa}), {Kernel.WINDOWS, Kernel.LINUX, Kernel.MACOS}, {Syslib.DEFAULT}, {Lib.ANY}),
         Metaface(IsasUSR_PVL({isa})),
     ) for isa in [Isa.X86, Isa.X86_64]},
     Date(2007,1,17), Date.today(), color="#2F61B4", dev=Dev.ORACLE,
-    connectors=[Connector(IntelVT, Date(2007,1,17))],
     desc="https://en.wikipedia.org/wiki/VirtualBox",
 )
+Connector(IntelVT, VirtualBox, Date(2007,1,17))
 
 KVM = Transor("KVM",
     {  HG("",
@@ -684,11 +684,11 @@ KVM = Transor("KVM",
         Metaface(IsasUSR_PVL({isa})),
     ) for isa in Isa_KVMs},
     Date(2007,2,5), Date.today(), color="#000000",
-    connectors=[Connector(IntelVT, Date(2007,2,5))],
     desc='''
         https://en.wikipedia.org/wiki/VirtualBox
     ''',
 )
+Connector(IntelVT, KVM, Date(2007,2,5))
 
 Transor("VMware Player",
     {  HG("",
@@ -699,15 +699,15 @@ Transor("VMware Player",
     desc="https://en.wikipedia.org/wiki/VMware_Workstation_Player",
 )
 
-Transor("QEMU-KVM",
+QEMU_KVM = Transor("QEMU-KVM",
     {  HG("",
         Metaface(IsasUSR({isa}), {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
         Metaface(IsasUSR_PVL({isa})),
     ) for isa in Isa_KVMs},
     Date(2008,11,6), Date.today(), color="#F60", parent=QEMU_sys,
-    connectors=[Connector(KVM, Date(2008,11,6))],
     desc="Git commit: 7ba1e61953f459: Add KVM support to QEMU",
 )
+Connector(KVM, QEMU_KVM, Date(2008,11,6))
 
 Transor("DistriBit",
     {  HG("",
@@ -753,14 +753,13 @@ Transor("Denver",
     desc="https://en.wikipedia.org/wiki/Project_Denver",
 )
 
-Transor("HQEMU",
+HQEMU = Transor("HQEMU",
     {  HG("",
         Metaface(IsasUSR({Isa.X86, Isa.X86_64, Isa.ARM64, Isa.POWERPC64}), {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
         Metaface(IsasUSR({Isa.X86, Isa.X86_64, Isa.ARM, Isa.ARM64}), {Kernel.LINUX}),
         term=Term.USER_LEVEL_BINARY_TRANSLATOR,
     )},
     Date(2012), Date(2018), color="#F60", parent=QEMU_user, dev=Dev.TQH,
-    connectors=[Connector(LLVM, Date(2012))],
     feat="multi thread opt",
     desc='''
         2012: HQEMU: A Multi-Threaded and Retargetable Dynamic Binary Translator on Multicores
@@ -768,6 +767,7 @@ Transor("HQEMU",
         2018: HQEMU v2.5.2 Technical Report
     ''',
 )
+Connector(LLVM, HQEMU, Date(2012))
 
 Transor("LLBT",
     {  HG("",

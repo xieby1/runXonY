@@ -390,6 +390,7 @@ modules: HashMap[Module] = HashMap()
 allhgs: HashMap[HG] = HashMap()
 allunihgs: HashMap[UniHG] = HashMap()
 allhgs_hashname: HashMap[HG_hashname] = HashMap()
+connectors: list[Connector] = list()
 
 class Metaface():
     @multimethod
@@ -713,13 +714,16 @@ class Rename:
 
 class Connector:
     def __init__(self,
-            transor: Transor,
+            startTransor: Transor,
+            stopTransor: Transor,
             start: Date,
             stop: Date = Date(),
             ) -> None:
-        self.transor: Transor = transor
+        self.startTransor: Transor = startTransor
+        self.stopTransor: Transor = stopTransor
         self.start: Date = start
         self.stop: Date = stop if stop>=start else start
+        connectors.append(self)
 
 class Module:
     def __init__(self,
@@ -869,7 +873,6 @@ class Transor(Module):
             desc: str = '',
             parent: typing.Optional[Transor] = None,
             renames: list[Rename] = list(),
-            connectors: list[Connector] = list(),
             ) -> None:
         self.start = start
         if stop < start:
@@ -883,7 +886,6 @@ class Transor(Module):
         self.desc = fixMultiLineString(desc)
         self.parent = parent
         self.renames = renames
-        self.connectors = connectors
         super().__init__(name, hgs, term=term)
 
 # return True for added, False for not add
@@ -1099,11 +1101,12 @@ def outputGnucladCsv(f: typing.TextIO) -> None:
                     rename.rename, rename.date, rename.desc
                 ))
             f.write('\n')
-            for conn in module.connectors:
-                f.write('"%s","%s","%s","%s","%s","%s","%s"\n' % (
-                "C", conn.start, conn.transor.name,
-                conn.stop, module.name, 2, conn.transor.color,
-            ))
+    for conn in connectors:
+        f.write('"C","%s","%s","%s","%s","%s","%s"\n' % (
+        conn.start, conn.startTransor.name,
+        conn.stop, conn.stopTransor.name,
+        2, conn.startTransor.color,
+    ))
 
 def outputRelplot():
     import matplotlib.pyplot as plt
