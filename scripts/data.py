@@ -15,13 +15,6 @@ from lib import *
 #   |___/__/\__,_|
 #                           figlet -f small Isa
 
-###############################################
-#    _  __                 _
-#   | |/ /___ _ _ _ _  ___| |
-#   | ' </ -_) '_| ' \/ -_) |
-#   |_|\_\___|_| |_||_\___|_|
-#                           figlet -f small Kernel
-
 # https://github.com/torvalds/linux/tree/master/arch
 Isa_LINUXs: set[Isa] = \
     {Isa.ALPHA, Isa.ARC} | Isa_ARM32s | {Isa.ARM64,
@@ -29,9 +22,8 @@ Isa_LINUXs: set[Isa] = \
     Isa.MICROBLAZE} | Isa_MIPS64s | {Isa.NIOS2, Isa.OPENRISC,
     Isa.PARISC} | Isa_POWERPC64s | Isa_RISCV64s | {Isa.S390,
     Isa.SH} | Isa_SPARC64s | Isa_X86_64s | {Isa.XTENSA}
-Module(Kernel.LINUX.name, set(
-    HG(isa.name, Metaface({(isa, Up.USR_PVL)}), Metaface({(isa,Up.USR)}, {Kernel.LINUX}))
-for isa in Isa_LINUXs))
+
+Isa_KVMs = [Isa.ARM64, Isa.IA64, Isa.X86, Isa.X86_64, Isa.POWERPC64, Isa.S390, Isa.MIPS64, Isa.LA64]
 
 # https://www.freebsd.org/platforms/
 Isa_FreeBSDs: set[Isa] = \
@@ -41,13 +33,27 @@ Isa_FreeBSDs: set[Isa] = \
 # https://www.openbsd.org/plat.html
 Isa_OpenBSDs: set[Isa] = Isa_FreeBSDs | {Isa.ALPHA, Isa.HPPA}
 Isa_BSDs: set[Isa] = Isa_FreeBSDs | Isa_OpenBSDs
-Module(Kernel.BSD.name, set(
-    HG(isa.name, Metaface({(isa, Up.USR_PVL)}), Metaface({(isa, Up.USR)}, {Kernel.BSD}))
-for isa in Isa_BSDs))
 
 Isa_MODERN_WINDOWSs: set[Isa] = {Isa.AARCH64, Isa.X86_64, Isa.X86}
 
 Isa_MODERN_MACOSs: set[Isa] = {Isa.AARCH64, Isa.X86_64}
+
+Isa_MODERN_ANDROIDs: set[Isa] = {Isa.X86_64, Isa.AARCH64}
+
+###############################################
+#    _  __                 _
+#   | |/ /___ _ _ _ _  ___| |
+#   | ' </ -_) '_| ' \/ -_) |
+#   |_|\_\___|_| |_||_\___|_|
+#                           figlet -f small Kernel
+
+Module(Kernel.LINUX.name, set(
+    HG(isa.name, Metaface({(isa, Up.USR_PVL)}), Metaface({(isa,Up.USR)}, {Kernel.LINUX}))
+for isa in Isa_LINUXs))
+
+Module(Kernel.BSD.name, set(
+    HG(isa.name, Metaface({(isa, Up.USR_PVL)}), Metaface({(isa, Up.USR)}, {Kernel.BSD}))
+for isa in Isa_BSDs))
 
 ###############################################
 #    ___         _ _ _
@@ -106,44 +112,43 @@ Module("APPS-WINDOWS-WITH_SYSCALL", set (
     )
 for isa in Isa_MODERN_WINDOWSs))
 
-Isa_MODERN_ANDROID: set[Isa] = {Isa.X86_64, Isa.AARCH64}
 Module("ANDROID", set(
     HG(isa.name,
         Metaface({(isa, Up.USR)}, {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, Lib_ANYs, Sysapp_ANYs),
         Metaface({(isa, Up.USR)}, {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, Lib_ANYs, Sysapp_ANYs, {App.ANDROID_RUNTIME})
-    ) for isa in Isa_MODERN_ANDROID) | {
+    ) for isa in Isa_MODERN_ANDROIDs) | {
     HG("UNIVERAL",
-        Metaface(IsasUSR(Isa_MODERN_ANDROID), {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, Lib_ANYs, Sysapp_ANYs),
+        Metaface(IsasUSR(Isa_MODERN_ANDROIDs), {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, Lib_ANYs, Sysapp_ANYs),
         Metaface({(Isa.NONE, Up.NONE)}, {Kernel.NONE}, {Syslib.NONE}, {Lib.NONE}, {Sysapp.NONE}, {App.ANDROID_RUNTIME})
     )}
 )
 
 ###############################################
-#    ___ _   _ _ _    
-#   | _ \ |_| (_) |__ 
+#    ___ _   _ _ _
+#   | _ \ |_| (_) |__
 #   |   /  _| | | '_ \
 #   |_|_\\__|_|_|_.__/
 #                           figlet -f small Rtlib
 
 ###############################################
-#    ___ _                  
-#   | _ \ |_ __ _ _ __ _ __ 
+#    ___ _
+#   | _ \ |_ __ _ _ __ _ __
 #   |   /  _/ _` | '_ \ '_ \
 #   |_|_\\__\__,_| .__/ .__/
-#                |_|  |_|   
+#                |_|  |_|
 #                           figlet -f small Rtapp
 Module("APPS-ANDROID", set(
     HG(isa.name,
         Metaface({(isa, Up.USR)}, {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, Lib_ANYs, Sysapp_ANYs, {App.ANDROID_RUNTIME}, {Rtlib.ANY}),
         Metaface({(isa, Up.USR)}, {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, Lib_ANYs, Sysapp_ANYs, {App.ANDROID_RUNTIME}, {Rtlib.ANY}, {Rtapp.APPS})
     )
-    for isa in Isa_MODERN_ANDROID) | {
+    for isa in Isa_MODERN_ANDROIDs) | {
     HG("UNIVERAL",
         Metaface({
             Interface((Isa.NONE, Up.NONE), Kernel.NONE, Syslib.NONE, Lib.NONE, Sysapp.NONE, App.ANDROID_RUNTIME, Rtlib.ANY),
             } | set(
             Interface((isa, Up.USR), Kernel.LINUX_ANDROID, Syslib.DEFAULT, Lib.ANY, Sysapp.ANY, App.ANDROID_RUNTIME, Rtlib.ANY)
-        for isa in Isa_MODERN_ANDROID)),
+        for isa in Isa_MODERN_ANDROIDs)),
         Metaface({(Isa.NONE, Up.NONE)}, {Kernel.NONE}, {Syslib.NONE}, {Lib.NONE}, {Sysapp.NONE}, {App.ANDROID_RUNTIME}, {Rtlib.ANY}, {Rtapp.APPS})
     )}
 )
@@ -291,7 +296,7 @@ Transor("DynamoRIO",
     parent=Dynamo,
     renames=[Rename("DynamoRIO(VMware)", Date(2007), "")]
 )
-Transor("VMware Workstation",
+VMwareWorkstation = Transor("VMware Workstation",
     {  HG("",
         Metaface({(Isa.X86_64, Up.USR)}, {Kernel.LINUX, Kernel.WINDOWS}, {Syslib.WINDOWS}, {Lib.ANY}),
         Metaface({(Isa.X86_64, Up.USR_PVL)}),
@@ -390,7 +395,7 @@ Transor("Tarmac",
     '''
 )
 Isa_DOSBOXs = {Isa.X86_64, Isa.X86, Isa.MIPS32, Isa.ARM32, Isa.POWERPC}
-Transor("DOSBox",
+DOSBox = Transor("DOSBox",
     {  HG("",
         Metaface(IsasUSR(isas), {kernel}, {Syslib.DEFAULT}, {Lib.ANY}),
         Metaface({(Isa.X86, Up.USR_PVL)}),
@@ -402,14 +407,14 @@ Transor("DOSBox",
     desc="https://sourceforge.net/projects/dosbox/",
 )
 # TODO:
-Transor("LLVM",
+LLVM = Transor("LLVM",
     {  HG("",
         Metaface(),
         Metaface(),
     )},
     Date(2003), Date.today(), "#556293",
 )
-Transor("Xen",
+Xen = Transor("Xen",
     {  HG("",
         Metaface({(isa, Up.USR_PVL)}),
         Metaface({(isa, Up.USR_PVL)}),
@@ -522,7 +527,7 @@ Digital_Bridge = Transor("Digital Bridge",
     ''',
 )
 
-Transor("skyeye",
+skyeye = Transor("skyeye",
     {  HG("",
         Metaface(),
         Metaface(),
@@ -571,7 +576,7 @@ Transor("Win4Lin Pro",
     connectors=[Connector(QEMU_sys, Date(2005))]
 )
 
-Transor("Intel VT", set(  HG("",
+IntelVT = Transor("Intel VT", set(  HG("",
         Metaface({(isa, Up.USR_PVL)}),
         Metaface({(isa, Up.USR_PVL)}),
     )
@@ -627,5 +632,196 @@ Transor("Rosetta",
     Date(2006), Date(2011), "#525152", dev=Dev.APPLE,
     desc="https://en.wikipedia.org/wiki/Rosetta_%28software%29",
 )
+
+Transor("DeSmuME",
+    {  HG("",
+        Metaface(IsasUSR({Isa.X86, Isa.X86_64}), {Kernel.WINDOWS, Kernel.LINUX, Kernel.MACOS}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface({(Isa.ARM32, Up.USR_PVL)}),
+    )},
+    Date(2006,4,6), Date.today(), "#A4A8FF", "GPL2",
+    feat='''
+        peripherals,
+        bios (loading and executing ROMs) (able to run external bios)
+    ''',
+    desc='''
+        https://desmume.org/
+        https://github.com/TASEmulators/desmume
+        http://wiki.desmume.org/index.php?title=Faq
+    ''',
+)
+
+Transor("playonlinux",
+    {  HG("",
+        Metaface(),
+        Metaface(),
+    )},
+    Date(2007), Date.today(), parent=WINE,
+    desc="zorin os",
+)
+
+Transor("MagiXen",
+    {  HG("",
+        Metaface({(Isa.ITANIUM, Up.USR_PVL)}),
+        Metaface({(Isa.IA32, Up.USR_PVL)}),
+    )},
+    Date(2007), dev=Dev.HP, parent=Xen,
+    desc="2007: MagiXen: Combining Binary Translation and Virtualization",
+)
+
+Transor("VirtualBox",
+    {  HG("",
+        Metaface(IsasUSR({isa}), {Kernel.WINDOWS, Kernel.LINUX, Kernel.MACOS}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface(IsasUSR_PVL({isa})),
+    ) for isa in [Isa.X86, Isa.X86_64]},
+    Date(2007,1,17), Date.today(), color="#2F61B4", dev=Dev.ORACLE,
+    connectors=[Connector(IntelVT, Date(2007,1,17))],
+    desc="https://en.wikipedia.org/wiki/VirtualBox",
+)
+
+KVM = Transor("KVM",
+    {  HG("",
+        Metaface(IsasUSR_PVL({isa}), {Kernel.LINUX}),
+        Metaface(IsasUSR_PVL({isa})),
+    ) for isa in Isa_KVMs},
+    Date(2007,2,5), Date.today(), color="#000000",
+    connectors=[Connector(IntelVT, Date(2007,2,5))],
+    desc='''
+        https://en.wikipedia.org/wiki/VirtualBox
+    ''',
+)
+
+Transor("VMware Player",
+    {  HG("",
+        Metaface({(Isa.X86_64, Up.USR)}, {kernel}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface({(Isa.X86_64, Up.USR_PVL)}),
+    ) for kernel in [Kernel.WINDOWS, Kernel.LINUX]},
+    Date(2008,6,6), Date.today(), color="#FFE839", dev=Dev.VMWARE, parent=VMwareWorkstation,
+    desc="https://en.wikipedia.org/wiki/VMware_Workstation_Player",
+)
+
+Transor("QEMU-KVM",
+    {  HG("",
+        Metaface(IsasUSR({isa}), {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface(IsasUSR_PVL({isa})),
+    ) for isa in Isa_KVMs},
+    Date(2008,11,6), Date.today(), color="#F60", parent=QEMU_sys,
+    connectors=[Connector(KVM, Date(2008,11,6))],
+    desc="Git commit: 7ba1e61953f459: Add KVM support to QEMU",
+)
+
+Transor("DistriBit",
+    {  HG("",
+        Metaface(),
+        Metaface(),
+    )},
+    Date(2009), Date(2012), dev=Dev.SJ,
+    feat='''
+        Server-client,
+        2-level code cache,
+        Server predicts client’s needing code
+    ''',
+    desc="2010: DistriBit: A Distributed Dynamic Binary Translator System for Thin Client Computing",
+)
+
+Transor("proot",
+    {  HG("",
+        Metaface(),
+        Metaface(),
+    )},
+    Date(2010,5,22), Date.today(),
+    feat="fs isolation",
+    desc="https://github.com/proot-me/proot.git",
+)
+
+Transor("DOSBox-X",
+    {  HG("",
+        Metaface(IsasUSR(isas), {kernel}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface({(Isa.X86, Up.USR_PVL)}),
+        term=Term.V2B,
+    ) for isas,kernel in zip(
+        [Isa_MODERN_WINDOWSs, Isa_MODERN_MACOSs, Isa_LINUXs, Isa_BSDs],
+        [Kernel.WINDOWS, Kernel.MACOS, Kernel.LINUX, Kernel.BSD])},
+    Date(2011), Date.today(), color="#113466", parent=DOSBox,
+)
+
+Transor("Denver",
+    {  HG("",
+        Metaface({(Isa.DENVER, Up.USR_PVL)}),
+        Metaface({(Isa.ARM64, Up.USR_PVL)}),
+    )},
+    Date(2011,3,4), Date(2014,10,15), dev=Dev.NVIDIA,
+    desc="https://en.wikipedia.org/wiki/Project_Denver",
+)
+
+Transor("HQEMU",
+    {  HG("",
+        Metaface(IsasUSR({Isa.X86, Isa.X86_64, Isa.ARM64, Isa.POWERPC64}), {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface(IsasUSR({Isa.X86, Isa.X86_64, Isa.ARM, Isa.ARM64}), {Kernel.LINUX}),
+        term=Term.USER_LEVEL_BINARY_TRANSLATOR,
+    )},
+    Date(2012), Date(2018), color="#F60", parent=QEMU_user, dev=Dev.TQH,
+    connectors=[Connector(LLVM, Date(2012))],
+    feat="multi thread opt",
+    desc='''
+        2012: HQEMU: A Multi-Threaded and Retargetable Dynamic Binary Translator on Multicores
+        2013: Efficient and Retargetable Dynamic Binary Translation on Multicores
+        2018: HQEMU v2.5.2 Technical Report
+    ''',
+)
+
+Transor("LLBT",
+    {  HG("",
+        Metaface({(Isa.LLVM, Up.USR)}, {Kernel.LINUX}),
+        Metaface({(Isa.ARM, Up.USR)}, {Kernel.LINUX}),
+        term=Term.STATIC_BINARY_TRANSLATOR,
+    )},
+    Date(2012), Date(2014), dev=Dev.TJD,
+    desc='''
+        2012: LLBT: An LLVM-based Static Binary Translator
+        2013: Automatic Validation for Static Binary Translation
+        2014: A Retargetable Static Binary Translator for the ARM Architecture
+    ''',
+)
+
+Transor("PPSSPP",
+    {  HG("",
+        Metaface(IsasUSR(isas), {kernel}, {Syslib.DEFAULT}, {Lib.ANY}),
+        Metaface({(Isa.MIPSIII, Up.USR_PVL)}),
+        term=Term.TYPE2_VIRTUAL_MACHINE_WITH_BINARY_TRANSLATION,
+        ) for isas,kernel in zip(
+            [Isa_MODERN_WINDOWSs, Isa_MODERN_MACOSs, Isa_LINUXs],
+            [Kernel.WINDOWS, Kernel.MACOS, Kernel.LINUX])
+    }|{HG("",
+        Metaface(IsasUSR(Isa_MODERN_ANDROIDs), {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, {Lib.ANY}, {Sysapp.ANY}, {App.ANDROID_RUNTIME}, {Rtlib.ANY}),
+        Metaface({(Isa.MIPSIII, Up.USR_PVL)}),
+        # TODO: Android auto generate term?
+        term=Term.TYPE2_VIRTUAL_MACHINE_WITH_BINARY_TRANSLATION,
+    )},
+    Date(2012,3,25), Date.today(), color="#0086B2", license="GPL2",
+    desc='''
+        https://www.ppsspp.org/
+        https://github.com/hrydgard/ppsspp
+    ''',
+)
+
+Transor("Arm-js",
+    {  HG("",
+        # TODO:
+        Metaface(),
+        Metaface({(Isa.ARM, Up.USR_PVL)}),
+    )},
+    Date(2012,5,20), Date(2014,2,11),
+    desc="https://github.com/ozaki-r/arm-js",
+)
+
+Transor("skyeye(Commercial)",
+    {  HG("",
+        Metaface(),
+        Metaface(),
+    )},
+    Date(2013), Date.today(), parent=skyeye, dev=Dev.DIGIPROTO,
+    desc="https://www.digiproto.com/product/24.html",
+)
+
 # Lastly, add dummy modules after all modules are added
 addDummyModules()

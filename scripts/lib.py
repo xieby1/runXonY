@@ -237,12 +237,16 @@ class Isa(enum.IntEnum):
     # TODO: from linux arch
     ARC = enum.auto()
     CSKY = enum.auto()
-    IA64 = enum.auto()
+    IA64 = ITANIUM = enum.auto()
     PARISC = HPPA = enum.auto()
 
     DAISY_VLIW = DAISY = enum.auto()
 
     CRUSOE_VLIW = CRUSOE = enum.auto()
+
+    DENVER_VLIW = DENVER = enum.auto()
+
+    LLVM_IR = LLVM = enum.auto()
 
     END = enum.auto()
     idx = 0
@@ -277,10 +281,16 @@ class Dev(enum.IntEnum):
     TransGaming_Nvidia = TRANSGAMING_NVIDIA = enum.auto()
     Transitive_Apple = TRANSITIVE_APPLE = enum.auto()
     SpecOps_Labs = SPECOPS_LABS = enum.auto()
-    WCG_LAB = enum.auto()
+    武成岗组 = WCG_LAB = enum.auto()
     Intel = INTEL = enum.auto()
     Falling_Leaf_System = FALLING_LEAF_SYSTEM = enum.auto()
     Apple = APPLE = enum.auto()
+    Oracle = ORACLE = enum.auto()
+    上交 = SJ = enum.auto()
+    Nvidia = NVIDIA = enum.auto()
+    台清华 = TQH = enum.auto()
+    台交大 = TJD = enum.auto()
+    迪捷软件 = DIGIPROTO = enum.auto()
 
 hierarchy: dict[int, type] = {
     Isa.idx: Isa,
@@ -470,7 +480,7 @@ class Term(enum.IntEnum):
     VP1 = TYPE1_VIRTUAL_MACHINE_AND_PARAVIRTUALIZATION = enum.auto()
     V2_ = TYPE2_VIRTUAL_MACHINE = enum.auto()
     V2B = TYPE2_VIRTUAL_MACHINE_WITH_BINARY_TRANSLATION = \
-    SBT = SYSTEM_LEVEL_BINARY_TRANSLATOR = enum.auto()
+    SBT = STATIC_BINARY_TRANSLATOR = enum.auto()
     UBT = USER_LEVEL_BINARY_TRANSLATOR = enum.auto()
     UBL = USER_LEVEL_BINARY_TRANSLATOR_WITH_LIB_PASS_THROUGH = enum.auto()
     INS = INSTRUMENTER = enum.auto()
@@ -1092,7 +1102,7 @@ def outputGnucladCsv(f: typing.TextIO) -> None:
             for conn in module.connectors:
                 f.write('"%s","%s","%s","%s","%s","%s","%s"\n' % (
                 "C", conn.start, conn.transor.name,
-                conn.stop, module.name, 2, module.color,
+                conn.stop, module.name, 2, conn.transor.color,
             ))
 
 def outputRelplot():
