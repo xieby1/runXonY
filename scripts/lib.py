@@ -1144,6 +1144,7 @@ def outputRelplot(path: str):
     types = (UsrPvl, Usr, Kernel, Syslib, Lib, Sysapp, App, Rtlib, Rtapp, Src)
     htype_cnt: typing.Dict[type, int] = dict()
     gtype_cnt: typing.Dict[type, int] = dict()
+    type_cnt: typing.Dict[type, int] = dict()
     xmin: int = Date.today().toordinal()
     xmax: int = 0
     for ty in types:
@@ -1165,45 +1166,53 @@ def outputRelplot(path: str):
                 xmax = _xg
     xmin -= 365
 
+    for ty in types:
+        type_cnt[ty] = max(htype_cnt[ty], gtype_cnt[ty])
+
     htype_idx: typing.Dict[type, int] = dict()
     gtype_idx: typing.Dict[type, int] = dict()
+    type_idx: typing.Dict[type, int] = dict()
     htype_floor: typing.Dict[type, int] = dict()
     gtype_floor: typing.Dict[type, int] = dict()
+    type_floor: typing.Dict[type, int] = dict()
     htype_celling: typing.Dict[type, int] = dict()
     gtype_celling: typing.Dict[type, int] = dict()
-    _htf: int = 0
-    _gtf: int = 0
+    type_celling: typing.Dict[type, int] = dict()
+    _tf: int = 0
     for ty in types:
-        htype_floor[ty] = _htf
-        htype_idx[ty] = _htf + 1
-        _htf += htype_cnt[ty] + 1
-        htype_celling[ty] = _htf
+        htype_floor[ty] = _tf
+        htype_idx[ty] = _tf + 1
+        htype_celling[ty] = htype_idx[ty] + htype_cnt[ty]
 
-        gtype_floor[ty] = _gtf
-        gtype_idx[ty] = _gtf + 1
-        _gtf += gtype_cnt[ty] + 1
-        gtype_celling[ty] = _gtf
+        gtype_floor[ty] = _tf
+        gtype_idx[ty] = _tf + 1
+        gtype_celling[ty] = gtype_idx[ty] + gtype_cnt[ty]
 
-    ymax: float = gtype_celling[types[len(types)-1]] # last element of gtype_celling
+        type_floor[ty] = _tf
+        type_idx[ty] = _tf + 1
+        _tf += type_cnt[ty] + 1
+        type_celling[ty] = _tf
+
+    ymax: float = type_celling[types[len(types)-1]] # last element of gtype_celling
 
     # draw background bands
     _cbool: bool = True
-    for hf, gf, hc, gc in zip(htype_floor.values(), gtype_floor.values(), htype_celling.values(), gtype_celling.values()):
+    for _f,_c in zip(type_floor.values(), type_celling.values()):
         ax.add_patch(plt.Polygon([
-            (xmin, hf), (xmin, hc),
-            (xmax, gc), (xmax, gf),
+            (xmin, _f), (xmin, _c),
+            (xmax, _c), (xmax, _f),
         ], color='white' if _cbool else 'gray', alpha=0.2))
         _cbool = not _cbool
 
-    # make sure start and stop position lay in right background band
+    # make sure start and stop position uniformly distributes among background band
     # hg True for h, False for g
-    def trapezoidFix(hg:bool, t:type, x:float, y:float) -> float:
-        xratiol: float = (x-xmin)/(xmax-xmin) # x ratio left
-        xratior: float = (xmax-x)/(xmax-xmin) # x ratio right
+    def linearFix(hg:bool, t:type, y:float) -> float:
         hc: float = htype_celling[t]
         hf: float = htype_floor[t]
         gc: float = gtype_celling[t]
         gf: float = gtype_floor[t]
+        _c: float = type_celling[t]
+        _f: float = type_floor[t]
         yratiol: float # y ratio lower
         yratioh: float # y ratio higher
         if hg: # h
@@ -1212,9 +1221,7 @@ def outputRelplot(path: str):
         else: # g
             yratiol = (y-gf)/(gc-gf)
             yratioh = (gc-y)/(gc-gf)
-        lc: float = xratior*hc + xratiol*gc # local celling
-        lf: float = xratior*hf + xratiol*gf # local floor
-        return yratioh*lf + yratiol*lc
+        return yratioh*_f + yratiol*_c
 
     import math
     for module in modules:
@@ -1239,8 +1246,8 @@ def outputRelplot(path: str):
             gtype_idx[gt] += 1
 
             # add transor band
-            _yh: float = trapezoidFix(True, ht, _xh, _hidx)
-            _yg: float = trapezoidFix(False, gt, _xg, _gidx)
+            _yh: float = linearFix(True, ht, _hidx)
+            _yg: float = linearFix(False, gt, _gidx)
             ax.add_patch(plt.Polygon([
                 (_xh, _yh - _herr/2), (_xh, _yh + _herr/2),
                 (_xg, _yg + _gerr/2), (_xg, _yg - _gerr/2),
@@ -1255,7 +1262,7 @@ def outputRelplot(path: str):
     xs: typing.List[int] = list(map(lambda y: Date(y).toordinal(), years))
     ax.xaxis.set_ticks(xs, years, rotation=90)
     # y axis
-    ys: typing.List[float] = list(map(lambda l,h: (l+h)/2+1, [0]+list(htype_idx.values()), htype_idx.values()))
+    ys: typing.List[float] = list(map(lambda l,h: (l+h)/2, [0]+list(type_celling.values()), type_celling.values()))
     names: typing.List[str] = list(map(lambda t: t.__name__, types))
     ax.yaxis.set_ticks(ys, names)
 
