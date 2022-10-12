@@ -1,0 +1,96 @@
+<!-- Based on `pandoc -D html` -->
+<!-- pandoc 2.17.1.1 -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="xieby1" />
+  <meta name="description" content="A timeline for projects which can run guest X on host Y." />
+  <title>runXonY</title>
+  <style>
+  </style>
+  <link rel="stylesheet" href="web/index.css">
+  <style>
+  html {
+      margin: 0;
+  }
+  body {
+      max-width: none;
+  }
+  a:-webkit-any-link {
+      color: -webkit-link;
+      text-decoration: underline;
+  }
+  </style>
+
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#about-runxony">About runXonY</a>
+<ul>
+<li><a href="#intro">Intro</a></li>
+<li><a href="#terminologies">Terminologies</a>
+<ul>
+<li><a href="#xy-or-guesthost">X&amp;Y or Guest&amp;Host</a></li>
+<li><a href="#layer-resource-and-interface">Layer, Resource and
+Interface</a></li>
+<li><a href="#well-defined-simple-machine">Well-defined Simple
+Machine</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="about-runxony">About runXonY</h1>
+<h2 id="intro">Intro</h2>
+<p>RunXonY records “emulation/virtualization/…” project I have met. In
+order to make the records in runXonY more precie and consistent, I will
+first elaborate the terminolies used in runXonY.</p>
+<h2 id="terminologies">Terminologies</h2>
+<h3 id="xy-or-guesthost">X&amp;Y or Guest&amp;Host</h3>
+<p>As the name runXonY reveals, there are two entities X and Y. In CS
+terminoly, them are called guest and host respectly.</p>
+<h3 id="layer-resource-and-interface">Layer, Resource and Interface</h3>
+<p>Layer includes several kinds of resources. Layer exposes the resource
+to upper layer by interface. Layer makes use of lower layer’s resource
+by lower layer’s interface.</p>
+<p><img src="./pictures/legends.svg" /></p>
+<p>Interface can serve multiple layers. Traditional block diagram cannot
+present this “serving multiple layers” properly. Here I use multiple
+lines of dots to present this “serving multiple layers”. To improve
+readability, echo line of dots is numbered and colored.</p>
+<p><img src="./pictures/legends_serve_multi_layers.svg" /></p>
+<p>Layer0’s 3 interfaces serve layer1 and layer2. Layer1 make use of
+layer0’s interfaces, exposes 2 interfaces to layer2. Layer2 is able to
+make use of interfaces from layer0 and layer2.</p>
+<h3 id="well-defined-simple-machine">Well-defined Simple Machine</h3>
+<p>In order to describe guest and host in a consistent way, I’d like to
+introduce a idealistic computer, I call it “well-defined simple
+machine”.</p>
+<ul>
+<li><p>“well-defined”: every layer is well-wrapped, no resource
+leakage.</p>
+<p>For example, OS kernel is supposed to well wrap physical memory, is
+supposed to expose memory resource through virtual memory. User
+application cannot access physical memory directly.</p></li>
+<li><p>“simple”: no emulation/virtualization/… tech is applied in this
+machine</p></li>
+</ul>
+<p><img src="./pictures/general_app_arch.svg" /></p>
+<p>In WDSM, available layers are</p>
+<ul>
+<li>uArch</li>
+<li>ISA</li>
+<li>Syscall</li>
+<li>SysLib</li>
+<li>Lib</li>
+<li>SysEnv</li>
+<li>UserEnv</li>
+</ul>
+</body>
+</html>

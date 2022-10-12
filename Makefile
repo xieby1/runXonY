@@ -2,36 +2,39 @@ define \n
 
 
 endef
-CMDL_GEN = \
-		   test/runXonY.csv \
-		   test/runXonY.dot \
-		   test/web/runXonY.json \
-		   test/relplot.svg
-ALL_GEN = test/runXonY.svg test/runXonY.dot test/web/test.js \
-		  gnuclad/gnuclad.svg index.html
+ALL_GEN = timeline.svg relplot.svg \
+		  test/web/test.js \
+		  index.html about.html
 all: ${ALL_GEN}
 
 test/web/test.js: test/web/test.ts
 	tsc $<
 
-gnuclad/gnuclad.csv: runXonY.csv scripts/genGnucladCsv.py
-	$(word 2,$^) > $@
-
+CMDL_GEN = data/timeline.csv test/web/runXonY.json relplot.svg
 ${CMDL_GEN} &: scripts/lib.py scripts/data.py scripts/cmdl.py
 	scripts/cmdl.py \
-		-c test/runXonY.csv \
-		-d test/runXonY.dot \
-		-j test/web/runXonY.json \
-		-r test/relplot.svg
+		-c $(word 1,${CMDL_GEN}) \
+		-j $(word 2,${CMDL_GEN}) \
+		-r $(word 3,${CMDL_GEN})
 
-gnuclad/gnuclad.svg: gnuclad/gnuclad.csv gnuclad/gnuclad.conf
+# gnuclad svg lacks of viewBox,
+# which will causing cannot resizing by css
+# add one to generated svg
+# https://stackoverflow.com/questions/644896/how-do-i-scale-a-stubborn-svg-embedded-with-the-object-tag
+timeline.svg: data/timeline.csv data/gnuclad.conf
 	gnuclad $< $@ $(word 2,$^)
+	identify -format 'viewBox="0 0 %w %h"\n' $@ | sed -i '/height/r /dev/stdin' $@
 
-test/runXonY.svg: test/runXonY.csv gnuclad/gnuclad.conf
-	gnuclad $< $@ $(word 2,$^)
+about.html: about.md web/template.html web/head.html
+	pandoc \
+		--template $(word 2,$^) \
+		-H $(word 3,$^) \
+		--toc \
+		-o $@ \
+		$(word 1,$^)
 
 index.html: index.md web/template.html web/head.html
-	pandoc --metadata title="runXonY" \
+	pandoc \
 		--template $(word 2,$^) \
 		-H $(word 3,$^) \
 		--toc \

@@ -16,7 +16,6 @@ $endif$
   <meta name="description" content="A timeline for projects which can run guest X on host Y." />
   <title>runXonY</title>
   <style>
-    $styles.html()$
   </style>
 $for(css)$
   <link rel="stylesheet" href="$css$" />
@@ -68,17 +67,5 @@ $body$
 $for(include-after)$
 $include-after$
 $endfor$
-<button id="buttonZoomIn">Zoom In</button>
-<button id="buttonZoomOut">Zoom Out</button>
-<button id="buttonZoomReset">Zoom Reset</button>
-<input id="zoomInputBox" type="number" style="width:4em;"></input>
-<button id="buttonZoomSet">Zoom Set</button>
-<div id="viewport" style="width: 100%; height: 80vh; overflow: scroll;">
-    <div id="imgcontainer" style="position: relative">
-        <pre id="details" style="font-size:12px;">test miao</pre>
-    </div>
-</div>
 </body>
-<script src="https://unpkg.com/papaparse@5.3.1/papaparse.min.js"></script>
-<script src="web/index.js"></script>
 </html>
