@@ -1131,8 +1131,7 @@ def outputGnucladCsv(f: typing.TextIO) -> None:
         2, conn.startTransor.color,
     ))
 
-# TODO: neccessary? make guest(left) and host(right) axis same scale
-def outputRelplot(path: str):
+def outputRelplot(output: str):
     import matplotlib.pyplot as plt
     plt.rcParams['svg.fonttype'] = 'none'
     f: plt.Figure
@@ -1267,4 +1266,7 @@ def outputRelplot(path: str):
     ax.yaxis.set_ticks(ys, names)
 
     ax.set(xlim=(xmin, xmax), ylim=(0, ymax))
-    plt.savefig(path, bbox_inches="tight")
+    if output=="window":
+        plt.show()
+    else:
+        plt.savefig(output, bbox_inches="tight")

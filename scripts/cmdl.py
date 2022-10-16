@@ -24,9 +24,9 @@ parser.add_argument("-j", "--json",
 )
 parser.add_argument("-r", "--rel",
     nargs="?",
-    const=pathlib.Path("/dev/stdout"),
-    type=pathlib.Path,
-    help = "the output path of relplot file"
+    const="window",
+    type=str,
+    help = "the output path of relplot file, default by interactive window"
 )
 
 args = parser.parse_args()
