@@ -7,6 +7,7 @@ let
       ipython
       multimethod
       matplotlib
+      numpy
     ]
   );
 in

@@ -6,6 +6,7 @@ import typing
 import warnings
 from multimethod import multimethod
 from itertools import zip_longest
+import numpy as np
 
 HashItem = typing.TypeVar("HashItem", bound=typing.Hashable)
 
@@ -633,9 +634,8 @@ class HG:
             name: str,
             h: Metaface, # Host
             g: Metaface, # Guest
-            # TODO: add efficiency
-            # eff,
             term: Term = Term.UNKNOWN,
+            perfs: list[Perf] = list(),
             add: bool = True,
             ) -> None:
         self.idx = HG.idx
@@ -644,6 +644,11 @@ class HG:
         self.h = h
         self.g = g
         self.repr = h.__repr__() + ':' + g.__repr__()
+        self.perfs = perfs
+        _perfratios = [pf.ratio for pf in perfs]
+        self.perfratio: typing.Optional[float] = None
+        if len(_perfratios) > 0:
+            self.perfratio = np.exp(np.log(_perfratios).mean())
         self.term = term
         self.terms: dict[Term, int] = {term:1} if term!=Term.UNKNOWN else dict()
 
@@ -747,6 +752,22 @@ class Connector:
         self.start: Date = start
         self.stop: Date = stop if stop>=start else start
         connectors.append(self)
+
+class Benchmark(enum.IntEnum):
+    NONE = enum.auto()
+    COREMARK = enum.auto()
+
+class Perf:
+    def __init__(self,
+            ratio: float,
+            benchmark: Benchmark,
+            date: Date = Date(),
+            info: str = "",
+            ) -> None:
+        self.ratio: float = ratio
+        self.benchmark: Benchmark = benchmark
+        self.date: Date = date
+        self.info: str = info
 
 class Module:
     def __init__(self,
@@ -909,6 +930,14 @@ class Transor(Module):
         self.desc = fixMultiLineString(desc)
         self.parent = parent
         self.renames = renames
+        self.perfs: list[Perf] = list()
+        for hg in hgs:
+            self.perfs += hg.perfs
+        _perfratios = [pf.ratio for pf in self.perfs]
+        self.perfratio: typing.Optional[float] = None
+        if len(_perfratios) > 0:
+            # https://stackoverflow.com/questions/43099542/python-easy-way-to-do-geometric-mean-in-python
+            self.perfratio = np.exp(np.log(_perfratios).mean())
         super().__init__(name, hgs, term=term)
 
 # return True for added, False for not add
