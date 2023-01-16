@@ -1218,7 +1218,7 @@ Transor("box64",
         term=Term.USER_LEVEL_BINARY_TRANSLATOR_WITH_LIB_PASS_THROUGH,
         perfs=[
             Perf(0.3755, Benchmark.COREMARK, Date(2023,1,15),
-                 "nix-on-droid 22.11, hisense a5 pro cc, gcc 11.3.0"),
+                 "nixpkgs 22.11, raspberrypi4, gcc 11.3.0"),
         ],
     ), HG("without-DynaRec",
         Metaface(IsasUSR({Isa.ARM64, Isa.LA64, Isa.RISCV64, Isa.POWERPC64, Isa.X86_64}), {Kernel.LINUX}),
