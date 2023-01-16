@@ -524,6 +524,7 @@ Digital_Bridge = Transor("Digital Bridge",
     )},
     Date(2004), Date(2006), dev=Dev.WCG_LAB, feat="Dynamic + static bt",
     desc='''
+        2004: 二进制翻译关键技术研究
         2005: 优化动态二进制翻译器DigitalBridge
     ''',
 )
@@ -984,7 +985,7 @@ MAMBO_X64 = Transor("MAMBO-X64",
     )},
     Date(2017), Date.today(), dev=Dev.MANCHESTER,
     desc='''
-        2017: Low Overhead Dynamic Binary Translation on ARMhttps://github.com/beehive-lab/mambo
+        2017: Low Overhead Dynamic Binary Translation on ARM
     ''',
 )
 HyperMAMBO_X64 = Transor("HyperMAMBO-X64",
