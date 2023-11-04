@@ -15,6 +15,7 @@ pkgs.mkShell {
   inherit name;
   buildInputs = with pkgs; [
     myPython
+    gnuclad
   ];
   shellHook = ''
     # env
