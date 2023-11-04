@@ -18,6 +18,18 @@ class _Node {
         this.parents = []
         this.children = []
     }
+    visible(): Boolean {
+        if (
+            this.id.startsWith("I") ||
+            this.id.substring(1,3) == "SAP" ||
+            this.id.substring(1,3) == "LIB" ||
+            this.id.substring(1,3) == "SLB" ||
+            this.name.startsWith("SYSAPPS") ||
+            this.name.startsWith("SYSLIBS") ||
+            this.name.startsWith("LIBS")
+        ) return false;
+        else return true;
+    }
 }
 
 type _Nodes = {[id: string]: _Node}

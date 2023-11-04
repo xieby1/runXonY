@@ -518,8 +518,12 @@ class Term(enum.IntEnum):
     CPL = COMPILER = enum.auto()
 
     # Dummy Module
-    APP = SYSAPP = enum.auto()
-    LIB = SYSLIB = enum.auto()
+    RAP = RTAPP = enum.auto()
+    RLB = RTLIB = enum.auto()
+    APP = enum.auto()
+    SAP = SYSAPP = enum.auto()
+    LIB = enum.auto()
+    SLB = SYSLIB = enum.auto()
     ISA = enum.auto()
 
 # UniHG help addDummyModule to determine whether a dummy module has a counterpart module?
@@ -948,10 +952,18 @@ def addDummyModule(args: DMargs, hierarchyIdx: int) -> bool:
         term = Term.ISA
     elif hierarchyIdx == Kernel.idx:
         term = Term.KERNEL
-    elif hierarchyIdx == Syslib.idx or hierarchyIdx == Lib.idx:
+    elif hierarchyIdx == Syslib.idx:
+        term = Term.SYSLIB
+    elif hierarchyIdx == Lib.idx:
         term = Term.LIB
-    elif hierarchyIdx == Sysapp.idx or hierarchyIdx == App.idx:
+    elif hierarchyIdx == Sysapp.idx:
+        term = Term.SYSAPP
+    elif hierarchyIdx == App.idx:
         term = Term.APP
+    elif hierarchyIdx == Rtlib.idx:
+        term = Term.RTLIB
+    elif hierarchyIdx == Rtapp.idx:
+        term = Term.RTAPP
     else:
         term = Term.UNKNOWN
 
