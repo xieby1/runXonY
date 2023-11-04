@@ -19,7 +19,7 @@ pkgs.mkShell {
   ];
   shellHook = ''
     # env
-    export PYTHONPATH=${myPython}/${myPython.sitePackages}
+    export PYTHONPATH="${myPython}/${myPython.sitePackages}:''$(realpath scripts)"
     export debian_chroot=${name}
   '';
 }

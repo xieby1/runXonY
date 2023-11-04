@@ -180,14 +180,12 @@ Merge = Transor("Merge",
     feat="run DOS/Windows 3.1",
     desc="https://en.wikipedia.org/wiki/Merge_(software)"
 )
-Transor("mx",
-    {  HG("",
-        Metaface({(Isa.ALPHA, Up.USR)}, {Kernel.OSF1}),
-        Metaface({(Isa.MIPS32, Up.USR)}, {Kernel.ULTRIX}),
-    )},
-    Date(1993), dev=Dev.DIGITAL,
-    desc="1993: Binary Translation by Richard L. Sites"
-)
+import os
+curfiledir = os.path.dirname(os.path.abspath(__file__))
+for dir in os.listdir(curfiledir):
+    filepath = "/".join((curfiledir, dir, "meta.py"))
+    if os.path.isfile(filepath):
+        exec("from %s.meta import *" % dir)
 Transor("Shade",
     {  HG("MIPS.V8",
         Metaface({(Isa.SPARCV8, Up.USR)}, {Kernel.SUNOS4_BSD}, {Syslib.DEFAULT}, Lib_ANYs),
