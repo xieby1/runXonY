@@ -178,16 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-Transor("Arm-js",
-    {  HG("",
-        # TODO:
-        Metaface(),
-        Metaface({(Isa.ARM, Up.USR_PVL)}),
-    )},
-    Date(2012,5,20), Date(2014,2,11),
-    desc="https://github.com/ozaki-r/arm-js",
-)
-
 Transor("skyeye(Commercial)",
     {  HG("",
         Metaface(),
