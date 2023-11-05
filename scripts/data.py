@@ -177,16 +177,6 @@ for dir in os.listdir(curfiledir):
     filepath = "/".join((curfiledir, dir, "meta.py"))
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
-Transor("Aries",
-    {  HG("",
-        Metaface({(Isa.IA64, Up.USR)}, {Kernel.UNIX}, {Syslib.DEFAULT}, {Lib.ANY}),
-        Metaface({(Isa.PARISC, Up.USR)}, {Kernel.UNIX}),
-    )},
-    Date(2000), dev=Dev.HP,
-    desc='''
-        2000: PA-RISC to IA-64: Transparent Execution, No Recompilatio
-    ''',
-)
 Transor("WineX",
     set(),
     Date(2000,12,27), Date(2016), "#800000", dev=Dev.TRANSGAMING_NVIDIA,
