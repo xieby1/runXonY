@@ -177,13 +177,6 @@ for dir in os.listdir(curfiledir):
     filepath = "/".join((curfiledir, dir, "meta.py"))
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
-Transor("Cygwin",
-    {  HG("",
-        Metaface(IsasUSR(Isa_MODERN_WINDOWSs), {Kernel.WINDOWS}),
-        Metaface({(Isa.NONE, Up.NONE)}, {Kernel.NONE}, Syslib_POSIXs, srcs={Src.C, Src.CPP}),
-    )},
-    Date(1995,10,18), Date.today(), "#99003F",
-)
 Transor("FX!32",
     {  HG("",
         Metaface({(Isa.ALPHA, Up.USR)}, {Kernel.WINDOWS_NT4_0}, {Syslib.DEFAULT}, Lib_ANYs),
