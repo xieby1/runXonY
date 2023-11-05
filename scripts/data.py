@@ -177,18 +177,6 @@ for dir in os.listdir(curfiledir):
     filepath = "/".join((curfiledir, dir, "meta.py"))
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
-Transor("Tarmac",
-    {  HG("",
-        Metaface(),
-        Metaface(),
-    )},
-    Date(2001,3,13), color="#28789E",
-    desc='''
-        https://davidsharp.com/tarmac/
-        https://davidsharp.com/tarmac/tarmacreport.pdf
-        https://davidsharp.com/tarmac/tarmacdiary.pdf
-    '''
-)
 Isa_DOSBOXs = {Isa.X86_64, Isa.X86, Isa.MIPS32, Isa.ARM32, Isa.POWERPC}
 DOSBox = Transor("DOSBox",
     {  HG("",
