@@ -177,15 +177,6 @@ for dir in os.listdir(curfiledir):
     filepath = "/".join((curfiledir, dir, "meta.py"))
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
-# TODO:
-Transor("NDISWrapper",
-    {  HG("",
-        Metaface(),
-        Metaface(),
-    )},
-    Date(2003), Date.today(),
-    desc="github: pgiri/ndiswrapper: manpage: ndiswrapper.8",
-)
 # TODO: user-mode linux
 Isa_QEMU_user_hs: set[Isa] = {
     Isa.AARCH64, Isa.ARM, Isa.X86, Isa.X86_64,
