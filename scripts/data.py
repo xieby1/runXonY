@@ -178,15 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-Transor("playonlinux",
-    {  HG("",
-        Metaface(),
-        Metaface(),
-    )},
-    Date(2007), Date.today(), parent=WINE,
-    desc="zorin os",
-)
-
 Transor("MagiXen",
     {  HG("",
         Metaface({(Isa.ITANIUM, Up.USR_PVL)}),
