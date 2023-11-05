@@ -177,14 +177,6 @@ for dir in os.listdir(curfiledir):
     filepath = "/".join((curfiledir, dir, "meta.py"))
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
-# TODO:
-LLVM = Transor("LLVM",
-    {  HG("",
-        Metaface(),
-        Metaface(),
-    )},
-    Date(2003), Date.today(), "#556293",
-)
 Xen = Transor("Xen",
     {  HG("",
         Metaface({(isa, Up.USR_PVL)}),
