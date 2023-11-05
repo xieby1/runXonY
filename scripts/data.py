@@ -177,19 +177,6 @@ for dir in os.listdir(curfiledir):
     filepath = "/".join((curfiledir, dir, "meta.py"))
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
-# TODO: Android
-Transor("DynamoRIO",
-    {  HG('-'.join((kernel.name, isa.name)),
-        Metaface(IsasUSR({isa}), {kernel}, {Syslib.DEFAULT}, {Lib.ANY}),
-        Metaface(IsasUSR({isa}), {kernel}),
-        term=Term.I_O,
-    ) for isa in [Isa.X86, Isa.X86_64, Isa.ARM32, Isa.AARCH64]
-      for kernel in [Kernel.WINDOWS, Kernel.LINUX, Kernel.MACOS]},
-    Date(2000), Date.today(), dev=Dev.HP,
-    desc="https://dynamorio.org/index.html",
-    parent=Dynamo,
-    renames=[Rename("DynamoRIO(VMware)", Date(2007), "")]
-)
 VMwareWorkstation = Transor("VMware Workstation",
     {  HG("",
         Metaface({(Isa.X86_64, Up.USR)}, {Kernel.LINUX, Kernel.WINDOWS}, {Syslib.WINDOWS}, {Lib.ANY}),
