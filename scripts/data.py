@@ -177,14 +177,6 @@ for dir in os.listdir(curfiledir):
     filepath = "/".join((curfiledir, dir, "meta.py"))
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
-Transor("VEST",
-    {  HG("",
-        Metaface({(Isa.ALPHA, Up.USR)}, {Kernel.OPENVMS}, {Syslib.DEFAULT}, Lib_ANYs),
-        Metaface({(Isa.VAX, Up.USR)}, {Kernel.OPENVMS}),
-    )},
-    Date(1993), dev=Dev.DIGITAL,
-    desc="1993: Binary Translation by Richard L. Sites",
-)
 Kernel_WINEs_str: set[str] = {Kernel.LINUX.name, Kernel.MACOS.name, Kernel.BSD.name}
 Kernel_WINEs: set[Kernel] = set(Kernel[name] for name in Kernel_WINEs_str)
 Syslib_WINEs: set[Syslib] = set(Syslib[name] for name in Kernel_WINEs_str)
