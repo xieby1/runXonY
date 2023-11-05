@@ -177,13 +177,6 @@ for dir in os.listdir(curfiledir):
     filepath = "/".join((curfiledir, dir, "meta.py"))
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
-Transor("IA-32 EL",
-    {  HG("",
-        Metaface({(Isa.IA64, Up.USR)}, {kernel}, {Syslib.DEFAULT}, {Lib.ANY}),
-        Metaface({(Isa.IA32, Up.USR)}, {kernel}),
-    ) for kernel in [Kernel.LINUX, Kernel.WINDOWS]},
-    Date(2003), Date.today(),
-)
 # TODO:
 Transor("NDISWrapper",
     {  HG("",
