@@ -178,18 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-KVM = Transor("KVM",
-    {  HG("",
-        Metaface(IsasUSR_PVL({isa}), {Kernel.LINUX}),
-        Metaface(IsasUSR_PVL({isa})),
-    ) for isa in Isa_KVMs},
-    Date(2007,2,5), Date.today(), color="#000000",
-    desc='''
-        https://en.wikipedia.org/wiki/VirtualBox
-    ''',
-)
-Connector(IntelVT, KVM, Date(2007,2,5))
-
 Transor("VMware Player",
     {  HG("",
         Metaface({(Isa.X86_64, Up.USR)}, {kernel}, {Syslib.DEFAULT}, {Lib.ANY}),
