@@ -178,20 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-Transor("DistriBit",
-    {  HG("",
-        Metaface(),
-        Metaface(),
-    )},
-    Date(2009), Date(2012), dev=Dev.SJ,
-    feat='''
-        Server-client,
-        2-level code cache,
-        Server predicts client’s needing code
-    ''',
-    desc="2010: DistriBit: A Distributed Dynamic Binary Translator System for Thin Client Computing",
-)
-
 proot = Transor("proot",
     {  HG("",
         Metaface(),
