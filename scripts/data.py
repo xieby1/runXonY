@@ -177,17 +177,6 @@ for dir in os.listdir(curfiledir):
     filepath = "/".join((curfiledir, dir, "meta.py"))
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
-Transor("MinGW",
-    {  HG("",
-        Metaface(IsasUSR(Isa_MODERN_WINDOWSs), {Kernel.WINDOWS}),
-        Metaface({(Isa.NONE, Up.NONE)}, {Kernel.NONE}, {Syslib.WINDOWS}, srcs={Src.C, Src.CPP}),
-    )},
-    Date(1998,7,1), Date.today(), "#71B21F",
-    feat='''
-        Run on MSVC runtime
-        Can be compiled on Win and Linux
-    '''
-)
 Dynamo = Transor("Dynamo",
     {  HG("",
         Metaface({(Isa.PARISC, Up.USR)}, {Kernel.UNIX}, {Syslib.DEFAULT}, {Lib.ANY}),
