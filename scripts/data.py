@@ -178,19 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-Transor("BPF(JIT)",
-    {  HG("",
-        Metaface(IsasUSR(Isa_LINUXs), {Kernel.LINUX}),
-        Metaface({(Isa.BPF, Up.USR)}),
-    )},
-    Date(2011,4), Date.today(),
-    renames=[Rename(
-        "eBPF",
-        Date(2014,9,4),
-        "https://lwn.net/Articles/740157/ : commit daedfb22451d in 2014, the eBPF virtual machine was exposed directly to user space."
-    )],
-)
-
 HQEMU = Transor("HQEMU",
     {  HG("",
         Metaface(IsasUSR({Isa.X86, Isa.X86_64, Isa.ARM64, Isa.POWERPC64}), {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
