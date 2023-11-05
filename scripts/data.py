@@ -178,16 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-proot = Transor("proot",
-    {  HG("",
-        Metaface(),
-        Metaface(),
-    )},
-    Date(2010,5,22), Date.today(),
-    feat="fs isolation",
-    desc="https://github.com/proot-me/proot.git",
-)
-
 Transor("DOSBox-X",
     {  HG("",
         Metaface(IsasUSR(isas), {kernel}, {Syslib.DEFAULT}, {Lib.ANY}),
