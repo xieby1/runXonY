@@ -178,16 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-Win4Lin_Pro = Transor("Win4Lin Pro",
-    {  HG("",
-        Metaface(),
-        Metaface(),
-    )},
-    Date(2005), Date(2010,3), parent=Win4Lin,
-    desc="https://en.wikipedia.org/wiki/Win4Lin",
-)
-Connector(QEMU_sys, Win4Lin_Pro, Date(2005))
-
 IntelVT = Transor("Intel VT", set(  HG("",
         Metaface({(isa, Up.USR_PVL)}),
         Metaface({(isa, Up.USR_PVL)}),
