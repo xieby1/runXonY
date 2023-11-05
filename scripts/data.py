@@ -177,13 +177,6 @@ for dir in os.listdir(curfiledir):
     filepath = "/".join((curfiledir, dir, "meta.py"))
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
-VMwareWorkstation = Transor("VMware Workstation",
-    {  HG("",
-        Metaface({(Isa.X86_64, Up.USR)}, {Kernel.LINUX, Kernel.WINDOWS}, {Syslib.WINDOWS}, {Lib.ANY}),
-        Metaface({(Isa.X86_64, Up.USR_PVL)}),
-    )},
-    Date(1999,5,15), Date.today(), "#F38C00", dev=Dev.VMWARE,
-)
 Win4Lin = Transor("Win4Lin",
     {  HG("",
         Metaface({(Isa.X86, Up.USR)}, {Kernel.LINUX}, {Syslib.LINUX}, {Lib.ANY}),
