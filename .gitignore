@@ -2,6 +2,6 @@ gnuclad/gnuclad.csv
 .obsidian
 *.bkp
 *.pyc
-.*
 node_modules/
 data/timeline.csv
+.direnv
