@@ -177,18 +177,6 @@ for dir in os.listdir(curfiledir):
     filepath = "/".join((curfiledir, dir, "meta.py"))
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
-Dynamo = Transor("Dynamo",
-    {  HG("",
-        Metaface({(Isa.PARISC, Up.USR)}, {Kernel.UNIX}, {Syslib.DEFAULT}, {Lib.ANY}),
-        Metaface({(Isa.PARISC, Up.USR)}, {Kernel.UNIX}),
-        term=Term.OPT,
-    )},
-    Date(1999), Date(2000), dev=Dev.HP,
-    desc='''
-        1999: Transparent Dynamic Optimization: The Design and Implementation of Dynamo
-        2000: Dynamo: A Transparent Dynamic Optimization System
-    ''',
-)
 # TODO: Android
 Transor("DynamoRIO",
     {  HG('-'.join((kernel.name, isa.name)),
