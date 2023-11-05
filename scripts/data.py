@@ -178,18 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-skyeye = Transor("skyeye",
-    {  HG("",
-        Metaface(),
-        Metaface(),
-    )},
-    Date(2004,5,26), Date(2013,5,2),
-    desc='''
-        https://sourceforge.net/projects/skyeye/files/skyeye/
-        git://skyeye.git.sourceforge.net/gitroot/skyeye/skyeye
-    '''
-)
-
 # TODO: non-general, game
 Transor("bsnes",
     { HG("",
