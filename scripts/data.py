@@ -178,19 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-Transor("Alky",
-    {  HG("",
-        Metaface({(Isa.X86, Up.USR)}, {Kernel.LINUX, Kernel.MACOS}, {Syslib.DEFAULT}, {Lib.ANY}),
-        Metaface({(Isa.X86, Up.USR)}, {Kernel.NO_SYSCALL}, {Syslib.WINDOWS}),
-    )},
-    Date(2006), Date(2008,1), license="LGPL", dev=Dev.FALLING_LEAF_SYSTEM,
-    feat='''
-        OpenGL static converter,
-        written in python,
-        LibAlky is DX10 runtime only work on WinXP
-    '''
-)
-
 Transor("Digital Bridge 2",
     {  HG("",
         Metaface({(Isa.MIPS32, Up.USR)}, {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
