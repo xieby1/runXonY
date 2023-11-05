@@ -178,15 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-Transor("VMware Player",
-    {  HG("",
-        Metaface({(Isa.X86_64, Up.USR)}, {kernel}, {Syslib.DEFAULT}, {Lib.ANY}),
-        Metaface({(Isa.X86_64, Up.USR_PVL)}),
-    ) for kernel in [Kernel.WINDOWS, Kernel.LINUX]},
-    Date(2008,6,6), Date.today(), color="#FFE839", dev=Dev.VMWARE, parent=VMwareWorkstation,
-    desc="https://en.wikipedia.org/wiki/VMware_Workstation_Player",
-)
-
 QEMU_KVM = Transor("QEMU-KVM",
     {  HG("",
         Metaface(IsasUSR({isa}), {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
