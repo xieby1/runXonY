@@ -178,15 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-Transor("skyeye(Commercial)",
-    {  HG("",
-        Metaface(),
-        Metaface(),
-    )},
-    Date(2013), Date.today(), parent=skyeye, dev=Dev.DIGIPROTO,
-    desc="https://www.digiproto.com/product/24.html",
-)
-
 # TODO: non-general, game
 citra = Transor("citra",
     {  HG("",
