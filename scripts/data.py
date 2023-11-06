@@ -178,16 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-# Firmware, actually not a transor
-Transor("edk2-sdm845",
-    {  HG("",
-        Metaface(),
-        Metaface(),
-    )},
-    Date(2020,5,25), Date.today(), parent=edk2_sagit,
-    desc="Enable to run Win11, Support graphics card, can play ff14",
-)
-
 Transor("box64",
     {  HG("DynaRec",
         Metaface({(Isa.ARM64, Up.USR)}, {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
