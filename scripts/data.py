@@ -178,15 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-Transor("Deepin Android Runtime",
-    {  HG("",
-        Metaface(),
-        Metaface(),
-    )},
-    Date(2021,6,29), Date.today(), dev=Dev.UnionTech,
-    desc="https://www.deepin.org/zh/2021/06/29/deepin-20-2-2/",
-)
-
 Transor("waydroid",
     {  HG("",
         Metaface({(isa, Up.USR)}, {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
