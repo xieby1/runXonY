@@ -178,16 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-exagear_strategies = Transor("exagear strategies",
-    {  HG("",
-        Metaface({(Isa.ARM64, Up.USR)}, {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, {Lib.ANY}, {Sysapp.ANY}, {App.ANDROID_RUNTIME}, {Rtlib.ANY}),
-        Metaface(IsasUSR({Isa.X86, Isa.X86_64}), {Kernel.NO_SYSCALL}, {Syslib.WINDOWS}),
-    )},
-    Date(2014), Date(2020), dev=Dev.ELTECH_RUSSIA,
-    desc="https://4pda.to/forum/index.php?showtopic=992239",
-)
-Connector(exagear_strategies, WINE, Date(2014))
-
 Transor("WINE-Android",
     {  HG(isa.name,
         Metaface({(isa, Up.USR)}, {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, {Lib.ANY}, {Sysapp.ANY}, {App.ANDROID_RUNTIME}, {Rtlib.ANY}),
@@ -513,7 +503,7 @@ Transor("exagear",
         Metaface({(Isa.ARM64, Up.USR)}, {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
         Metaface(IsasUSR({Isa.X86, Isa.X86_64}), {Kernel.LINUX}),
     )},
-    Date(2020), Date.today(), parent=exagear_strategies, dev=Dev.ELTECH_HUAWEI,
+    Date(2020), Date.today(), parent=ExaGear_Strategies, dev=Dev.ELTECH_HUAWEI,
 )
 
 # Firmware, actually not a transor
