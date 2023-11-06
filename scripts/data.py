@@ -178,15 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-Anbox_halium = Transor("Anbox-halium",
-    {  HG("",
-        Metaface(),
-        Metaface(),
-    )},
-    Date(2021,4,16), Date(2021,8,27), color="#009688", parent=Anbox,
-    desc="Mirror: https://github.com/my-helps/anbox-halium",
-)
-
 Transor("Deepin Android Runtime",
     {  HG("",
         Metaface(),
