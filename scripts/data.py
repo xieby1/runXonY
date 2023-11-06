@@ -178,14 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-Transor("UTM",
-    {  HG("",
-        Metaface({(Isa.AARCH64, Up.USR)}, {Kernel.IOS}, {Syslib.DEFAULT}, {Lib.ANY}),
-        Metaface(),
-    )},
-    Date(2019), Date.today(), color="#1D63EA", parent=QEMU_sys,
-)
-
 Transor("WSL2",
     {  HG("",
         Metaface({(isa, Up.USR)}, {Kernel.WINDOWS}, {Syslib.DEFAULT}, {Lib.ANY}),
