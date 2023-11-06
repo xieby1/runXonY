@@ -178,18 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-Transor("xDroid",
-    {  HG("",
-        Metaface(),
-        Metaface(),
-    )},
-    Date(2018,8,21), Date.today(), color="#009688", parent=Anbox, dev=Dev.LINZHUOTECH,
-    desc='''
-        https://www.linzhuotech.com/index.php/home/index/article.html?page=4&id=2
-        https://zhuanlan.zhihu.com/p/213300936
-    ''',
-)
-
 Transor("FEX",
     {  HG("",
         Metaface(IsasUSR({Isa.X86_64, Isa.ARM64}), {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
