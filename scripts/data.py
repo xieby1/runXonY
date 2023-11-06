@@ -178,19 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-Transor("VisUAL",
-    {  HG("",
-        Metaface(IsasUSR(isas), {kenerl}, {Syslib.DEFAULT}, {Lib.ANY}),
-        Metaface({(Isa.ARM, Up.USR)}),
-    ) for isas,kenerl in zip(
-        [Isa_MODERN_WINDOWSs, Isa_MODERN_MACOSs, Isa_LINUXs],
-        [Kernel.WINDOWS, Kernel.MACOS, Kernel.LINUX]
-    )},
-    Date(2015), Date.today(), color="#3A9878",
-    feat="visualization",
-    desc="https://salmanarif.bitbucket.io/visual/about.html",
-)
-
 unicorn = Transor("unicorn",
     {  HG("",
         Metaface(),
