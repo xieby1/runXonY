@@ -178,16 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-# non-general
-Transor("firebird",
-    {  HG("",
-        Metaface(),
-        Metaface(),
-    )},
-    Date(2014,4,26), Date.today(), color="#FA0430", license="GPL3",
-    desc="https://github.com/nspire-emus/firebird",
-)
-
 Transor("VisUAL",
     {  HG("",
         Metaface(IsasUSR(isas), {kenerl}, {Syslib.DEFAULT}, {Lib.ANY}),
