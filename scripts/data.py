@@ -178,18 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-Transor("MCTOLL",
-    {  HG("",
-        Metaface({(Isa.LLVM, Up.USR)}, {Kernel.LINUX}),
-        Metaface(IsasUSR({Isa.X86_64, Isa.AARCH64}), {Kernel.LINUX}),
-    )},
-    Date(2019), Date.today(), dev=Dev.MICROSOFT, parent=LLVM,
-    desc='''
-        https://github.com/microsoft/llvm-mctoll
-        2019: Raising Binaries to LLVM IR with MCTOLL (WIP Paper)
-    ''',
-)
-
 Transor("UTM",
     {  HG("",
         Metaface({(Isa.AARCH64, Up.USR)}, {Kernel.IOS}, {Syslib.DEFAULT}, {Lib.ANY}),
