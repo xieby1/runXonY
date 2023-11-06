@@ -178,20 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-captive = Transor("captive",
-    {  HG("",
-        Metaface({(Isa.X86_64, Up.USR_PVL)}),
-        Metaface({(Isa.ARM32, Up.USR_PVL)}),
-    )},
-    Date(2016), Date(2019),
-    desc='''
-        2016: Hardware-Accelerated Cross-Architecture Full-System Virtualization
-        2017: Efficient Cross-architecture Hardware Virtualisation
-        2019: A Retargetable System-Level DBT Hypervisor
-    ''',
-)
-Connector(KVM, captive, Date(2016))
-
 Transor("Limbo",
     {  HG("",
         Metaface(IsasUSR(Isa_MODERN_ANDROIDs), {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, {Lib.ANY}, {Sysapp.ANY}, {App.ANDROID_RUNTIME}, {Rtlib.ANY}),
