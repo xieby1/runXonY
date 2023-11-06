@@ -178,15 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-Transor("Rosetta 2",
-    {  HG("",
-        Metaface({(Isa.AARCH64, Up.USR)}, {Kernel.MACOS}, {Syslib.DEFAULT}, {Lib.ANY}),
-        Metaface({(Isa.X86_64, Up.USR)}, {Kernel.MACOS}),
-    )},
-    Date(2020), Date.today(), color="#525152", dev=Dev.APPLE,
-    desc="https://en.wikipedia.org/wiki/Rosetta_%28software%29",
-)
-
 Transor("exagear",
     {  HG("",
         Metaface({(Isa.ARM64, Up.USR)}, {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
