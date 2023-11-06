@@ -178,15 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-Transor("WSL",
-    {  HG("",
-        Metaface({(isa, Up.USR)}, {Kernel.WINDOWS}, {Syslib.DEFAULT}, {Lib.ANY}),
-        Metaface({(isa, Up.USR)}, {Kernel.LINUX}),
-    ) for isa in Isa_MODERN_WINDOWSs},
-    Date(2016,8,2), Date.today(), color="#0C2AAE", dev=Dev.MICROSOFT,
-    desc="https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux",
-)
-
 MAMBO_X64 = Transor("MAMBO-X64",
     {  HG("",
         Metaface({(Isa.ARM64, Up.USR)}, {Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
