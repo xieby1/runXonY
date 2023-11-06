@@ -178,15 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-Transor("Proton",
-    {  HG("",
-        Metaface(),
-        Metaface(),
-    )},
-    Date(2018,8,21), Date.today(), parent=WINE, dev=Dev.VALVE,
-    desc="https://github.com/ValveSoftware/Proton",
-)
-
 Transor("xDroid",
     {  HG("",
         Metaface(),
