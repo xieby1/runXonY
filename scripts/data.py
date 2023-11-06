@@ -178,16 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-dynarmic = Transor("dynarmic",
-    {  HG("",
-        Metaface({(Isa.X86_64, Up.USR)}, {Kernel.ANY}, {Syslib.DEFAULT}, {Lib.ANY}),
-        Metaface(IsasUSR({Isa.ARM64, Isa.ARM32})),
-    )},
-    Date(2016,7,1), Date.today(),
-    feat="Framework",
-)
-Connector(dynarmic, citra, Date(2016,9,2))
-
 Transor("WSL",
     {  HG("",
         Metaface({(isa, Up.USR)}, {Kernel.WINDOWS}, {Syslib.DEFAULT}, {Lib.ANY}),
