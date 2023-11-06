@@ -178,20 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-# a Unix-like operating system
-# actually, not a transor
-Transor("browsix",
-    {  HG("",
-        Metaface(),
-        Metaface(),
-    )},
-    Date(2015,9,26), Date.today(), color="#6D6B91",
-    desc='''
-        https://browsix.org/
-        https://github.com/plasma-umass/browsix
-    ''',
-)
-
 captive = Transor("captive",
     {  HG("",
         Metaface({(Isa.X86_64, Up.USR_PVL)}),
