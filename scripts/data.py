@@ -178,15 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-Transor("Qubes OS",
-    {  HG("",
-        Metaface({(Isa.X86_64, Up.USR_PVL)}),
-        Metaface({(Isa.X86_64, Up.USR)}),
-    )},
-    Date(2013,9,3), Date.today(), color="#3874D8", dev=Dev.INVISIBLE_THINGS_LAB, parent=Xen,
-    desc="https://en.wikipedia.org/wiki/Qubes_OS",
-)
-
 exagear_strategies = Transor("exagear strategies",
     {  HG("",
         Metaface({(Isa.ARM64, Up.USR)}, {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, {Lib.ANY}, {Sysapp.ANY}, {App.ANDROID_RUNTIME}, {Rtlib.ANY}),
