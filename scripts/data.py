@@ -178,16 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-# non-general game
-Ryujinx = Transor("Ryujinx",
-    {  HG("",
-        Metaface(IsasUSR({Isa.X86_64}), {Kernel.WINDOWS, Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
-        # Nintendo switch
-        Metaface(),
-    )},
-    Date(2018,2,5), Date.today(), color="#FF5F55", license="MIT",
-    desc="https://github.com/Ryujinx/Ryujinx/",
-)
 Transor("ChocolArm64",
     {  HG("",
         Metaface(IsasUSR({Isa.X86_64}), {Kernel.WINDOWS, Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
