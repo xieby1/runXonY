@@ -178,19 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-Transor("ChocolArm64",
-    {  HG("",
-        Metaface(IsasUSR({Isa.X86_64}), {Kernel.WINDOWS, Kernel.LINUX}, {Syslib.DEFAULT}, {Lib.ANY}),
-        Metaface({(Isa.ARM64, Up.USR)}),
-    )},
-    Date(2018,2,21), Date(2019,11,1), color="#FF5F55", parent=Ryujinx, license="Unlicense",
-    feat="Framework",
-    desc='''
-        https://github.com/Ryujinx/Ryujinx/
-        https://github.com/Ryujinx/ChocolArm64
-    ''',
-)
-
 Transor("UserLAnd",
     {  HG("",
         Metaface({(Isa.ARM64, Up.USR)}, {Kernel.LINUX_ANDROID}, {Syslib.DEFAULT}, Lib_ANYs, Sysapp_ANYs, {App.ANDROID_RUNTIME}, {Rtlib.ANY}),
