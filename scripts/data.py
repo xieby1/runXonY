@@ -178,15 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-# Firmware, actually not a transor
-edk2_sagit = Transor("edk2-sagit",
-    {  HG("",
-        Metaface(),
-        Metaface(),
-    )},
-    Date(2019,2,22), Date(2020,5,25),
-)
-
 Transor("McSema",
     {  HG("",
         Metaface({(Isa.LLVM, Up.USR)}, {Kernel.LINUX}),
