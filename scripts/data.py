@@ -178,16 +178,6 @@ for dir in os.listdir(curfiledir):
     if os.path.isfile(filepath):
         exec("from %s.meta import *" % dir)
 
-unicorn = Transor("unicorn",
-    {  HG("",
-        Metaface(),
-        Metaface(),
-    )},
-    Date(2015,8,21), Date.today(), color="#E62129", parent=QEMU_sys,
-    feat="Framework",
-    desc="https://github.com/unicorn-engine/unicorn",
-)
-
 # a Unix-like operating system
 # actually, not a transor
 Transor("browsix",
