@@ -11,8 +11,8 @@ test/web/test.js: test/web/test.ts
 	tsc $<
 
 CMDL_GEN = data/timeline.csv test/web/runXonY.json relplot.svg
-${CMDL_GEN} &: scripts/lib.py scripts/data.py scripts/cmdl.py
-	scripts/cmdl.py \
+${CMDL_GEN} &: src/lib.py src/data.py src/cmdl.py
+	src/cmdl.py \
 		-c $(word 1,${CMDL_GEN}) \
 		-j $(word 2,${CMDL_GEN}) \
 		-r $(word 3,${CMDL_GEN})
