@@ -166,7 +166,7 @@
 <li><strong>Category</strong>: Term.SCL</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{WINDOWS_SYSLIBS-NO_SYSCALL-X86-USR}</td><td>{LIBS-SYSLIBS-MACOS-X86-USR,LIBS-SYSLIBS-LINUX-X86-USR}</td></tr>
+<tr><td>WINDOWS_NO_SYSCALL-X86-USR</td><td>MACOS-X86-USR, LINUX-X86-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -176,8 +176,8 @@
 <li><strong>License</strong>: GPL3</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{ANDROID_RUNTIME-SYSAPPS-LIBS-SYSLIBS-LINUX_ANDROID-X86_64-USR}</td><td>{LIBS-SYSLIBS-LINUX-X86_64-USR}</td></tr>
-<tr><td>{ANDROID_RUNTIME-SYSAPPS-LIBS-SYSLIBS-LINUX_ANDROID-AARCH64-USR}</td><td>{LIBS-SYSLIBS-LINUX-AARCH64-USR}</td></tr>
+<tr><td>ANDROID_RUNTIME-LINUX_ANDROID-X86_64-USR</td><td>LINUX-X86_64-USR</td></tr>
+<tr><td>ANDROID_RUNTIME-LINUX_ANDROID-AARCH64-USR</td><td>LINUX-AARCH64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -187,7 +187,7 @@
 <li><strong>Parent</strong>: Anbox</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{}</td></tr>
+<tr><td></td><td></td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -198,7 +198,7 @@
 <li><strong>Category</strong>: Term.UBT</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{UNIX-PARISC-USR}</td><td>{LIBS-SYSLIBS-UNIX-IA64-USR}</td></tr>
+<tr><td>UNIX-PARISC-USR</td><td>UNIX-IA64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -207,7 +207,7 @@
 <li><strong>Date</strong>: 2012.05.20 - 2014.02.11</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{ARM-USR_PVL}</td><td>{}</td></tr>
+<tr><td>ARM-USR_PVL</td><td></td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -217,7 +217,7 @@
 <li><strong>Parent</strong>: Ryujinx</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{AARCH64-USR}</td><td>{LIBS-SYSLIBS-LINUX-X86_64-USR,LIBS-SYSLIBS-WINDOWS-X86_64-USR}</td></tr>
+<tr><td>AARCH64-USR</td><td>LINUX-X86_64-USR, WINDOWS-X86_64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -228,8 +228,8 @@
 <li><strong>Parent</strong>: box86</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{LINUX-X86_64-USR}</td><td>{LIBS-SYSLIBS-LINUX-AARCH64-USR}</td></tr>
-<tr><td>{LINUX-X86_64-USR}</td><td>{LINUX-LA-USR,LINUX-RISCV64-USR,LINUX-AARCH64-USR,LINUX-POWERPC64-USR,LINUX-X86_64-USR}</td></tr>
+<tr><td>LINUX-X86_64-USR</td><td>LINUX-AARCH64-USR</td></tr>
+<tr><td>LINUX-X86_64-USR</td><td>LINUX-POWERPC64-USR, LINUX-RISCV64-USR, LINUX-LA-USR, LINUX-X86_64-USR, LINUX-AARCH64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -239,7 +239,7 @@
 <li><strong>Category</strong>: Term.UBL</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{LINUX-X86-USR}</td><td>{LIBS-SYSLIBS-LINUX-AARCH32-USR}</td></tr>
+<tr><td>LINUX-X86-USR</td><td>LINUX-AARCH32-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -249,7 +249,7 @@
 <li><strong>Renames</strong>: eBPF(2014.09.04),</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{BPF-USR}</td><td>{LINUX-MIPSIII-USR,LINUX-NIOS2-USR,LINUX-I586-USR,LINUX-CSKY-USR,LINUX-LA-USR,LINUX-MIPSV-USR,LINUX-POWERPC-USR,LINUX-RISCV64-USR,LINUX-X86-USR,LINUX-ARMV7A-USR,LINUX-S390-USR,LINUX-X86_64-USR,LINUX-MICROBLAZE-USR,LINUX-ARMV8R-USR,LINUX-ARMV6M-USR,LINUX-MIPS32-USR,LINUX-AARCH32-USR,LINUX-RISCV32-USR,LINUX-SH-USR,LINUX-PARISC-USR,LINUX-I486-USR,LINUX-I686-USR,LINUX-ARMV7M-USR,LINUX-ARMV8M-USR,LINUX-ARMV7L-USR,LINUX-ARMV6L-USR,LINUX-MIPSIV-USR,LINUX-SPARC-USR,LINUX-ALPHA-USR,LINUX-OPENRISC-USR,LINUX-ARM-USR,LINUX-ARMV8A-USR,LINUX-M68K-USR,LINUX-ARC-USR,LINUX-AARCH64-USR,LINUX-MIPS64-USR,LINUX-IA64-USR,LINUX-ARMV7R-USR,LINUX-POWERPC64-USR,LINUX-XTENSA-USR,LINUX-MIPSI-USR,LINUX-SPARC64-USR,LINUX-MIPSII-USR,LINUX-ARMV5TEL-USR,LINUX-HEXAGON-USR,LINUX-I386-USR}</td></tr>
+<tr><td>BPF-USR</td><td>LINUX-ARMV8R-USR, LINUX-M68K-USR, LINUX-MIPSII-USR, LINUX-LA-USR, LINUX-MIPSI-USR, LINUX-ARMV7A-USR, LINUX-ARMV8A-USR, LINUX-AARCH32-USR, LINUX-I486-USR, LINUX-ARMV7M-USR, LINUX-PARISC-USR, LINUX-XTENSA-USR, LINUX-I586-USR, LINUX-SPARC-USR, LINUX-MIPS32-USR, LINUX-NIOS2-USR, LINUX-RISCV32-USR, LINUX-ARMV7L-USR, LINUX-MIPSIV-USR, LINUX-HEXAGON-USR, LINUX-AARCH64-USR, LINUX-ARMV5TEL-USR, LINUX-IA64-USR, LINUX-ARMV6L-USR, LINUX-I686-USR, LINUX-POWERPC64-USR, LINUX-ALPHA-USR, LINUX-ARM-USR, LINUX-I386-USR, LINUX-ARMV6M-USR, LINUX-MIPSIII-USR, LINUX-X86_64-USR, LINUX-X86-USR, LINUX-ARMV8M-USR, LINUX-SPARC64-USR, LINUX-ARC-USR, LINUX-OPENRISC-USR, LINUX-POWERPC-USR, LINUX-RISCV64-USR, LINUX-SH-USR, LINUX-MIPSV-USR, LINUX-MIPS64-USR, LINUX-S390-USR, LINUX-MICROBLAZE-USR, LINUX-CSKY-USR, LINUX-ARMV7R-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -258,7 +258,7 @@
 <li><strong>Date</strong>: 2015.09.26 - today</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{}</td></tr>
+<tr><td></td><td></td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -268,7 +268,7 @@
 <li><strong>Renames</strong>: higan(2012.08.09),</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{LIBS-SYSLIBS-LINUX-X86_64-USR,LIBS-SYSLIBS-WINDOWS-X86_64-USR,LIBS-SYSLIBS-BSD-X86_64-USR,LIBS-SYSLIBS-MACOS-X86_64-USR}</td></tr>
+<tr><td></td><td>LINUX-X86_64-USR, MACOS-X86_64-USR, WINDOWS-X86_64-USR, BSD-X86_64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -278,7 +278,7 @@
 <li><strong>Category</strong>: Term.V1B</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{AARCH32-USR_PVL}</td><td>{X86_64-USR_PVL}</td></tr>
+<tr><td>AARCH32-USR_PVL</td><td>X86_64-USR_PVL</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -289,7 +289,7 @@
 <li><strong>Parent</strong>: Ryujinx</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{AARCH64-USR}</td><td>{LIBS-SYSLIBS-LINUX-X86_64-USR,LIBS-SYSLIBS-WINDOWS-X86_64-USR}</td></tr>
+<tr><td>AARCH64-USR</td><td>LINUX-X86_64-USR, WINDOWS-X86_64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -298,7 +298,7 @@
 <li><strong>Date</strong>: 2013.08.30 - today</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{}</td></tr>
+<tr><td></td><td></td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -309,7 +309,7 @@
 <li><strong>Category</strong>: Term.V1B</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{X86-USR_PVL}</td><td>{CRUSOE_VLIW-USR_PVL}</td></tr>
+<tr><td>X86-USR_PVL</td><td>CRUSOE_VLIW-USR_PVL</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -319,7 +319,7 @@
 <li><strong>Category</strong>: Term.CPL</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{C_SRC-BSD_SYSLIBS,C_SRC-MACOS_SYSLIBS,CPP_SRC-MACOS_SYSLIBS,CPP_SRC-LINUX_SYSLIBS,CPP_SRC-BSD_SYSLIBS,C_SRC-LINUX_SYSLIBS}</td><td>{WINDOWS-X86_64-USR,WINDOWS-X86-USR,WINDOWS-AARCH64-USR}</td></tr>
+<tr><td>C_SRC-MACOS_SYSLIBS, CPP_SRC-MACOS_SYSLIBS, C_SRC-LINUX_SYSLIBS, CPP_SRC-BSD_SYSLIBS, CPP_SRC-LINUX_SYSLIBS, C_SRC-BSD_SYSLIBS</td><td>WINDOWS-X86-USR, WINDOWS-X86_64-USR, WINDOWS-AARCH64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -330,7 +330,7 @@
 <li><strong>Category</strong>: Term.V1B</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{POWERPC-USR_PVL}</td><td>{DAISY_VLIW-USR_PVL}</td></tr>
+<tr><td>POWERPC-USR_PVL</td><td>DAISY_VLIW-USR_PVL</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -340,7 +340,7 @@
 <li><strong>Development</strong>: Dev.统信</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{}</td></tr>
+<tr><td></td><td></td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -351,7 +351,7 @@
 <li><strong>Category</strong>: Term.V1B</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{AARCH64-USR_PVL}</td><td>{DENVER_VLIW-USR_PVL}</td></tr>
+<tr><td>AARCH64-USR_PVL</td><td>DENVER_VLIW-USR_PVL</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -362,7 +362,7 @@
 <li><strong>Category</strong>: Term.V2B</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{AARCH32-USR_PVL}</td><td>{LIBS-SYSLIBS-WINDOWS-X86_64-USR,LIBS-SYSLIBS-LINUX-X86-USR,LIBS-SYSLIBS-WINDOWS-X86-USR,LIBS-SYSLIBS-MACOS-X86-USR,LIBS-SYSLIBS-MACOS-X86_64-USR,LIBS-SYSLIBS-LINUX-X86_64-USR}</td></tr>
+<tr><td>AARCH32-USR_PVL</td><td>MACOS-X86_64-USR, LINUX-X86-USR, WINDOWS-X86_64-USR, LINUX-X86_64-USR, WINDOWS-X86-USR, MACOS-X86-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -373,7 +373,7 @@
 <li><strong>Category</strong>: Term.UBL</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{LIBS-LINUX_SYSLIBS-LINUX-X86-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-MIPS32-USR}</td></tr>
+<tr><td>LINUX_LINUX-X86-USR</td><td>LINUX_LINUX-MIPS32-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -385,7 +385,7 @@
 <li><strong>Parent</strong>: Digital Bridge</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{LINUX-X86-USR}</td><td>{LIBS-SYSLIBS-LINUX-MIPS32-USR}</td></tr>
+<tr><td>LINUX-X86-USR</td><td>LINUX-MIPS32-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -395,7 +395,7 @@
 <li><strong>Development</strong>: Dev.上交</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{}</td></tr>
+<tr><td></td><td></td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -405,10 +405,10 @@
 <li><strong>Category</strong>: Term.V2B</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{X86-USR_PVL}</td><td>{LIBS-SYSLIBS-MACOS-X86_64-USR,LIBS-SYSLIBS-MACOS-AARCH64-USR}</td></tr>
-<tr><td>{X86-USR_PVL}</td><td>{LIBS-SYSLIBS-LINUX-ARMV5TEL-USR,LIBS-SYSLIBS-LINUX-S390-USR,LIBS-SYSLIBS-LINUX-ARMV8M-USR,LIBS-SYSLIBS-LINUX-ARMV6M-USR,LIBS-SYSLIBS-LINUX-MICROBLAZE-USR,LIBS-SYSLIBS-LINUX-NIOS2-USR,LIBS-SYSLIBS-LINUX-ARC-USR,LIBS-SYSLIBS-LINUX-PARISC-USR,LIBS-SYSLIBS-LINUX-MIPSIII-USR,LIBS-SYSLIBS-LINUX-ARMV7R-USR,LIBS-SYSLIBS-LINUX-MIPS64-USR,LIBS-SYSLIBS-LINUX-ARMV7M-USR,LIBS-SYSLIBS-LINUX-HEXAGON-USR,LIBS-SYSLIBS-LINUX-AARCH64-USR,LIBS-SYSLIBS-LINUX-I686-USR,LIBS-SYSLIBS-LINUX-SPARC64-USR,LIBS-SYSLIBS-LINUX-RISCV32-USR,LIBS-SYSLIBS-LINUX-CSKY-USR,LIBS-SYSLIBS-LINUX-ALPHA-USR,LIBS-SYSLIBS-LINUX-ARM-USR,LIBS-SYSLIBS-LINUX-MIPS32-USR,LIBS-SYSLIBS-LINUX-ARMV7A-USR,LIBS-SYSLIBS-LINUX-X86-USR,LIBS-SYSLIBS-LINUX-I586-USR,LIBS-SYSLIBS-LINUX-SH-USR,LIBS-SYSLIBS-LINUX-MIPSI-USR,LIBS-SYSLIBS-LINUX-ARMV6L-USR,LIBS-SYSLIBS-LINUX-MIPSIV-USR,LIBS-SYSLIBS-LINUX-I486-USR,LIBS-SYSLIBS-LINUX-MIPSV-USR,LIBS-SYSLIBS-LINUX-ARMV8A-USR,LIBS-SYSLIBS-LINUX-ARMV8R-USR,LIBS-SYSLIBS-LINUX-X86_64-USR,LIBS-SYSLIBS-LINUX-IA64-USR,LIBS-SYSLIBS-LINUX-XTENSA-USR,LIBS-SYSLIBS-LINUX-SPARC-USR,LIBS-SYSLIBS-LINUX-ARMV7L-USR,LIBS-SYSLIBS-LINUX-M68K-USR,LIBS-SYSLIBS-LINUX-RISCV64-USR,LIBS-SYSLIBS-LINUX-POWERPC64-USR,LIBS-SYSLIBS-LINUX-I386-USR,LIBS-SYSLIBS-LINUX-MIPSII-USR,LIBS-SYSLIBS-LINUX-POWERPC-USR,LIBS-SYSLIBS-LINUX-OPENRISC-USR,LIBS-SYSLIBS-LINUX-AARCH32-USR,LIBS-SYSLIBS-LINUX-LA-USR}</td></tr>
-<tr><td>{X86-USR_PVL}</td><td>{LIBS-SYSLIBS-WINDOWS-X86_64-USR,LIBS-SYSLIBS-WINDOWS-AARCH64-USR,LIBS-SYSLIBS-WINDOWS-X86-USR}</td></tr>
-<tr><td>{X86-USR_PVL}</td><td>{LIBS-SYSLIBS-BSD-MIPS64-USR,LIBS-SYSLIBS-BSD-ALPHA-USR,LIBS-SYSLIBS-BSD-SPARC-USR,LIBS-SYSLIBS-BSD-I386-USR,LIBS-SYSLIBS-BSD-ARMV7M-USR,LIBS-SYSLIBS-BSD-X86_64-USR,LIBS-SYSLIBS-BSD-ARM-USR,LIBS-SYSLIBS-BSD-POWERPC-USR,LIBS-SYSLIBS-BSD-RISCV64-USR,LIBS-SYSLIBS-BSD-ARMV6M-USR,LIBS-SYSLIBS-BSD-X86-USR,LIBS-SYSLIBS-BSD-ARMV7R-USR,LIBS-SYSLIBS-BSD-I586-USR,LIBS-SYSLIBS-BSD-MIPSI-USR,LIBS-SYSLIBS-BSD-RISCV32-USR,LIBS-SYSLIBS-BSD-ARMV7L-USR,LIBS-SYSLIBS-BSD-POWERPC64-USR,LIBS-SYSLIBS-BSD-SPARC64-USR,LIBS-SYSLIBS-BSD-ARMV6L-USR,LIBS-SYSLIBS-BSD-MIPSV-USR,LIBS-SYSLIBS-BSD-ARMV7A-USR,LIBS-SYSLIBS-BSD-MIPSII-USR,LIBS-SYSLIBS-BSD-MIPS32-USR,LIBS-SYSLIBS-BSD-PARISC-USR,LIBS-SYSLIBS-BSD-I486-USR,LIBS-SYSLIBS-BSD-I686-USR,LIBS-SYSLIBS-BSD-AARCH64-USR,LIBS-SYSLIBS-BSD-MIPSIV-USR,LIBS-SYSLIBS-BSD-MIPSIII-USR}</td></tr>
+<tr><td>X86-USR_PVL</td><td>MACOS-X86_64-USR, MACOS-AARCH64-USR</td></tr>
+<tr><td>X86-USR_PVL</td><td>LINUX-ARMV6M-USR, LINUX-MIPSII-USR, LINUX-RISCV64-USR, LINUX-S390-USR, LINUX-OPENRISC-USR, LINUX-POWERPC-USR, LINUX-I486-USR, LINUX-ALPHA-USR, LINUX-SPARC64-USR, LINUX-ARMV7L-USR, LINUX-ARMV8A-USR, LINUX-AARCH32-USR, LINUX-HEXAGON-USR, LINUX-ARM-USR, LINUX-MIPSI-USR, LINUX-SPARC-USR, LINUX-ARMV7R-USR, LINUX-X86_64-USR, LINUX-ARMV6L-USR, LINUX-MICROBLAZE-USR, LINUX-M68K-USR, LINUX-ARMV7M-USR, LINUX-MIPS32-USR, LINUX-ARMV8M-USR, LINUX-IA64-USR, LINUX-CSKY-USR, LINUX-MIPS64-USR, LINUX-RISCV32-USR, LINUX-ARC-USR, LINUX-MIPSIII-USR, LINUX-I386-USR, LINUX-SH-USR, LINUX-MIPSIV-USR, LINUX-AARCH64-USR, LINUX-XTENSA-USR, LINUX-X86-USR, LINUX-MIPSV-USR, LINUX-ARMV8R-USR, LINUX-LA-USR, LINUX-ARMV5TEL-USR, LINUX-ARMV7A-USR, LINUX-PARISC-USR, LINUX-NIOS2-USR, LINUX-POWERPC64-USR, LINUX-I586-USR, LINUX-I686-USR</td></tr>
+<tr><td>X86-USR_PVL</td><td>WINDOWS-AARCH64-USR, WINDOWS-X86-USR, WINDOWS-X86_64-USR</td></tr>
+<tr><td>X86-USR_PVL</td><td>BSD-SPARC-USR, BSD-MIPSI-USR, BSD-ARMV7A-USR, BSD-MIPS64-USR, BSD-ALPHA-USR, BSD-X86_64-USR, BSD-ARMV7M-USR, BSD-X86-USR, BSD-PARISC-USR, BSD-ARMV7R-USR, BSD-AARCH64-USR, BSD-RISCV64-USR, BSD-MIPS32-USR, BSD-I586-USR, BSD-I386-USR, BSD-ARM-USR, BSD-ARMV6M-USR, BSD-I686-USR, BSD-MIPSII-USR, BSD-I486-USR, BSD-ARMV6L-USR, BSD-POWERPC64-USR, BSD-ARMV7L-USR, BSD-SPARC64-USR, BSD-MIPSV-USR, BSD-MIPSIII-USR, BSD-RISCV32-USR, BSD-POWERPC-USR, BSD-MIPSIV-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -419,10 +419,10 @@
 <li><strong>Parent</strong>: DOSBox</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{X86-USR_PVL}</td><td>{LIBS-SYSLIBS-MACOS-X86_64-USR,LIBS-SYSLIBS-MACOS-AARCH64-USR}</td></tr>
-<tr><td>{X86-USR_PVL}</td><td>{LIBS-SYSLIBS-LINUX-ARMV5TEL-USR,LIBS-SYSLIBS-LINUX-S390-USR,LIBS-SYSLIBS-LINUX-ARMV8M-USR,LIBS-SYSLIBS-LINUX-ARMV6M-USR,LIBS-SYSLIBS-LINUX-MICROBLAZE-USR,LIBS-SYSLIBS-LINUX-NIOS2-USR,LIBS-SYSLIBS-LINUX-ARC-USR,LIBS-SYSLIBS-LINUX-PARISC-USR,LIBS-SYSLIBS-LINUX-MIPSIII-USR,LIBS-SYSLIBS-LINUX-ARMV7R-USR,LIBS-SYSLIBS-LINUX-MIPS64-USR,LIBS-SYSLIBS-LINUX-ARMV7M-USR,LIBS-SYSLIBS-LINUX-HEXAGON-USR,LIBS-SYSLIBS-LINUX-AARCH64-USR,LIBS-SYSLIBS-LINUX-I686-USR,LIBS-SYSLIBS-LINUX-SPARC64-USR,LIBS-SYSLIBS-LINUX-RISCV32-USR,LIBS-SYSLIBS-LINUX-CSKY-USR,LIBS-SYSLIBS-LINUX-ALPHA-USR,LIBS-SYSLIBS-LINUX-ARM-USR,LIBS-SYSLIBS-LINUX-MIPS32-USR,LIBS-SYSLIBS-LINUX-ARMV7A-USR,LIBS-SYSLIBS-LINUX-X86-USR,LIBS-SYSLIBS-LINUX-I586-USR,LIBS-SYSLIBS-LINUX-SH-USR,LIBS-SYSLIBS-LINUX-MIPSI-USR,LIBS-SYSLIBS-LINUX-ARMV6L-USR,LIBS-SYSLIBS-LINUX-MIPSIV-USR,LIBS-SYSLIBS-LINUX-I486-USR,LIBS-SYSLIBS-LINUX-MIPSV-USR,LIBS-SYSLIBS-LINUX-ARMV8A-USR,LIBS-SYSLIBS-LINUX-ARMV8R-USR,LIBS-SYSLIBS-LINUX-X86_64-USR,LIBS-SYSLIBS-LINUX-IA64-USR,LIBS-SYSLIBS-LINUX-XTENSA-USR,LIBS-SYSLIBS-LINUX-SPARC-USR,LIBS-SYSLIBS-LINUX-ARMV7L-USR,LIBS-SYSLIBS-LINUX-M68K-USR,LIBS-SYSLIBS-LINUX-RISCV64-USR,LIBS-SYSLIBS-LINUX-POWERPC64-USR,LIBS-SYSLIBS-LINUX-I386-USR,LIBS-SYSLIBS-LINUX-MIPSII-USR,LIBS-SYSLIBS-LINUX-POWERPC-USR,LIBS-SYSLIBS-LINUX-OPENRISC-USR,LIBS-SYSLIBS-LINUX-AARCH32-USR,LIBS-SYSLIBS-LINUX-LA-USR}</td></tr>
-<tr><td>{X86-USR_PVL}</td><td>{LIBS-SYSLIBS-WINDOWS-X86_64-USR,LIBS-SYSLIBS-WINDOWS-AARCH64-USR,LIBS-SYSLIBS-WINDOWS-X86-USR}</td></tr>
-<tr><td>{X86-USR_PVL}</td><td>{LIBS-SYSLIBS-BSD-MIPS64-USR,LIBS-SYSLIBS-BSD-ALPHA-USR,LIBS-SYSLIBS-BSD-SPARC-USR,LIBS-SYSLIBS-BSD-I386-USR,LIBS-SYSLIBS-BSD-ARMV7M-USR,LIBS-SYSLIBS-BSD-X86_64-USR,LIBS-SYSLIBS-BSD-ARM-USR,LIBS-SYSLIBS-BSD-POWERPC-USR,LIBS-SYSLIBS-BSD-RISCV64-USR,LIBS-SYSLIBS-BSD-ARMV6M-USR,LIBS-SYSLIBS-BSD-X86-USR,LIBS-SYSLIBS-BSD-ARMV7R-USR,LIBS-SYSLIBS-BSD-I586-USR,LIBS-SYSLIBS-BSD-MIPSI-USR,LIBS-SYSLIBS-BSD-RISCV32-USR,LIBS-SYSLIBS-BSD-ARMV7L-USR,LIBS-SYSLIBS-BSD-POWERPC64-USR,LIBS-SYSLIBS-BSD-SPARC64-USR,LIBS-SYSLIBS-BSD-ARMV6L-USR,LIBS-SYSLIBS-BSD-MIPSV-USR,LIBS-SYSLIBS-BSD-ARMV7A-USR,LIBS-SYSLIBS-BSD-MIPSII-USR,LIBS-SYSLIBS-BSD-MIPS32-USR,LIBS-SYSLIBS-BSD-PARISC-USR,LIBS-SYSLIBS-BSD-I486-USR,LIBS-SYSLIBS-BSD-I686-USR,LIBS-SYSLIBS-BSD-AARCH64-USR,LIBS-SYSLIBS-BSD-MIPSIV-USR,LIBS-SYSLIBS-BSD-MIPSIII-USR}</td></tr>
+<tr><td>X86-USR_PVL</td><td>MACOS-X86_64-USR, MACOS-AARCH64-USR</td></tr>
+<tr><td>X86-USR_PVL</td><td>LINUX-ARMV6M-USR, LINUX-MIPSII-USR, LINUX-RISCV64-USR, LINUX-S390-USR, LINUX-OPENRISC-USR, LINUX-POWERPC-USR, LINUX-I486-USR, LINUX-ALPHA-USR, LINUX-SPARC64-USR, LINUX-ARMV7L-USR, LINUX-ARMV8A-USR, LINUX-AARCH32-USR, LINUX-HEXAGON-USR, LINUX-ARM-USR, LINUX-MIPSI-USR, LINUX-SPARC-USR, LINUX-ARMV7R-USR, LINUX-X86_64-USR, LINUX-ARMV6L-USR, LINUX-MICROBLAZE-USR, LINUX-M68K-USR, LINUX-ARMV7M-USR, LINUX-MIPS32-USR, LINUX-ARMV8M-USR, LINUX-IA64-USR, LINUX-CSKY-USR, LINUX-MIPS64-USR, LINUX-RISCV32-USR, LINUX-ARC-USR, LINUX-MIPSIII-USR, LINUX-I386-USR, LINUX-SH-USR, LINUX-MIPSIV-USR, LINUX-AARCH64-USR, LINUX-XTENSA-USR, LINUX-X86-USR, LINUX-MIPSV-USR, LINUX-ARMV8R-USR, LINUX-LA-USR, LINUX-ARMV5TEL-USR, LINUX-ARMV7A-USR, LINUX-PARISC-USR, LINUX-NIOS2-USR, LINUX-POWERPC64-USR, LINUX-I586-USR, LINUX-I686-USR</td></tr>
+<tr><td>X86-USR_PVL</td><td>WINDOWS-AARCH64-USR, WINDOWS-X86-USR, WINDOWS-X86_64-USR</td></tr>
+<tr><td>X86-USR_PVL</td><td>BSD-SPARC-USR, BSD-MIPSI-USR, BSD-ARMV7A-USR, BSD-MIPS64-USR, BSD-ALPHA-USR, BSD-X86_64-USR, BSD-ARMV7M-USR, BSD-X86-USR, BSD-PARISC-USR, BSD-ARMV7R-USR, BSD-AARCH64-USR, BSD-RISCV64-USR, BSD-MIPS32-USR, BSD-I586-USR, BSD-I386-USR, BSD-ARM-USR, BSD-ARMV6M-USR, BSD-I686-USR, BSD-MIPSII-USR, BSD-I486-USR, BSD-ARMV6L-USR, BSD-POWERPC64-USR, BSD-ARMV7L-USR, BSD-SPARC64-USR, BSD-MIPSV-USR, BSD-MIPSIII-USR, BSD-RISCV32-USR, BSD-POWERPC-USR, BSD-MIPSIV-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -433,12 +433,12 @@
 <li><strong>Category</strong>: Term.UBL</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{LIBS-LINUX_SYSLIBS-LINUX-AARCH32-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-MIPS32-USR}</td></tr>
-<tr><td>{LIBS-LINUX_SYSLIBS-LINUX-X86-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-MIPS32-USR}</td></tr>
-<tr><td>{LINUX-X86-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-MIPS32-USR}</td></tr>
-<tr><td>{LINUX-POWERPC-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-X86-USR}</td></tr>
-<tr><td>{LINUX-AARCH32-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-MIPS32-USR}</td></tr>
-<tr><td>{LIBS-LINUX_SYSLIBS-LINUX-POWERPC-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-X86-USR}</td></tr>
+<tr><td>LINUX_LINUX-AARCH32-USR</td><td>LINUX_LINUX-MIPS32-USR</td></tr>
+<tr><td>LINUX_LINUX-X86-USR</td><td>LINUX_LINUX-MIPS32-USR</td></tr>
+<tr><td>LINUX-X86-USR</td><td>LINUX_LINUX-MIPS32-USR</td></tr>
+<tr><td>LINUX-POWERPC-USR</td><td>LINUX_LINUX-X86-USR</td></tr>
+<tr><td>LINUX-AARCH32-USR</td><td>LINUX_LINUX-MIPS32-USR</td></tr>
+<tr><td>LINUX_LINUX-POWERPC-USR</td><td>LINUX_LINUX-X86-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -449,7 +449,7 @@
 <li><strong>Category</strong>: Term.OPT</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{UNIX-PARISC-USR}</td><td>{LIBS-SYSLIBS-UNIX-PARISC-USR}</td></tr>
+<tr><td>UNIX-PARISC-USR</td><td>UNIX-PARISC-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -462,18 +462,18 @@
 <li><strong>Renames</strong>: DynamoRIO(VMware)(2007.01.01),</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{MACOS-AARCH32-USR}</td><td>{LIBS-SYSLIBS-MACOS-AARCH32-USR}</td></tr>
-<tr><td>{WINDOWS-AARCH64-USR}</td><td>{LIBS-SYSLIBS-WINDOWS-AARCH64-USR}</td></tr>
-<tr><td>{LINUX-AARCH32-USR}</td><td>{LIBS-SYSLIBS-LINUX-AARCH32-USR}</td></tr>
-<tr><td>{LINUX-AARCH64-USR}</td><td>{LIBS-SYSLIBS-LINUX-AARCH64-USR}</td></tr>
-<tr><td>{MACOS-AARCH64-USR}</td><td>{LIBS-SYSLIBS-MACOS-AARCH64-USR}</td></tr>
-<tr><td>{WINDOWS-X86_64-USR}</td><td>{LIBS-SYSLIBS-WINDOWS-X86_64-USR}</td></tr>
-<tr><td>{WINDOWS-X86-USR}</td><td>{LIBS-SYSLIBS-WINDOWS-X86-USR}</td></tr>
-<tr><td>{MACOS-X86-USR}</td><td>{LIBS-SYSLIBS-MACOS-X86-USR}</td></tr>
-<tr><td>{MACOS-X86_64-USR}</td><td>{LIBS-SYSLIBS-MACOS-X86_64-USR}</td></tr>
-<tr><td>{WINDOWS-AARCH32-USR}</td><td>{LIBS-SYSLIBS-WINDOWS-AARCH32-USR}</td></tr>
-<tr><td>{LINUX-X86-USR}</td><td>{LIBS-SYSLIBS-LINUX-X86-USR}</td></tr>
-<tr><td>{LINUX-X86_64-USR}</td><td>{LIBS-SYSLIBS-LINUX-X86_64-USR}</td></tr>
+<tr><td>MACOS-AARCH32-USR</td><td>MACOS-AARCH32-USR</td></tr>
+<tr><td>WINDOWS-AARCH64-USR</td><td>WINDOWS-AARCH64-USR</td></tr>
+<tr><td>LINUX-AARCH32-USR</td><td>LINUX-AARCH32-USR</td></tr>
+<tr><td>LINUX-AARCH64-USR</td><td>LINUX-AARCH64-USR</td></tr>
+<tr><td>MACOS-AARCH64-USR</td><td>MACOS-AARCH64-USR</td></tr>
+<tr><td>WINDOWS-X86_64-USR</td><td>WINDOWS-X86_64-USR</td></tr>
+<tr><td>WINDOWS-X86-USR</td><td>WINDOWS-X86-USR</td></tr>
+<tr><td>MACOS-X86-USR</td><td>MACOS-X86-USR</td></tr>
+<tr><td>MACOS-X86_64-USR</td><td>MACOS-X86_64-USR</td></tr>
+<tr><td>WINDOWS-AARCH32-USR</td><td>WINDOWS-AARCH32-USR</td></tr>
+<tr><td>LINUX-X86-USR</td><td>LINUX-X86-USR</td></tr>
+<tr><td>LINUX-X86_64-USR</td><td>LINUX-X86_64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -482,7 +482,7 @@
 <li><strong>Date</strong>: 2016.07.01 - today</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{AARCH64-USR,AARCH32-USR}</td><td>{LIBS-SYSLIBS-KERNELS-X86_64-USR}</td></tr>
+<tr><td>AARCH64-USR, AARCH32-USR</td><td>KERNELS-X86_64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -491,7 +491,7 @@
 <li><strong>Date</strong>: 2019.02.22 - 2020.05.25</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{}</td></tr>
+<tr><td></td><td></td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -501,7 +501,7 @@
 <li><strong>Parent</strong>: edk2-sagit</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{}</td></tr>
+<tr><td></td><td></td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -513,7 +513,7 @@
 <li><strong>Parent</strong>: ExaGear Strategies</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{LINUX-X86_64-USR,LINUX-X86-USR}</td><td>{LIBS-SYSLIBS-LINUX-AARCH64-USR}</td></tr>
+<tr><td>LINUX-X86_64-USR, LINUX-X86-USR</td><td>LINUX-AARCH64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -523,7 +523,7 @@
 <li><strong>Development</strong>: Dev.Eltech_Russia</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{WINDOWS_SYSLIBS-NO_SYSCALL-X86-USR,WINDOWS_SYSLIBS-NO_SYSCALL-X86_64-USR}</td><td>{LIBS-ANDROID_RUNTIME-SYSAPPS-LIBS-SYSLIBS-LINUX_ANDROID-AARCH64-USR}</td></tr>
+<tr><td>WINDOWS_NO_SYSCALL-X86-USR, WINDOWS_NO_SYSCALL-X86_64-USR</td><td>ANDROID_RUNTIME-LINUX_ANDROID-AARCH64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -534,7 +534,7 @@
 <li><strong>Category</strong>: Term.UBL</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{LINUX-X86_64-USR,LINUX-X86-USR}</td><td>{LIBS-SYSLIBS-LINUX-X86_64-USR,LIBS-SYSLIBS-LINUX-AARCH64-USR}</td></tr>
+<tr><td>LINUX-X86_64-USR, LINUX-X86-USR</td><td>LINUX-AARCH64-USR, LINUX-X86_64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -544,7 +544,7 @@
 <li><strong>License</strong>: GPL3</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{}</td></tr>
+<tr><td></td><td></td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -555,7 +555,7 @@
 <li><strong>Category</strong>: Term.UBT</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{WINDOWS_NT4_0-X86-USR}</td><td>{LIBS-SYSLIBS-WINDOWS_NT4_0-ALPHA-USR}</td></tr>
+<tr><td>WINDOWS_NT4_0-X86-USR</td><td>WINDOWS_NT4_0-ALPHA-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -567,7 +567,7 @@
 <li><strong>Parent</strong>: QEMU-user</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{LINUX-ARM-USR,LINUX-X86_64-USR,LINUX-AARCH64-USR,LINUX-X86-USR}</td><td>{LIBS-SYSLIBS-LINUX-X86_64-USR,LIBS-SYSLIBS-LINUX-POWERPC64-USR,LIBS-SYSLIBS-LINUX-X86-USR,LIBS-SYSLIBS-LINUX-AARCH64-USR}</td></tr>
+<tr><td>LINUX-AARCH64-USR, LINUX-ARM-USR, LINUX-X86_64-USR, LINUX-X86-USR</td><td>LINUX-POWERPC64-USR, LINUX-X86-USR, LINUX-AARCH64-USR, LINUX-X86_64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -579,7 +579,7 @@
 <li><strong>Parent</strong>: MAMBO-X64</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{AARCH32-USR_PVL}</td><td>{LIBS-SYSLIBS-LINUX-AARCH64-USR}</td></tr>
+<tr><td>AARCH32-USR_PVL</td><td>LINUX-AARCH64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -589,8 +589,8 @@
 <li><strong>Category</strong>: Term.UBT</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{LINUX-X86-USR}</td><td>{LIBS-SYSLIBS-LINUX-IA64-USR}</td></tr>
-<tr><td>{WINDOWS-X86-USR}</td><td>{LIBS-SYSLIBS-WINDOWS-IA64-USR}</td></tr>
+<tr><td>LINUX-X86-USR</td><td>LINUX-IA64-USR</td></tr>
+<tr><td>WINDOWS-X86-USR</td><td>WINDOWS-IA64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -601,8 +601,8 @@
 <li><strong>Category</strong>: Term.V1_</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{X86-USR_PVL}</td><td>{X86-USR_PVL}</td></tr>
-<tr><td>{X86_64-USR_PVL}</td><td>{X86_64-USR_PVL}</td></tr>
+<tr><td>X86-USR_PVL</td><td>X86-USR_PVL</td></tr>
+<tr><td>X86_64-USR_PVL</td><td>X86_64-USR_PVL</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -611,14 +611,14 @@
 <li><strong>Date</strong>: 2007.02.05 - today</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{POWERPC64-USR_PVL}</td><td>{LINUX-POWERPC64-USR_PVL}</td></tr>
-<tr><td>{X86-USR_PVL}</td><td>{LINUX-X86-USR_PVL}</td></tr>
-<tr><td>{IA64-USR_PVL}</td><td>{LINUX-IA64-USR_PVL}</td></tr>
-<tr><td>{S390-USR_PVL}</td><td>{LINUX-S390-USR_PVL}</td></tr>
-<tr><td>{AARCH64-USR_PVL}</td><td>{LINUX-AARCH64-USR_PVL}</td></tr>
-<tr><td>{LA-USR_PVL}</td><td>{LINUX-LA-USR_PVL}</td></tr>
-<tr><td>{X86_64-USR_PVL}</td><td>{LINUX-X86_64-USR_PVL}</td></tr>
-<tr><td>{MIPS64-USR_PVL}</td><td>{LINUX-MIPS64-USR_PVL}</td></tr>
+<tr><td>POWERPC64-USR_PVL</td><td>LINUX-POWERPC64-USR_PVL</td></tr>
+<tr><td>X86-USR_PVL</td><td>LINUX-X86-USR_PVL</td></tr>
+<tr><td>IA64-USR_PVL</td><td>LINUX-IA64-USR_PVL</td></tr>
+<tr><td>S390-USR_PVL</td><td>LINUX-S390-USR_PVL</td></tr>
+<tr><td>AARCH64-USR_PVL</td><td>LINUX-AARCH64-USR_PVL</td></tr>
+<tr><td>LA-USR_PVL</td><td>LINUX-LA-USR_PVL</td></tr>
+<tr><td>X86_64-USR_PVL</td><td>LINUX-X86_64-USR_PVL</td></tr>
+<tr><td>MIPS64-USR_PVL</td><td>LINUX-MIPS64-USR_PVL</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -628,7 +628,7 @@
 <li><strong>Parent</strong>: QEMU-sys</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{LIBS-ANDROID_RUNTIME-SYSAPPS-LIBS-SYSLIBS-LINUX_ANDROID-AARCH64-USR,LIBS-ANDROID_RUNTIME-SYSAPPS-LIBS-SYSLIBS-LINUX_ANDROID-X86_64-USR}</td></tr>
+<tr><td></td><td>ANDROID_RUNTIME-LINUX_ANDROID-X86_64-USR, ANDROID_RUNTIME-LINUX_ANDROID-AARCH64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -637,33 +637,33 @@
 <li><strong>Date</strong>: 2006.01.01 - today</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{LINUX-I386-USR}</td><td>{BSD-I386-USR}</td></tr>
-<tr><td>{LINUX-X86-USR}</td><td>{BSD-X86-USR}</td></tr>
-<tr><td>{LINUX-I486-USR}</td><td>{BSD-I486-USR}</td></tr>
-<tr><td>{LINUX-I586-USR}</td><td>{BSD-I586-USR}</td></tr>
-<tr><td>{LINUX-X86_64-USR}</td><td>{BSD-X86_64-USR}</td></tr>
-<tr><td>{LINUX-ARM-USR}</td><td>{BSD-ARM-USR}</td></tr>
-<tr><td>{LINUX-I686-USR}</td><td>{BSD-I686-USR}</td></tr>
-<tr><td>{LINUX-ARMV6L-USR}</td><td>{BSD-ARMV6L-USR}</td></tr>
-<tr><td>{LINUX-ARMV6M-USR}</td><td>{BSD-ARMV6M-USR}</td></tr>
-<tr><td>{LINUX-ARMV7L-USR}</td><td>{BSD-ARMV7L-USR}</td></tr>
-<tr><td>{LINUX-ARMV7M-USR}</td><td>{BSD-ARMV7M-USR}</td></tr>
-<tr><td>{LINUX-ARMV7A-USR}</td><td>{BSD-ARMV7A-USR}</td></tr>
-<tr><td>{LINUX-AARCH64-USR}</td><td>{BSD-AARCH64-USR}</td></tr>
-<tr><td>{LINUX-POWERPC-USR}</td><td>{BSD-POWERPC-USR}</td></tr>
-<tr><td>{LINUX-POWERPC64-USR}</td><td>{BSD-POWERPC64-USR}</td></tr>
-<tr><td>{LINUX-ARMV7R-USR}</td><td>{BSD-ARMV7R-USR}</td></tr>
-<tr><td>{LINUX-MIPSIV-USR}</td><td>{BSD-MIPSIV-USR}</td></tr>
-<tr><td>{LINUX-RISCV32-USR}</td><td>{BSD-RISCV32-USR}</td></tr>
-<tr><td>{LINUX-SPARC-USR}</td><td>{BSD-SPARC-USR}</td></tr>
-<tr><td>{LINUX-MIPSIII-USR}</td><td>{BSD-MIPSIII-USR}</td></tr>
-<tr><td>{LINUX-MIPSII-USR}</td><td>{BSD-MIPSII-USR}</td></tr>
-<tr><td>{LINUX-MIPSI-USR}</td><td>{BSD-MIPSI-USR}</td></tr>
-<tr><td>{LINUX-MIPSV-USR}</td><td>{BSD-MIPSV-USR}</td></tr>
-<tr><td>{LINUX-MIPS64-USR}</td><td>{BSD-MIPS64-USR}</td></tr>
-<tr><td>{LINUX-MIPS32-USR}</td><td>{BSD-MIPS32-USR}</td></tr>
-<tr><td>{LINUX-RISCV64-USR}</td><td>{BSD-RISCV64-USR}</td></tr>
-<tr><td>{LINUX-SPARC64-USR}</td><td>{BSD-SPARC64-USR}</td></tr>
+<tr><td>LINUX-I386-USR</td><td>BSD-I386-USR</td></tr>
+<tr><td>LINUX-X86-USR</td><td>BSD-X86-USR</td></tr>
+<tr><td>LINUX-I486-USR</td><td>BSD-I486-USR</td></tr>
+<tr><td>LINUX-I586-USR</td><td>BSD-I586-USR</td></tr>
+<tr><td>LINUX-X86_64-USR</td><td>BSD-X86_64-USR</td></tr>
+<tr><td>LINUX-ARM-USR</td><td>BSD-ARM-USR</td></tr>
+<tr><td>LINUX-I686-USR</td><td>BSD-I686-USR</td></tr>
+<tr><td>LINUX-ARMV6L-USR</td><td>BSD-ARMV6L-USR</td></tr>
+<tr><td>LINUX-ARMV6M-USR</td><td>BSD-ARMV6M-USR</td></tr>
+<tr><td>LINUX-ARMV7L-USR</td><td>BSD-ARMV7L-USR</td></tr>
+<tr><td>LINUX-ARMV7M-USR</td><td>BSD-ARMV7M-USR</td></tr>
+<tr><td>LINUX-ARMV7A-USR</td><td>BSD-ARMV7A-USR</td></tr>
+<tr><td>LINUX-AARCH64-USR</td><td>BSD-AARCH64-USR</td></tr>
+<tr><td>LINUX-POWERPC-USR</td><td>BSD-POWERPC-USR</td></tr>
+<tr><td>LINUX-POWERPC64-USR</td><td>BSD-POWERPC64-USR</td></tr>
+<tr><td>LINUX-ARMV7R-USR</td><td>BSD-ARMV7R-USR</td></tr>
+<tr><td>LINUX-MIPSIV-USR</td><td>BSD-MIPSIV-USR</td></tr>
+<tr><td>LINUX-RISCV32-USR</td><td>BSD-RISCV32-USR</td></tr>
+<tr><td>LINUX-SPARC-USR</td><td>BSD-SPARC-USR</td></tr>
+<tr><td>LINUX-MIPSIII-USR</td><td>BSD-MIPSIII-USR</td></tr>
+<tr><td>LINUX-MIPSII-USR</td><td>BSD-MIPSII-USR</td></tr>
+<tr><td>LINUX-MIPSI-USR</td><td>BSD-MIPSI-USR</td></tr>
+<tr><td>LINUX-MIPSV-USR</td><td>BSD-MIPSV-USR</td></tr>
+<tr><td>LINUX-MIPS64-USR</td><td>BSD-MIPS64-USR</td></tr>
+<tr><td>LINUX-MIPS32-USR</td><td>BSD-MIPS32-USR</td></tr>
+<tr><td>LINUX-RISCV64-USR</td><td>BSD-RISCV64-USR</td></tr>
+<tr><td>LINUX-SPARC64-USR</td><td>BSD-SPARC64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -674,7 +674,7 @@
 <li><strong>Category</strong>: Term.SBT</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{LINUX-ARM-USR}</td><td>{LINUX-LLVM_IR-USR}</td></tr>
+<tr><td>LINUX-ARM-USR</td><td>LINUX-LLVM_IR-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -683,7 +683,7 @@
 <li><strong>Date</strong>: 2003.01.01 - today</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{}</td></tr>
+<tr><td></td><td></td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -695,7 +695,7 @@
 <li><strong>Parent</strong>: Xen</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{X86-USR_PVL}</td><td>{IA64-USR_PVL}</td></tr>
+<tr><td>X86-USR_PVL</td><td>IA64-USR_PVL</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -706,7 +706,7 @@
 <li><strong>Category</strong>: Term.UBT</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{LINUX-AARCH32-USR}</td><td>{LIBS-SYSLIBS-LINUX-AARCH64-USR}</td></tr>
+<tr><td>LINUX-AARCH32-USR</td><td>LINUX-AARCH64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -717,7 +717,7 @@
 <li><strong>Parent</strong>: LLVM</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{LINUX-X86_64-USR,LINUX-AARCH64-USR,LINUX-X86-USR}</td><td>{LINUX-LLVM_IR-USR}</td></tr>
+<tr><td>LINUX-AARCH64-USR, LINUX-X86_64-USR, LINUX-X86-USR</td><td>LINUX-LLVM_IR-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -728,7 +728,7 @@
 <li><strong>Parent</strong>: LLVM</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{LINUX-AARCH64-USR,LINUX-X86_64-USR}</td><td>{LINUX-LLVM_IR-USR}</td></tr>
+<tr><td>LINUX-AARCH64-USR, LINUX-X86_64-USR</td><td>LINUX-LLVM_IR-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -738,7 +738,7 @@
 <li><strong>Category</strong>: Term.V2_</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{I386-USR_PVL}</td><td>{LIBS-SYSLIBS-SCO_UNIX-I386-USR}</td></tr>
+<tr><td>I386-USR_PVL</td><td>SCO_UNIX-I386-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -748,7 +748,7 @@
 <li><strong>Category</strong>: Term.CPL</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{CPP_SRC-WINDOWS_SYSLIBS,C_SRC-WINDOWS_SYSLIBS}</td><td>{WINDOWS-X86_64-USR,WINDOWS-X86-USR,WINDOWS-AARCH64-USR}</td></tr>
+<tr><td>C_SRC-WINDOWS_SYSLIBS, CPP_SRC-WINDOWS_SYSLIBS</td><td>WINDOWS-X86-USR, WINDOWS-X86_64-USR, WINDOWS-AARCH64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -760,7 +760,7 @@
 <li><strong>Category</strong>: Term.V2_</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{LINUX-X86_64-USR}</td><td>{LIBS-SYSLIBS-LINUX-X86_64-USR,LIBS-SYSLIBS-WINDOWS-X86_64-USR,LIBS-SYSLIBS-MACOS-X86_64-USR}</td></tr>
+<tr><td>LINUX-X86_64-USR</td><td>LINUX-X86_64-USR, MACOS-X86_64-USR, WINDOWS-X86_64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -770,7 +770,7 @@
 <li><strong>Development</strong>: Dev.Digital</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{ULTRIX-MIPS32-USR}</td><td>{TRU64-ALPHA-USR}</td></tr>
+<tr><td>ULTRIX-MIPS32-USR</td><td>TRU64-ALPHA-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -779,7 +779,7 @@
 <li><strong>Date</strong>: 2003.01.01 - today</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{}</td></tr>
+<tr><td></td><td></td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -790,9 +790,9 @@
 <li><strong>Category</strong>: Term.INS</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{WINDOWS-X86-USR}</td><td>{LIBS-SYSLIBS-WINDOWS-X86-USR}</td></tr>
-<tr><td>{MACOS-X86-USR}</td><td>{LIBS-SYSLIBS-MACOS-X86-USR}</td></tr>
-<tr><td>{LINUX-X86-USR}</td><td>{LIBS-SYSLIBS-LINUX-X86-USR}</td></tr>
+<tr><td>WINDOWS-X86-USR</td><td>WINDOWS-X86-USR</td></tr>
+<tr><td>MACOS-X86-USR</td><td>MACOS-X86-USR</td></tr>
+<tr><td>LINUX-X86-USR</td><td>LINUX-X86-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -802,7 +802,7 @@
 <li><strong>Parent</strong>: WINE</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{}</td></tr>
+<tr><td></td><td></td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -813,10 +813,10 @@
 <li><strong>Category</strong>: Term.V2B</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{MIPSIII-USR_PVL}</td><td>{LIBS-ANDROID_RUNTIME-SYSAPPS-LIBS-SYSLIBS-LINUX_ANDROID-AARCH64-USR,LIBS-ANDROID_RUNTIME-SYSAPPS-LIBS-SYSLIBS-LINUX_ANDROID-X86_64-USR}</td></tr>
-<tr><td>{MIPSIII-USR_PVL}</td><td>{LIBS-SYSLIBS-LINUX-ARMV5TEL-USR,LIBS-SYSLIBS-LINUX-S390-USR,LIBS-SYSLIBS-LINUX-ARMV8M-USR,LIBS-SYSLIBS-LINUX-ARMV6M-USR,LIBS-SYSLIBS-LINUX-MICROBLAZE-USR,LIBS-SYSLIBS-LINUX-NIOS2-USR,LIBS-SYSLIBS-LINUX-ARC-USR,LIBS-SYSLIBS-LINUX-PARISC-USR,LIBS-SYSLIBS-LINUX-MIPSIII-USR,LIBS-SYSLIBS-LINUX-ARMV7R-USR,LIBS-SYSLIBS-LINUX-MIPS64-USR,LIBS-SYSLIBS-LINUX-ARMV7M-USR,LIBS-SYSLIBS-LINUX-HEXAGON-USR,LIBS-SYSLIBS-LINUX-AARCH64-USR,LIBS-SYSLIBS-LINUX-I686-USR,LIBS-SYSLIBS-LINUX-SPARC64-USR,LIBS-SYSLIBS-LINUX-RISCV32-USR,LIBS-SYSLIBS-LINUX-CSKY-USR,LIBS-SYSLIBS-LINUX-ALPHA-USR,LIBS-SYSLIBS-LINUX-ARM-USR,LIBS-SYSLIBS-LINUX-MIPS32-USR,LIBS-SYSLIBS-LINUX-ARMV7A-USR,LIBS-SYSLIBS-LINUX-X86-USR,LIBS-SYSLIBS-LINUX-I586-USR,LIBS-SYSLIBS-LINUX-SH-USR,LIBS-SYSLIBS-LINUX-MIPSI-USR,LIBS-SYSLIBS-LINUX-ARMV6L-USR,LIBS-SYSLIBS-LINUX-MIPSIV-USR,LIBS-SYSLIBS-LINUX-I486-USR,LIBS-SYSLIBS-LINUX-MIPSV-USR,LIBS-SYSLIBS-LINUX-ARMV8A-USR,LIBS-SYSLIBS-LINUX-ARMV8R-USR,LIBS-SYSLIBS-LINUX-X86_64-USR,LIBS-SYSLIBS-LINUX-IA64-USR,LIBS-SYSLIBS-LINUX-XTENSA-USR,LIBS-SYSLIBS-LINUX-SPARC-USR,LIBS-SYSLIBS-LINUX-ARMV7L-USR,LIBS-SYSLIBS-LINUX-M68K-USR,LIBS-SYSLIBS-LINUX-RISCV64-USR,LIBS-SYSLIBS-LINUX-POWERPC64-USR,LIBS-SYSLIBS-LINUX-I386-USR,LIBS-SYSLIBS-LINUX-MIPSII-USR,LIBS-SYSLIBS-LINUX-POWERPC-USR,LIBS-SYSLIBS-LINUX-OPENRISC-USR,LIBS-SYSLIBS-LINUX-AARCH32-USR,LIBS-SYSLIBS-LINUX-LA-USR}</td></tr>
-<tr><td>{MIPSIII-USR_PVL}</td><td>{LIBS-SYSLIBS-MACOS-X86_64-USR,LIBS-SYSLIBS-MACOS-AARCH64-USR}</td></tr>
-<tr><td>{MIPSIII-USR_PVL}</td><td>{LIBS-SYSLIBS-WINDOWS-X86_64-USR,LIBS-SYSLIBS-WINDOWS-AARCH64-USR,LIBS-SYSLIBS-WINDOWS-X86-USR}</td></tr>
+<tr><td>MIPSIII-USR_PVL</td><td>ANDROID_RUNTIME-LINUX_ANDROID-X86_64-USR, ANDROID_RUNTIME-LINUX_ANDROID-AARCH64-USR</td></tr>
+<tr><td>MIPSIII-USR_PVL</td><td>LINUX-ARMV6M-USR, LINUX-MIPSII-USR, LINUX-RISCV64-USR, LINUX-S390-USR, LINUX-OPENRISC-USR, LINUX-POWERPC-USR, LINUX-I486-USR, LINUX-ALPHA-USR, LINUX-SPARC64-USR, LINUX-ARMV7L-USR, LINUX-ARMV8A-USR, LINUX-AARCH32-USR, LINUX-HEXAGON-USR, LINUX-ARM-USR, LINUX-MIPSI-USR, LINUX-SPARC-USR, LINUX-ARMV7R-USR, LINUX-X86_64-USR, LINUX-ARMV6L-USR, LINUX-MICROBLAZE-USR, LINUX-M68K-USR, LINUX-ARMV7M-USR, LINUX-MIPS32-USR, LINUX-ARMV8M-USR, LINUX-IA64-USR, LINUX-CSKY-USR, LINUX-MIPS64-USR, LINUX-RISCV32-USR, LINUX-ARC-USR, LINUX-MIPSIII-USR, LINUX-I386-USR, LINUX-SH-USR, LINUX-MIPSIV-USR, LINUX-AARCH64-USR, LINUX-XTENSA-USR, LINUX-X86-USR, LINUX-MIPSV-USR, LINUX-ARMV8R-USR, LINUX-LA-USR, LINUX-ARMV5TEL-USR, LINUX-ARMV7A-USR, LINUX-PARISC-USR, LINUX-NIOS2-USR, LINUX-POWERPC64-USR, LINUX-I586-USR, LINUX-I686-USR</td></tr>
+<tr><td>MIPSIII-USR_PVL</td><td>MACOS-X86_64-USR, MACOS-AARCH64-USR</td></tr>
+<tr><td>MIPSIII-USR_PVL</td><td>WINDOWS-AARCH64-USR, WINDOWS-X86-USR, WINDOWS-X86_64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -827,7 +827,7 @@
 <li><strong>Parent</strong>: WINE</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{}</td></tr>
+<tr><td></td><td></td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -836,7 +836,7 @@
 <li><strong>Date</strong>: 2010.05.22 - today</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{}</td></tr>
+<tr><td></td><td></td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -847,7 +847,7 @@
 <li><strong>Parent</strong>: WINE</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{}</td></tr>
+<tr><td></td><td></td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -858,14 +858,14 @@
 <li><strong>Parent</strong>: QEMU-sys</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{AARCH64-USR_PVL}</td><td>{LIBS-SYSLIBS-LINUX-AARCH64-USR}</td></tr>
-<tr><td>{IA64-USR_PVL}</td><td>{LIBS-SYSLIBS-LINUX-IA64-USR}</td></tr>
-<tr><td>{LA-USR_PVL}</td><td>{LIBS-SYSLIBS-LINUX-LA-USR}</td></tr>
-<tr><td>{POWERPC64-USR_PVL}</td><td>{LIBS-SYSLIBS-LINUX-POWERPC64-USR}</td></tr>
-<tr><td>{X86-USR_PVL}</td><td>{LIBS-SYSLIBS-LINUX-X86-USR}</td></tr>
-<tr><td>{X86_64-USR_PVL}</td><td>{LIBS-SYSLIBS-LINUX-X86_64-USR}</td></tr>
-<tr><td>{S390-USR_PVL}</td><td>{LIBS-SYSLIBS-LINUX-S390-USR}</td></tr>
-<tr><td>{MIPS64-USR_PVL}</td><td>{LIBS-SYSLIBS-LINUX-MIPS64-USR}</td></tr>
+<tr><td>AARCH64-USR_PVL</td><td>LINUX-AARCH64-USR</td></tr>
+<tr><td>IA64-USR_PVL</td><td>LINUX-IA64-USR</td></tr>
+<tr><td>LA-USR_PVL</td><td>LINUX-LA-USR</td></tr>
+<tr><td>POWERPC64-USR_PVL</td><td>LINUX-POWERPC64-USR</td></tr>
+<tr><td>X86-USR_PVL</td><td>LINUX-X86-USR</td></tr>
+<tr><td>X86_64-USR_PVL</td><td>LINUX-X86_64-USR</td></tr>
+<tr><td>S390-USR_PVL</td><td>LINUX-S390-USR</td></tr>
+<tr><td>MIPS64-USR_PVL</td><td>LINUX-MIPS64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -877,10 +877,10 @@
 <li><strong>Parent</strong>: QEMU-user</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{HEXAGON-USR_PVL,AVR-USR_PVL,M68K-USR_PVL,SPARC-USR_PVL,X86_64-USR_PVL,RISCV64-USR_PVL,AARCH64-USR_PVL,RX-USR_PVL,CRIS-USR_PVL,X86-USR_PVL,S390-USR_PVL,ALPHA-USR_PVL,NIOS2-USR_PVL,TRICORE-USR_PVL,MIPS32-USR_PVL,MIPS64-USR_PVL,POWERPC-USR_PVL,PARISC-USR_PVL,SH-USR_PVL,MICROBLAZE-USR_PVL,OPENRISC-USR_PVL,ARM-USR_PVL,XTENSA-USR_PVL}</td><td>{LIBS-BSD_SYSLIBS-BSD-MIPS32-USR,LIBS-BSD_SYSLIBS-BSD-X86_64-USR,LIBS-BSD_SYSLIBS-BSD-ARM-USR,LIBS-BSD_SYSLIBS-BSD-AARCH64-USR,LIBS-BSD_SYSLIBS-BSD-MIPS64-USR,LIBS-BSD_SYSLIBS-BSD-RISCV64-USR,LIBS-BSD_SYSLIBS-BSD-SPARC-USR,LIBS-BSD_SYSLIBS-BSD-POWERPC-USR,LIBS-BSD_SYSLIBS-BSD-X86-USR}</td></tr>
-<tr><td>{HEXAGON-USR_PVL,AVR-USR_PVL,M68K-USR_PVL,SPARC-USR_PVL,X86_64-USR_PVL,RISCV64-USR_PVL,AARCH64-USR_PVL,RX-USR_PVL,CRIS-USR_PVL,X86-USR_PVL,S390-USR_PVL,ALPHA-USR_PVL,NIOS2-USR_PVL,TRICORE-USR_PVL,MIPS32-USR_PVL,MIPS64-USR_PVL,POWERPC-USR_PVL,PARISC-USR_PVL,SH-USR_PVL,MICROBLAZE-USR_PVL,OPENRISC-USR_PVL,ARM-USR_PVL,XTENSA-USR_PVL}</td><td>{LIBS-WINDOWS_SYSLIBS-WINDOWS-X86-USR,LIBS-WINDOWS_SYSLIBS-WINDOWS-X86_64-USR,LIBS-WINDOWS_SYSLIBS-WINDOWS-AARCH64-USR}</td></tr>
-<tr><td>{HEXAGON-USR_PVL,AVR-USR_PVL,M68K-USR_PVL,SPARC-USR_PVL,X86_64-USR_PVL,RISCV64-USR_PVL,AARCH64-USR_PVL,RX-USR_PVL,CRIS-USR_PVL,X86-USR_PVL,S390-USR_PVL,ALPHA-USR_PVL,NIOS2-USR_PVL,TRICORE-USR_PVL,MIPS32-USR_PVL,MIPS64-USR_PVL,POWERPC-USR_PVL,PARISC-USR_PVL,SH-USR_PVL,MICROBLAZE-USR_PVL,OPENRISC-USR_PVL,ARM-USR_PVL,XTENSA-USR_PVL}</td><td>{LIBS-MACOS_SYSLIBS-MACOS-X86_64-USR,LIBS-MACOS_SYSLIBS-MACOS-AARCH64-USR}</td></tr>
-<tr><td>{HEXAGON-USR_PVL,AVR-USR_PVL,M68K-USR_PVL,SPARC-USR_PVL,X86_64-USR_PVL,RISCV64-USR_PVL,AARCH64-USR_PVL,RX-USR_PVL,CRIS-USR_PVL,X86-USR_PVL,S390-USR_PVL,ALPHA-USR_PVL,NIOS2-USR_PVL,TRICORE-USR_PVL,MIPS32-USR_PVL,MIPS64-USR_PVL,POWERPC-USR_PVL,PARISC-USR_PVL,SH-USR_PVL,MICROBLAZE-USR_PVL,OPENRISC-USR_PVL,ARM-USR_PVL,XTENSA-USR_PVL}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-X86-USR,LIBS-LINUX_SYSLIBS-LINUX-SPARC-USR,LIBS-LINUX_SYSLIBS-LINUX-S390-USR,LIBS-LINUX_SYSLIBS-LINUX-POWERPC-USR,LIBS-LINUX_SYSLIBS-LINUX-MIPS64-USR,LIBS-LINUX_SYSLIBS-LINUX-MIPS32-USR,LIBS-LINUX_SYSLIBS-LINUX-ARM-USR,LIBS-LINUX_SYSLIBS-LINUX-RISCV64-USR,LIBS-LINUX_SYSLIBS-LINUX-X86_64-USR,LIBS-LINUX_SYSLIBS-LINUX-LA-USR,LIBS-LINUX_SYSLIBS-LINUX-AARCH64-USR}</td></tr>
+<tr><td>POWERPC-USR_PVL, CRIS-USR_PVL, AVR-USR_PVL, RISCV64-USR_PVL, X86-USR_PVL, ALPHA-USR_PVL, X86_64-USR_PVL, M68K-USR_PVL, XTENSA-USR_PVL, NIOS2-USR_PVL, RX-USR_PVL, SPARC-USR_PVL, MICROBLAZE-USR_PVL, S390-USR_PVL, TRICORE-USR_PVL, MIPS64-USR_PVL, OPENRISC-USR_PVL, AARCH64-USR_PVL, SH-USR_PVL, PARISC-USR_PVL, ARM-USR_PVL, MIPS32-USR_PVL, HEXAGON-USR_PVL</td><td>BSD_BSD-RISCV64-USR, BSD_BSD-SPARC-USR, BSD_BSD-POWERPC-USR, BSD_BSD-AARCH64-USR, BSD_BSD-MIPS64-USR, BSD_BSD-X86-USR, BSD_BSD-MIPS32-USR, BSD_BSD-X86_64-USR, BSD_BSD-ARM-USR</td></tr>
+<tr><td>POWERPC-USR_PVL, CRIS-USR_PVL, AVR-USR_PVL, RISCV64-USR_PVL, X86-USR_PVL, ALPHA-USR_PVL, X86_64-USR_PVL, M68K-USR_PVL, XTENSA-USR_PVL, NIOS2-USR_PVL, RX-USR_PVL, SPARC-USR_PVL, MICROBLAZE-USR_PVL, S390-USR_PVL, TRICORE-USR_PVL, MIPS64-USR_PVL, OPENRISC-USR_PVL, AARCH64-USR_PVL, SH-USR_PVL, PARISC-USR_PVL, ARM-USR_PVL, MIPS32-USR_PVL, HEXAGON-USR_PVL</td><td>WINDOWS_WINDOWS-X86_64-USR, WINDOWS_WINDOWS-AARCH64-USR, WINDOWS_WINDOWS-X86-USR</td></tr>
+<tr><td>POWERPC-USR_PVL, CRIS-USR_PVL, AVR-USR_PVL, RISCV64-USR_PVL, X86-USR_PVL, ALPHA-USR_PVL, X86_64-USR_PVL, M68K-USR_PVL, XTENSA-USR_PVL, NIOS2-USR_PVL, RX-USR_PVL, SPARC-USR_PVL, MICROBLAZE-USR_PVL, S390-USR_PVL, TRICORE-USR_PVL, MIPS64-USR_PVL, OPENRISC-USR_PVL, AARCH64-USR_PVL, SH-USR_PVL, PARISC-USR_PVL, ARM-USR_PVL, MIPS32-USR_PVL, HEXAGON-USR_PVL</td><td>MACOS_MACOS-X86_64-USR, MACOS_MACOS-AARCH64-USR</td></tr>
+<tr><td>POWERPC-USR_PVL, CRIS-USR_PVL, AVR-USR_PVL, RISCV64-USR_PVL, X86-USR_PVL, ALPHA-USR_PVL, X86_64-USR_PVL, M68K-USR_PVL, XTENSA-USR_PVL, NIOS2-USR_PVL, RX-USR_PVL, SPARC-USR_PVL, MICROBLAZE-USR_PVL, S390-USR_PVL, TRICORE-USR_PVL, MIPS64-USR_PVL, OPENRISC-USR_PVL, AARCH64-USR_PVL, SH-USR_PVL, PARISC-USR_PVL, ARM-USR_PVL, MIPS32-USR_PVL, HEXAGON-USR_PVL</td><td>LINUX_LINUX-X86_64-USR, LINUX_LINUX-SPARC-USR, LINUX_LINUX-RISCV64-USR, LINUX_LINUX-X86-USR, LINUX_LINUX-MIPS32-USR, LINUX_LINUX-AARCH64-USR, LINUX_LINUX-MIPS64-USR, LINUX_LINUX-LA-USR, LINUX_LINUX-ARM-USR, LINUX_LINUX-S390-USR, LINUX_LINUX-POWERPC-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -891,10 +891,10 @@
 <li><strong>Category</strong>: Term.UBT</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{LINUX-NIOS2-USR,LINUX-POWERPC-USR,LINUX-RISCV64-USR,LINUX-X86-USR,LINUX-S390-USR,LINUX-SH-USR,LINUX-X86_64-USR,LINUX-MICROBLAZE-USR,LINUX-MIPS32-USR,LINUX-PARISC-USR,LINUX-SPARC-USR,LINUX-ALPHA-USR,LINUX-OPENRISC-USR,LINUX-ARM-USR,LINUX-M68K-USR,LINUX-AARCH64-USR,LINUX-MIPS64-USR,LINUX-XTENSA-USR,LINUX-HEXAGON-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-SPARC-USR,LIBS-LINUX_SYSLIBS-LINUX-OPENRISC-USR,LIBS-LINUX_SYSLIBS-LINUX-I686-USR,LIBS-LINUX_SYSLIBS-LINUX-ARMV8A-USR,LIBS-LINUX_SYSLIBS-LINUX-MIPS64-USR,LIBS-LINUX_SYSLIBS-LINUX-CSKY-USR,LIBS-LINUX_SYSLIBS-LINUX-ARMV6M-USR,LIBS-LINUX_SYSLIBS-LINUX-ARMV7A-USR,LIBS-LINUX_SYSLIBS-LINUX-ARMV5TEL-USR,LIBS-LINUX_SYSLIBS-LINUX-M68K-USR,LIBS-LINUX_SYSLIBS-LINUX-MIPSIV-USR,LIBS-LINUX_SYSLIBS-LINUX-MIPSV-USR,LIBS-LINUX_SYSLIBS-LINUX-ARC-USR,LIBS-LINUX_SYSLIBS-LINUX-PARISC-USR,LIBS-LINUX_SYSLIBS-LINUX-ARMV8M-USR,LIBS-LINUX_SYSLIBS-LINUX-MICROBLAZE-USR,LIBS-LINUX_SYSLIBS-LINUX-MIPSI-USR,LIBS-LINUX_SYSLIBS-LINUX-ARMV7L-USR,LIBS-LINUX_SYSLIBS-LINUX-ARMV7R-USR,LIBS-LINUX_SYSLIBS-LINUX-POWERPC-USR,LIBS-LINUX_SYSLIBS-LINUX-I486-USR,LIBS-LINUX_SYSLIBS-LINUX-HEXAGON-USR,LIBS-LINUX_SYSLIBS-LINUX-I586-USR,LIBS-LINUX_SYSLIBS-LINUX-AARCH32-USR,LIBS-LINUX_SYSLIBS-LINUX-RISCV64-USR,LIBS-LINUX_SYSLIBS-LINUX-POWERPC64-USR,LIBS-LINUX_SYSLIBS-LINUX-LA-USR,LIBS-LINUX_SYSLIBS-LINUX-IA64-USR,LIBS-LINUX_SYSLIBS-LINUX-I386-USR,LIBS-LINUX_SYSLIBS-LINUX-RISCV32-USR,LIBS-LINUX_SYSLIBS-LINUX-ARMV7M-USR,LIBS-LINUX_SYSLIBS-LINUX-NIOS2-USR,LIBS-LINUX_SYSLIBS-LINUX-ARM-USR,LIBS-LINUX_SYSLIBS-LINUX-MIPSIII-USR,LIBS-LINUX_SYSLIBS-LINUX-AARCH64-USR,LIBS-LINUX_SYSLIBS-LINUX-X86-USR,LIBS-LINUX_SYSLIBS-LINUX-ARMV8R-USR,LIBS-LINUX_SYSLIBS-LINUX-S390-USR,LIBS-LINUX_SYSLIBS-LINUX-XTENSA-USR,LIBS-LINUX_SYSLIBS-LINUX-ARMV6L-USR,LIBS-LINUX_SYSLIBS-LINUX-MIPS32-USR,LIBS-LINUX_SYSLIBS-LINUX-MIPSII-USR,LIBS-LINUX_SYSLIBS-LINUX-ALPHA-USR,LIBS-LINUX_SYSLIBS-LINUX-X86_64-USR,LIBS-LINUX_SYSLIBS-LINUX-SPARC64-USR,LIBS-LINUX_SYSLIBS-LINUX-SH-USR}</td></tr>
-<tr><td>{LINUX-NIOS2-USR,LINUX-POWERPC-USR,LINUX-RISCV64-USR,LINUX-X86-USR,LINUX-S390-USR,LINUX-SH-USR,LINUX-X86_64-USR,LINUX-MICROBLAZE-USR,LINUX-MIPS32-USR,LINUX-PARISC-USR,LINUX-SPARC-USR,LINUX-ALPHA-USR,LINUX-OPENRISC-USR,LINUX-ARM-USR,LINUX-M68K-USR,LINUX-AARCH64-USR,LINUX-MIPS64-USR,LINUX-XTENSA-USR,LINUX-HEXAGON-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-X86-USR,LIBS-LINUX_SYSLIBS-LINUX-SPARC-USR,LIBS-LINUX_SYSLIBS-LINUX-S390-USR,LIBS-LINUX_SYSLIBS-LINUX-POWERPC-USR,LIBS-LINUX_SYSLIBS-LINUX-MIPS64-USR,LIBS-LINUX_SYSLIBS-LINUX-MIPS32-USR,LIBS-LINUX_SYSLIBS-LINUX-ARM-USR,LIBS-LINUX_SYSLIBS-LINUX-RISCV64-USR,LIBS-LINUX_SYSLIBS-LINUX-X86_64-USR,LIBS-LINUX_SYSLIBS-LINUX-LA-USR,LIBS-LINUX_SYSLIBS-LINUX-AARCH64-USR}</td></tr>
-<tr><td>{BSD-SPARC-USR,BSD-MIPS64-USR,BSD-PARISC-USR,BSD-ARM-USR,BSD-RISCV64-USR,BSD-X86_64-USR,BSD-MIPS32-USR,BSD-ALPHA-USR,BSD-AARCH64-USR,BSD-POWERPC-USR,BSD-X86-USR}</td><td>{LIBS-BSD_SYSLIBS-BSD-MIPS32-USR,LIBS-BSD_SYSLIBS-BSD-X86_64-USR,LIBS-BSD_SYSLIBS-BSD-MIPSII-USR,LIBS-BSD_SYSLIBS-BSD-ARM-USR,LIBS-BSD_SYSLIBS-BSD-MIPSIV-USR,LIBS-BSD_SYSLIBS-BSD-ARMV7A-USR,LIBS-BSD_SYSLIBS-BSD-ARMV7M-USR,LIBS-BSD_SYSLIBS-BSD-RISCV32-USR,LIBS-BSD_SYSLIBS-BSD-MIPSI-USR,LIBS-BSD_SYSLIBS-BSD-ARMV7R-USR,LIBS-BSD_SYSLIBS-BSD-AARCH64-USR,LIBS-BSD_SYSLIBS-BSD-I586-USR,LIBS-BSD_SYSLIBS-BSD-ARMV6M-USR,LIBS-BSD_SYSLIBS-BSD-ARMV6L-USR,LIBS-BSD_SYSLIBS-BSD-MIPSV-USR,LIBS-BSD_SYSLIBS-BSD-I386-USR,LIBS-BSD_SYSLIBS-BSD-POWERPC-USR,LIBS-BSD_SYSLIBS-BSD-X86-USR,LIBS-BSD_SYSLIBS-BSD-SPARC-USR,LIBS-BSD_SYSLIBS-BSD-SPARC64-USR,LIBS-BSD_SYSLIBS-BSD-ALPHA-USR,LIBS-BSD_SYSLIBS-BSD-I686-USR,LIBS-BSD_SYSLIBS-BSD-PARISC-USR,LIBS-BSD_SYSLIBS-BSD-MIPS64-USR,LIBS-BSD_SYSLIBS-BSD-RISCV64-USR,LIBS-BSD_SYSLIBS-BSD-ARMV7L-USR,LIBS-BSD_SYSLIBS-BSD-I486-USR,LIBS-BSD_SYSLIBS-BSD-POWERPC64-USR,LIBS-BSD_SYSLIBS-BSD-MIPSIII-USR}</td></tr>
-<tr><td>{BSD-SPARC-USR,BSD-MIPS64-USR,BSD-PARISC-USR,BSD-ARM-USR,BSD-RISCV64-USR,BSD-X86_64-USR,BSD-MIPS32-USR,BSD-ALPHA-USR,BSD-AARCH64-USR,BSD-POWERPC-USR,BSD-X86-USR}</td><td>{LIBS-BSD_SYSLIBS-BSD-MIPS32-USR,LIBS-BSD_SYSLIBS-BSD-X86_64-USR,LIBS-BSD_SYSLIBS-BSD-ARM-USR,LIBS-BSD_SYSLIBS-BSD-AARCH64-USR,LIBS-BSD_SYSLIBS-BSD-MIPS64-USR,LIBS-BSD_SYSLIBS-BSD-RISCV64-USR,LIBS-BSD_SYSLIBS-BSD-SPARC-USR,LIBS-BSD_SYSLIBS-BSD-POWERPC-USR,LIBS-BSD_SYSLIBS-BSD-X86-USR}</td></tr>
+<tr><td>LINUX-M68K-USR, LINUX-PARISC-USR, LINUX-XTENSA-USR, LINUX-SPARC-USR, LINUX-MIPS32-USR, LINUX-NIOS2-USR, LINUX-HEXAGON-USR, LINUX-AARCH64-USR, LINUX-ALPHA-USR, LINUX-ARM-USR, LINUX-X86_64-USR, LINUX-X86-USR, LINUX-OPENRISC-USR, LINUX-POWERPC-USR, LINUX-RISCV64-USR, LINUX-SH-USR, LINUX-MIPS64-USR, LINUX-S390-USR, LINUX-MICROBLAZE-USR</td><td>LINUX_LINUX-X86_64-USR, LINUX_LINUX-MIPSII-USR, LINUX_LINUX-MIPSV-USR, LINUX_LINUX-MIPS32-USR, LINUX_LINUX-ARC-USR, LINUX_LINUX-MIPS64-USR, LINUX_LINUX-HEXAGON-USR, LINUX_LINUX-ARMV7R-USR, LINUX_LINUX-SPARC64-USR, LINUX_LINUX-POWERPC64-USR, LINUX_LINUX-NIOS2-USR, LINUX_LINUX-ALPHA-USR, LINUX_LINUX-ARM-USR, LINUX_LINUX-ARMV7A-USR, LINUX_LINUX-POWERPC-USR, LINUX_LINUX-ARMV5TEL-USR, LINUX_LINUX-SPARC-USR, LINUX_LINUX-I386-USR, LINUX_LINUX-AARCH64-USR, LINUX_LINUX-MIPSIV-USR, LINUX_LINUX-RISCV32-USR, LINUX_LINUX-MICROBLAZE-USR, LINUX_LINUX-SH-USR, LINUX_LINUX-MIPSI-USR, LINUX_LINUX-ARMV7L-USR, LINUX_LINUX-ARMV8R-USR, LINUX_LINUX-IA64-USR, LINUX_LINUX-XTENSA-USR, LINUX_LINUX-ARMV7M-USR, LINUX_LINUX-ARMV6L-USR, LINUX_LINUX-ARMV8A-USR, LINUX_LINUX-RISCV64-USR, LINUX_LINUX-X86-USR, LINUX_LINUX-I586-USR, LINUX_LINUX-ARMV6M-USR, LINUX_LINUX-M68K-USR, LINUX_LINUX-ARMV8M-USR, LINUX_LINUX-OPENRISC-USR, LINUX_LINUX-I486-USR, LINUX_LINUX-LA-USR, LINUX_LINUX-PARISC-USR, LINUX_LINUX-AARCH32-USR, LINUX_LINUX-MIPSIII-USR, LINUX_LINUX-I686-USR, LINUX_LINUX-S390-USR, LINUX_LINUX-CSKY-USR</td></tr>
+<tr><td>LINUX-M68K-USR, LINUX-PARISC-USR, LINUX-XTENSA-USR, LINUX-SPARC-USR, LINUX-MIPS32-USR, LINUX-NIOS2-USR, LINUX-HEXAGON-USR, LINUX-AARCH64-USR, LINUX-ALPHA-USR, LINUX-ARM-USR, LINUX-X86_64-USR, LINUX-X86-USR, LINUX-OPENRISC-USR, LINUX-POWERPC-USR, LINUX-RISCV64-USR, LINUX-SH-USR, LINUX-MIPS64-USR, LINUX-S390-USR, LINUX-MICROBLAZE-USR</td><td>LINUX_LINUX-X86_64-USR, LINUX_LINUX-SPARC-USR, LINUX_LINUX-RISCV64-USR, LINUX_LINUX-X86-USR, LINUX_LINUX-MIPS32-USR, LINUX_LINUX-AARCH64-USR, LINUX_LINUX-MIPS64-USR, LINUX_LINUX-LA-USR, LINUX_LINUX-ARM-USR, LINUX_LINUX-S390-USR, LINUX_LINUX-POWERPC-USR</td></tr>
+<tr><td>BSD-POWERPC-USR, BSD-AARCH64-USR, BSD-ALPHA-USR, BSD-MIPS64-USR, BSD-ARM-USR, BSD-PARISC-USR, BSD-RISCV64-USR, BSD-SPARC-USR, BSD-MIPS32-USR, BSD-X86_64-USR, BSD-X86-USR</td><td>BSD_BSD-I586-USR, BSD_BSD-MIPSI-USR, BSD_BSD-RISCV64-USR, BSD_BSD-MIPSIV-USR, BSD_BSD-POWERPC64-USR, BSD_BSD-MIPS64-USR, BSD_BSD-X86-USR, BSD_BSD-ARMV7L-USR, BSD_BSD-RISCV32-USR, BSD_BSD-ARMV7M-USR, BSD_BSD-I486-USR, BSD_BSD-ARMV6L-USR, BSD_BSD-I386-USR, BSD_BSD-MIPSV-USR, BSD_BSD-X86_64-USR, BSD_BSD-PARISC-USR, BSD_BSD-ALPHA-USR, BSD_BSD-I686-USR, BSD_BSD-SPARC64-USR, BSD_BSD-SPARC-USR, BSD_BSD-POWERPC-USR, BSD_BSD-AARCH64-USR, BSD_BSD-ARMV7A-USR, BSD_BSD-ARMV7R-USR, BSD_BSD-MIPS32-USR, BSD_BSD-ARM-USR, BSD_BSD-MIPSII-USR, BSD_BSD-ARMV6M-USR, BSD_BSD-MIPSIII-USR</td></tr>
+<tr><td>BSD-POWERPC-USR, BSD-AARCH64-USR, BSD-ALPHA-USR, BSD-MIPS64-USR, BSD-ARM-USR, BSD-PARISC-USR, BSD-RISCV64-USR, BSD-SPARC-USR, BSD-MIPS32-USR, BSD-X86_64-USR, BSD-X86-USR</td><td>BSD_BSD-RISCV64-USR, BSD_BSD-SPARC-USR, BSD_BSD-POWERPC-USR, BSD_BSD-AARCH64-USR, BSD_BSD-MIPS64-USR, BSD_BSD-X86-USR, BSD_BSD-MIPS32-USR, BSD_BSD-X86_64-USR, BSD_BSD-ARM-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -906,7 +906,7 @@
 <li><strong>Parent</strong>: Xen</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{X86_64-USR}</td><td>{X86_64-USR_PVL}</td></tr>
+<tr><td>X86_64-USR</td><td>X86_64-USR_PVL</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -917,7 +917,7 @@
 <li><strong>Parent</strong>: QEMU-user</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{LINUX-NIOS2-USR,LINUX-POWERPC-USR,LINUX-RISCV64-USR,LINUX-X86-USR,LINUX-S390-USR,LINUX-SH-USR,LINUX-X86_64-USR,LINUX-MICROBLAZE-USR,LINUX-MIPS32-USR,LINUX-PARISC-USR,LINUX-SPARC-USR,LINUX-ALPHA-USR,LINUX-OPENRISC-USR,LINUX-ARM-USR,LINUX-M68K-USR,LINUX-AARCH64-USR,LINUX-MIPS64-USR,LINUX-XTENSA-USR,LINUX-HEXAGON-USR}</td><td>{LINUX-LLVM_IR-USR}</td></tr>
+<tr><td>LINUX-M68K-USR, LINUX-PARISC-USR, LINUX-XTENSA-USR, LINUX-SPARC-USR, LINUX-MIPS32-USR, LINUX-NIOS2-USR, LINUX-HEXAGON-USR, LINUX-AARCH64-USR, LINUX-ALPHA-USR, LINUX-ARM-USR, LINUX-X86_64-USR, LINUX-X86-USR, LINUX-OPENRISC-USR, LINUX-POWERPC-USR, LINUX-RISCV64-USR, LINUX-SH-USR, LINUX-MIPS64-USR, LINUX-S390-USR, LINUX-MICROBLAZE-USR</td><td>LINUX-LLVM_IR-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -928,7 +928,7 @@
 <li><strong>Category</strong>: Term.UBT</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{MACOS-POWERPC-USR}</td><td>{LIBS-SYSLIBS-MACOS-X86-USR}</td></tr>
+<tr><td>MACOS-POWERPC-USR</td><td>MACOS-X86-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -939,7 +939,7 @@
 <li><strong>Category</strong>: Term.UBT</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{MACOS-X86_64-USR}</td><td>{LIBS-SYSLIBS-MACOS-AARCH64-USR}</td></tr>
+<tr><td>MACOS-X86_64-USR</td><td>MACOS-AARCH64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -949,7 +949,7 @@
 <li><strong>License</strong>: MIT</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{LIBS-SYSLIBS-LINUX-X86_64-USR,LIBS-SYSLIBS-WINDOWS-X86_64-USR}</td></tr>
+<tr><td></td><td>LINUX-X86_64-USR, WINDOWS-X86_64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -960,11 +960,11 @@
 <li><strong>Category</strong>: Term.UBT</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{SUNOS5_UNIX-SPARCV8-USR}</td><td>{LIBS-SYSLIBS-SUNOS5_UNIX-SPARCV8-USR}</td></tr>
-<tr><td>{SUNOS5_UNIX-SPARCV9-USR}</td><td>{LIBS-SYSLIBS-SUNOS5_UNIX-SPARCV8-USR}</td></tr>
-<tr><td>{SUNOS4_BSD-SPARCV8-USR}</td><td>{LIBS-SYSLIBS-SUNOS4_BSD-SPARCV8-USR}</td></tr>
-<tr><td>{SUNOS4_BSD-SPARCV9-USR}</td><td>{LIBS-SYSLIBS-SUNOS4_BSD-SPARCV8-USR}</td></tr>
-<tr><td>{SUNOS4_BSD-UMIPSV-USR,SUNOS4_BSD-MIPSI-USR}</td><td>{LIBS-SYSLIBS-SUNOS4_BSD-SPARCV8-USR}</td></tr>
+<tr><td>SUNOS5_UNIX-SPARCV8-USR</td><td>SUNOS5_UNIX-SPARCV8-USR</td></tr>
+<tr><td>SUNOS5_UNIX-SPARCV9-USR</td><td>SUNOS5_UNIX-SPARCV8-USR</td></tr>
+<tr><td>SUNOS4_BSD-SPARCV8-USR</td><td>SUNOS4_BSD-SPARCV8-USR</td></tr>
+<tr><td>SUNOS4_BSD-SPARCV9-USR</td><td>SUNOS4_BSD-SPARCV8-USR</td></tr>
+<tr><td>SUNOS4_BSD-MIPSI-USR, SUNOS4_BSD-UMIPSV-USR</td><td>SUNOS4_BSD-SPARCV8-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -973,7 +973,7 @@
 <li><strong>Date</strong>: 2004.05.26 - 2013.05.02</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{}</td></tr>
+<tr><td></td><td></td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -984,7 +984,7 @@
 <li><strong>Parent</strong>: skyeye</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{}</td></tr>
+<tr><td></td><td></td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -993,7 +993,7 @@
 <li><strong>Date</strong>: 2001.03.13 - 2001.03.13</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{}</td></tr>
+<tr><td></td><td></td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -1003,7 +1003,7 @@
 <li><strong>Parent</strong>: QEMU-sys</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{}</td></tr>
+<tr><td></td><td></td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -1013,52 +1013,52 @@
 <li><strong>Category</strong>: Term.SCL</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{LINUX-I686-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-I686-USR}</td></tr>
-<tr><td>{LINUX-ARMV5TEL-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-ARMV5TEL-USR}</td></tr>
-<tr><td>{LINUX-I586-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-I586-USR}</td></tr>
-<tr><td>{LINUX-I386-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-I386-USR}</td></tr>
-<tr><td>{LINUX-I486-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-I486-USR}</td></tr>
-<tr><td>{LINUX-ARMV6L-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-ARMV6L-USR}</td></tr>
-<tr><td>{LINUX-ARMV6M-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-ARMV6M-USR}</td></tr>
-<tr><td>{LINUX-ARMV7L-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-ARMV7L-USR}</td></tr>
-<tr><td>{LINUX-ARMV7M-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-ARMV7M-USR}</td></tr>
-<tr><td>{LINUX-ARMV8A-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-ARMV8A-USR}</td></tr>
-<tr><td>{LINUX-ARMV7A-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-ARMV7A-USR}</td></tr>
-<tr><td>{LINUX-ARMV8M-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-ARMV8M-USR}</td></tr>
-<tr><td>{LINUX-ARMV7R-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-ARMV7R-USR}</td></tr>
-<tr><td>{LINUX-AARCH32-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-AARCH32-USR}</td></tr>
-<tr><td>{LINUX-POWERPC-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-POWERPC-USR}</td></tr>
-<tr><td>{LINUX-MIPSII-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-MIPSII-USR}</td></tr>
-<tr><td>{LINUX-MIPS32-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-MIPS32-USR}</td></tr>
-<tr><td>{LINUX-MIPS64-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-MIPS64-USR}</td></tr>
-<tr><td>{LINUX-RISCV32-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-RISCV32-USR}</td></tr>
-<tr><td>{LINUX-RISCV64-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-RISCV64-USR}</td></tr>
-<tr><td>{LINUX-LA-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-LA-USR}</td></tr>
-<tr><td>{LINUX-NIOS2-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-NIOS2-USR}</td></tr>
-<tr><td>{LINUX-CSKY-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-CSKY-USR}</td></tr>
-<tr><td>{LINUX-AARCH64-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-AARCH64-USR}</td></tr>
-<tr><td>{LINUX-ARMV8R-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-ARMV8R-USR}</td></tr>
-<tr><td>{LINUX-MIPSIII-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-MIPSIII-USR}</td></tr>
-<tr><td>{LINUX-POWERPC64-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-POWERPC64-USR}</td></tr>
-<tr><td>{LINUX-MIPSI-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-MIPSI-USR}</td></tr>
-<tr><td>{LINUX-MIPSV-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-MIPSV-USR}</td></tr>
-<tr><td>{LINUX-SPARC64-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-SPARC64-USR}</td></tr>
-<tr><td>{LINUX-HEXAGON-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-HEXAGON-USR}</td></tr>
-<tr><td>{LINUX-MICROBLAZE-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-MICROBLAZE-USR}</td></tr>
-<tr><td>{LINUX-XTENSA-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-XTENSA-USR}</td></tr>
-<tr><td>{LINUX-MIPSIV-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-MIPSIV-USR}</td></tr>
-<tr><td>{LINUX-SPARC-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-SPARC-USR}</td></tr>
-<tr><td>{LINUX-M68K-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-M68K-USR}</td></tr>
-<tr><td>{LINUX-ARC-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-ARC-USR}</td></tr>
-<tr><td>{LINUX-ARM-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-ARM-USR}</td></tr>
-<tr><td>{LINUX-X86-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-X86-USR}</td></tr>
-<tr><td>{LINUX-X86_64-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-X86_64-USR}</td></tr>
-<tr><td>{LINUX-OPENRISC-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-OPENRISC-USR}</td></tr>
-<tr><td>{LINUX-SH-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-SH-USR}</td></tr>
-<tr><td>{LINUX-IA64-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-IA64-USR}</td></tr>
-<tr><td>{LINUX-PARISC-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-PARISC-USR}</td></tr>
-<tr><td>{LINUX-S390-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-S390-USR}</td></tr>
-<tr><td>{LINUX-ALPHA-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-ALPHA-USR}</td></tr>
+<tr><td>LINUX-I686-USR</td><td>LINUX_LINUX-I686-USR</td></tr>
+<tr><td>LINUX-ARMV5TEL-USR</td><td>LINUX_LINUX-ARMV5TEL-USR</td></tr>
+<tr><td>LINUX-I586-USR</td><td>LINUX_LINUX-I586-USR</td></tr>
+<tr><td>LINUX-I386-USR</td><td>LINUX_LINUX-I386-USR</td></tr>
+<tr><td>LINUX-I486-USR</td><td>LINUX_LINUX-I486-USR</td></tr>
+<tr><td>LINUX-ARMV6L-USR</td><td>LINUX_LINUX-ARMV6L-USR</td></tr>
+<tr><td>LINUX-ARMV6M-USR</td><td>LINUX_LINUX-ARMV6M-USR</td></tr>
+<tr><td>LINUX-ARMV7L-USR</td><td>LINUX_LINUX-ARMV7L-USR</td></tr>
+<tr><td>LINUX-ARMV7M-USR</td><td>LINUX_LINUX-ARMV7M-USR</td></tr>
+<tr><td>LINUX-ARMV8A-USR</td><td>LINUX_LINUX-ARMV8A-USR</td></tr>
+<tr><td>LINUX-ARMV7A-USR</td><td>LINUX_LINUX-ARMV7A-USR</td></tr>
+<tr><td>LINUX-ARMV8M-USR</td><td>LINUX_LINUX-ARMV8M-USR</td></tr>
+<tr><td>LINUX-ARMV7R-USR</td><td>LINUX_LINUX-ARMV7R-USR</td></tr>
+<tr><td>LINUX-AARCH32-USR</td><td>LINUX_LINUX-AARCH32-USR</td></tr>
+<tr><td>LINUX-POWERPC-USR</td><td>LINUX_LINUX-POWERPC-USR</td></tr>
+<tr><td>LINUX-MIPSII-USR</td><td>LINUX_LINUX-MIPSII-USR</td></tr>
+<tr><td>LINUX-MIPS32-USR</td><td>LINUX_LINUX-MIPS32-USR</td></tr>
+<tr><td>LINUX-MIPS64-USR</td><td>LINUX_LINUX-MIPS64-USR</td></tr>
+<tr><td>LINUX-RISCV32-USR</td><td>LINUX_LINUX-RISCV32-USR</td></tr>
+<tr><td>LINUX-RISCV64-USR</td><td>LINUX_LINUX-RISCV64-USR</td></tr>
+<tr><td>LINUX-LA-USR</td><td>LINUX_LINUX-LA-USR</td></tr>
+<tr><td>LINUX-NIOS2-USR</td><td>LINUX_LINUX-NIOS2-USR</td></tr>
+<tr><td>LINUX-CSKY-USR</td><td>LINUX_LINUX-CSKY-USR</td></tr>
+<tr><td>LINUX-AARCH64-USR</td><td>LINUX_LINUX-AARCH64-USR</td></tr>
+<tr><td>LINUX-ARMV8R-USR</td><td>LINUX_LINUX-ARMV8R-USR</td></tr>
+<tr><td>LINUX-MIPSIII-USR</td><td>LINUX_LINUX-MIPSIII-USR</td></tr>
+<tr><td>LINUX-POWERPC64-USR</td><td>LINUX_LINUX-POWERPC64-USR</td></tr>
+<tr><td>LINUX-MIPSI-USR</td><td>LINUX_LINUX-MIPSI-USR</td></tr>
+<tr><td>LINUX-MIPSV-USR</td><td>LINUX_LINUX-MIPSV-USR</td></tr>
+<tr><td>LINUX-SPARC64-USR</td><td>LINUX_LINUX-SPARC64-USR</td></tr>
+<tr><td>LINUX-HEXAGON-USR</td><td>LINUX_LINUX-HEXAGON-USR</td></tr>
+<tr><td>LINUX-MICROBLAZE-USR</td><td>LINUX_LINUX-MICROBLAZE-USR</td></tr>
+<tr><td>LINUX-XTENSA-USR</td><td>LINUX_LINUX-XTENSA-USR</td></tr>
+<tr><td>LINUX-MIPSIV-USR</td><td>LINUX_LINUX-MIPSIV-USR</td></tr>
+<tr><td>LINUX-SPARC-USR</td><td>LINUX_LINUX-SPARC-USR</td></tr>
+<tr><td>LINUX-M68K-USR</td><td>LINUX_LINUX-M68K-USR</td></tr>
+<tr><td>LINUX-ARC-USR</td><td>LINUX_LINUX-ARC-USR</td></tr>
+<tr><td>LINUX-ARM-USR</td><td>LINUX_LINUX-ARM-USR</td></tr>
+<tr><td>LINUX-X86-USR</td><td>LINUX_LINUX-X86-USR</td></tr>
+<tr><td>LINUX-X86_64-USR</td><td>LINUX_LINUX-X86_64-USR</td></tr>
+<tr><td>LINUX-OPENRISC-USR</td><td>LINUX_LINUX-OPENRISC-USR</td></tr>
+<tr><td>LINUX-SH-USR</td><td>LINUX_LINUX-SH-USR</td></tr>
+<tr><td>LINUX-IA64-USR</td><td>LINUX_LINUX-IA64-USR</td></tr>
+<tr><td>LINUX-PARISC-USR</td><td>LINUX_LINUX-PARISC-USR</td></tr>
+<tr><td>LINUX-S390-USR</td><td>LINUX_LINUX-S390-USR</td></tr>
+<tr><td>LINUX-ALPHA-USR</td><td>LINUX_LINUX-ALPHA-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -1068,7 +1068,7 @@
 <li><strong>Parent</strong>: proot</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{LIBS-SYSLIBS-LINUX_ANDROID-AARCH64-USR}</td><td>{LIBS-ANDROID_RUNTIME-SYSAPPS-LIBS-SYSLIBS-LINUX_ANDROID-AARCH64-USR}</td></tr>
+<tr><td>LINUX_ANDROID-AARCH64-USR</td><td>ANDROID_RUNTIME-LINUX_ANDROID-AARCH64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -1078,7 +1078,7 @@
 <li><strong>Parent</strong>: QEMU-sys</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{LIBS-SYSLIBS-IOS-AARCH64-USR}</td></tr>
+<tr><td></td><td>IOS-AARCH64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -1089,7 +1089,7 @@
 <li><strong>Category</strong>: Term.UBT</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{OPENVMS-VAX-USR}</td><td>{LIBS-SYSLIBS-OPENVMS-ALPHA-USR}</td></tr>
+<tr><td>OPENVMS-VAX-USR</td><td>OPENVMS-ALPHA-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -1100,8 +1100,8 @@
 <li><strong>Category</strong>: Term.V2_</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{X86-USR_PVL}</td><td>{LIBS-SYSLIBS-MACOS-X86-USR,LIBS-SYSLIBS-LINUX-X86-USR,LIBS-SYSLIBS-WINDOWS-X86-USR}</td></tr>
-<tr><td>{X86_64-USR_PVL}</td><td>{LIBS-SYSLIBS-LINUX-X86_64-USR,LIBS-SYSLIBS-WINDOWS-X86_64-USR,LIBS-SYSLIBS-MACOS-X86_64-USR}</td></tr>
+<tr><td>X86-USR_PVL</td><td>WINDOWS-X86-USR, MACOS-X86-USR, LINUX-X86-USR</td></tr>
+<tr><td>X86_64-USR_PVL</td><td>LINUX-X86_64-USR, MACOS-X86_64-USR, WINDOWS-X86_64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -1110,9 +1110,9 @@
 <li><strong>Date</strong>: 2015.01.01 - today</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{ARM-USR}</td><td>{LIBS-SYSLIBS-MACOS-X86_64-USR,LIBS-SYSLIBS-MACOS-AARCH64-USR}</td></tr>
-<tr><td>{ARM-USR}</td><td>{LIBS-SYSLIBS-LINUX-ARMV5TEL-USR,LIBS-SYSLIBS-LINUX-S390-USR,LIBS-SYSLIBS-LINUX-ARMV8M-USR,LIBS-SYSLIBS-LINUX-ARMV6M-USR,LIBS-SYSLIBS-LINUX-MICROBLAZE-USR,LIBS-SYSLIBS-LINUX-NIOS2-USR,LIBS-SYSLIBS-LINUX-ARC-USR,LIBS-SYSLIBS-LINUX-PARISC-USR,LIBS-SYSLIBS-LINUX-MIPSIII-USR,LIBS-SYSLIBS-LINUX-ARMV7R-USR,LIBS-SYSLIBS-LINUX-MIPS64-USR,LIBS-SYSLIBS-LINUX-ARMV7M-USR,LIBS-SYSLIBS-LINUX-HEXAGON-USR,LIBS-SYSLIBS-LINUX-AARCH64-USR,LIBS-SYSLIBS-LINUX-I686-USR,LIBS-SYSLIBS-LINUX-SPARC64-USR,LIBS-SYSLIBS-LINUX-RISCV32-USR,LIBS-SYSLIBS-LINUX-CSKY-USR,LIBS-SYSLIBS-LINUX-ALPHA-USR,LIBS-SYSLIBS-LINUX-ARM-USR,LIBS-SYSLIBS-LINUX-MIPS32-USR,LIBS-SYSLIBS-LINUX-ARMV7A-USR,LIBS-SYSLIBS-LINUX-X86-USR,LIBS-SYSLIBS-LINUX-I586-USR,LIBS-SYSLIBS-LINUX-SH-USR,LIBS-SYSLIBS-LINUX-MIPSI-USR,LIBS-SYSLIBS-LINUX-ARMV6L-USR,LIBS-SYSLIBS-LINUX-MIPSIV-USR,LIBS-SYSLIBS-LINUX-I486-USR,LIBS-SYSLIBS-LINUX-MIPSV-USR,LIBS-SYSLIBS-LINUX-ARMV8A-USR,LIBS-SYSLIBS-LINUX-ARMV8R-USR,LIBS-SYSLIBS-LINUX-X86_64-USR,LIBS-SYSLIBS-LINUX-IA64-USR,LIBS-SYSLIBS-LINUX-XTENSA-USR,LIBS-SYSLIBS-LINUX-SPARC-USR,LIBS-SYSLIBS-LINUX-ARMV7L-USR,LIBS-SYSLIBS-LINUX-M68K-USR,LIBS-SYSLIBS-LINUX-RISCV64-USR,LIBS-SYSLIBS-LINUX-POWERPC64-USR,LIBS-SYSLIBS-LINUX-I386-USR,LIBS-SYSLIBS-LINUX-MIPSII-USR,LIBS-SYSLIBS-LINUX-POWERPC-USR,LIBS-SYSLIBS-LINUX-OPENRISC-USR,LIBS-SYSLIBS-LINUX-AARCH32-USR,LIBS-SYSLIBS-LINUX-LA-USR}</td></tr>
-<tr><td>{ARM-USR}</td><td>{LIBS-SYSLIBS-WINDOWS-X86_64-USR,LIBS-SYSLIBS-WINDOWS-AARCH64-USR,LIBS-SYSLIBS-WINDOWS-X86-USR}</td></tr>
+<tr><td>ARM-USR</td><td>MACOS-X86_64-USR, MACOS-AARCH64-USR</td></tr>
+<tr><td>ARM-USR</td><td>LINUX-ARMV6M-USR, LINUX-MIPSII-USR, LINUX-RISCV64-USR, LINUX-S390-USR, LINUX-OPENRISC-USR, LINUX-POWERPC-USR, LINUX-I486-USR, LINUX-ALPHA-USR, LINUX-SPARC64-USR, LINUX-ARMV7L-USR, LINUX-ARMV8A-USR, LINUX-AARCH32-USR, LINUX-HEXAGON-USR, LINUX-ARM-USR, LINUX-MIPSI-USR, LINUX-SPARC-USR, LINUX-ARMV7R-USR, LINUX-X86_64-USR, LINUX-ARMV6L-USR, LINUX-MICROBLAZE-USR, LINUX-M68K-USR, LINUX-ARMV7M-USR, LINUX-MIPS32-USR, LINUX-ARMV8M-USR, LINUX-IA64-USR, LINUX-CSKY-USR, LINUX-MIPS64-USR, LINUX-RISCV32-USR, LINUX-ARC-USR, LINUX-MIPSIII-USR, LINUX-I386-USR, LINUX-SH-USR, LINUX-MIPSIV-USR, LINUX-AARCH64-USR, LINUX-XTENSA-USR, LINUX-X86-USR, LINUX-MIPSV-USR, LINUX-ARMV8R-USR, LINUX-LA-USR, LINUX-ARMV5TEL-USR, LINUX-ARMV7A-USR, LINUX-PARISC-USR, LINUX-NIOS2-USR, LINUX-POWERPC64-USR, LINUX-I586-USR, LINUX-I686-USR</td></tr>
+<tr><td>ARM-USR</td><td>WINDOWS-AARCH64-USR, WINDOWS-X86-USR, WINDOWS-X86_64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -1124,8 +1124,8 @@
 <li><strong>Parent</strong>: VMware Workstation</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{X86_64-USR_PVL}</td><td>{LIBS-SYSLIBS-WINDOWS-X86_64-USR}</td></tr>
-<tr><td>{X86_64-USR_PVL}</td><td>{LIBS-SYSLIBS-LINUX-X86_64-USR}</td></tr>
+<tr><td>X86_64-USR_PVL</td><td>WINDOWS-X86_64-USR</td></tr>
+<tr><td>X86_64-USR_PVL</td><td>LINUX-X86_64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -1136,7 +1136,7 @@
 <li><strong>Category</strong>: Term.V2_</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{X86_64-USR_PVL}</td><td>{LIBS-WINDOWS_SYSLIBS-LINUX-X86_64-USR,LIBS-WINDOWS_SYSLIBS-WINDOWS-X86_64-USR}</td></tr>
+<tr><td>X86_64-USR_PVL</td><td>WINDOWS_WINDOWS-X86_64-USR, WINDOWS_LINUX-X86_64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -1146,8 +1146,8 @@
 <li><strong>Parent</strong>: Anbox-halium</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{ANDROID_RUNTIME-SYSAPPS-LIBS-SYSLIBS-LINUX_ANDROID-X86_64-USR}</td><td>{LIBS-SYSLIBS-LINUX-X86_64-USR}</td></tr>
-<tr><td>{ANDROID_RUNTIME-SYSAPPS-LIBS-SYSLIBS-LINUX_ANDROID-AARCH64-USR}</td><td>{LIBS-SYSLIBS-LINUX-AARCH64-USR}</td></tr>
+<tr><td>ANDROID_RUNTIME-LINUX_ANDROID-X86_64-USR</td><td>LINUX-X86_64-USR</td></tr>
+<tr><td>ANDROID_RUNTIME-LINUX_ANDROID-AARCH64-USR</td><td>LINUX-AARCH64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -1160,7 +1160,7 @@
 <li><strong>Renames</strong>: Win4Lin 9x(2005.03.01),</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{X86-USR_PVL}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-X86-USR}</td></tr>
+<tr><td>X86-USR_PVL</td><td>LINUX_LINUX-X86-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -1170,7 +1170,7 @@
 <li><strong>Parent</strong>: Win4Lin</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{}</td></tr>
+<tr><td></td><td></td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -1181,15 +1181,15 @@
 <li><strong>Category</strong>: Term.SCL</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{WINDOWS_SYSLIBS-NO_SYSCALL-X86_64-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-X86_64-USR}</td></tr>
-<tr><td>{WINDOWS_SYSLIBS-NO_SYSCALL-AARCH64-USR}</td><td>{LIBS-BSD_SYSLIBS-BSD-AARCH64-USR}</td></tr>
-<tr><td>{WINDOWS_SYSLIBS-NO_SYSCALL-AARCH64-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-AARCH64-USR}</td></tr>
-<tr><td>{WINDOWS_SYSLIBS-NO_SYSCALL-X86-USR}</td><td>{LIBS-MACOS_SYSLIBS-MACOS-X86-USR}</td></tr>
-<tr><td>{WINDOWS_SYSLIBS-NO_SYSCALL-AARCH64-USR}</td><td>{LIBS-MACOS_SYSLIBS-MACOS-AARCH64-USR}</td></tr>
-<tr><td>{WINDOWS_SYSLIBS-NO_SYSCALL-X86_64-USR}</td><td>{LIBS-MACOS_SYSLIBS-MACOS-X86_64-USR}</td></tr>
-<tr><td>{WINDOWS_SYSLIBS-NO_SYSCALL-X86-USR}</td><td>{LIBS-BSD_SYSLIBS-BSD-X86-USR}</td></tr>
-<tr><td>{WINDOWS_SYSLIBS-NO_SYSCALL-X86_64-USR}</td><td>{LIBS-BSD_SYSLIBS-BSD-X86_64-USR}</td></tr>
-<tr><td>{WINDOWS_SYSLIBS-NO_SYSCALL-X86-USR}</td><td>{LIBS-LINUX_SYSLIBS-LINUX-X86-USR}</td></tr>
+<tr><td>WINDOWS_NO_SYSCALL-X86_64-USR</td><td>BSD_BSD-X86_64-USR</td></tr>
+<tr><td>WINDOWS_NO_SYSCALL-AARCH64-USR</td><td>LINUX_LINUX-AARCH64-USR</td></tr>
+<tr><td>WINDOWS_NO_SYSCALL-AARCH64-USR</td><td>BSD_BSD-AARCH64-USR</td></tr>
+<tr><td>WINDOWS_NO_SYSCALL-X86-USR</td><td>MACOS_MACOS-X86-USR</td></tr>
+<tr><td>WINDOWS_NO_SYSCALL-AARCH64-USR</td><td>MACOS_MACOS-AARCH64-USR</td></tr>
+<tr><td>WINDOWS_NO_SYSCALL-X86_64-USR</td><td>MACOS_MACOS-X86_64-USR</td></tr>
+<tr><td>WINDOWS_NO_SYSCALL-X86-USR</td><td>LINUX_LINUX-X86-USR</td></tr>
+<tr><td>WINDOWS_NO_SYSCALL-X86_64-USR</td><td>LINUX_LINUX-X86_64-USR</td></tr>
+<tr><td>WINDOWS_NO_SYSCALL-X86-USR</td><td>BSD_BSD-X86-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -1199,8 +1199,8 @@
 <li><strong>Parent</strong>: WINE</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{WINDOWS_SYSLIBS-NO_SYSCALL-AARCH64-USR}</td><td>{LIBS-ANDROID_RUNTIME-SYSAPPS-LIBS-SYSLIBS-LINUX_ANDROID-AARCH64-USR}</td></tr>
-<tr><td>{WINDOWS_SYSLIBS-NO_SYSCALL-X86_64-USR}</td><td>{LIBS-ANDROID_RUNTIME-SYSAPPS-LIBS-SYSLIBS-LINUX_ANDROID-X86_64-USR}</td></tr>
+<tr><td>WINDOWS_NO_SYSCALL-AARCH64-USR</td><td>ANDROID_RUNTIME-LINUX_ANDROID-AARCH64-USR</td></tr>
+<tr><td>WINDOWS_NO_SYSCALL-X86_64-USR</td><td>ANDROID_RUNTIME-LINUX_ANDROID-X86_64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -1222,9 +1222,9 @@
 <li><strong>Category</strong>: Term.SCL</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{LINUX-AARCH64-USR}</td><td>{LIBS-SYSLIBS-WINDOWS-AARCH64-USR}</td></tr>
-<tr><td>{LINUX-X86-USR}</td><td>{LIBS-SYSLIBS-WINDOWS-X86-USR}</td></tr>
-<tr><td>{LINUX-X86_64-USR}</td><td>{LIBS-SYSLIBS-WINDOWS-X86_64-USR}</td></tr>
+<tr><td>LINUX-AARCH64-USR</td><td>WINDOWS-AARCH64-USR</td></tr>
+<tr><td>LINUX-X86-USR</td><td>WINDOWS-X86-USR</td></tr>
+<tr><td>LINUX-X86_64-USR</td><td>WINDOWS-X86_64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -1235,9 +1235,9 @@
 <li><strong>Category</strong>: Term.V2_</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{X86-USR_PVL}</td><td>{LIBS-SYSLIBS-WINDOWS-X86-USR}</td></tr>
-<tr><td>{AARCH64-USR_PVL}</td><td>{LIBS-SYSLIBS-WINDOWS-AARCH64-USR}</td></tr>
-<tr><td>{X86_64-USR_PVL}</td><td>{LIBS-SYSLIBS-WINDOWS-X86_64-USR}</td></tr>
+<tr><td>X86-USR_PVL</td><td>WINDOWS-X86-USR</td></tr>
+<tr><td>AARCH64-USR_PVL</td><td>WINDOWS-AARCH64-USR</td></tr>
+<tr><td>X86_64-USR_PVL</td><td>WINDOWS-X86_64-USR</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -1248,7 +1248,7 @@
 <li><strong>Parent</strong>: Anbox</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{}</td></tr>
+<tr><td></td><td></td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -1258,10 +1258,10 @@
 <li><strong>Category</strong>: Term.VP1</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{X86-USR_PVL}</td><td>{X86-USR_PVL}</td></tr>
-<tr><td>{X86_64-USR_PVL}</td><td>{X86_64-USR_PVL}</td></tr>
-<tr><td>{X86-USR}</td><td>{X86-USR_PVL}</td></tr>
-<tr><td>{X86_64-USR}</td><td>{X86_64-USR_PVL}</td></tr>
+<tr><td>X86-USR_PVL</td><td>X86-USR_PVL</td></tr>
+<tr><td>X86_64-USR_PVL</td><td>X86_64-USR_PVL</td></tr>
+<tr><td>X86-USR</td><td>X86-USR_PVL</td></tr>
+<tr><td>X86_64-USR</td><td>X86_64-USR_PVL</td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
@@ -1271,7 +1271,7 @@
 <li><strong>Parent</strong>: citra</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>run <strong>X</strong></th><th>on <strong>Y</strong></th></tr></thead><tbody>
-<tr><td>{}</td><td>{}</td></tr>
+<tr><td></td><td></td></tr>
 </tbody></table>
 </div>
 <p>TODO</p>
