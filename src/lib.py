@@ -1153,14 +1153,22 @@ def outputEdges(f: typing.TextIO) -> None:
 
 def outputGnucladCsv(f: typing.TextIO) -> None:
     f.write("#, name, color, parent, start, stop, icon, desc, renames...\n")
+
+    # sort transors
+    transors: list[Transor] = []
     for module in modules:
         if isinstance(module, Transor):
+            transors.append(module)
+    sorted_transors: list[Transor] = sorted(transors, key=lambda transor: transor.start)
+
+    for transor in sorted_transors:
+        if isinstance(transor, Transor):
             f.write('"%s","%s","%s","%s","%s","%s","%s","%s"' % (
-                "N", module.name, module.color,
-                module.parent.name if module.parent else "",
-                module.start, module.stop, "", module.desc
+                "N", transor.name, transor.color,
+                transor.parent.name if transor.parent else "",
+                transor.start, transor.stop, "", transor.desc
             ))
-            for rename in module.renames:
+            for rename in transor.renames:
                 f.write(',"%s","%s","%s"' % (
                     rename.rename, rename.date, rename.desc
                 ))
