@@ -1371,8 +1371,18 @@ def outputSUMMARY(f: typing.TextIO) -> None:
             metamd.write("\n")
             metamd.write("| run **X** | on **Y** |\n")
             metamd.write("| --------- | -------- |\n")
+            def _canonicalize_hg(hg: str) -> str:
+                return hg.replace("SYSAPPS-", "").\
+                          replace("SYSLIBS-", "").\
+                          replace("LIBS-", "").\
+                          replace(",", ", ").\
+                          replace("{", "").\
+                          replace("}", "")
             for hg in transor.hgs:
-                metamd.write("| %s | %s |\n" % (hg.g.__repr__(), hg.h.__repr__()))
+                metamd.write("| %s | %s |\n" % (
+                    _canonicalize_hg(hg.g.__repr__()),
+                    _canonicalize_hg(hg.h.__repr__())
+                ))
 
         canonical_folder_name_README: str = canonical_folder_name + "/README.md"
         if not os.path.exists("src/" + canonical_folder_name):
