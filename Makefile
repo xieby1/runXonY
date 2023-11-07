@@ -3,10 +3,8 @@ define \n
 
 endef
 ALL_GEN = src/images/timeline.svg src/images/relplot.svg \
-		  test/web/test.js mdbook
+		  test/web/test.js
 all: ${ALL_GEN}
-
-mdbook:
 	mdbook build
 
 test/web/test.js: test/web/test.ts
