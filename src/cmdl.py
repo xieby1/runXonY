@@ -28,6 +28,12 @@ parser.add_argument("-r", "--rel",
     type=str,
     help = "the output path of relplot file, default by interactive window"
 )
+parser.add_argument("-s", "--summary",
+    nargs="?",
+    const=pathlib.Path("/dev/stdout"),
+    type=pathlib.Path,
+    help = "the output path of SUMMARY.md"
+)
 
 args = parser.parse_args()
 if args.dot:
@@ -44,3 +50,7 @@ if args.json:
     f.close()
 if args.rel:
     outputRelplot(args.rel)
+if args.summary:
+    f = open(args.summary, "w")
+    outputSUMMARY(f)
+    f.close()

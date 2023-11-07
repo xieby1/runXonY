@@ -4,3 +4,7 @@ language = "en"
 multilingual = false
 src = "src"
 title = "runXonY"
+
+[output.html]
+no-section-label = true
+git-repository-url = "https://github.com/xieby1/runXonY"

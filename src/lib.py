@@ -1154,7 +1154,7 @@ def outputEdges(f: typing.TextIO) -> None:
 def outputGnucladCsv(f: typing.TextIO) -> None:
     f.write("#, name, color, parent, start, stop, icon, desc, renames...\n")
 
-    # sort transors
+    # sort transors by start date
     transors: list[Transor] = []
     for module in modules:
         if isinstance(module, Transor):
@@ -1319,3 +1319,39 @@ def outputRelplot(output: str):
         plt.show()
     else:
         plt.savefig(output, bbox_inches="tight")
+
+def _canonicalize_folder_name(name: str) -> str:
+    return name.replace(' ', '_').\
+                replace('-', '_').\
+                replace('!', '').\
+                replace('(', '_').\
+                replace(')', '').\
+                replace('.', '_')
+
+def outputSUMMARY(f: typing.TextIO) -> None:
+    f.write("# Summary\n\n")
+    f.write("* [runXonY](./README.md)\n\n")
+    f.write("# By Name\n\n")
+
+    # sort transors by name (case insensitive)
+    transors: list[Transor] = []
+    for module in modules:
+        if isinstance(module, Transor):
+            transors.append(module)
+    sorted_transors: list[Transor] = sorted(transors, key=lambda transor: transor.name.lower())
+
+    init_letter: str = ''
+    for transor in sorted_transors:
+        if init_letter != transor.name[0].upper() and init_letter != transor.name[0].lower():
+            init_letter = transor.name[0].upper()
+            # f.write("\n* %s\n\n" % init_letter)
+
+        import os
+        canonical_folder_name: str = _canonicalize_folder_name(transor.name)
+        if not os.path.exists("src/" + canonical_folder_name):
+            print("outputListByName error: Folder %s not exists" % canonical_folder_name)
+        canonical_folder_name_README: str = canonical_folder_name + "/README.md"
+        if not os.path.exists("src/" + canonical_folder_name):
+            print("outputListByName error: File %s not exists" % canonical_folder_name_README)
+
+        f.write("* [%s](%s/README.md),\n" % (transor.name, canonical_folder_name))
