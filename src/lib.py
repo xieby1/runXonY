@@ -1388,7 +1388,10 @@ def outputSUMMARY() -> None:
     f.write("* [Home](./README.md)\n")
     f.write("* [Timeline](./timeline.md)\n")
     f.write("* [X-Y Relplot](./relplot.md)\n")
-    f.write("\n# By Name\n\n")
+
+    f.write("\n# All RunXonY Projects\n\n")
+
+    f.write("* [Listed by Name](./list/byName.md)\n")
 
     # sort transors by name (case insensitive)
     transors: list[Transor] = []
@@ -1397,13 +1400,14 @@ def outputSUMMARY() -> None:
             transors.append(module)
     sorted_transors: list[Transor] = sorted(transors, key=lambda transor: transor.name.lower())
 
+
     for transor in sorted_transors:
         import os
         canonical_folder_name: str = _canonicalize_folder_name(transor.name)
         canonical_folder_name_README: str = canonical_folder_name + "/README.md"
         if not os.path.exists("src/" + canonical_folder_name_README):
             print("outputListByName error: File %s not exists" % canonical_folder_name_README)
-        f.write("* [%s](%s/README.md),\n" % (transor.name, canonical_folder_name))
+        f.write("  * [%s](%s/README.md),\n" % (transor.name, canonical_folder_name))
     f.close()
 
 def outputMetaMd() -> None:
@@ -1453,3 +1457,26 @@ def outputMetaMd() -> None:
                         _canonicalize_hg(hg.g.__repr__()),
                         _canonicalize_hg(hg.h.__repr__())
                     ))
+
+def outputByTermMd() -> None:
+    f = open("src/SUMMARY.md", "a")
+    f.write("* [List by Category](./list/byTerm.md)\n")
+
+    termed_transors: dict[Term, list[Transor]] = {}
+    for term in Term:
+        termed_transors[term] = list()
+
+    for module in modules:
+        if isinstance(module, Transor):
+            transor: Transor = module
+            termed_transors[transor.term].append(transor)
+
+    for term in Term:
+        transors: list[Transor] = termed_transors[term]
+        if len(transors) > 0:
+            sorted_transors: list[Transor] = sorted(transors, key=lambda transor: transor.name.lower())
+            f.write("  * [%s](list/byTerm/%s.md)\n" % (term2str(term), term.name))
+            for transor in sorted_transors:
+                canonical_folder_name: str = _canonicalize_folder_name(transor.name)
+                f.write("    * [%s](%s/README.md)\n" % (transor.name, canonical_folder_name))
+    f.close()

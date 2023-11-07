@@ -51,3 +51,4 @@ if args.rel:
 if args.markdown:
     outputSUMMARY()
     outputMetaMd()
+    outputByTermMd()
