@@ -8,3 +8,7 @@ title = "runXonY"
 [output.html]
 no-section-label = true
 git-repository-url = "https://github.com/xieby1/runXonY"
+
+[output.html.fold]
+enable = true
+level = 0
