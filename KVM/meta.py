@@ -1,5 +1,5 @@
 from data import *
-from IntelVT.meta import *
+from Intel_VT.meta import *
 
 KVM = Transor("KVM",
     {  HG("",
@@ -11,4 +11,4 @@ KVM = Transor("KVM",
         https://en.wikipedia.org/wiki/VirtualBox
     ''',
 )
-Connector(IntelVT, KVM, Date(2007,2,5))
+Connector(Intel_VT, KVM, Date(2007,2,5))

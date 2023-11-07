@@ -817,12 +817,12 @@ viewBox="0 0 1220 2840"
 <g inkscape:label='Connectors' inkscape:groupmode='layer' id='layer_connectors'
 style='opacity:0.6;' >
   <line x1='610' y1='1164' x2='610' y2='145' stroke='#F60' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_0)' />
-  <line x1='820' y1='896' x2='820' y2='1135' stroke='#556293' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_1)' />
+  <line x1='820' y1='866' x2='820' y2='1135' stroke='#556293' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_1)' />
   <line x1='860' y1='1376' x2='871' y2='1945' stroke='#000' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_2)' />
   <line x1='672' y1='1526' x2='672' y2='1675' stroke='#0071C5' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_3)' />
   <line x1='725' y1='1674' x2='725' y2='1285' stroke='#000000' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_4)' />
   <line x1='671' y1='1526' x2='671' y2='1645' stroke='#0071C5' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_5)' />
-  <line x1='970' y1='896' x2='970' y2='1105' stroke='#556293' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_6)' />
+  <line x1='970' y1='866' x2='970' y2='1105' stroke='#556293' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_6)' />
   <line x1='997' y1='1676' x2='997' y2='2425' stroke='#000000' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_7)' />
   <line x1='880' y1='2004' x2='880' y2='265' stroke='#000' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_8)' />
   <line x1='970' y1='1676' x2='970' y2='2395' stroke='#000000' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_9)' />
@@ -855,18 +855,18 @@ style='opacity:0.6;' >
   <path id='__line_VMware__Workstation' d='M 441 595 L 1175 595' stroke='#F38C00' style='stroke-width:3.62132;' />
   <path id='__line_Aries' d='M 460 655 L 460 655' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Aries)' />
   <path id='__line_Code__Morphing' d='M 460 685 L 730 685' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Code__Morphing)' />
-  <path id='__line_Dynamite' d='M 490 715 L 545 715' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Dynamite)' />
-  <path id='__line_User__Mode__Linux' d='M 490 745 L 1175 745' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_User__Mode__Linux' d='M 490 715 L 1175 715' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_Dynamite' d='M 490 745 L 545 745' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Dynamite)' />
   <path id='__line_Tarmac' d='M 496 775 L 496 775' stroke='#28789E' style='stroke-width:3;' marker-end='url(#__stop_Tarmac)' />
   <path id='__line_DOSBox-X' d='M 760 805 C 782.5,805 767.5,835 790,835 L 790 835 L 1175 835' stroke='#113466' style='stroke-width:3;' />
   <path id='__line_DOSBox' d='M 520 805 L 1175 805' stroke='#113466' style='stroke-width:3.62132;' />
-  <path id='__line_IA-32__EL' d='M 550 865 L 1175 865' stroke='#000' style='stroke-width:3;' />
-  <path id='__line_MCTOLL' d='M 1000 895 C 1022.5,895 1007.5,955 1030,955 L 1030 955 L 1175 955' stroke='#000' style='stroke-width:3;' />
-  <path id='__line_McSema' d='M 1000 895 C 1022.5,895 1007.5,925 1030,925 L 1030 925 L 1129 925' stroke='#9C1B45' style='stroke-width:3;' marker-end='url(#__stop_McSema)' />
-  <path id='__line_LLVM' d='M 550 895 L 1175 895' stroke='#556293' style='stroke-width:4.09808;' />
-  <path id='__line_MagiXen' d='M 640 985 C 662.5,985 647.5,1015 670,1015 L 670 1015 L 670 1015' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_MagiXen)' />
-  <path id='__line_Qubes__OS' d='M 840 985 C 862.5,985 847.5,1015 870,1015 L 870 1015 L 1175 1015' stroke='#3874D8' style='stroke-width:3;' />
-  <path id='__line_Xen' d='M 550 985 L 1175 985' stroke='#000' style='stroke-width:4.09808;' />
+  <path id='__line_MCTOLL' d='M 1000 865 C 1022.5,865 1007.5,925 1030,925 L 1030 925 L 1175 925' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_McSema' d='M 1000 865 C 1022.5,865 1007.5,895 1030,895 L 1030 895 L 1129 895' stroke='#9C1B45' style='stroke-width:3;' marker-end='url(#__stop_McSema)' />
+  <path id='__line_LLVM' d='M 550 865 L 1175 865' stroke='#556293' style='stroke-width:4.09808;' />
+  <path id='__line_MagiXen' d='M 640 955 C 662.5,955 647.5,985 670,985 L 670 985 L 670 985' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_MagiXen)' />
+  <path id='__line_Qubes__OS' d='M 840 955 C 862.5,955 847.5,985 870,985 L 870 985 L 1175 985' stroke='#3874D8' style='stroke-width:3;' />
+  <path id='__line_Xen' d='M 550 955 L 1175 955' stroke='#000' style='stroke-width:4.09808;' />
+  <path id='__line_IA-32__EL' d='M 550 1015 L 1175 1015' stroke='#000' style='stroke-width:3;' />
   <path id='__line_NDISWrapper' d='M 550 1045 L 1175 1045' stroke='#000' style='stroke-width:3;' />
   <path id='__line_unicorn' d='M 898 1165 C 920.5,1165 905.5,1255 928,1255 L 928 1255 L 1175 1255' stroke='#E62129' style='stroke-width:3;' />
   <path id='__line_REV.NG' d='M 940 1075 C 962.5,1075 947.5,1105 970,1105 L 970 1105 L 1175 1105' stroke='#E92B29' style='stroke-width:3;' />
@@ -955,18 +955,18 @@ style='opacity:0.6;' >
   <circle id='__dot_VMware__Workstation' cx='441' cy='595' r='7.66222' fill='#F38C00' stroke='none' />
   <circle id='__dot_Aries' cx='460' cy='655' r='7' fill='#000' stroke='none' />
   <circle id='__dot_Code__Morphing' cx='460' cy='685' r='7' fill='#000' stroke='none' />
-  <circle id='__dot_Dynamite' cx='490' cy='715' r='7' fill='#000' stroke='none' />
-  <circle id='__dot_User__Mode__Linux' cx='490' cy='745' r='7' fill='#000' stroke='none' />
+  <circle id='__dot_User__Mode__Linux' cx='490' cy='715' r='7' fill='#000' stroke='none' />
+  <circle id='__dot_Dynamite' cx='490' cy='745' r='7' fill='#000' stroke='none' />
   <circle id='__dot_Tarmac' cx='496' cy='775' r='7' fill='#28789E' stroke='none' />
   <circle id='__dot_DOSBox-X' cx='790' cy='835' r='7' fill='#113466' stroke='none' />
   <circle id='__dot_DOSBox' cx='520' cy='805' r='7.66222' fill='#113466' stroke='none' />
-  <circle id='__dot_IA-32__EL' cx='550' cy='865' r='7' fill='#000' stroke='none' />
-  <circle id='__dot_MCTOLL' cx='1030' cy='955' r='7' fill='#000' stroke='none' />
-  <circle id='__dot_McSema' cx='1030' cy='925' r='7' fill='#9C1B45' stroke='none' />
-  <circle id='__dot_LLVM' cx='550' cy='895' r='8.10626' fill='#556293' stroke='none' />
-  <circle id='__dot_MagiXen' cx='670' cy='1015' r='7' fill='#000' stroke='none' />
-  <circle id='__dot_Qubes__OS' cx='870' cy='1015' r='7' fill='#3874D8' stroke='none' />
-  <circle id='__dot_Xen' cx='550' cy='985' r='8.10626' fill='#000' stroke='none' />
+  <circle id='__dot_MCTOLL' cx='1030' cy='925' r='7' fill='#000' stroke='none' />
+  <circle id='__dot_McSema' cx='1030' cy='895' r='7' fill='#9C1B45' stroke='none' />
+  <circle id='__dot_LLVM' cx='550' cy='865' r='8.10626' fill='#556293' stroke='none' />
+  <circle id='__dot_MagiXen' cx='670' cy='985' r='7' fill='#000' stroke='none' />
+  <circle id='__dot_Qubes__OS' cx='870' cy='985' r='7' fill='#3874D8' stroke='none' />
+  <circle id='__dot_Xen' cx='550' cy='955' r='8.10626' fill='#000' stroke='none' />
+  <circle id='__dot_IA-32__EL' cx='550' cy='1015' r='7' fill='#000' stroke='none' />
   <circle id='__dot_NDISWrapper' cx='550' cy='1045' r='7' fill='#000' stroke='none' />
   <circle id='__dot_unicorn' cx='928' cy='1255' r='7' fill='#E62129' stroke='none' />
   <circle id='__dot_REV.NG' cx='970' cy='1105' r='7' fill='#E92B29' stroke='none' />
@@ -1060,18 +1060,18 @@ style='opacity:0.6;' >
   <text x='448' y='590'  >VMware Workstation</text>
   <text x='467' y='650'  >Aries</text>
   <text x='467' y='680'  >Code Morphing</text>
-  <text x='497' y='710'  >Dynamite</text>
-  <text x='497' y='740'  >User Mode Linux</text>
+  <text x='497' y='710'  >User Mode Linux</text>
+  <text x='497' y='740'  >Dynamite</text>
   <text x='503' y='770'  >Tarmac</text>
   <text x='797' y='830'  >DOSBox-X</text>
   <text x='527' y='800'  >DOSBox</text>
-  <text x='557' y='860'  >IA-32 EL</text>
-  <text x='1037' y='950'  >MCTOLL</text>
-  <text x='1037' y='920'  >McSema</text>
-  <text x='557' y='890'  >LLVM</text>
-  <text x='677' y='1010'  >MagiXen</text>
-  <text x='877' y='1010'  >Qubes OS</text>
-  <text x='557' y='980'  >Xen</text>
+  <text x='1037' y='920'  >MCTOLL</text>
+  <text x='1037' y='890'  >McSema</text>
+  <text x='557' y='860'  >LLVM</text>
+  <text x='677' y='980'  >MagiXen</text>
+  <text x='877' y='980'  >Qubes OS</text>
+  <text x='557' y='950'  >Xen</text>
+  <text x='557' y='1010'  >IA-32 EL</text>
   <text x='557' y='1040'  >NDISWrapper</text>
   <text x='935' y='1250'  >unicorn</text>
   <text x='977' y='1100'  >REV.NG</text>
