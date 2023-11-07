@@ -525,6 +525,60 @@ class Term(enum.IntEnum):
     LIB = enum.auto()
     SLB = SYSLIB = enum.auto()
     ISA = enum.auto()
+def term2str(term: Term) -> str:
+    # Transor
+    if term == Term.V1_:
+        return "Type1 Virtual Machine"
+    if term == Term.V1B:
+        return "Type1 Virtual Machine with Binary Translation"
+    if term == Term.P1_:
+        return "Type1 Paravirtualization"
+    if term == Term.VP1:
+        return "Type-1 Virtual Machine and Paravirtualization"
+    if term == Term.V2_:
+        return "Type-2 Virtual Machine"
+    if term == Term.V2B:
+        return "Type-2 Virtual Machine with Binary Translation"
+    if term == Term.SBT:
+        return "Static Binary Translator"
+    if term == Term.DSB:
+        return "Dynamic Static Binary Translator"
+    if term == Term.UBT:
+        return "User-level Binary Translator"
+    if term == Term.UBL:
+        return "User-level Binary Translator with Lib Pass-through"
+    if term == Term.INS:
+        return "Instrumenter"
+    if term == Term.OPT:
+        return "Optimizer"
+    if term == Term.I_O:
+        return "Instrumenter and Optimizer"
+    if term == Term.SCL:
+        return "Syscall Compatible Layer"
+
+    # Module
+    if term == Term.OS_:
+        return "Kernel"
+    if term == Term.CPL:
+        return "Compiler"
+
+    # Dummy Module
+    if term == Term.RAP:
+        return "Runtime App"
+    if term == Term.RLB:
+        return "Rumtime Libraray"
+    if term == Term.APP:
+        return "App"
+    if term == Term.SAP:
+        return "System App"
+    if term == Term.LIB:
+        return "Libraray"
+    if term == Term.SLB:
+        return "System Libraray"
+    if term == Term.ISA:
+        return "ISA"
+
+    return "Unknown"
 
 # UniHG help addDummyModule to determine whether a dummy module has a counterpart module?
 # E.g.
@@ -1328,12 +1382,16 @@ def _canonicalize_folder_name(name: str) -> str:
                 replace(')', '').\
                 replace('.', '_')
 
-def outputSUMMARY(f: typing.TextIO) -> None:
+def outputSUMMARY() -> None:
+    f = open("src/SUMMARY.md", "w")
     f.write("# Summary\n\n")
     f.write("* [Home](./README.md)\n")
     f.write("* [Timeline](./timeline.md)\n")
     f.write("* [X-Y Relplot](./relplot.md)\n")
-    f.write("\n# By Name\n\n")
+
+    f.write("\n# All RunXonY Projects\n\n")
+
+    f.write("* [Listed by Name](./list/byName.md)\n")
 
     # sort transors by name (case insensitive)
     transors: list[Transor] = []
@@ -1342,50 +1400,83 @@ def outputSUMMARY(f: typing.TextIO) -> None:
             transors.append(module)
     sorted_transors: list[Transor] = sorted(transors, key=lambda transor: transor.name.lower())
 
+
     for transor in sorted_transors:
         import os
         canonical_folder_name: str = _canonicalize_folder_name(transor.name)
-        if not os.path.exists("src/" + canonical_folder_name):
-            print("outputListByName error: Folder %s not exists" % canonical_folder_name)
-        with open("src/" + canonical_folder_name + "/meta.md", "w") as metamd:
-            metamd.write("* **Date**: %s - " % transor.start)
-            if transor.stop < Date.today():
-                metamd.write("%s\n" % transor.stop)
-            else:
-                metamd.write("today\n")
-            if transor.license != '':
-                metamd.write("* **License**: %s\n" % transor.license)
-            if transor.dev != Dev.NONE:
-                metamd.write("* **Development**: %s\n" % transor.dev)
-            if transor.term != Term.UNKNOWN:
-                metamd.write("* **Category**: %s\n" % transor.term)
-            if transor.parent:
-                metamd.write("* **Parent**: %s\n" % transor.parent.name)
-
-            if len(transor.renames) > 0:
-                metamd.write("* **Renames**:")
-                for rename in transor.renames:
-                    metamd.write(" %s(%s)," % (rename.rename, rename.date))
-                metamd.write("\n")
-
-            metamd.write("\n")
-            metamd.write("| Name | Run **X** | On **Y** |\n")
-            metamd.write("| ---- | --------- | -------- |\n")
-            def _canonicalize_hg(hg: str) -> str:
-                import re
-                hg = re.sub(r'[^-,]*SYSAPPS-', '', hg)
-                hg = re.sub(r'[^-,]*LIBS-', '', hg)
-                return hg.replace(",", ", ").\
-                          replace("{", "").\
-                          replace("}", "")
-            for hg in transor.hgs:
-                metamd.write("| %s | %s | %s |\n" % (
-                    hg.name,
-                    _canonicalize_hg(hg.g.__repr__()),
-                    _canonicalize_hg(hg.h.__repr__())
-                ))
-
         canonical_folder_name_README: str = canonical_folder_name + "/README.md"
-        if not os.path.exists("src/" + canonical_folder_name):
+        if not os.path.exists("src/" + canonical_folder_name_README):
             print("outputListByName error: File %s not exists" % canonical_folder_name_README)
-        f.write("* [%s](%s/README.md),\n" % (transor.name, canonical_folder_name))
+        f.write("  * [%s](%s/README.md),\n" % (transor.name, canonical_folder_name))
+    f.close()
+
+def outputMetaMd() -> None:
+    for module in modules:
+        if isinstance(module, Transor):
+            transor: Transor = module
+
+            import os
+            canonical_folder_name: str = _canonicalize_folder_name(transor.name)
+            if not os.path.exists("src/" + canonical_folder_name):
+                print("outputListByName error: Folder %s not exists" % canonical_folder_name)
+
+            with open("src/" + canonical_folder_name + "/meta.md", "w") as metamd:
+                metamd.write("* **Date**: %s - " % transor.start)
+                if transor.stop < Date.today():
+                    metamd.write("%s\n" % transor.stop)
+                else:
+                    metamd.write("today\n")
+                if transor.license != '':
+                    metamd.write("* **License**: %s\n" % transor.license)
+                if transor.dev != Dev.NONE:
+                    metamd.write("* **Development**: %s\n" % transor.dev)
+                if transor.term != Term.UNKNOWN:
+                    metamd.write("* **Category**: %s\n" % term2str(transor.term))
+                if transor.parent:
+                    metamd.write("* **Parent**: %s\n" % transor.parent.name)
+
+                if len(transor.renames) > 0:
+                    metamd.write("* **Renames**:")
+                    for rename in transor.renames:
+                        metamd.write(" %s(%s)," % (rename.rename, rename.date))
+                    metamd.write("\n")
+
+                metamd.write("\n")
+                metamd.write("| Name | Run **X** | On **Y** |\n")
+                metamd.write("| ---- | --------- | -------- |\n")
+                def _canonicalize_hg(hg: str) -> str:
+                    import re
+                    hg = re.sub(r'[^-,]*SYSAPPS-', '', hg)
+                    hg = re.sub(r'[^-,]*LIBS-', '', hg)
+                    return hg.replace(",", ", ").\
+                              replace("{", "").\
+                              replace("}", "")
+                for hg in transor.hgs:
+                    metamd.write("| %s | %s | %s |\n" % (
+                        hg.name,
+                        _canonicalize_hg(hg.g.__repr__()),
+                        _canonicalize_hg(hg.h.__repr__())
+                    ))
+
+def outputByTermMd() -> None:
+    f = open("src/SUMMARY.md", "a")
+    f.write("* [List by Category](./list/byTerm.md)\n")
+
+    termed_transors: dict[Term, list[Transor]] = {}
+    for term in Term:
+        termed_transors[term] = list()
+
+    for module in modules:
+        if isinstance(module, Transor):
+            transor: Transor = module
+            termed_transors[transor.term].append(transor)
+
+    for term in Term:
+        transors: list[Transor] = termed_transors[term]
+        if len(transors) > 0:
+            sorted_transors: list[Transor] = sorted(transors, key=lambda transor: transor.name.lower())
+            f.write("  * [%s](list/byTerm/%s.md)\n" % (term2str(term), term.name))
+            for transor in sorted_transors:
+                canonical_folder_name: str = _canonicalize_folder_name(transor.name)
+                f.write("    * [%s](%s/README.md)\n" % (transor.name, canonical_folder_name))
+    f.close()
