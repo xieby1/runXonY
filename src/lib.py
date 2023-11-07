@@ -1369,17 +1369,18 @@ def outputSUMMARY(f: typing.TextIO) -> None:
                 metamd.write("\n")
 
             metamd.write("\n")
-            metamd.write("| run **X** | on **Y** |\n")
-            metamd.write("| --------- | -------- |\n")
+            metamd.write("| Name | Run **X** | On **Y** |\n")
+            metamd.write("| ---- | --------- | -------- |\n")
             def _canonicalize_hg(hg: str) -> str:
-                return hg.replace("SYSAPPS-", "").\
-                          replace("SYSLIBS-", "").\
-                          replace("LIBS-", "").\
-                          replace(",", ", ").\
+                import re
+                hg = re.sub(r'[^-,]*SYSAPPS-', '', hg)
+                hg = re.sub(r'[^-,]*LIBS-', '', hg)
+                return hg.replace(",", ", ").\
                           replace("{", "").\
                           replace("}", "")
             for hg in transor.hgs:
-                metamd.write("| %s | %s |\n" % (
+                metamd.write("| %s | %s | %s |\n" % (
+                    hg.name,
                     _canonicalize_hg(hg.g.__repr__()),
                     _canonicalize_hg(hg.h.__repr__())
                 ))
