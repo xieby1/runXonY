@@ -1391,8 +1391,6 @@ def outputSUMMARY() -> None:
 
     f.write("\n# All RunXonY Projects\n\n")
 
-    f.write("* [Listed by Name](./list/byName.md)\n")
-
     # sort transors by name (case insensitive)
     transors: list[Transor] = []
     for module in modules:
@@ -1400,6 +1398,7 @@ def outputSUMMARY() -> None:
             transors.append(module)
     sorted_transors: list[Transor] = sorted(transors, key=lambda transor: transor.name.lower())
 
+    f.write("* [Listed by Name (%d)](./list/byName.md)\n" % len(sorted_transors))
 
     for transor in sorted_transors:
         import os
@@ -1460,22 +1459,25 @@ def outputMetaMd() -> None:
 
 def outputByTermMd() -> None:
     f = open("src/SUMMARY.md", "a")
-    f.write("* [List by Category](./list/byTerm.md)\n")
 
     termed_transors: dict[Term, list[Transor]] = {}
     for term in Term:
         termed_transors[term] = list()
 
+    len_transors: int = 0
     for module in modules:
         if isinstance(module, Transor):
             transor: Transor = module
             termed_transors[transor.term].append(transor)
+            len_transors += 1
+
+    f.write("* [List by Category (%d)](./list/byTerm.md)\n" % len_transors)
 
     for term in Term:
         transors: list[Transor] = termed_transors[term]
         if len(transors) > 0:
             sorted_transors: list[Transor] = sorted(transors, key=lambda transor: transor.name.lower())
-            f.write("  * [%s](list/byTerm/%s.md)\n" % (term2str(term), term.name))
+            f.write("  * [%s (%d)](list/byTerm/%s.md)\n" % (term2str(term), len(sorted_transors), term.name))
             for transor in sorted_transors:
                 canonical_folder_name: str = _canonicalize_folder_name(transor.name)
                 f.write("    * [%s](%s/README.md)\n" % (transor.name, canonical_folder_name))
