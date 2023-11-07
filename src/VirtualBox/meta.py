@@ -1,5 +1,5 @@
 from data import *
-from IntelVT.meta import *
+from Intel_VT.meta import *
 
 VirtualBox = Transor("VirtualBox",
     {  HG("",
@@ -9,4 +9,4 @@ VirtualBox = Transor("VirtualBox",
     Date(2007,1,17), Date.today(), color="#2F61B4", dev=Dev.ORACLE,
     desc="https://en.wikipedia.org/wiki/VirtualBox",
 )
-Connector(IntelVT, VirtualBox, Date(2007,1,17))
+Connector(Intel_VT, VirtualBox, Date(2007,1,17))

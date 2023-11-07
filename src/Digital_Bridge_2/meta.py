@@ -1,5 +1,5 @@
 from data import *
-from DigitalBridge.meta import *
+from Digital_Bridge.meta import *
 
 Transor("Digital Bridge 2",
     {  HG("",

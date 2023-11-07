@@ -1,6 +1,6 @@
 from data import *
 
-VMwareWorkstation = Transor("VMware Workstation",
+VMware_Workstation = Transor("VMware Workstation",
     {  HG("",
         Metaface({(Isa.X86_64, Up.USR)}, {Kernel.LINUX, Kernel.WINDOWS}, {Syslib.WINDOWS}, {Lib.ANY}),
         Metaface({(Isa.X86_64, Up.USR_PVL)}),

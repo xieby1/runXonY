@@ -1,6 +1,6 @@
 from data import *
 
-IntelVT = Transor("Intel VT", set(  HG("",
+Intel_VT = Transor("Intel VT", set(  HG("",
         Metaface({(isa, Up.USR_PVL)}),
         Metaface({(isa, Up.USR_PVL)}),
     )
