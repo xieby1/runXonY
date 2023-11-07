@@ -16,6 +16,9 @@ pkgs.mkShell {
   buildInputs = with pkgs; [
     myPython
     gnuclad
+    mdbook
+    nodePackages.typescript
+    pandoc
   ];
   shellHook = ''
     # env

@@ -8,7 +8,7 @@ ALL_GEN = timeline.svg relplot.svg \
 all: ${ALL_GEN}
 
 test/web/test.js: test/web/test.ts
-	tsc $<
+	tsc --target es6 $<
 
 CMDL_GEN = data/timeline.csv test/web/runXonY.json relplot.svg
 ${CMDL_GEN} &: src/lib.py src/data.py src/cmdl.py

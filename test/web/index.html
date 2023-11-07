@@ -21,7 +21,7 @@ document.addEventListener("runXonY_inited", () => {
     const Y = document.getElementById("Y")
     let choices = []
     for (id in runXonY.nodes) {
-        if (id[0] != 'I') {
+        if (runXonY.nodes[id].visible()) {
             choices.push({
                 value: id,
                 label: runXonY.nodes[id].name,
@@ -49,8 +49,7 @@ document.addEventListener("runXonY_inited", () => {
             for (let path of paths) {
                 for (let idx=path.length-1; idx>=0; idx--) {
                     let node = path[idx]
-                    // print non-interface
-                    if (node.id[0] != 'I')
+                    if (node.id.startsWith("T"))
                         content += node.name + "\n"
                 }
                 content += "---\n"

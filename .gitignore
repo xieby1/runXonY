@@ -5,3 +5,9 @@ gnuclad/gnuclad.csv
 node_modules/
 data/timeline.csv
 .direnv
+about.html
+index.html
+relplot.svg
+test/web/runXonY.json
+test/web/test.js
+timeline.svg
