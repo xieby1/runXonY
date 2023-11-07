@@ -525,6 +525,60 @@ class Term(enum.IntEnum):
     LIB = enum.auto()
     SLB = SYSLIB = enum.auto()
     ISA = enum.auto()
+def term2str(term: Term) -> str:
+    # Transor
+    if term == Term.V1_:
+        return "Type1 Virtual Machine"
+    if term == Term.V1B:
+        return "Type1 Virtual Machine with Binary Translation"
+    if term == Term.P1_:
+        return "Type1 Paravirtualization"
+    if term == Term.VP1:
+        return "Type-1 Virtual Machine and Paravirtualization"
+    if term == Term.V2_:
+        return "Type-2 Virtual Machine"
+    if term == Term.V2B:
+        return "Type-2 Virtual Machine with Binary Translation"
+    if term == Term.SBT:
+        return "Static Binary Translator"
+    if term == Term.DSB:
+        return "Dynamic Static Binary Translator"
+    if term == Term.UBT:
+        return "User-level Binary Translator"
+    if term == Term.UBL:
+        return "User-level Binary Translator with Lib Pass-through"
+    if term == Term.INS:
+        return "Instrumenter"
+    if term == Term.OPT:
+        return "Optimizer"
+    if term == Term.I_O:
+        return "Instrumenter and Optimizer"
+    if term == Term.SCL:
+        return "Syscall Compatible Layer"
+
+    # Module
+    if term == Term.OS_:
+        return "Kernel"
+    if term == Term.CPL:
+        return "Compiler"
+
+    # Dummy Module
+    if term == Term.RAP:
+        return "Runtime App"
+    if term == Term.RLB:
+        return "Rumtime Libraray"
+    if term == Term.APP:
+        return "App"
+    if term == Term.SAP:
+        return "System App"
+    if term == Term.LIB:
+        return "Libraray"
+    if term == Term.SLB:
+        return "System Libraray"
+    if term == Term.ISA:
+        return "ISA"
+
+    return "Unknown"
 
 # UniHG help addDummyModule to determine whether a dummy module has a counterpart module?
 # E.g.
@@ -1358,7 +1412,7 @@ def outputSUMMARY(f: typing.TextIO) -> None:
             if transor.dev != Dev.NONE:
                 metamd.write("* **Development**: %s\n" % transor.dev)
             if transor.term != Term.UNKNOWN:
-                metamd.write("* **Category**: %s\n" % transor.term)
+                metamd.write("* **Category**: %s\n" % term2str(transor.term))
             if transor.parent:
                 metamd.write("* **Parent**: %s\n" % transor.parent.name)
 
