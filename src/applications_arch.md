@@ -18,21 +18,21 @@
 
 ## General Application
 
-![general_app_arch-formatted](pictures/general_app_arch.svg)
+![general_app_arch-formatted](images/general_app_arch.svg)
 
-![general_app_on_user_mode_os_arch](pictures/general_app_on_user_mode_os_arch.svg)
+![general_app_on_user_mode_os_arch](images/general_app_on_user_mode_os_arch.svg)
 
 ### Linux Application
 
 ### QEMU
 
-![qemu-user_arch-formatted](../BT/QEMU/pictures/qemu-user_arch-formatted.svg)
+![qemu-user_arch-formatted](../BT/QEMU/images/qemu-user_arch-formatted.svg)
 
 #### WINE
 
-![wine_simple_arch-formatted](../CompatLayer/WINE/pictures/wine_simple_arch-formatted.svg)
+![wine_simple_arch-formatted](../CompatLayer/WINE/images/wine_simple_arch-formatted.svg)
 
-![wine_arch-formatted](../CompatLayer/WINE/pictures/wine_arch-formatted.svg)
+![wine_arch-formatted](../CompatLayer/WINE/images/wine_arch-formatted.svg)
 
 #### Android
 
@@ -40,8 +40,8 @@
 
 |                       With Native Code                       |                          Universal                           |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| ![android_native_arch-formatted](../Kernel/Linux/Android/pictures/android_native_arch-formatted.svg) | ![android_universal_arch-formatted](../Kernel/Linux/Android/pictures/android_universal_arch-formatted.svg) |
+| ![android_native_arch-formatted](./images/android_native_arch-formatted.svg) | ![android_universal_arch-formatted](./images/android_universal_arch-formatted.svg) |
 
 ### Win Application
 
-![win_app_arch-formatted](../Kernel/Windows/pictures/win_app_arch-formatted.svg)
+![win_app_arch-formatted](./images/win_app_arch-formatted.svg)
