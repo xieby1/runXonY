@@ -1382,7 +1382,8 @@ def _canonicalize_folder_name(name: str) -> str:
                 replace(')', '').\
                 replace('.', '_')
 
-def outputSUMMARY(f: typing.TextIO) -> None:
+def outputSUMMARY() -> None:
+    f = open("src/SUMMARY.md", "w")
     f.write("# Summary\n\n")
     f.write("* [Home](./README.md)\n")
     f.write("* [Timeline](./timeline.md)\n")
@@ -1443,3 +1444,4 @@ def outputSUMMARY(f: typing.TextIO) -> None:
         if not os.path.exists("src/" + canonical_folder_name):
             print("outputListByName error: File %s not exists" % canonical_folder_name_README)
         f.write("* [%s](%s/README.md),\n" % (transor.name, canonical_folder_name))
+    f.close()

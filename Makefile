@@ -10,14 +10,13 @@ all: ${ALL_GEN}
 test/web/test.js: test/web/test.ts
 	tsc --target es6 $<
 
-CMDL_GEN = data/timeline.csv test/web/runXonY.json src/images/relplot.svg \
-		   src/SUMMARY.md
+CMDL_GEN = data/timeline.csv test/web/runXonY.json src/images/relplot.svg
 ${CMDL_GEN} &: src/lib.py src/data.py src/cmdl.py
 	src/cmdl.py \
 		-c $(word 1,${CMDL_GEN}) \
 		-j $(word 2,${CMDL_GEN}) \
 		-r $(word 3,${CMDL_GEN}) \
-		-s $(word 4,${CMDL_GEN})
+		-m
 
 # gnuclad svg lacks of viewBox,
 # which will causing cannot resizing by css
