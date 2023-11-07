@@ -1342,18 +1342,39 @@ def outputSUMMARY(f: typing.TextIO) -> None:
             transors.append(module)
     sorted_transors: list[Transor] = sorted(transors, key=lambda transor: transor.name.lower())
 
-    init_letter: str = ''
     for transor in sorted_transors:
-        if init_letter != transor.name[0].upper() and init_letter != transor.name[0].lower():
-            init_letter = transor.name[0].upper()
-            # f.write("\n* %s\n\n" % init_letter)
-
         import os
         canonical_folder_name: str = _canonicalize_folder_name(transor.name)
         if not os.path.exists("src/" + canonical_folder_name):
             print("outputListByName error: Folder %s not exists" % canonical_folder_name)
+        with open("src/" + canonical_folder_name + "/meta.md", "w") as metamd:
+            metamd.write("* **Date**: %s - " % transor.start)
+            if transor.stop < Date.today():
+                metamd.write("%s\n" % transor.stop)
+            else:
+                metamd.write("today\n")
+            if transor.license != '':
+                metamd.write("* **License**: %s\n" % transor.license)
+            if transor.dev != Dev.NONE:
+                metamd.write("* **Development**: %s\n" % transor.dev)
+            if transor.term != Term.UNKNOWN:
+                metamd.write("* **Category**: %s\n" % transor.term)
+            if transor.parent:
+                metamd.write("* **Parent**: %s\n" % transor.parent.name)
+
+            if len(transor.renames) > 0:
+                metamd.write("* **Renames**:")
+                for rename in transor.renames:
+                    metamd.write(" %s(%s)," % (rename.rename, rename.date))
+                metamd.write("\n")
+
+            metamd.write("\n")
+            metamd.write("| run **X** | on **Y** |\n")
+            metamd.write("| --------- | -------- |\n")
+            for hg in transor.hgs:
+                metamd.write("| %s | %s |\n" % (hg.g.__repr__(), hg.h.__repr__()))
+
         canonical_folder_name_README: str = canonical_folder_name + "/README.md"
         if not os.path.exists("src/" + canonical_folder_name):
             print("outputListByName error: File %s not exists" % canonical_folder_name_README)
-
         f.write("* [%s](%s/README.md),\n" % (transor.name, canonical_folder_name))
