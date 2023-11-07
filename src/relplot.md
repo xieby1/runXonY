@@ -1,3 +1,3 @@
 # X-Y Relplot
 
-![](./images/relplot.svg)
+<object data="./images/relplot.svg" style="width: 100%;"></object>
