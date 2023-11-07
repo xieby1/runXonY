@@ -1330,8 +1330,10 @@ def _canonicalize_folder_name(name: str) -> str:
 
 def outputSUMMARY(f: typing.TextIO) -> None:
     f.write("# Summary\n\n")
-    f.write("* [runXonY](./README.md)\n\n")
-    f.write("# By Name\n\n")
+    f.write("* [Home](./README.md)\n")
+    f.write("* [Timeline](./timeline.md)\n")
+    f.write("* [X-Y Relplot](./relplot.md)\n")
+    f.write("\n# By Name\n\n")
 
     # sort transors by name (case insensitive)
     transors: list[Transor] = []

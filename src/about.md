@@ -3,15 +3,15 @@
 ## Intro
 
 RunXonY records "emulation/virtualization/..." project I have met.
-In order to make the records in runXonY more precie and consistent,
-I will first elaborate the terminolies used in runXonY.
+In order to make the records in runXonY more precise and consistent,
+I will first elaborate the terminologies used in runXonY.
 
 ## Terminologies
 
 ### X&Y or Guest&Host
 
 As the name runXonY reveals, there are two entities X and Y.
-In CS terminoly, them are called guest and host respectly.
+In CS terminology, them are called guest and host respectively.
 
 ### Layer, Resource and Interface
 
@@ -34,7 +34,7 @@ Layer2 is able to make use of interfaces from layer0 and layer2.
 
 ### Well-defined Simple Machine
 
-In order to describe guest and host in a consistent way,
+In order to describe guest and host consistently,
 I'd like to introduce a idealistic computer,
 I call it "well-defined simple machine".
 
