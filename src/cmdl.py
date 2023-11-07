@@ -50,3 +50,4 @@ if args.rel:
     outputRelplot(args.rel)
 if args.markdown:
     outputSUMMARY()
+    outputMetaMd()
