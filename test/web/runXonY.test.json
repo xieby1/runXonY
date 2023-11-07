@@ -1,0 +1,33 @@
+{
+"nodes": {
+  "D107": "LA"
+, "I40": "LA"
+, "M20": "LINUX-LA"
+, "I41": "LINUX-LA"
+, "D161": "SYSLIBS-LINUX-LA"
+, "I470": "SYSLIBS-LINUX-LA"
+, "D162": "LIBS-SYSLIBS-LINUX-LA"
+, "I177": "LIBS-SYSLIBS-LINUX-LA"
+, "T83": "QEMU-user-linux"
+, "I71": "LINUX-X86"
+, "D169": "SYSLIBS-LINUX-X86"
+, "I486": "SYSLIBS-LINUX-X86"
+, "D170": "LIBS-SYSLIBS-LINUX-X86"
+, "I178": "LIBS-SYSLIBS-LINUX-X86"
+},
+"edges": [
+  ["D107", "I40"]
+, ["I40", "M20"]
+, ["M20", "I41"]
+, ["I41", "D161"]
+, ["D161", "I470"]
+, ["I470", "D162"]
+, ["D162", "I177"]
+, ["I177", "T83"]
+, ["T83", "I71"]
+, ["I71", "D169"]
+, ["D169", "I486"]
+, ["I486", "D170"]
+, ["D170", "I178"]
+]
+}
