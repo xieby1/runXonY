@@ -10,7 +10,7 @@ all: ${ALL_GEN}
 test/web/test.js: test/web/test.ts
 	tsc --target es6 $<
 
-CMDL_GEN = data/timeline.csv test/web/runXonY.json src/images/relplot.svg
+CMDL_GEN = src/timeline.csv test/web/runXonY.json src/images/relplot.svg
 ${CMDL_GEN} &: src/lib.py src/data.py src/cmdl.py
 	src/cmdl.py \
 		-c $(word 1,${CMDL_GEN}) \
@@ -22,7 +22,7 @@ ${CMDL_GEN} &: src/lib.py src/data.py src/cmdl.py
 # which will causing cannot resizing by css
 # add one to generated svg
 # https://stackoverflow.com/questions/644896/how-do-i-scale-a-stubborn-svg-embedded-with-the-object-tag
-src/images/timeline.svg: data/timeline.csv data/gnuclad.conf
+src/images/timeline.svg: src/timeline.csv src/gnuclad.conf
 	gnuclad $< $@ $(word 2,$^)
 	identify -format 'viewBox="0 0 %w %h"\n' $@ | sed -i '/height/r /dev/stdin' $@
 
