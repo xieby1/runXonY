@@ -1440,7 +1440,7 @@ def outputMetaMd() -> None:
                 if transor.term != Term.UNKNOWN:
                     metamd.write("* **Category**: %s\n" % term2str(transor.term))
                 if transor.parent:
-                    metamd.write("* **Parent**: %s\n" % transor.parent.name)
+                    metamd.write("* **Parent**: [%s](../%s/index.md)\n" % (transor.parent.name, _canonicalize_folder_name(transor.parent.name)))
 
                 if len(transor.renames) > 0:
                     metamd.write("* **Renames**:")
