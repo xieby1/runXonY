@@ -1403,10 +1403,10 @@ def outputSUMMARY() -> None:
     for transor in sorted_transors:
         import os
         canonical_folder_name: str = _canonicalize_folder_name(transor.name)
-        canonical_folder_name_README: str = canonical_folder_name + "/README.md"
-        if not os.path.exists("src/" + canonical_folder_name_README):
-            print("outputListByName error: File %s not exists" % canonical_folder_name_README)
-        f.write("  * [%s](%s/README.md),\n" % (transor.name, canonical_folder_name))
+        canonical_folder_name_index: str = canonical_folder_name + "/index.md"
+        if not os.path.exists("src/" + canonical_folder_name_index):
+            print("outputListByName error: File %s not exists" % canonical_folder_name_index)
+        f.write("  * [%s](%s/index.md),\n" % (transor.name, canonical_folder_name))
     f.close()
 
 def outputMetaMd() -> None:
@@ -1483,6 +1483,6 @@ def outputByTermMd() -> None:
         f.write("  * [%s (%d)](list/byTerm/%s.md)\n" % (term2str(term), len(sorted_transors), term.name))
         for transor in sorted_transors:
             canonical_folder_name: str = _canonicalize_folder_name(transor.name)
-            f.write("    * [%s](%s/README.md)\n" % (transor.name, canonical_folder_name))
+            f.write("    * [%s](%s/index.md)\n" % (transor.name, canonical_folder_name))
 
     f.close()
