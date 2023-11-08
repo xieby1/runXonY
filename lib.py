@@ -1403,10 +1403,10 @@ def outputSUMMARY() -> None:
     for transor in sorted_transors:
         import os
         canonical_folder_name: str = _canonicalize_folder_name(transor.name)
-        canonical_folder_name_README: str = canonical_folder_name + "/README.md"
-        if not os.path.exists("src/" + canonical_folder_name_README):
-            print("outputListByName error: File %s not exists" % canonical_folder_name_README)
-        f.write("  * [%s](%s/README.md),\n" % (transor.name, canonical_folder_name))
+        canonical_folder_name_index: str = canonical_folder_name + "/index.md"
+        if not os.path.exists("src/" + canonical_folder_name_index):
+            print("outputListByName error: File %s not exists" % canonical_folder_name_index)
+        f.write("  * [%s](%s/index.md),\n" % (transor.name, canonical_folder_name))
     f.close()
 
 def outputMetaMd() -> None:
@@ -1420,6 +1420,14 @@ def outputMetaMd() -> None:
                 print("outputListByName error: Folder %s not exists" % canonical_folder_name)
 
             with open("src/" + canonical_folder_name + "/meta.md", "w") as metamd:
+                metamd.write("# %s" % transor.name)
+                import os
+                for file in os.listdir("src/" + canonical_folder_name):
+                    if file.startswith("icon."):
+                        metamd.write(' [<img src="%s" style="height: 1em;">]' % file)
+                        break
+                metamd.write("\n\n")
+
                 metamd.write("* **Date**: %s - " % transor.start)
                 if transor.stop < Date.today():
                     metamd.write("%s\n" % transor.stop)
@@ -1432,7 +1440,7 @@ def outputMetaMd() -> None:
                 if transor.term != Term.UNKNOWN:
                     metamd.write("* **Category**: %s\n" % term2str(transor.term))
                 if transor.parent:
-                    metamd.write("* **Parent**: %s\n" % transor.parent.name)
+                    metamd.write("* **Parent**: [%s](../%s/index.md)\n" % (transor.parent.name, _canonicalize_folder_name(transor.parent.name)))
 
                 if len(transor.renames) > 0:
                     metamd.write("* **Renames**:")
@@ -1461,24 +1469,20 @@ def outputByTermMd() -> None:
     f = open("src/SUMMARY.md", "a")
 
     termed_transors: dict[Term, list[Transor]] = {}
-    for term in Term:
-        termed_transors[term] = list()
-
-    len_transors: int = 0
     for module in modules:
         if isinstance(module, Transor):
             transor: Transor = module
+            if transor.term not in termed_transors.keys():
+                termed_transors[transor.term] = list()
             termed_transors[transor.term].append(transor)
-            len_transors += 1
 
-    f.write("* [List by Category (%d)](./list/byTerm.md)\n" % len_transors)
+    f.write("* [List by Category (%d)](./list/byTerm.md)\n" % len(termed_transors))
 
-    for term in Term:
-        transors: list[Transor] = termed_transors[term]
-        if len(transors) > 0:
-            sorted_transors: list[Transor] = sorted(transors, key=lambda transor: transor.name.lower())
-            f.write("  * [%s (%d)](list/byTerm/%s.md)\n" % (term2str(term), len(sorted_transors), term.name))
-            for transor in sorted_transors:
-                canonical_folder_name: str = _canonicalize_folder_name(transor.name)
-                f.write("    * [%s](%s/README.md)\n" % (transor.name, canonical_folder_name))
+    for term, transors in termed_transors.items():
+        sorted_transors: list[Transor] = sorted(transors, key=lambda transor: transor.name.lower())
+        f.write("  * [%s (%d)](list/byTerm/%s.md)\n" % (term2str(term), len(sorted_transors), term.name))
+        for transor in sorted_transors:
+            canonical_folder_name: str = _canonicalize_folder_name(transor.name)
+            f.write("    * [%s](%s/index.md)\n" % (transor.name, canonical_folder_name))
+
     f.close()
