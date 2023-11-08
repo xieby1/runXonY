@@ -1420,6 +1420,14 @@ def outputMetaMd() -> None:
                 print("outputListByName error: Folder %s not exists" % canonical_folder_name)
 
             with open("src/" + canonical_folder_name + "/meta.md", "w") as metamd:
+                metamd.write("# %s" % transor.name)
+                import os
+                for file in os.listdir("src/" + canonical_folder_name):
+                    if file.startswith("icon."):
+                        metamd.write(' [<img src="%s" style="height: 1em;">]' % file)
+                        break
+                metamd.write("\n\n")
+
                 metamd.write("* **Date**: %s - " % transor.start)
                 if transor.stop < Date.today():
                     metamd.write("%s\n" % transor.stop)
