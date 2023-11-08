@@ -1438,7 +1438,7 @@ def outputMetaMd() -> None:
                 if transor.dev != Dev.NONE:
                     metamd.write("* **Development**: %s\n" % transor.dev)
                 if transor.term != Term.UNKNOWN:
-                    metamd.write("* **Category**: %s\n" % term2str(transor.term))
+                    metamd.write("* **Category**: [%s](../list/byTerm/%s.md)\n" % (term2str(transor.term), transor.term.name))
                 if transor.parent:
                     metamd.write("* **Parent**: [%s](../%s/index.md)\n" % (transor.parent.name, _canonicalize_folder_name(transor.parent.name)))
 
