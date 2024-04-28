@@ -11,9 +11,9 @@
   xmlns:cc='http://creativecommons.org/ns#'
   xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'
   version='1.1'
-  width='1220'
+  width='1250'
   height='2840'
-viewBox="0 0 1220 2840"
+viewBox="0 0 1250 2840"
 >
 
 <title>runXonY</title>
@@ -40,43 +40,43 @@ viewBox="0 0 1220 2840"
 
   <circle id='__connectors_start' cx='0' cy='0' r='3' stroke='none' />
   <marker id='__connector_0' stroke='none' markerUnits='userSpaceOnUse' style='overflow:visible;'>
-    <use xlink:href='#__connectors_start' fill='#F60'  />
+    <use xlink:href='#__connectors_start' fill='#0071C5'  />
   </marker>
   <marker id='__connector_1' stroke='none' markerUnits='userSpaceOnUse' style='overflow:visible;'>
-    <use xlink:href='#__connectors_start' fill='#556293'  />
+    <use xlink:href='#__connectors_start' fill='#000000'  />
   </marker>
   <marker id='__connector_2' stroke='none' markerUnits='userSpaceOnUse' style='overflow:visible;'>
-    <use xlink:href='#__connectors_start' fill='#000'  />
-  </marker>
-  <marker id='__connector_3' stroke='none' markerUnits='userSpaceOnUse' style='overflow:visible;'>
-    <use xlink:href='#__connectors_start' fill='#0071C5'  />
-  </marker>
-  <marker id='__connector_4' stroke='none' markerUnits='userSpaceOnUse' style='overflow:visible;'>
-    <use xlink:href='#__connectors_start' fill='#000000'  />
-  </marker>
-  <marker id='__connector_5' stroke='none' markerUnits='userSpaceOnUse' style='overflow:visible;'>
-    <use xlink:href='#__connectors_start' fill='#0071C5'  />
-  </marker>
-  <marker id='__connector_6' stroke='none' markerUnits='userSpaceOnUse' style='overflow:visible;'>
     <use xlink:href='#__connectors_start' fill='#556293'  />
   </marker>
-  <marker id='__connector_7' stroke='none' markerUnits='userSpaceOnUse' style='overflow:visible;'>
-    <use xlink:href='#__connectors_start' fill='#000000'  />
-  </marker>
-  <marker id='__connector_8' stroke='none' markerUnits='userSpaceOnUse' style='overflow:visible;'>
+  <marker id='__connector_3' stroke='none' markerUnits='userSpaceOnUse' style='overflow:visible;'>
     <use xlink:href='#__connectors_start' fill='#000'  />
   </marker>
-  <marker id='__connector_9' stroke='none' markerUnits='userSpaceOnUse' style='overflow:visible;'>
+  <marker id='__connector_4' stroke='none' markerUnits='userSpaceOnUse' style='overflow:visible;'>
+    <use xlink:href='#__connectors_start' fill='#000'  />
+  </marker>
+  <marker id='__connector_5' stroke='none' markerUnits='userSpaceOnUse' style='overflow:visible;'>
+    <use xlink:href='#__connectors_start' fill='#E62129'  />
+  </marker>
+  <marker id='__connector_6' stroke='none' markerUnits='userSpaceOnUse' style='overflow:visible;'>
     <use xlink:href='#__connectors_start' fill='#000000'  />
+  </marker>
+  <marker id='__connector_7' stroke='none' markerUnits='userSpaceOnUse' style='overflow:visible;'>
+    <use xlink:href='#__connectors_start' fill='#000'  />
+  </marker>
+  <marker id='__connector_8' stroke='none' markerUnits='userSpaceOnUse' style='overflow:visible;'>
+    <use xlink:href='#__connectors_start' fill='#F60'  />
+  </marker>
+  <marker id='__connector_9' stroke='none' markerUnits='userSpaceOnUse' style='overflow:visible;'>
+    <use xlink:href='#__connectors_start' fill='#0071C5'  />
   </marker>
   <marker id='__connector_10' stroke='none' markerUnits='userSpaceOnUse' style='overflow:visible;'>
     <use xlink:href='#__connectors_start' fill='#000000'  />
   </marker>
   <marker id='__connector_11' stroke='none' markerUnits='userSpaceOnUse' style='overflow:visible;'>
-    <use xlink:href='#__connectors_start' fill='#E62129'  />
+    <use xlink:href='#__connectors_start' fill='#556293'  />
   </marker>
   <marker id='__connector_12' stroke='none' markerUnits='userSpaceOnUse' style='overflow:visible;'>
-    <use xlink:href='#__connectors_start' fill='#000'  />
+    <use xlink:href='#__connectors_start' fill='#000000'  />
   </marker>
 <rect id='__fadeout' height='1' width='10' y='-0.5' x='0'/>  <linearGradient id='__fadeout_Merge' x1='0' y1='0' x2='7.32051' y2='0' gradientUnits='userSpaceOnUse'>
     <stop stop-color='#000' offset='0' stop-opacity='1' />
@@ -99,13 +99,6 @@ viewBox="0 0 1220 2840"
   <marker id='__stop_Win4Lin__Pro' markerWidth='10' markerHeight='1' style='overflow:visible;'>
     <use xlink:href='#__fadeout' style='fill:url(#__fadeout_Win4Lin__Pro)' />
   </marker>
-  <linearGradient id='__fadeout_mx' x1='0' y1='0' x2='10' y2='0' gradientUnits='userSpaceOnUse'>
-    <stop stop-color='#000' offset='0' stop-opacity='1' />
-    <stop stop-color='#000' offset='1' stop-opacity='0' />
-  </linearGradient>
-  <marker id='__stop_mx' markerWidth='10' markerHeight='1' style='overflow:visible;'>
-    <use xlink:href='#__fadeout' style='fill:url(#__fadeout_mx)' />
-  </marker>
   <linearGradient id='__fadeout_VEST' x1='0' y1='0' x2='10' y2='0' gradientUnits='userSpaceOnUse'>
     <stop stop-color='#000' offset='0' stop-opacity='1' />
     <stop stop-color='#000' offset='1' stop-opacity='0' />
@@ -119,6 +112,13 @@ viewBox="0 0 1220 2840"
   </linearGradient>
   <marker id='__stop_Shade' markerWidth='10' markerHeight='1' style='overflow:visible;'>
     <use xlink:href='#__fadeout' style='fill:url(#__fadeout_Shade)' />
+  </marker>
+  <linearGradient id='__fadeout_mx' x1='0' y1='0' x2='10' y2='0' gradientUnits='userSpaceOnUse'>
+    <stop stop-color='#000' offset='0' stop-opacity='1' />
+    <stop stop-color='#000' offset='1' stop-opacity='0' />
+  </linearGradient>
+  <marker id='__stop_mx' markerWidth='10' markerHeight='1' style='overflow:visible;'>
+    <use xlink:href='#__fadeout' style='fill:url(#__fadeout_mx)' />
   </marker>
   <linearGradient id='__fadeout_Project__David' x1='0' y1='0' x2='10' y2='0' gradientUnits='userSpaceOnUse'>
     <stop stop-color='#000' offset='0' stop-opacity='1' />
@@ -155,19 +155,19 @@ viewBox="0 0 1220 2840"
   <marker id='__stop_Dynamo' markerWidth='8.28427' markerHeight='1' style='overflow:visible;'>
     <use xlink:href='#__fadeout' style='fill:url(#__fadeout_Dynamo)' />
   </marker>
-  <linearGradient id='__fadeout_Aries' x1='0' y1='0' x2='10' y2='0' gradientUnits='userSpaceOnUse'>
-    <stop stop-color='#000' offset='0' stop-opacity='1' />
-    <stop stop-color='#000' offset='1' stop-opacity='0' />
-  </linearGradient>
-  <marker id='__stop_Aries' markerWidth='10' markerHeight='1' style='overflow:visible;'>
-    <use xlink:href='#__fadeout' style='fill:url(#__fadeout_Aries)' />
-  </marker>
   <linearGradient id='__fadeout_Code__Morphing' x1='0' y1='0' x2='10' y2='0' gradientUnits='userSpaceOnUse'>
     <stop stop-color='#000' offset='0' stop-opacity='1' />
     <stop stop-color='#000' offset='1' stop-opacity='0' />
   </linearGradient>
   <marker id='__stop_Code__Morphing' markerWidth='10' markerHeight='1' style='overflow:visible;'>
     <use xlink:href='#__fadeout' style='fill:url(#__fadeout_Code__Morphing)' />
+  </marker>
+  <linearGradient id='__fadeout_Aries' x1='0' y1='0' x2='10' y2='0' gradientUnits='userSpaceOnUse'>
+    <stop stop-color='#000' offset='0' stop-opacity='1' />
+    <stop stop-color='#000' offset='1' stop-opacity='0' />
+  </linearGradient>
+  <marker id='__stop_Aries' markerWidth='10' markerHeight='1' style='overflow:visible;'>
+    <use xlink:href='#__fadeout' style='fill:url(#__fadeout_Aries)' />
   </marker>
   <linearGradient id='__fadeout_Dynamite' x1='0' y1='0' x2='10' y2='0' gradientUnits='userSpaceOnUse'>
     <stop stop-color='#000' offset='0' stop-opacity='1' />
@@ -232,19 +232,19 @@ viewBox="0 0 1220 2840"
   <marker id='__stop_skyeye' markerWidth='8.28427' markerHeight='1' style='overflow:visible;'>
     <use xlink:href='#__fadeout' style='fill:url(#__fadeout_skyeye)' />
   </marker>
-  <linearGradient id='__fadeout_Rosetta' x1='0' y1='0' x2='10' y2='0' gradientUnits='userSpaceOnUse'>
-    <stop stop-color='#525152' offset='0' stop-opacity='1' />
-    <stop stop-color='#525152' offset='1' stop-opacity='0' />
-  </linearGradient>
-  <marker id='__stop_Rosetta' markerWidth='10' markerHeight='1' style='overflow:visible;'>
-    <use xlink:href='#__fadeout' style='fill:url(#__fadeout_Rosetta)' />
-  </marker>
   <linearGradient id='__fadeout_Alky' x1='0' y1='0' x2='10' y2='0' gradientUnits='userSpaceOnUse'>
     <stop stop-color='#000' offset='0' stop-opacity='1' />
     <stop stop-color='#000' offset='1' stop-opacity='0' />
   </linearGradient>
   <marker id='__stop_Alky' markerWidth='10' markerHeight='1' style='overflow:visible;'>
     <use xlink:href='#__fadeout' style='fill:url(#__fadeout_Alky)' />
+  </marker>
+  <linearGradient id='__fadeout_Rosetta' x1='0' y1='0' x2='10' y2='0' gradientUnits='userSpaceOnUse'>
+    <stop stop-color='#525152' offset='0' stop-opacity='1' />
+    <stop stop-color='#525152' offset='1' stop-opacity='0' />
+  </linearGradient>
+  <marker id='__stop_Rosetta' markerWidth='10' markerHeight='1' style='overflow:visible;'>
+    <use xlink:href='#__fadeout' style='fill:url(#__fadeout_Rosetta)' />
   </marker>
   <linearGradient id='__fadeout_DistriBit' x1='0' y1='0' x2='10' y2='0' gradientUnits='userSpaceOnUse'>
     <stop stop-color='#000' offset='0' stop-opacity='1' />
@@ -324,7 +324,7 @@ viewBox="0 0 1220 2840"
 </defs>
 
 <g inkscape:label='Background' inkscape:groupmode='layer' id='layer_background' >
-  <rect x='0' y='0' width='1220' height='2840' rx='15' ry='15' fill='#fff' />
+  <rect x='0' y='0' width='1250' height='2840' rx='15' ry='15' fill='#fff' />
 </g>
 
 <g inkscape:label='Year Rulers' inkscape:groupmode='layer' id='layer_yearrulers' stroke-width='0' stroke='#eee'>
@@ -809,6 +809,18 @@ viewBox="0 0 1220 2840"
     <line x1='1205' y1='0' x2='1205' y2='2840' />
     <line x1='1207' y1='0' x2='1207' y2='2840' />
   <line x1='1210' y1='0' x2='1210' y2='2840' stroke-width='2' stroke='#ddd' />
+    <line x1='1212' y1='0' x2='1212' y2='2840' />
+    <line x1='1215' y1='0' x2='1215' y2='2840' />
+    <line x1='1217' y1='0' x2='1217' y2='2840' />
+    <line x1='1220' y1='0' x2='1220' y2='2840' />
+    <line x1='1222' y1='0' x2='1222' y2='2840' />
+    <line x1='1225' y1='0' x2='1225' y2='2840' />
+    <line x1='1227' y1='0' x2='1227' y2='2840' />
+    <line x1='1230' y1='0' x2='1230' y2='2840' />
+    <line x1='1232' y1='0' x2='1232' y2='2840' />
+    <line x1='1235' y1='0' x2='1235' y2='2840' />
+    <line x1='1237' y1='0' x2='1237' y2='2840' />
+  <line x1='1240' y1='0' x2='1240' y2='2840' stroke-width='2' stroke='#ddd' />
 </g>
 
 <g inkscape:label='Domains' inkscape:groupmode='layer' id='layer_domains' >
@@ -816,19 +828,19 @@ viewBox="0 0 1220 2840"
 
 <g inkscape:label='Connectors' inkscape:groupmode='layer' id='layer_connectors'
 style='opacity:0.6;' >
-  <line x1='610' y1='1164' x2='610' y2='145' stroke='#F60' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_0)' />
-  <line x1='820' y1='866' x2='820' y2='1135' stroke='#556293' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_1)' />
-  <line x1='860' y1='1376' x2='871' y2='1945' stroke='#000' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_2)' />
-  <line x1='672' y1='1526' x2='672' y2='1675' stroke='#0071C5' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_3)' />
-  <line x1='725' y1='1674' x2='725' y2='1285' stroke='#000000' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_4)' />
-  <line x1='671' y1='1526' x2='671' y2='1645' stroke='#0071C5' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_5)' />
-  <line x1='970' y1='866' x2='970' y2='1105' stroke='#556293' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_6)' />
-  <line x1='997' y1='1676' x2='997' y2='2425' stroke='#000000' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_7)' />
-  <line x1='880' y1='2004' x2='880' y2='265' stroke='#000' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_8)' />
-  <line x1='970' y1='1676' x2='970' y2='2395' stroke='#000000' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_9)' />
-  <line x1='940' y1='1676' x2='940' y2='2155' stroke='#000000' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_10)' />
-  <line x1='992' y1='1256' x2='992' y2='1975' stroke='#E62129' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_11)' />
-  <line x1='960' y1='2304' x2='960' y2='1945' stroke='#000' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_12)' />
+  <line x1='672' y1='1496' x2='672' y2='1675' stroke='#0071C5' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_0)' />
+  <line x1='725' y1='1674' x2='725' y2='1285' stroke='#000000' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_1)' />
+  <line x1='970' y1='896' x2='970' y2='1105' stroke='#556293' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_2)' />
+  <line x1='860' y1='1376' x2='871' y2='1945' stroke='#000' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_3)' />
+  <line x1='960' y1='2304' x2='960' y2='1945' stroke='#000' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_4)' />
+  <line x1='992' y1='1256' x2='992' y2='1975' stroke='#E62129' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_5)' />
+  <line x1='997' y1='1676' x2='997' y2='2425' stroke='#000000' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_6)' />
+  <line x1='880' y1='2004' x2='880' y2='265' stroke='#000' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_7)' />
+  <line x1='610' y1='1164' x2='610' y2='145' stroke='#F60' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_8)' />
+  <line x1='671' y1='1496' x2='671' y2='1645' stroke='#0071C5' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_9)' />
+  <line x1='970' y1='1676' x2='970' y2='2395' stroke='#000000' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_10)' />
+  <line x1='820' y1='896' x2='820' y2='1135' stroke='#556293' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_11)' />
+  <line x1='940' y1='1676' x2='940' y2='2155' stroke='#000000' stroke-width='2' stroke-dasharray='2,2' marker-start='url(#__connector_12)' />
 </g>
 
 <g inkscape:label='Lines' inkscape:groupmode='layer' id='layer_lines'
@@ -836,95 +848,95 @@ style='opacity:0.6;' >
   <path id='__line_Win4Lin__Pro' d='M 580 115 C 602.5,115 587.5,145 610,145 L 610 145 L 765 145' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Win4Lin__Pro)' />
   <path id='__line_Win4Lin' d='M 430 85 C 452.5,85 437.5,115 460,115 L 460 115 L 712 115' stroke='#000' style='stroke-width:3.62132;' marker-end='url(#__stop_Win4Lin)' />
   <path id='__line_Merge' d='M 32 85 L 460 85' stroke='#000' style='stroke-width:4.09808;' marker-end='url(#__stop_Merge)' />
-  <path id='__line_mx' d='M 250 175 L 250 175' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_mx)' />
-  <path id='__line_VEST' d='M 250 205 L 250 205' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_VEST)' />
-  <path id='__line_Shade' d='M 250 235 L 250 235' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Shade)' />
+  <path id='__line_VEST' d='M 250 175 L 250 175' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_VEST)' />
+  <path id='__line_Shade' d='M 250 205 L 250 205' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Shade)' />
+  <path id='__line_mx' d='M 250 235 L 250 235' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_mx)' />
   <path id='__line_WineX' d='M 459 265 C 481.5,265 466.5,385 489,385 L 489 385 L 940 385' stroke='#800000' style='stroke-width:3;' marker-end='url(#__stop_WineX)' />
-  <path id='__line_Proton' d='M 988 265 C 1010.5,265 995.5,295 1018,295 L 1018 295 L 1175 295' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_Proton' d='M 988 265 C 1010.5,265 995.5,295 1018,295 L 1018 295 L 1189 295' stroke='#000' style='stroke-width:3;' />
   <path id='__line_Project__David' d='M 550 265 C 572.5,265 557.5,295 580,295 L 580 295 L 580 295' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Project__David)' />
-  <path id='__line_WINE-Android' d='M 852 265 C 874.5,265 859.5,325 882,325 L 882 325 L 1175 325' stroke='#800000' style='stroke-width:3;' />
-  <path id='__line_playonlinux' d='M 640 265 C 662.5,265 647.5,355 670,355 L 670 355 L 1175 355' stroke='#000' style='stroke-width:3;' />
-  <path id='__line_WINE' d='M 265 265 L 1175 265' stroke='#800000' style='stroke-width:5.17423;' />
-  <path id='__line_Cygwin' d='M 333 415 L 1175 415' stroke='#99003F' style='stroke-width:3;' />
+  <path id='__line_WINE-Android' d='M 852 265 C 874.5,265 859.5,325 882,325 L 882 325 L 1189 325' stroke='#800000' style='stroke-width:3;' />
+  <path id='__line_playonlinux' d='M 640 265 C 662.5,265 647.5,355 670,355 L 670 355 L 1189 355' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_WINE' d='M 265 265 L 1189 265' stroke='#800000' style='stroke-width:5.17423;' />
+  <path id='__line_Cygwin' d='M 333 415 L 1189 415' stroke='#99003F' style='stroke-width:3;' />
   <path id='__line_FX!32' d='M 340 445 L 340 445' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_FX!32)' />
   <path id='__line_DAISY' d='M 400 475 L 490 475' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_DAISY)' />
-  <path id='__line_MinGW' d='M 415 505 L 1175 505' stroke='#71B21F' style='stroke-width:3;' />
-  <path id='__line_DynamoRIO' d='M 430 535 C 452.5,535 437.5,565 460,565 L 460 565 L 1175 565' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_MinGW' d='M 415 505 L 1189 505' stroke='#71B21F' style='stroke-width:3;' />
+  <path id='__line_DynamoRIO' d='M 430 535 C 452.5,535 437.5,565 460,565 L 460 565 L 1189 565' stroke='#000' style='stroke-width:3;' />
   <path id='__line_Dynamo' d='M 430 535 L 460 535' stroke='#000' style='stroke-width:3.62132;' marker-end='url(#__stop_Dynamo)' />
-  <path id='__line_VMware__Player' d='M 682 595 C 704.5,595 689.5,625 712,625 L 712 625 L 1175 625' stroke='#FFE839' style='stroke-width:3;' />
-  <path id='__line_VMware__Workstation' d='M 441 595 L 1175 595' stroke='#F38C00' style='stroke-width:3.62132;' />
-  <path id='__line_Aries' d='M 460 655 L 460 655' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Aries)' />
-  <path id='__line_Code__Morphing' d='M 460 685 L 730 685' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Code__Morphing)' />
-  <path id='__line_User__Mode__Linux' d='M 490 715 L 1175 715' stroke='#000' style='stroke-width:3;' />
-  <path id='__line_Dynamite' d='M 490 745 L 545 745' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Dynamite)' />
+  <path id='__line_VMware__Player' d='M 682 595 C 704.5,595 689.5,625 712,625 L 712 625 L 1189 625' stroke='#FFE839' style='stroke-width:3;' />
+  <path id='__line_VMware__Workstation' d='M 441 595 L 1189 595' stroke='#F38C00' style='stroke-width:3.62132;' />
+  <path id='__line_Code__Morphing' d='M 460 655 L 730 655' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Code__Morphing)' />
+  <path id='__line_Aries' d='M 460 685 L 460 685' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Aries)' />
+  <path id='__line_Dynamite' d='M 490 715 L 545 715' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Dynamite)' />
+  <path id='__line_User__Mode__Linux' d='M 490 745 L 1189 745' stroke='#000' style='stroke-width:3;' />
   <path id='__line_Tarmac' d='M 496 775 L 496 775' stroke='#28789E' style='stroke-width:3;' marker-end='url(#__stop_Tarmac)' />
-  <path id='__line_DOSBox-X' d='M 760 805 C 782.5,805 767.5,835 790,835 L 790 835 L 1175 835' stroke='#113466' style='stroke-width:3;' />
-  <path id='__line_DOSBox' d='M 520 805 L 1175 805' stroke='#113466' style='stroke-width:3.62132;' />
-  <path id='__line_MCTOLL' d='M 1000 865 C 1022.5,865 1007.5,925 1030,925 L 1030 925 L 1175 925' stroke='#000' style='stroke-width:3;' />
-  <path id='__line_McSema' d='M 1000 865 C 1022.5,865 1007.5,895 1030,895 L 1030 895 L 1129 895' stroke='#9C1B45' style='stroke-width:3;' marker-end='url(#__stop_McSema)' />
-  <path id='__line_LLVM' d='M 550 865 L 1175 865' stroke='#556293' style='stroke-width:4.09808;' />
-  <path id='__line_MagiXen' d='M 640 955 C 662.5,955 647.5,985 670,985 L 670 985 L 670 985' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_MagiXen)' />
-  <path id='__line_Qubes__OS' d='M 840 955 C 862.5,955 847.5,985 870,985 L 870 985 L 1175 985' stroke='#3874D8' style='stroke-width:3;' />
-  <path id='__line_Xen' d='M 550 955 L 1175 955' stroke='#000' style='stroke-width:4.09808;' />
-  <path id='__line_IA-32__EL' d='M 550 1015 L 1175 1015' stroke='#000' style='stroke-width:3;' />
-  <path id='__line_NDISWrapper' d='M 550 1045 L 1175 1045' stroke='#000' style='stroke-width:3;' />
-  <path id='__line_unicorn' d='M 898 1165 C 920.5,1165 905.5,1255 928,1255 L 928 1255 L 1175 1255' stroke='#E62129' style='stroke-width:3;' />
-  <path id='__line_REV.NG' d='M 940 1075 C 962.5,1075 947.5,1105 970,1105 L 970 1105 L 1175 1105' stroke='#E92B29' style='stroke-width:3;' />
+  <path id='__line_DOSBox-X' d='M 760 805 C 782.5,805 767.5,835 790,835 L 790 835 L 1189 835' stroke='#113466' style='stroke-width:3;' />
+  <path id='__line_DOSBox' d='M 520 805 L 1189 805' stroke='#113466' style='stroke-width:3.62132;' />
+  <path id='__line_IA-32__EL' d='M 550 865 L 1189 865' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_MCTOLL' d='M 1000 895 C 1022.5,895 1007.5,955 1030,955 L 1030 955 L 1189 955' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_McSema' d='M 1000 895 C 1022.5,895 1007.5,925 1030,925 L 1030 925 L 1129 925' stroke='#9C1B45' style='stroke-width:3;' marker-end='url(#__stop_McSema)' />
+  <path id='__line_LLVM' d='M 550 895 L 1189 895' stroke='#556293' style='stroke-width:4.09808;' />
+  <path id='__line_MagiXen' d='M 640 985 C 662.5,985 647.5,1015 670,1015 L 670 1015 L 670 1015' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_MagiXen)' />
+  <path id='__line_Qubes__OS' d='M 840 985 C 862.5,985 847.5,1015 870,1015 L 870 1015 L 1189 1015' stroke='#3874D8' style='stroke-width:3;' />
+  <path id='__line_Xen' d='M 550 985 L 1189 985' stroke='#000' style='stroke-width:4.09808;' />
+  <path id='__line_NDISWrapper' d='M 550 1045 L 1189 1045' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_unicorn' d='M 898 1165 C 920.5,1165 905.5,1255 928,1255 L 928 1255 L 1189 1255' stroke='#E62129' style='stroke-width:3;' />
+  <path id='__line_REV.NG' d='M 940 1075 C 962.5,1075 947.5,1105 970,1105 L 970 1105 L 1189 1105' stroke='#E92B29' style='stroke-width:3;' />
   <path id='__line_HQEMU' d='M 790 1075 C 812.5,1075 797.5,1135 820,1135 L 820 1135 L 1000 1135' stroke='#F60' style='stroke-width:3;' marker-end='url(#__stop_HQEMU)' />
-  <path id='__line_QEMU-KVM' d='M 695 1165 C 717.5,1165 702.5,1285 725,1285 L 725 1285 L 1175 1285' stroke='#F60' style='stroke-width:3;' />
-  <path id='__line_UTM' d='M 1000 1165 C 1022.5,1165 1007.5,1195 1030,1195 L 1030 1195 L 1175 1195' stroke='#1D63EA' style='stroke-width:3;' />
+  <path id='__line_QEMU-KVM' d='M 695 1165 C 717.5,1165 702.5,1285 725,1285 L 725 1285 L 1189 1285' stroke='#F60' style='stroke-width:3;' />
+  <path id='__line_UTM' d='M 1000 1165 C 1022.5,1165 1007.5,1195 1030,1195 L 1030 1195 L 1189 1195' stroke='#1D63EA' style='stroke-width:3;' />
   <path id='__line_Limbo' d='M 910 1165 C 932.5,1165 917.5,1225 940,1225 L 940 1225 L 1120 1225' stroke='#383838' style='stroke-width:3;' marker-end='url(#__stop_Limbo)' />
-  <path id='__line_QEMU-sys' d='M 552 1075 C 567,1075 557,1165 572,1165 L 572 1165 L 1175 1165' stroke='#F60' style='stroke-width:4.8541;' />
-  <path id='__line_QEMU-user' d='M 552 1075 L 1175 1075' stroke='#F60' style='stroke-width:5.74264;' />
+  <path id='__line_QEMU-sys' d='M 552 1075 C 567,1075 557,1165 572,1165 L 572 1165 L 1189 1165' stroke='#F60' style='stroke-width:4.8541;' />
+  <path id='__line_QEMU-user' d='M 552 1075 L 1189 1075' stroke='#F60' style='stroke-width:5.74264;' />
   <path id='__line_Digital__Bridge__2' d='M 610 1315 C 632.5,1315 617.5,1345 640,1345 L 640 1345 L 640 1345' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Digital__Bridge__2)' />
   <path id='__line_Digital__Bridge' d='M 580 1315 L 640 1315' stroke='#000' style='stroke-width:3.62132;' marker-end='url(#__stop_Digital__Bridge)' />
-  <path id='__line_skyeye(Commercial)' d='M 820 1375 C 842.5,1375 827.5,1405 850,1405 L 850 1405 L 1175 1405' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_skyeye(Commercial)' d='M 820 1375 C 842.5,1375 827.5,1405 850,1405 L 850 1405 L 1189 1405' stroke='#000' style='stroke-width:3;' />
   <path id='__line_skyeye' d='M 592 1375 L 860 1375' stroke='#000' style='stroke-width:3.62132;' marker-end='url(#__stop_skyeye)' />
-  <path id='__line_bsnes' d='M 603 1435 L 1175 1435' stroke='#DC1212' style='stroke-width:3;' />
-  <path id='__line_Pin' d='M 610 1465 L 1175 1465' stroke='#000' style='stroke-width:3;' />
-  <path id='__line_Rosetta' d='M 640 1495 L 790 1495' stroke='#525152' style='stroke-width:3;' marker-end='url(#__stop_Rosetta)' />
-  <path id='__line_Intel__VT' d='M 640 1525 L 1175 1525' stroke='#0071C5' style='stroke-width:3;' />
-  <path id='__line_Linuxulator' d='M 640 1555 L 1175 1555' stroke='#000' style='stroke-width:3;' />
-  <path id='__line_Alky' d='M 640 1585 L 700 1585' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Alky)' />
-  <path id='__line_DeSmuME' d='M 647 1615 L 1175 1615' stroke='#A4A8FF' style='stroke-width:3;' />
-  <path id='__line_VirtualBox' d='M 671 1645 L 1175 1645' stroke='#2F61B4' style='stroke-width:3;' />
-  <path id='__line_KVM' d='M 672 1675 L 1175 1675' stroke='#000000' style='stroke-width:3;' />
+  <path id='__line_bsnes' d='M 603 1435 L 1189 1435' stroke='#DC1212' style='stroke-width:3;' />
+  <path id='__line_Pin' d='M 610 1465 L 1189 1465' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_Intel__VT' d='M 640 1495 L 1189 1495' stroke='#0071C5' style='stroke-width:3;' />
+  <path id='__line_Linuxulator' d='M 640 1525 L 1189 1525' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_Alky' d='M 640 1555 L 700 1555' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Alky)' />
+  <path id='__line_Rosetta' d='M 640 1585 L 790 1585' stroke='#525152' style='stroke-width:3;' marker-end='url(#__stop_Rosetta)' />
+  <path id='__line_DeSmuME' d='M 647 1615 L 1189 1615' stroke='#A4A8FF' style='stroke-width:3;' />
+  <path id='__line_VirtualBox' d='M 671 1645 L 1189 1645' stroke='#2F61B4' style='stroke-width:3;' />
+  <path id='__line_KVM' d='M 672 1675 L 1189 1675' stroke='#000000' style='stroke-width:3;' />
   <path id='__line_DistriBit' d='M 730 1705 L 820 1705' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_DistriBit)' />
-  <path id='__line_UserLAnd' d='M 976 1735 C 998.5,1735 983.5,1765 1006,1765 L 1006 1765 L 1175 1765' stroke='#221F1F' style='stroke-width:3;' />
-  <path id='__line_proot' d='M 771 1735 L 1175 1735' stroke='#000' style='stroke-width:3.62132;' />
+  <path id='__line_UserLAnd' d='M 976 1735 C 998.5,1735 983.5,1765 1006,1765 L 1006 1765 L 1189 1765' stroke='#221F1F' style='stroke-width:3;' />
+  <path id='__line_proot' d='M 771 1735 L 1189 1735' stroke='#000' style='stroke-width:3.62132;' />
   <path id='__line_Denver' d='M 795 1795 L 903 1795' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Denver)' />
-  <path id='__line_BPF(JIT)' d='M 797 1825 L 1175 1825' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_BPF(JIT)' d='M 797 1825 L 1189 1825' stroke='#000' style='stroke-width:3;' />
   <path id='__line_LLBT' d='M 820 1855 L 880 1855' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_LLBT)' />
-  <path id='__line_PPSSPP' d='M 827 1885 L 1175 1885' stroke='#0086B2' style='stroke-width:3;' />
+  <path id='__line_PPSSPP' d='M 827 1885 L 1189 1885' stroke='#0086B2' style='stroke-width:3;' />
   <path id='__line_Arm-js' d='M 831 1915 L 882 1915' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_Arm-js)' />
-  <path id='__line_yuzu' d='M 962 1945 C 984.5,1945 969.5,1975 992,1975 L 992 1975 L 1175 1975' stroke='#5C93ED' style='stroke-width:3;' />
-  <path id='__line_citra' d='M 869 1945 L 1175 1945' stroke='#FF8E03' style='stroke-width:3.62132;' />
-  <path id='__line_ExaGear' d='M 1030 2005 C 1052.5,2005 1037.5,2035 1060,2035 L 1060 2035 L 1175 2035' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_yuzu' d='M 962 1945 C 984.5,1945 969.5,1975 992,1975 L 992 1975 L 1189 1975' stroke='#5C93ED' style='stroke-width:3;' />
+  <path id='__line_citra' d='M 869 1945 L 1189 1945' stroke='#FF8E03' style='stroke-width:3.62132;' />
+  <path id='__line_ExaGear' d='M 1030 2005 C 1052.5,2005 1037.5,2035 1060,2035 L 1060 2035 L 1189 2035' stroke='#000' style='stroke-width:3;' />
   <path id='__line_ExaGear__Strategies' d='M 880 2005 L 1060 2005' stroke='#000' style='stroke-width:3.62132;' marker-end='url(#__stop_ExaGear__Strategies)' />
-  <path id='__line_firebird' d='M 889 2065 L 1175 2065' stroke='#FA0430' style='stroke-width:3;' />
-  <path id='__line_VisUAL' d='M 910 2095 L 1175 2095' stroke='#3A9878' style='stroke-width:3;' />
-  <path id='__line_browsix' d='M 932 2125 L 1175 2125' stroke='#6D6B91' style='stroke-width:3;' />
+  <path id='__line_firebird' d='M 889 2065 L 1189 2065' stroke='#FA0430' style='stroke-width:3;' />
+  <path id='__line_VisUAL' d='M 910 2095 L 1189 2095' stroke='#3A9878' style='stroke-width:3;' />
+  <path id='__line_browsix' d='M 932 2125 L 1189 2125' stroke='#6D6B91' style='stroke-width:3;' />
   <path id='__line_captive' d='M 940 2155 L 1030 2155' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_captive)' />
-  <path id='__line_xDroid' d='M 988 2185 C 1010.5,2185 995.5,2275 1018,2275 L 1018 2275 L 1175 2275' stroke='#009688' style='stroke-width:3;' />
-  <path id='__line_waydroid' d='M 1098 2215 C 1106.25,2215 1100.75,2245 1109,2245 L 1109 2245 L 1175 2245' stroke='#F0AD4E' style='stroke-width:3;' />
+  <path id='__line_xDroid' d='M 988 2185 C 1010.5,2185 995.5,2275 1018,2275 L 1018 2275 L 1189 2275' stroke='#009688' style='stroke-width:3;' />
+  <path id='__line_waydroid' d='M 1098 2215 C 1106.25,2215 1100.75,2245 1109,2245 L 1109 2245 L 1189 2245' stroke='#F0AD4E' style='stroke-width:3;' />
   <path id='__line_Anbox-halium' d='M 1068 2185 C 1090.5,2185 1075.5,2215 1098,2215 L 1098 2215 L 1109 2215' stroke='#009688' style='stroke-width:3.62132;' marker-end='url(#__stop_Anbox-halium)' />
-  <path id='__line_Anbox' d='M 947 2185 L 1175 2185' stroke='#009688' style='stroke-width:4.5;' />
-  <path id='__line_dynarmic' d='M 955 2305 L 1175 2305' stroke='#000' style='stroke-width:3;' />
-  <path id='__line_WSL' d='M 957 2335 L 1175 2335' stroke='#0C2AAE' style='stroke-width:3;' />
+  <path id='__line_Anbox' d='M 947 2185 L 1189 2185' stroke='#009688' style='stroke-width:4.5;' />
+  <path id='__line_dynarmic' d='M 955 2305 L 1189 2305' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_WSL' d='M 957 2335 L 1189 2335' stroke='#0C2AAE' style='stroke-width:3;' />
   <path id='__line_HyperMAMBO-X64' d='M 970 2365 C 970,2365 970,2395 970,2395 L 970 2395 L 970 2395' stroke='#000' style='stroke-width:3;' marker-end='url(#__stop_HyperMAMBO-X64)' />
-  <path id='__line_MAMBO-X64' d='M 970 2365 L 1175 2365' stroke='#000' style='stroke-width:3.62132;' />
-  <path id='__line_multipass' d='M 997 2425 L 1175 2425' stroke='#E95420' style='stroke-width:3;' />
-  <path id='__line_box64' d='M 1057 2455 C 1079.5,2455 1064.5,2485 1087,2485 L 1087 2485 L 1175 2485' stroke='#B5E853' style='stroke-width:3;' />
-  <path id='__line_box86' d='M 1000 2455 L 1175 2455' stroke='#B5E853' style='stroke-width:3.62132;' />
+  <path id='__line_MAMBO-X64' d='M 970 2365 L 1189 2365' stroke='#000' style='stroke-width:3.62132;' />
+  <path id='__line_multipass' d='M 997 2425 L 1189 2425' stroke='#E95420' style='stroke-width:3;' />
+  <path id='__line_box64' d='M 1057 2455 C 1079.5,2455 1064.5,2485 1087,2485 L 1087 2485 L 1189 2485' stroke='#B5E853' style='stroke-width:3;' />
+  <path id='__line_box86' d='M 1000 2455 L 1189 2455' stroke='#B5E853' style='stroke-width:3.62132;' />
   <path id='__line_ChocolArm64' d='M 1002 2515 C 1002.75,2515 1002.25,2575 1003,2575 L 1003 2575 L 1055 2575' stroke='#FF5F55' style='stroke-width:3;' marker-end='url(#__stop_ChocolArm64)' />
-  <path id='__line_ARMeilleure' d='M 1017 2515 C 1039.5,2515 1024.5,2545 1047,2545 L 1047 2545 L 1175 2545' stroke='#FF5F55' style='stroke-width:3;' />
-  <path id='__line_Ryujinx' d='M 1002 2515 L 1175 2515' stroke='#FF5F55' style='stroke-width:4.09808;' />
-  <path id='__line_FEX' d='M 1026 2605 L 1175 2605' stroke='#000' style='stroke-width:3;' />
-  <path id='__line_edk2-sdm845' d='M 1042 2635 C 1064.5,2635 1049.5,2665 1072,2665 L 1072 2665 L 1175 2665' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_ARMeilleure' d='M 1017 2515 C 1039.5,2515 1024.5,2545 1047,2545 L 1047 2545 L 1189 2545' stroke='#FF5F55' style='stroke-width:3;' />
+  <path id='__line_Ryujinx' d='M 1002 2515 L 1189 2515' stroke='#FF5F55' style='stroke-width:4.09808;' />
+  <path id='__line_FEX' d='M 1026 2605 L 1189 2605' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_edk2-sdm845' d='M 1042 2635 C 1064.5,2635 1049.5,2665 1072,2665 L 1072 2665 L 1189 2665' stroke='#000' style='stroke-width:3;' />
   <path id='__line_edk2-sagit' d='M 1033 2635 L 1072 2635' stroke='#000' style='stroke-width:3.62132;' marker-end='url(#__stop_edk2-sagit)' />
-  <path id='__line_WSL2' d='M 1040 2695 L 1175 2695' stroke='#0C2AAE' style='stroke-width:3;' />
-  <path id='__line_Rosetta__2' d='M 1060 2725 L 1175 2725' stroke='#525152' style='stroke-width:3;' />
-  <path id='__line_Deepin__Android__Runtime' d='M 1104 2755 L 1175 2755' stroke='#000' style='stroke-width:3;' />
+  <path id='__line_WSL2' d='M 1040 2695 L 1189 2695' stroke='#0C2AAE' style='stroke-width:3;' />
+  <path id='__line_Rosetta__2' d='M 1060 2725 L 1189 2725' stroke='#525152' style='stroke-width:3;' />
+  <path id='__line_Deepin__Android__Runtime' d='M 1104 2755 L 1189 2755' stroke='#000' style='stroke-width:3;' />
 </g>
 
 <g inkscape:label='Dots' inkscape:groupmode='layer' id='layer_dots'
@@ -933,9 +945,9 @@ style='opacity:0.6;' >
   <circle id='__dot_Win4Lin' cx='460' cy='115' r='7.66222' fill='#000' stroke='none' />
     <circle cx='615' cy='115' r='5.47302' fill='#000' stroke='none' />
   <circle id='__dot_Merge' cx='32' cy='85' r='8.10626' fill='#000' stroke='none' />
-  <circle id='__dot_mx' cx='250' cy='175' r='7' fill='#000' stroke='none' />
-  <circle id='__dot_VEST' cx='250' cy='205' r='7' fill='#000' stroke='none' />
-  <circle id='__dot_Shade' cx='250' cy='235' r='7' fill='#000' stroke='none' />
+  <circle id='__dot_VEST' cx='250' cy='175' r='7' fill='#000' stroke='none' />
+  <circle id='__dot_Shade' cx='250' cy='205' r='7' fill='#000' stroke='none' />
+  <circle id='__dot_mx' cx='250' cy='235' r='7' fill='#000' stroke='none' />
   <circle id='__dot_WineX' cx='489' cy='385' r='7' fill='#800000' stroke='none' />
     <circle cx='593' cy='385' r='5' fill='#800000' stroke='none' />
     <circle cx='794' cy='385' r='5' fill='#800000' stroke='none' />
@@ -953,20 +965,20 @@ style='opacity:0.6;' >
   <circle id='__dot_Dynamo' cx='430' cy='535' r='7.66222' fill='#000' stroke='none' />
   <circle id='__dot_VMware__Player' cx='712' cy='625' r='7' fill='#FFE839' stroke='none' />
   <circle id='__dot_VMware__Workstation' cx='441' cy='595' r='7.66222' fill='#F38C00' stroke='none' />
-  <circle id='__dot_Aries' cx='460' cy='655' r='7' fill='#000' stroke='none' />
-  <circle id='__dot_Code__Morphing' cx='460' cy='685' r='7' fill='#000' stroke='none' />
-  <circle id='__dot_User__Mode__Linux' cx='490' cy='715' r='7' fill='#000' stroke='none' />
-  <circle id='__dot_Dynamite' cx='490' cy='745' r='7' fill='#000' stroke='none' />
+  <circle id='__dot_Code__Morphing' cx='460' cy='655' r='7' fill='#000' stroke='none' />
+  <circle id='__dot_Aries' cx='460' cy='685' r='7' fill='#000' stroke='none' />
+  <circle id='__dot_Dynamite' cx='490' cy='715' r='7' fill='#000' stroke='none' />
+  <circle id='__dot_User__Mode__Linux' cx='490' cy='745' r='7' fill='#000' stroke='none' />
   <circle id='__dot_Tarmac' cx='496' cy='775' r='7' fill='#28789E' stroke='none' />
   <circle id='__dot_DOSBox-X' cx='790' cy='835' r='7' fill='#113466' stroke='none' />
   <circle id='__dot_DOSBox' cx='520' cy='805' r='7.66222' fill='#113466' stroke='none' />
-  <circle id='__dot_MCTOLL' cx='1030' cy='925' r='7' fill='#000' stroke='none' />
-  <circle id='__dot_McSema' cx='1030' cy='895' r='7' fill='#9C1B45' stroke='none' />
-  <circle id='__dot_LLVM' cx='550' cy='865' r='8.10626' fill='#556293' stroke='none' />
-  <circle id='__dot_MagiXen' cx='670' cy='985' r='7' fill='#000' stroke='none' />
-  <circle id='__dot_Qubes__OS' cx='870' cy='985' r='7' fill='#3874D8' stroke='none' />
-  <circle id='__dot_Xen' cx='550' cy='955' r='8.10626' fill='#000' stroke='none' />
-  <circle id='__dot_IA-32__EL' cx='550' cy='1015' r='7' fill='#000' stroke='none' />
+  <circle id='__dot_IA-32__EL' cx='550' cy='865' r='7' fill='#000' stroke='none' />
+  <circle id='__dot_MCTOLL' cx='1030' cy='955' r='7' fill='#000' stroke='none' />
+  <circle id='__dot_McSema' cx='1030' cy='925' r='7' fill='#9C1B45' stroke='none' />
+  <circle id='__dot_LLVM' cx='550' cy='895' r='8.10626' fill='#556293' stroke='none' />
+  <circle id='__dot_MagiXen' cx='670' cy='1015' r='7' fill='#000' stroke='none' />
+  <circle id='__dot_Qubes__OS' cx='870' cy='1015' r='7' fill='#3874D8' stroke='none' />
+  <circle id='__dot_Xen' cx='550' cy='985' r='8.10626' fill='#000' stroke='none' />
   <circle id='__dot_NDISWrapper' cx='550' cy='1045' r='7' fill='#000' stroke='none' />
   <circle id='__dot_unicorn' cx='928' cy='1255' r='7' fill='#E62129' stroke='none' />
   <circle id='__dot_REV.NG' cx='970' cy='1105' r='7' fill='#E92B29' stroke='none' />
@@ -983,10 +995,10 @@ style='opacity:0.6;' >
   <circle id='__dot_bsnes' cx='603' cy='1435' r='7' fill='#DC1212' stroke='none' />
     <circle cx='837' cy='1435' r='5' fill='#DC1212' stroke='none' />
   <circle id='__dot_Pin' cx='610' cy='1465' r='7' fill='#000' stroke='none' />
-  <circle id='__dot_Rosetta' cx='640' cy='1495' r='7' fill='#525152' stroke='none' />
-  <circle id='__dot_Intel__VT' cx='640' cy='1525' r='7' fill='#0071C5' stroke='none' />
-  <circle id='__dot_Linuxulator' cx='640' cy='1555' r='7' fill='#000' stroke='none' />
-  <circle id='__dot_Alky' cx='640' cy='1585' r='7' fill='#000' stroke='none' />
+  <circle id='__dot_Intel__VT' cx='640' cy='1495' r='7' fill='#0071C5' stroke='none' />
+  <circle id='__dot_Linuxulator' cx='640' cy='1525' r='7' fill='#000' stroke='none' />
+  <circle id='__dot_Alky' cx='640' cy='1555' r='7' fill='#000' stroke='none' />
+  <circle id='__dot_Rosetta' cx='640' cy='1585' r='7' fill='#525152' stroke='none' />
   <circle id='__dot_DeSmuME' cx='647' cy='1615' r='7' fill='#A4A8FF' stroke='none' />
   <circle id='__dot_VirtualBox' cx='671' cy='1645' r='7' fill='#2F61B4' stroke='none' />
   <circle id='__dot_KVM' cx='672' cy='1675' r='7' fill='#000000' stroke='none' />
@@ -1038,9 +1050,9 @@ style='opacity:0.6;' >
   <text x='467' y='110'  >Win4Lin</text>
     <text x='620' y='110' >Win4Lin 9x</text>
   <text x='39' y='80'  >Merge</text>
-  <text x='257' y='170'  >mx</text>
-  <text x='257' y='200'  >VEST</text>
-  <text x='257' y='230'  >Shade</text>
+  <text x='257' y='170'  >VEST</text>
+  <text x='257' y='200'  >Shade</text>
+  <text x='257' y='230'  >mx</text>
   <text x='496' y='380'  >WineX</text>
     <text x='598' y='380' >Cedega</text>
     <text x='799' y='380' >GameTree Linux</text>
@@ -1058,20 +1070,20 @@ style='opacity:0.6;' >
   <text x='437' y='530'  >Dynamo</text>
   <text x='719' y='620'  >VMware Player</text>
   <text x='448' y='590'  >VMware Workstation</text>
-  <text x='467' y='650'  >Aries</text>
-  <text x='467' y='680'  >Code Morphing</text>
-  <text x='497' y='710'  >User Mode Linux</text>
-  <text x='497' y='740'  >Dynamite</text>
+  <text x='467' y='650'  >Code Morphing</text>
+  <text x='467' y='680'  >Aries</text>
+  <text x='497' y='710'  >Dynamite</text>
+  <text x='497' y='740'  >User Mode Linux</text>
   <text x='503' y='770'  >Tarmac</text>
   <text x='797' y='830'  >DOSBox-X</text>
   <text x='527' y='800'  >DOSBox</text>
-  <text x='1037' y='920'  >MCTOLL</text>
-  <text x='1037' y='890'  >McSema</text>
-  <text x='557' y='860'  >LLVM</text>
-  <text x='677' y='980'  >MagiXen</text>
-  <text x='877' y='980'  >Qubes OS</text>
-  <text x='557' y='950'  >Xen</text>
-  <text x='557' y='1010'  >IA-32 EL</text>
+  <text x='557' y='860'  >IA-32 EL</text>
+  <text x='1037' y='950'  >MCTOLL</text>
+  <text x='1037' y='920'  >McSema</text>
+  <text x='557' y='890'  >LLVM</text>
+  <text x='677' y='1010'  >MagiXen</text>
+  <text x='877' y='1010'  >Qubes OS</text>
+  <text x='557' y='980'  >Xen</text>
   <text x='557' y='1040'  >NDISWrapper</text>
   <text x='935' y='1250'  >unicorn</text>
   <text x='977' y='1100'  >REV.NG</text>
@@ -1088,10 +1100,10 @@ style='opacity:0.6;' >
   <text x='610' y='1430'  >bsnes</text>
     <text x='842' y='1430' >higan</text>
   <text x='617' y='1460'  >Pin</text>
-  <text x='647' y='1490'  >Rosetta</text>
-  <text x='647' y='1520'  >Intel VT</text>
-  <text x='647' y='1550'  >Linuxulator</text>
-  <text x='647' y='1580'  >Alky</text>
+  <text x='647' y='1490'  >Intel VT</text>
+  <text x='647' y='1520'  >Linuxulator</text>
+  <text x='647' y='1550'  >Alky</text>
+  <text x='647' y='1580'  >Rosetta</text>
   <text x='654' y='1610'  >DeSmuME</text>
   <text x='678' y='1640'  >VirtualBox</text>
   <text x='679' y='1670'  >KVM</text>
@@ -1136,8 +1148,8 @@ style='opacity:0.6;' >
 
 <g inkscape:label='Yearlines' inkscape:groupmode='layer' id='layer_yearlines' 
  style='stroke:none;fill:url(#__yearline);' >
-  <rect x='0' y='0' rx='5' ry='5' width='1220' height='40' />
-  <rect x='0' y='2800' rx='5' ry='5' width='1220' height='40' />
+  <rect x='0' y='0' rx='5' ry='5' width='1250' height='40' />
+  <rect x='0' y='2800' rx='5' ry='5' width='1250' height='40' />
   <g style='font-size:10px;stroke:none;fill:#fff;font-family:Liberation Sans, Arial, Helvetica;-inkscape-font-specification:Liberation Sans, Arial, Helvetica;text-anchor:middle;' >
     <text x='25' y='23'><tspan>1985</tspan></text>
     <text x='25' y='2823'><tspan>1985</tspan></text>
@@ -1219,6 +1231,8 @@ style='opacity:0.6;' >
     <text x='1165' y='2823'><tspan>2023</tspan></text>
     <text x='1195' y='23'><tspan>2024</tspan></text>
     <text x='1195' y='2823'><tspan>2024</tspan></text>
+    <text x='1225' y='23'><tspan>2025</tspan></text>
+    <text x='1225' y='2823'><tspan>2025</tspan></text>
   </g>
 </g>
 
