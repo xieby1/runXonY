@@ -16,5 +16,7 @@ Transor("Dynamite",
         Mail from wine-devel: 2003-August.txt: 17434,
         http://www.transitives.com/tech_faq.htm (need wayback machine)
         https://web.archive.org/web/20021129223838/http://transitives.com:80/
+        2006.java_jni_bridge.chen.cgo.6.pdf: [16]
+        https://en.wikipedia.org/wiki/QuickTransit
     '''
 )
